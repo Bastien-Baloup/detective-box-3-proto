@@ -16,18 +16,17 @@ import useLieu from '../utils/hooks/useLieu.jsx'
 
 function Historique() {
 	const filtersType = ["Document", "Vidéo", "Audio", "Lieu", "Archive"];
-	const filterBox = ["Box 1", "Box 2", "Box 3"];
 	const token = localStorage.getItem("token");
 	const { currentBox } = useContext(BoxContext);
 	const { fetchPreviousStateNappe } = useContext(AmbianceContext);
-	const { toggleDataHistory, actionToggleDataHistory } = useContext(DataContext);
-  const { renderLieu, setLieu, setLieuModalOpen } = useLieu()
+	const { toggleDataHistory } = useContext(DataContext);
+  const { renderLieu, setLieu, setLieuOpen } = useLieu()
 	const { getHistoryByBox } = useApi()
 	const { closeCompte } = useContext(CompteContext);
 
 	const openLieu = (lieu) => {
 		setLieu(lieu)
-		setLieuModalOpen(true)
+		setLieuOpen(true)
 		setModal(false)
 	}
 
@@ -41,64 +40,12 @@ function Historique() {
 					setDataHistory1([])
 				}
 			}
-			if (currentBox === 2) {
-				const result = await getHistoryByBox(token, currentBox);
-				if (result) {
-					setDataHistory2(result.data);
-				} else {
-					setDataHistory2([])
-				}
-				const resultbox1 = await getHistoryByBox(token, 1);
-				if (resultbox1) {
-					setDataHistory1(resultbox1.data);
-				} else {
-					setDataHistory1([])
-				}
-			}
-			if (currentBox === 3) {
-				const result = await getHistoryByBox(token, currentBox);
-				if (result) {
-					setDataHistory3(result.data);
-				} else {
-					setDataHistory3([])
-				}
-				const resultbox1 = await getHistoryByBox(token, 1);
-				setDataHistory1(resultbox1.data);
-				if (resultbox1) {
-					setDataHistory1(resultbox1.data);
-				} else {
-					setDataHistory1([])
-				}
-				const resultbox2 = await getHistoryByBox(token, 2);
-				if (resultbox2) {
-					setDataHistory2(resultbox2.data);
-				} else {
-					setDataHistory2([])
-				}
-			}
 		};
 		fetchData();
 	}, [toggleDataHistory]);
 
-	const initialFilterBox = () => {
-		if (currentBox == 1) {
-			return ["Box 1"];
-		}
-		if (currentBox == 2) {
-			return ["Box 2"];
-		}
-		if (currentBox == 3) {
-			return ["Box 3"];
-		} else {
-			return [];
-		}
-	};
-
 	const [dataHistory1, setDataHistory1] = useState(null);
-	const [dataHistory2, setDataHistory2] = useState(null);
-	const [dataHistory3, setDataHistory3] = useState(null);
 	const [selectedCategory, setSelectedCategory] = useState([]);
-	const [selectedBox, setselectedBox] = useState(() => initialFilterBox());
 
 	const [modal, setModal] = useState(false);
 	const [selectedClue, setSelectedClue] = useState("");
@@ -115,36 +62,16 @@ function Historique() {
 		}
 	};
 
-	// EXPLICATION : cette fonction va créer un nouvel array avec l'ensemble des filtres de box
-	const handleFilterBox = (selectedFilter) => {
-		if (selectedBox.includes(selectedFilter)) {
-			let filters = selectedBox.filter((element) => element !== selectedFilter);
-			setselectedBox(filters);
-		} else {
-			setselectedBox([...selectedBox, selectedFilter]);
-		}
-	};
-
 	// EXPLICATION : cette fonction va filtrer les data en fonction des arrays filtres créés plus haut
 	const filterClues = (data) => {
 		if (data.length > 0) {
-			if (selectedCategory.length == 0 && selectedBox.length == 0) {
-				return data.map((clue, index) => <Preuve data={clue} key={`clueKey-${index}`} openModal={() => openModal(clue)} />);
+			let filteredData = []
+			if (selectedCategory.length == 0) {
+				filteredData = data
+			} else {
+				filteredData = data.filter((clue) => selectedCategory.includes(clue.category))
 			}
-			if (selectedCategory.length == 0 && selectedBox.length != 0) {
-				return data
-					.filter((clue) => selectedBox.includes(clue.box))
-					.map((clue, index) => <Preuve data={clue} key={`clueKey-${index}`} openModal={() => openModal(clue)} />);
-			}
-			if (selectedBox.length == 0 && selectedCategory.length != 0) {
-				return data
-					.filter((clue) => selectedCategory.includes(clue.category))
-					.map((clue, index) => <Preuve data={clue} key={`clueKey-${index}`} openModal={() => openModal(clue)} />);
-			}
-			return data
-				.filter((clue) => selectedCategory.includes(clue.category))
-				.filter((clue) => selectedBox.includes(clue.box))
-				.map((clue, index) => <Preuve data={clue} key={`clueKey-${index}`} openModal={() => openModal(clue)} />);
+			return filteredData.map((clue, index) => <Preuve data={clue} key={`clueKey-${index}`} openModal={() => openModal(clue)} />);
 		}
 	};
 
@@ -161,16 +88,8 @@ function Historique() {
 				//console.log(filterClues(allClues))
 				return filterClues(allClues);
 			}
-		}
-		if (currentBox == 2 && dataHistory1) {
-			let cluesCurrentBoxTrue = dataHistory2?.filter((clue) => clue.status == true);
-			let allClues = [cluesCurrentBoxTrue, dataHistory1].flat();
-			return filterClues(allClues);
-		}
-		if (currentBox == 3 && dataHistory1 && dataHistory2) {
-			let cluesCurrentBoxTrue = dataHistory3?.filter((clue) => clue.status == true);
-			let allClues = [cluesCurrentBoxTrue, dataHistory2, dataHistory1].flat();
-			return filterClues(allClues);
+		} else {
+			return []
 		}
 	};
 
@@ -241,39 +160,6 @@ function Historique() {
 		}
 	};
 
-	const displayFilterBox = () => {
-		if (currentBox == 1) {
-			return filterBox.map((category, index) => (
-				<Filter
-					category={category}
-					key={`filterBox-${index}`}
-					handleSearch={() => handleFilterBox(category)}
-					activebyDefault={category == "Box 1" ? true : false}
-				/>
-			));
-		}
-		if (currentBox == 2) {
-			return filterBox.map((category, index) => (
-				<Filter
-					category={category}
-					key={`filterBox-${index}`}
-					handleSearch={() => handleFilterBox(category)}
-					activebyDefault={category == "Box 2" ? true : false}
-				/>
-			));
-		}
-		if (currentBox == 3) {
-			return filterBox.map((category, index) => (
-				<Filter
-					category={category}
-					key={`filterBox-${index}`}
-					handleSearch={() => handleFilterBox(category)}
-					activebyDefault={category == "Box 3" ? true : false}
-				/>
-			));
-		}
-	};
-
 	const displayFilterType = () => {
 		return filtersType.map((category, index) => (
 			<Filter
@@ -291,7 +177,6 @@ function Historique() {
 			{renderLieu()}
 			<div className="filter__wrapper">
 				<div className="filter--type__container">{displayFilterType()}</div>
-				<div className="filter--box__container">{displayFilterBox()}</div>
 			</div>
 			<div className="clue__wrapper">{displayClue()}</div>
 		</main>
