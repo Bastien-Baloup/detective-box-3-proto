@@ -14,7 +14,7 @@ import {
 import { useContext, useState, useEffect } from "react";
 import useApi from "../utils/hooks/useApi.js";
 import useLieu from "../utils/hooks/useLieu.jsx";
-import useEvent from "../utils/hooks/useEvent.js";
+//import useEvent from "../utils/hooks/useEvent.js";
 
 const Raphaelle = ({ closeAgentPage }) => {
   const { currentBox } = useContext(BoxContext);
@@ -25,22 +25,22 @@ const Raphaelle = ({ closeAgentPage }) => {
     actionToggleDataHistory,
     toggleDataRaphaelle,
     toggleDataObjectif,
-    actionToggleDataHelp,
+    //actionToggleDataHelp,
     toggleDataHistory,
-    actionToggleDataObjectif,
+    //actionToggleDataObjectif,
   } = useContext(DataContext);
 
   const {
     updateCharactersById,
     updateHistory,
     getCharactersById,
-    getObjectivesByBox,
-    updateHelp,
-    getHistoryByBox,
-    updateObjectives,
+    // getObjectivesByBox,
+    //updateHelp,
+    // getHistoryByBox,
+    //updateObjectives,
   } = useApi();
 
-  const { dispatch } = useEvent();
+  // const { dispatch } = useEvent();
 
   //EXPLICATION : Raphaelle est le personnage '4'
 
@@ -54,36 +54,22 @@ const Raphaelle = ({ closeAgentPage }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const objectifs = await getObjectivesByBox(token, currentBox);
-      if (currentBox == 1) {
-        const objectif14Data = objectifs.data.find((event) => event.id == 14);
-        setObjectif14(objectif14Data.status);
-      }
-      if (currentBox == 2) {
-        const objectif21Data = objectifs.data.find((event) => event.id == 21);
-        setObjectif21(objectif21Data.status);
-        const objectif24Data = objectifs.data.find((event) => event.id == 24);
-        setObjectif24(objectif24Data.status);
-      }
-      if (currentBox == 3) {
-        const objectif31Data = objectifs.data.find((event) => event.id == 31);
-        setObjectif31(objectif31Data.status);
-        const objectif32Data = objectifs.data.find((event) => event.id == 32);
-        setObjectif32(objectif32Data.status);
-      }
+      //TODO Récupération data des objectifs
+      // const objectifs = await getObjectivesByBox(token, currentBox);
+      // const objectif14Data = objectifs.data.find((event) => event.id == 14);
+      // setObjectif14(objectif14Data.status);
     };
     fetchData();
   }, [toggleDataObjectif]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const clues = await getHistoryByBox(token, currentBox);
-      if (currentBox == 3) {
-        const box3audio3Data = clues.data.find(
-          (event) => event.id == "box3audio3"
-        );
-        setBox3Audio3(box3audio3Data.status);
-      }
+      //TODO Récupération data de l'historique
+      // const clues = await getHistoryByBox(token, currentBox);
+      // const box3audio3Data = clues.data.find(
+      //   (event) => event.id == "box3audio3"
+      // );
+      // setBox3Audio3(box3audio3Data.status);
     };
     fetchData();
   }, [toggleDataHistory]);
@@ -95,12 +81,6 @@ const Raphaelle = ({ closeAgentPage }) => {
   const [modal, setModal] = useState(false);
   const [answer, setAnswer] = useState("");
   const [dataRaphaelle, setDataRaphaelle] = useState(null);
-  const [objectif14, setObjectif14] = useState("");
-  const [objectif21, setObjectif21] = useState("");
-  const [objectif24, setObjectif24] = useState("");
-  const [objectif31, setObjectif31] = useState("");
-  const [objectif32, setObjectif32] = useState("");
-  const [box3audio3, setBox3Audio3] = useState(false);
   const { renderLieu, setLieu, setLieuOpen } = useLieu();
 
   // EXPLICATION : Fonction pour slugifier l'input Adresse des joueurs (lettre et chiffres ok)
@@ -132,20 +112,15 @@ const Raphaelle = ({ closeAgentPage }) => {
     const thisBox = dataRaphaelle.find(
       (element) => element.box_id == currentBox
     ).data;
-    const box1 = dataRaphaelle.find((element) => element.box_id == 1).data;
-    const box2 = dataRaphaelle.find((element) => element.box_id == 2).data;
     const answerInThisBox = (value) => {
       return thisBox.find((element) => element.ask.includes(value));
     };
     const previouslyAnsweredInThisBox = (value) => {
       return answerInThisBox(value) && answerInThisBox(value).status;
     };
-    const answerInBox1 = (value) =>
-      box1.some((element) => element.ask.includes(value));
-    const answerInBox2 = (value) =>
-      box2.some((element) => element.ask.includes(value));
 
     e.preventDefault();
+
     // EXPLICATION : si les deux champs sont remplis, message d'erreur
     if (valueAdresse != "" && (valueLatitude != "" || valueLongitude != "")) {
       setErrorMessage(
@@ -156,6 +131,7 @@ const Raphaelle = ({ closeAgentPage }) => {
       setValueLongitude("");
       return;
     }
+
     // EXPLICATION : si aucun des champs n'est rempli, message d'erreur
     if (valueAdresse == "" && valueLatitude == "" && valueLongitude == "") {
       setErrorMessage(
@@ -188,93 +164,23 @@ const Raphaelle = ({ closeAgentPage }) => {
       }
       // EXPLICATION : certains lieux ne sont visitables que si certaines conditions ont été remplies
       if (answerInThisBox(slugifiedAdresse)) {
-        if (
-          answerInThisBox(slugifiedAdresse).id == "box1lieu3" &&
-          objectif14 != "done"
-        ) {
-          setValueAdresse("");
-          setValueLongitude("");
-          setValueLatitude("");
-          setErrorMessage(
-            `Vous devriez vous concentrer sur le dernier objectif avant d'aller là bas.`
-          );
-          return;
-        }
-        if (
-          answerInThisBox(slugifiedAdresse).id == "box2lieu3" &&
-          objectif21 != "done"
-        ) {
-          setValueAdresse("");
-          setValueLongitude("");
-          setValueLatitude("");
-          setErrorMessage(
-            `On ne peut pas se rendre à la prison comme ça, sans raison !`
-          );
-          return;
-        }
-        if (
-          answerInThisBox(slugifiedAdresse).id == "box2lieu2" &&
-          objectif24 != "done"
-        ) {
-          setValueAdresse("");
-          setValueLongitude("");
-          setValueLatitude("");
-          setErrorMessage(`Vous n'avez aucune raison d'aller à cette adresse.`);
-          return;
-        }
-        if (
-          (answerInThisBox(slugifiedAdresse).id == "box3lieu1" &&
-            objectif31 != "done") ||
-          (answerInThisBox(slugifiedAdresse).id == "box3lieu1" &&
-            objectif32 != "done")
-        ) {
-          setValueAdresse("");
-          setValueLongitude("");
-          setValueLatitude("");
-          setErrorMessage(
-            `Assurez-vous de valider les premiers objectifs avant de m'envoyer en pleine fôret.`
-          );
-          return;
-        }
-        if (
-          answerInThisBox(slugifiedAdresse).id == "box3lieu2" &&
-          box3audio3 == false
-        ) {
-          setValueAdresse("");
-          setValueLongitude("");
-          setValueLatitude("");
-          setErrorMessage(
-            `Je ne vois pas l'intérêt d'aller chez Céline pour nos recherches. Elle est disponible pour nous donner les archives de police si vous en avez besoin. Vous devriez vous concentrer sur l'enquête.`
-          );
-          return;
-        }
+        //TODO gestion réponses spécifiques, exemple :
+        // if ( answerInThisBox(slugifiedAdresse).id == "box1lieu3" && objectif14 != "done" ) {
+        //   setValueAdresse("");
+        //   setValueLongitude("");
+        //   setValueLatitude("");
+        //   setErrorMessage(
+        //     `Vous devriez vous concentrer sur le dernier objectif avant d'aller là bas.`
+        //   );
+        //   return;
+        // }
+       
         setAnswer(answerInThisBox(slugifiedAdresse));
         setModal(true);
         setValueAdresse("");
         setValueLongitude("");
         setValueLatitude("");
         setErrorMessage("");
-        return;
-      }
-      if (currentBox == 2 && answerInBox1(slugifiedAdresse)) {
-        setValueAdresse("");
-        setValueLongitude("");
-        setValueLatitude("");
-        setErrorMessage(
-          `Vous avez déjà visité ce lieu lors d'une box précédente. Rendez-vous dans l'Historique pour le visiter de nouveau.`
-        );
-        return;
-      }
-      if (
-        currentBox == 3 &&
-        (answerInBox2(slugifiedAdresse) || answerInBox1(slugifiedAdresse))
-      ) {
-        setValueAdresse("");
-        setValueLongitude("");
-        setValueLatitude("");
-        setErrorMessage(
-          `Vous avez déjà visité ce lieu lors d'une box précédente. Rendez-vous dans l'Historique pour le visiter de nouveau.`
-        );
         return;
       }
     }
@@ -296,27 +202,6 @@ const Raphaelle = ({ closeAgentPage }) => {
         setValueLongitude("");
         setValueLatitude("");
         setErrorMessage("");
-        return;
-      }
-      if (currentBox == 2 && answerInBox1(slugifiedGPS)) {
-        setValueAdresse("");
-        setValueLongitude("");
-        setValueLatitude("");
-        setErrorMessage(
-          `Vous avez déjà visité ce lieu lors d'une box précédente. Rendez-vous dans l'Historique pour le visiter de nouveau.`
-        );
-        return;
-      }
-      if (
-        currentBox == 3 &&
-        (answerInBox2(slugifiedGPS) || answerInBox1(slugifiedGPS))
-      ) {
-        setValueAdresse("");
-        setValueLongitude("");
-        setValueLatitude("");
-        setErrorMessage(
-          `Vous avez déjà visité ce lieu lors d'une box précédente. Rendez-vous dans l'Historique pour le visiter de nouveau.`
-        );
         return;
       }
     }
@@ -352,90 +237,34 @@ const Raphaelle = ({ closeAgentPage }) => {
     );
   };
 
-  // EXPLICATION : la visite du lieu box2lieu3 ouvre l'objectif 2 de la box 2 et le renfort 2
-  // EXPLICATION : la visite du lieu box2lieu2 ouvre le renfort 6 et ferme le renfort 5
+
   const openLieu = async (answerId, asnwerAsk) => {
     await updateHistory(token, currentBox, answerId);
     await updateCharactersById(token, 4, currentBox, asnwerAsk);
 
-    if (answerId == "box2lieu1") {
-      await updateHistory(token, 2, "box2document5");
-      dispatch({
-        type: "setEvent",
-        id: "box2document5",
-      });
-    }
-    if (answerId == "box2lieu3") {
-      await updateHistory(token, 2, "box2document7");
-      dispatch({
-        type: "setEvent",
-        id: "box2document7",
-      });
-      await updateHistory(token, 2, "box2document10");
-      dispatch({
-        type: "setEvent",
-        id: "box2document10",
-      });
-    }
-    if (answerId == "box2lieu2") {
-      await updateHelp(token, 2, "box2help5", "done");
-      dispatch({
-        type: "setEvent",
-        id: "box2help5",
-      });
-      await updateHelp(token, 2, "box2help6", "open");
-      dispatch({
-        type: "setEvent",
-        id: "box2help6",
-      });
-      actionToggleDataHelp();
-    }
-    if (answerId == "box3lieu1") {
-      await updateObjectives(token, 3, 33, "open");
-      await updateObjectives(token, 3, 34, "open");
-      actionToggleDataObjectif();
-      //await updateHelp(token, 3, 'box3help2', 'done')
-      await updateHelp(token, 3, "box3help3", "open");
-      dispatch({
-        type: "setEvent",
-        id: "box3help3",
-      });
-      await updateHelp(token, 3, "box3help6", "open");
-      dispatch({
-        type: "setEvent",
-        id: "box3help6",
-      });
-      actionToggleDataHelp();
-    }
-    if (answerId == "box3lieu2") {
-      await updateHistory(token, 3, "box3document5");
-      dispatch({
-        type: "setEvent",
-        id: "box3document5",
-      });
-      await updateHistory(token, 3, "box3document7");
-      dispatch({
-        type: "setEvent",
-        id: "box3document7",
-      });
-      await updateHistory(token, 3, "box3document8");
-      dispatch({
-        type: "setEvent",
-        id: "box3document8",
-      });
-      await updateHistory(token, 3, "box3document11");
-      dispatch({
-        type: "setEvent",
-        id: "box3document11",
-      });
-    }
+    //TODO actions spécifique à l'ouverture des lieux, exemples:
+    // if (answerId == "box2lieu1") {
+    //   await updateHistory(token, 2, "box2document5");
+    //   dispatch({
+    //     type: "setEvent",
+    //     id: "box2document5",
+    //   });
+    // }
+    // if (answerId == "box3lieu1") {
+    //   await updateObjectives(token, 3, 34, "open");
+    //   actionToggleDataObjectif();
+    //   await updateHelp(token, 3, "box3help6", "open");
+    //   dispatch({
+    //     type: "setEvent",
+    //     id: "box3help6",
+    //   });
+    //   actionToggleDataHelp();
+    // }
 
-    //window.open(answer.src + '/?token=' + token, '_blank')
     setLieu(answerId);
     setLieuOpen(true);
     actionToggleDataHistory();
     actionToggleDataRaphaelle();
-    // actionTogglePolling(true)
     validateModal();
   };
 
@@ -481,7 +310,7 @@ const Raphaelle = ({ closeAgentPage }) => {
         <div className="agent__portrait--container">
           <img
             className="agent__portrait"
-            src="https://db2cdn.fra1.cdn.digitaloceanspaces.com/assets/photos-personnages/raphaelle.jpg"
+            src={urlApi.cdn() + "assets/photos-personnages/raphaelle.jpg"}
             alt="photo de Raphaelle"
           />
         </div>
