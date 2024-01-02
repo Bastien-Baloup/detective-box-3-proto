@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 
 // import LieuExemple from '../../components/fouilles/LieuExemple'
-import Cross from "../assets/icons/Icon_Cross-white.svg";
+import Cross from "../../assets/icons/Icon_Cross-white.svg";
 
 const Proto__AucunLieu = ({ onClose }) => {
   return (
