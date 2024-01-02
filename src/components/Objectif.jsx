@@ -127,11 +127,11 @@ const Objectif = ({ data }) => {
   } = useApi();
 
   const { dispatch } = useEvent();
-  const { renderLieu, setLieu, setLieuModalOpen } = useLieu()
+  const { renderLieu, setLieu, setLieuOpen } = useLieu()
 
   const openLieu = (lieu) => {
 		setLieu(lieu)
-		setLieuModalOpen(true)
+		setLieuOpen(true)
 		setModal(false)
 	}
   // EXPLICATION : Fonction pour récupérer l'état des événements

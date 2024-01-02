@@ -1,56 +1,62 @@
 import { useState } from 'react';
+import PropTypes from "prop-types";
 
-import ChantierModal from '../../components/fouilles/ChantierModal.jsx'
-import TerrainModal from '../../components/fouilles/TerrainModal.jsx'
-import PlanqueModal from '../../components/fouilles/PlanqueModal.jsx'
-import MasonModal from '../../components/fouilles/MasonModal.jsx'
-import AppartemenModal from '../../components/fouilles/AppartementModal.jsx'
-import PrisonModal from '../../components/fouilles/PrisonModal.jsx'
-import ForetModal from '../../components/fouilles/ForetModal.jsx'
-import CelineModal from '../../components/fouilles/CelineModal.jsx'
-import CaveModal from '../../components/fouilles/CaveModal.jsx'
+
+// import LieuExemple from '../../components/fouilles/LieuExemple'
+import Cross from "../assets/icons/Icon_Cross-white.svg";
+
+const Proto__AucunLieu = ({ onClose }) => {
+  return (
+    <div className="modal-objectif__background">
+      <div className="modal-objectif__box">
+        <button className="modal-objectif__icon--container">
+          <img
+            className="modal-objectif__icon"
+            src={Cross}
+            onClick={onClose}
+            alt=""
+          />
+        </button>
+        <h2 className="modal-objectif__title">
+          Lieu de fouille
+        </h2>
+        <div>
+          <p className="modal-objectif__subtitle" >
+            Le lieu de fouille n&apos;est pas disponible dans cette version.
+          </p>
+        </div>
+        <button className="modal-objectif__button button--red" onClick={onClose}>
+          Retour
+        </button>
+      </div>
+    </div>
+  );
+}
+
+Proto__AucunLieu.propTypes = {
+  onClose: PropTypes.func.isRequired,
+};
+
 
 const useLieu = () => {
-  const [LieuModalOpen, setLieuModalOpen] = useState(false)
+  const [LieuOpen, setLieuOpen] = useState(false)
   const [Lieu, setLieu] = useState('')
 
   const renderLieu = () => {
     let LieuModal
     switch (Lieu) {
-      case 'box1lieu1':
-        LieuModal = ChantierModal
-        break
-      case 'box1lieu2':
-        LieuModal = TerrainModal
-        break
-      case 'box1lieu3':
-        LieuModal = PlanqueModal
-        break
-      case 'box2lieu1':
-        LieuModal = MasonModal
-        break
-      case 'box2lieu2': 
-        LieuModal = AppartemenModal
-        break
-      case 'box2lieu3':
-        LieuModal = PrisonModal
-        break
-      case 'box3lieu1':
-        LieuModal = ForetModal
-        break
-      case 'box3lieu2':
-        LieuModal = CelineModal
-        break
-      case 'box3lieu3':
-        LieuModal = CaveModal
-        break
+      // case 'box1lieu1':
+      //   LieuModal = LieuExemple
+      //   break
+      default :
+        LieuModal = Proto__AucunLieu
     }
     return (
-      LieuModalOpen && <LieuModal onClose={() => setLieuModalOpen(false)} /> 
+      LieuOpen && <LieuModal onClose={() => setLieuOpen(false)} /> 
     )
   }
 
-  return { renderLieu, setLieu, setLieuModalOpen }
+  return { renderLieu, setLieu, setLieuOpen }
 }
 
 export default useLieu

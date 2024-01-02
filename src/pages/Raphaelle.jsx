@@ -101,7 +101,7 @@ const Raphaelle = ({ closeAgentPage }) => {
   const [objectif31, setObjectif31] = useState("");
   const [objectif32, setObjectif32] = useState("");
   const [box3audio3, setBox3Audio3] = useState(false);
-  const { renderLieu, setLieu, setLieuModalOpen } = useLieu();
+  const { renderLieu, setLieu, setLieuOpen } = useLieu();
 
   // EXPLICATION : Fonction pour slugifier l'input Adresse des joueurs (lettre et chiffres ok)
   const slugifyAdresse = (input) => {
@@ -432,7 +432,7 @@ const Raphaelle = ({ closeAgentPage }) => {
 
     //window.open(answer.src + '/?token=' + token, '_blank')
     setLieu(answerId);
-    setLieuModalOpen(true);
+    setLieuOpen(true);
     actionToggleDataHistory();
     actionToggleDataRaphaelle();
     // actionTogglePolling(true)
