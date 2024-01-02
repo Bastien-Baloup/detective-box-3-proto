@@ -1,0 +1,21 @@
+.choice {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	&__logo {
+		max-height: 15vh;
+		min-height: 5rem;
+		margin: 0 0 5vh 0;
+	}
+	&__title {
+		font-size: 1.75rem;
+	}
+	&__subtitle {
+		font-size: 1.25rem;
+		margin: 1rem 0 5vh 0;
+		line-height: 1.5rem;
+	}
+	&__reset {
+		margin-top: 10vh;
+	}
+}

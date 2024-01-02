@@ -1,0 +1,361 @@
+.modal-objectif {
+	&__background {
+		@include modaleBackground;
+	}
+	&__box {
+		@include modaleBox;
+		gap: 1.5rem;
+		width: 100%;
+	}
+	&__icon {
+		width: 2.5rem;
+		&--container {
+			background-color: transparent;
+			border: none;
+			align-self: self-end;
+			cursor: pointer;
+		}
+	}
+	&__title {
+		line-height: 1.5rem;
+		font-size: 1.25rem;
+		font-weight: 600;
+	}
+	&__subtitle {
+		line-height: 1.5rem;
+		&--link {
+			// text-decoration: underline;
+			color: $tertiary-color;
+		}
+	}
+	&__errorMessage {
+		color: $tertiary-color;
+		font-weight: 800;
+	}
+}
+
+@include responsive(tablet) {
+	.modal-objectif__box {
+		gap: 2rem;
+	}
+}
+
+.text-hacking {
+	animation: glitch 1s linear infinite;
+	font-size: 2rem;
+}
+.text-hacking {
+	&::after,
+	&::before {
+		content: attr(data-text);
+		position: absolute;
+		left: 0;
+	}
+}
+
+.text-hacking::before {
+	animation: glitchTop 1s linear infinite;
+	clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+	-webkit-clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+}
+
+.text-hacking::after {
+	animation: glitchBotom 1.5s linear infinite;
+	clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+	-webkit-clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+}
+
+@keyframes glitch {
+	2%,
+	64% {
+		transform: translate(2px, 0) skew(0deg);
+	}
+	4%,
+	60% {
+		transform: translate(-2px, 0) skew(0deg);
+	}
+	62% {
+		transform: translate(0, 0) skew(5deg);
+	}
+}
+
+@keyframes glitchTop {
+	2%,
+	64% {
+		transform: translate(2px, -2px);
+	}
+	4%,
+	60% {
+		transform: translate(-2px, 2px);
+	}
+	62% {
+		transform: translate(13px, -1px) skew(-13deg);
+	}
+}
+
+@keyframes glitchBotom {
+	2%,
+	64% {
+		transform: translate(-2px, 0);
+	}
+	4%,
+	60% {
+		transform: translate(-2px, 0);
+	}
+	62% {
+		transform: translate(-22px, 5px) skew(21deg);
+	}
+}
+
+.modal-objectif__victimes {
+	&__photos--container {
+		height: 70%;
+		max-width: 4.5rem;
+	}
+	&__photos {
+		@include img-max;
+	}
+	&__info {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		border: 1px solid $secondary-color;
+		padding: 1rem;
+		height: 6rem;
+	}
+	&__nom {
+		font-family: "Gabriele";
+		font-weight: 400;
+		font-size: 1rem;
+		padding-top: 0.5rem;
+	}
+	&__select {
+		font-family: "Gabriele";
+		font-size: 1rem;
+		color: $primary-color;
+		padding: 0.25rem;
+		width: 100%;
+		&--container {
+			height: 6rem;
+			padding: 1rem;
+			display: flex;
+			align-items: center;
+			border: 1px solid $secondary-color;
+			min-width: 5rem;
+		}
+	}
+}
+
+@include responsive(tablet) {
+	.modal-objectif__victimes {
+		&__photos--container {
+			height: 100%;
+		}
+		&__info {
+			display: flex;
+			flex-direction: row;
+			gap: 1rem;
+			height: 4rem;
+		}
+		&__select {
+			&--container {
+				height: 4rem;
+				padding: 1rem;
+			}
+		}
+	}
+}
+
+.modal-objectif__victimes {
+	&__main {
+		display: grid;
+		grid-template-columns: 1fr fit-content(20rem);
+	}
+}
+
+.modal-objectif__victimestri {
+	&__liste {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, 10rem);
+		width: 100%;
+		gap: 2rem;
+		justify-content: center;
+	}
+	&__photo {
+		@include img-max;
+		opacity: 100%;
+	}
+	&__photo--container {
+		height: 10rem;
+		width: 100%;
+	}
+	&__info {
+		cursor: pointer;
+		&:hover .modal-objectif__victimestri__photo {
+			opacity: 50%;
+		}
+	}
+	&__nom {
+		font-family: "Gabriele";
+		font-weight: 400;
+		font-size: 1rem;
+		padding: 0.5rem 0;
+	}
+}
+.victimestri__photo--selected {
+	opacity: 50%;
+	position: relative;
+}
+
+.victimestri__info--selected {
+	outline: 3px solid $tertiary-color;
+	position: relative;
+	&:after {
+		position: absolute;
+		content: "";
+		left: -10%;
+		top: 50%;
+		right: 0;
+		border-top: 3px solid $tertiary-color;
+		-webkit-transform: rotate(-50deg);
+		-moz-transform: rotate(-50deg);
+		-ms-transform: rotate(-50deg);
+		-o-transform: rotate(-50deg);
+		transform: rotate(-50deg);
+		width: 120%;
+	}
+}
+
+.modal-objectif__endGame {
+	z-index: 40;
+	&--text {
+		line-height: 1.5rem;
+	}
+}
+
+.objectif__wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 1rem;
+}
+
+.objectif {
+	cursor: pointer;
+	width: -moz-available; /* WebKit-based browsers will ignore this. */
+	width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
+	// height: 5rem;
+	padding: 1rem;
+	// margin: 1rem;
+	overflow: hidden;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	&__mainInfo {
+		display: grid;
+		grid-template-columns: 10% 80%;
+		justify-content: center;
+		align-items: center;
+		gap: 1rem;
+		width: 100%;
+	}
+	&__icon-wrapper {
+		max-width: 100%;
+		max-height: 100%;
+		width: 2rem;
+	}
+	&__icon {
+		width: 100%;
+		height: 100%;
+	}
+	&__title {
+		text-align: left;
+		font-family: fixture;
+		font-size: 1.75rem;
+		font-weight: 600;
+	}
+	&__subInfo {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		right: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: inherit;
+		opacity: 0;
+		transition: opacity 500ms ease-in-out;
+	}
+	&__subtitle {
+		text-align: center;
+		font-size: 1rem;
+		margin: 0.5rem;
+	}
+	&:hover .objectif__subInfo {
+		opacity: 1;
+	}
+}
+
+@include responsive(tablet) {
+	.objectif {
+		width: 15rem;
+	}
+}
+
+.objectif--done {
+	background-color: $primary-color;
+	border: solid 1px $validated-color;
+	color: $validated-color;
+}
+
+.objectif--open {
+	background-color: $secondary-color;
+	border: solid 1px $primary-color;
+	color: $primary-color;
+}
+
+.objectif--closed {
+	background-color: $primary-color;
+	border: solid 1px $tertiary-color;
+	color: $tertiary-color;
+	position: relative;
+	&:hover {
+		animation: shake 800ms ease;
+	}
+}
+
+.objectif__icon-wrapper--closed {
+	position: absolute;
+	width: 2rem;
+	top: 25%;
+	left: 45%;
+}
+// revoir pour centrer ces éléments avec un display flex mais le container est en Top 0 left 0
+
+.objectif__title--closed {
+	text-shadow: 0 0 10px $tertiary-color;
+	color: transparent;
+}
+
+@keyframes shake {
+	0% {
+		transform: skewX(-10deg);
+	}
+	5% {
+		transform: skewX(10deg);
+	}
+	10% {
+		transform: skewX(-10deg);
+	}
+	15% {
+		transform: skewX(10deg);
+	}
+	20% {
+		transform: skewX(0deg);
+	}
+	100% {
+		transform: skewX(0deg);
+	}
+}

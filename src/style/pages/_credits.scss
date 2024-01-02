@@ -1,0 +1,57 @@
+.credits {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 2rem;
+	&__link {
+		color: $secondary-color;
+		font-size: 1rem;
+		line-height: 1.25rem;
+		align-self: flex-start;
+		font-family: "Gabriele";
+		&:hover {
+			color: $tertiary-color;
+			text-decoration: underline;
+		}
+	}
+	&__title {
+		font-size: 3rem;
+		font-family: "Fixture";
+	}
+	&__subtitle {
+		color: $tertiary-color;
+		line-height: 1.25rem;
+		font-size: 1.25rem;
+	}
+	&__content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.5rem;
+		&__title {
+			font-size: 1.25rem;
+			font-family: "Gabriele";
+			margin-top: 1rem;
+			color: $tertiary-color;
+		}
+		&__actors {
+			display: flex;
+			flex-direction: column;
+			gap: 0.5rem;
+			width: 100%;
+		}
+		&__actor {
+			display: flex;
+			gap: 1rem;
+			& .credits__content__perso {
+				color: grey;
+				width: 100%;
+				text-align: right;
+			}
+			& .credits__content__name {
+				width: 100%;
+				text-align: left;
+			}
+		}
+	}
+}

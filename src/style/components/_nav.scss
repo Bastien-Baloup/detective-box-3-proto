@@ -1,0 +1,80 @@
+.nav {
+	display: flex;
+	align-items: flex-end;
+	// margin-top: 1rem;
+	width: 100%;
+	background-color: $primary-color;
+	&__container {
+		color: $secondary-color;
+		border: solid 1px $secondary-color;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		padding: 0.5rem 1rem;
+		height: 1.5rem;
+		font-size: 0.75rem;
+		cursor: pointer;
+		min-width: 10%;
+		&.active {
+			height: 2rem;
+			border-bottom: solid 1px $primary-color;
+			font-size: 1rem;
+			font-weight: 400;
+			width: 100%;
+			justify-content: start;
+			& .nav__title {
+				display: block;
+			}
+		}
+	}
+
+	&__icon {
+		height: 100%;
+		&__container {
+			height: 100%;
+		}
+	}
+
+	&__title {
+		display: none;
+		text-align: left;
+	}
+}
+
+@include responsive(laptop) {
+	.nav {
+		width: 80%;
+	}
+}
+
+@include responsive(tablet) {
+	.nav {
+		&__title {
+			display: block;
+		}
+		&__container {
+			gap: 1rem;
+			padding: 1rem;
+			// height: 2.5rem;
+			font-size: 1rem;
+			width: 100%;
+			&.active {
+				// height: 4rem;
+				font-size: 1.5rem;
+			}
+		}
+	}
+}
+
+@include responsive(mobile) {
+	.nav {
+		&__title {
+			display: block;
+		}
+		&__container {
+			width: 100%;
+			justify-content: start;
+		}
+	}
+}

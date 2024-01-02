@@ -1,0 +1,10 @@
+.tutorial {
+	@include modaleBox;
+	width: 60%;
+	&__background {
+		@include modaleBackground;
+	}
+	&__text{
+		line-height: 1.25rem;
+	}
+}

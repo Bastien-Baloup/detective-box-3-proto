@@ -1,0 +1,113 @@
+.card__wrapper {
+	display: flex;
+	gap: 1.5rem;
+	// justify-content: center;
+	min-width: min-content;
+	width: 100%;
+	height: 100%;
+}
+
+.card {
+	min-width: 5rem;
+	max-width: 10rem;
+	width: 100%;
+	// min-height: 20rem;
+	height: 100%;
+	position: relative;
+	cursor: pointer;
+	transition: all 1s ease;
+	border: solid 1px $secondary-color;
+	overflow: hidden;
+	&:hover {
+		min-width: 15rem;
+	}
+	&:hover .card__icon {
+		opacity: 0;
+	}
+	&:hover .card__button {
+		// opacity: 1;
+		transform: translateY(0);
+	}
+	&:hover .card__name {
+		transform: translateY(0);
+	}
+	&:hover .card__contentImg {
+		filter: grayscale(0%);
+	}
+	&__contentImg {
+		height: 100%;
+		width: 100%;
+		filter: grayscale(100%);
+		transition: filter 500ms ease-in-out;
+	}
+	&__contentImg--unavailable {
+		height: 100%;
+		width: 100%;
+		filter: grayscale(100%) blur(0.5rem);
+		// transition: filter 500ms ease-in-out;
+	}
+	&__portrait {
+		@include img-max;
+	}
+	&__contentText {
+		height: 50%;
+		width: 100%;
+		max-width: 100%;
+		position: absolute;
+		top: 45%;
+		left: 0px;
+		// display: flex;
+		// flex-direction: column;
+	}
+	&__icon {
+		height: 100%;
+		max-height: 5rem;
+		width: -moz-available; /* WebKit-based browsers will ignore this. */
+		width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
+		transition: opacity 500ms ease-in-out;
+		margin: 0.5rem;
+		&--container {
+			// padding: 0 2rem;
+			height: inherit;
+		}
+	}
+	&__name {
+		margin: 1rem 0rem;
+		font-family: "Gabriele";
+		transform: translateY(500%);
+		transition: transform 500ms ease-in-out;
+		font-size: 0.75rem;
+		visibility: hidden;
+	}
+	&__button {
+		// opacity: 0;
+		transform: translateY(500%);
+		// transition: opacity 300ms ease-in-out, transform 800ms ease-in-out;
+		transition: transform 800ms ease-in-out;
+		width: -moz-available; /* WebKit-based browsers will ignore this. */
+		width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
+		padding: 0.5rem;
+		min-height: 3rem;
+		margin: 0.5rem 1rem;
+		font-size: 0.75rem;
+	}
+}
+
+@include responsive(laptop) {
+	.card__wrapper {
+		justify-content: center;
+	}
+	.card {
+		max-width: 15rem;
+		&:hover {
+			min-width: 20rem;
+		}
+		&__icon {
+			height: 100%;
+			max-height: 100%;
+		}
+		&__name {
+			visibility: visible;
+		}
+	}
+}

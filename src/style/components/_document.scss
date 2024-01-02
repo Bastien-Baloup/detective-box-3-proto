@@ -1,0 +1,32 @@
+.modal-document {
+	&__background {
+		@include modaleBackground;
+	}
+	&__box {
+		@include modaleBox;
+		max-height: 90vh;
+		width: 80%;
+	}
+	&__buttons {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+	&__title{
+		font-family: "Gabriele";
+		font-size: 1.25rem;
+	}
+}
+
+.modal-document__element {
+	height: 100%;
+	object-fit: contain;
+	max-width: 100%;
+	&-container {
+		// max-width: 100%;
+		// max-height: 60%;
+		overflow: hidden;
+		height: 90vh;
+		width: 100%;
+	}
+}

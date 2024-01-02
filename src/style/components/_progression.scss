@@ -1,0 +1,56 @@
+.progressBar {
+	display: none;
+	flex-wrap: wrap;
+	// display: grid;
+	// grid-template-columns: 1fr 1fr 1fr 1fr;
+	// width: -moz-available; /* WebKit-based browsers will ignore this. */
+	// width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
+	max-width: 100%;
+	&__box {
+		display: flex;
+		align-items: end;
+		&__steps {
+			flex: none;
+			width: 80%;
+		}
+		&__icons {
+			display: flex;
+			flex-wrap: nowrap;
+			padding: 0.4rem 0;
+		}
+	}
+}
+
+.progressBar__box__icon {
+	&--small {
+		padding: 0 0.2rem;
+		&--container{
+			display: flex;
+			align-items: center;
+		}
+	}
+	&--main {
+		padding: 0 0.5rem;
+		&--container{
+			width:20%;
+			display:flex;
+		}
+	}
+}
+
+.progressBar__box__title {
+	color: $tertiary-color;
+	font-family: "Gabriele";
+
+	&--played {
+		font-family: "Gabriele";
+		color: $secondary-color;
+	}
+}
+
+@include responsive(bigtablet) {
+	.progressBar {
+		flex-wrap: nowrap;
+		display: flex;
+	}
+}

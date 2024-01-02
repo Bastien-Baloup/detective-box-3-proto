@@ -1,0 +1,38 @@
+.modal-video {
+	&__background {
+		@include modaleBackground;
+	}
+	&__box {
+		@include modaleBox;
+		width: 80%;
+	}
+	&__title {
+		font-family: "Gabriele";
+		font-size: 1.25rem;
+	}
+}
+
+.modal-video__video {
+	height: 100%;
+	width: 100%;
+	&--container {
+		height: 100%;
+		width: 100%;
+	}
+}
+
+// .modal-video__button {
+// 	visibility: hidden;
+// 	&-show {
+// 		visibility: visible;
+// 	}
+// }
+
+@include responsive(laptop) {
+	.modal-video__box {
+		height: 80vh;
+	}
+	.modal-video__video--container {
+		height: 75%;
+	}
+}

@@ -1,0 +1,35 @@
+.button--red {
+	cursor: pointer;
+	min-width: 12rem;
+	padding: 1rem;
+	background-color: $tertiary-color;
+	border: solid 1px $tertiary-color;
+	color: $secondary-color;
+	font-family: "Gabriele";
+	font-size: 1rem;
+	margin: 1rem;
+	font-weight: 400;
+	&:hover {
+		color: $tertiary-color;
+		background-color: $secondary-color;
+		border: solid 1px $tertiary-color;
+	}
+}
+
+.button--white {
+	cursor: pointer;
+	min-width: 12rem;
+	padding: 1rem;
+	background-color: $secondary-color;
+	border: solid 1px $secondary-color;
+	color: $primary-color;
+	font-family: "Gabriele";
+	font-size: 1rem;
+	font-weight: 600;
+	margin: 1rem;
+	&:hover {
+		color: $secondary-color;
+		background-color: $primary-color;
+		border: solid 1px $secondary-color;
+	}
+}

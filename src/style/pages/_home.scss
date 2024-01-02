@@ -1,0 +1,19 @@
+.main__home {
+	padding: 1.5rem;
+	border: 1px solid $secondary-color;
+	// border-top: none;
+	background-color: $primary-color;
+	overflow: auto;
+	height: 60vh;
+	min-height: 20rem;
+	display: flex;
+	align-items: center;
+}
+
+@include responsive(laptop) {
+	.main__home {
+		margin-bottom: 8rem;
+		height: 50vh;
+		min-height: 20rem;
+	}
+}

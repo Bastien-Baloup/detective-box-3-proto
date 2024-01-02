@@ -1,0 +1,192 @@
+.loader {
+	background-color: $primary-color;
+	@include flex-center;
+	animation: loader-display 3.5s ease-out forwards;
+	z-index: 50;
+	position: fixed;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	&__container {
+		width: 40rem;
+		padding: 0;
+	}
+	&__svg {
+		height: 100%;
+		width: 100%;
+	}
+}
+#DETECTIVE path {
+	opacity: 0;
+}
+#D {
+	animation: animD (9 * 200ms) linear infinite;
+}
+#E_1 {
+	animation: animE_1 (9 * 200ms) linear infinite;
+}
+#T_1 {
+	animation: animT_1 (9 * 200ms) linear infinite;
+}
+#E_2 {
+	animation: animE_2 (9 * 200ms) linear infinite;
+}
+#C {
+	animation: animC (9 * 200ms) linear infinite;
+}
+#T_2 {
+	animation: animT_2 (9 * 200ms) linear infinite;
+}
+#I {
+	animation: animI (9 * 200ms) linear infinite;
+}
+#V {
+	animation: animV (9 * 200ms) linear infinite;
+}
+#E_3 {
+	animation: animE_3 (9 * 200ms) linear infinite;
+}
+
+@keyframes loader-display {
+	0% {
+		opacity: 1;
+		visibility: visible;
+	}
+	80% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+		visibility: hidden;
+	}
+}
+
+//animer l'apparition de chaque lettre du mot DETECTIVE
+@keyframes animD {
+	0% {
+		opacity: 0;
+	}
+	9% {
+		opacity: 0;
+	}
+	10% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@keyframes animE_1 {
+	0% {
+		opacity: 0;
+	}
+	19% {
+		opacity: 0;
+	}
+	20% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@keyframes animT_1 {
+	0% {
+		opacity: 0;
+	}
+	29% {
+		opacity: 0;
+	}
+	30% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@keyframes animE_2 {
+	0% {
+		opacity: 0;
+	}
+	39% {
+		opacity: 0;
+	}
+	40% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@keyframes animC {
+	0% {
+		opacity: 0;
+	}
+	49% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@keyframes animT_2 {
+	0% {
+		opacity: 0;
+	}
+	59% {
+		opacity: 0;
+	}
+	60% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@keyframes animI {
+	0% {
+		opacity: 0;
+	}
+	69% {
+		opacity: 0;
+	}
+	70% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@keyframes animV {
+	0% {
+		opacity: 0;
+	}
+	79% {
+		opacity: 0;
+	}
+	80% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@keyframes animE_3 {
+	0% {
+		opacity: 0;
+	}
+	89% {
+		opacity: 0;
+	}
+	90% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 1;
+	}
+}

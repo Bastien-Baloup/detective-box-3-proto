@@ -1,0 +1,42 @@
+header {
+	display: flex;
+	flex-direction: column;
+}
+
+.header {
+	&__topSection {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		// grid-template: 1fr/ 1fr 1fr;
+		align-items: center;
+		justify-items: center;
+		gap: 1rem;
+		// & .progressBar {
+		// 	grid-area: 2/1/3/3;
+		// }
+		& .dropdown {
+			justify-self: flex-end;
+		}
+	}
+	&__bottomSection {
+		height: 100%;
+		transform: translateY(1px);
+	}
+	&__logo {
+		max-width: 3rem;
+		width: 100%;
+		&--container {
+			justify-self: flex-start;
+		}
+	}
+}
+
+@include responsive(bigtablet) {
+	.header__topSection {
+		grid-template-columns: 1fr 1fr 1fr;
+		grid-template-rows: 1fr;
+		// & .progressBar {
+		// 	grid-area: auto;
+		// }
+	}
+}

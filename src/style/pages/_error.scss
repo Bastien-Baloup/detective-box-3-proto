@@ -1,0 +1,40 @@
+.error {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	&__title {
+		font-family: "Gabriele";
+		font-size: 6rem;
+		line-height: 11rem;
+		margin-top: 10vh;
+		color: $tertiary-color;
+	}
+	&__info {
+		font-size: 1.5rem;
+		line-height: 2rem;
+		text-align: center;
+	}
+	&__link {
+		color: $secondary-color;
+		font-size: 1rem;
+		margin-top: 15vh;
+		text-decoration: underline;
+		&:hover {
+			color: $tertiary-color;
+		}
+	}
+}
+
+@include responsive(laptop) {
+	.error__title {
+		font-size: 12rem;
+		line-height: 22rem;
+	}
+	.error__info {
+		font-size: 2rem;
+		line-height: 4rem;
+	}
+	.error__link {
+		font-size: 1.25rem;
+	}
+}

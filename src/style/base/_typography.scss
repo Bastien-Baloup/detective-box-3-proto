@@ -1,0 +1,51 @@
+@font-face {
+	font-family: "Din";
+	src: url(./../assets/font/Din/din-regular.woff2) format("woff2"),
+		url(./../assets/font/Din/DIN-Regular.ttf) format("truetype");
+}
+@font-face {
+	font-family: "Din";
+	src: url(./../assets/font/Din/din-medium.woff2) format("woff2"),
+		url(./../assets/font/Din/DIN-Medium.ttf) format("truetype");
+	font-weight: bold;
+}
+@font-face {
+	font-family: "Fixture";
+	src: url(./../assets/font/Fixture/fixture-condensedlight.woff2) format("woff2"),
+		url(./../assets/font/Fixture/Fixture-CondensedLight.ttf) format("truetype");
+	font-weight: 200;
+}
+@font-face {
+	font-family: "Fixture";
+	src: url(./../assets/font/Fixture/fixture-condensedregular.woff2) format("woff2"),
+		url(./../assets/font/Fixture/Fixture-CondensedRegular.ttf) format("truetype");
+}
+@font-face {
+	font-family: "Fixture";
+	src: url(./../assets/font/Fixture/fixture-condensedmedium.woff2) format("woff2"),
+		url(./../assets/font/Fixture/Fixture-CondensedMedium.ttf) format("truetype");
+	font-weight: 600;
+}
+@font-face {
+	font-family: "Fixture";
+	src: url(./../assets/font/Fixture/fixture-condensedsemibold.woff2) format("woff2"),
+		url(./../assets/font/Fixture/Fixture-CondensedSemiBold.ttf) format("truetype");
+	font-weight: 800;
+}
+@font-face {
+	font-family: "Gabriele";
+	src: url(./../assets/font/Gabriele/gabriele-l.woff2) format("woff2"),
+		url(./../assets/font/Gabriele/gabriele-l.ttf) format("truetype");
+		font-weight: 200;
+}
+@font-face {
+	font-family: "Gabriele";
+	src: url(./../assets/font/Gabriele/gabriele-d.woff2) format("woff2"),
+		url(./../assets/font/Gabriele/gabriele-d.ttf) format("truetype");
+}
+@font-face {
+	font-family: "Gabriele";
+	src: url(./../assets/font/Gabriele/gabriele-br.woff2) format("woff2"),
+		url(./../assets/font/Gabriele/gabriele-br.ttf) format("truetype");
+		font-weight: bold;
+}

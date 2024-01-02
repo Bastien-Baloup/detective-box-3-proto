@@ -1,0 +1,32 @@
+.signup {
+	width: 100%;
+	max-width: 50rem;
+	// &__forget {
+	// 	cursor: pointer;
+	// 	color: $secondary-color;
+	// 	font-size: 1rem;
+	// 	line-height: 1.25rem;
+	// 	padding: 1rem 0 0.5rem 0;
+	// 	font-family: "Gabriele";
+	// 	text-decoration: underline;
+	// 	&:hover {
+	// 		color: $tertiary-color;
+	// 	}
+	// }
+	&__button__signin {
+		margin-top: 2vh;
+	}
+	&__form .input-wrapper-text {
+		margin-bottom: 1rem;
+	}
+	&__instructions {
+		margin-bottom: 0.5rem;
+	}
+}
+
+.signup__errorMessage {
+	color: $tertiary-color;
+	line-height: 1.25rem;
+	font-size: 1.25rem;
+	padding-bottom: 1rem;
+}

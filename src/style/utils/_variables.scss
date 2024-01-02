@@ -1,0 +1,14 @@
+$primary-color: #000000;
+$secondary-color: #ffffff;
+$tertiary-color: #e30613;
+$validated-color: #4a7856;
+$paper-color: #fff9f2;
+
+//pour le responsive
+$breakpoints: (
+	laptop: 1024px,
+	bigtablet: 900px,
+	tablet: 768px,
+	mobile: 576px,
+	max: 2400px,
+);
