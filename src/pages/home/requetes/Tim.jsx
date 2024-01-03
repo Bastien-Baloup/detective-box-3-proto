@@ -1,44 +1,43 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-// EXPLICATION : Page pour faire les requêtes auprès du personnage de Adèle
+// EXPLICATION : Page pour faire les requêtes auprès du personnage de Tim
 // EXPLICATION : Les validations des requêtes sont faites ici
 
-import Input from "../components/Input.jsx";
-import Document from "../components/Document.jsx";
+import Input from "../../../components/Input.jsx";
+import Document from "../../../components/Document.jsx";
+import Video from "../../../components/Video.jsx";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";
-import { urlApi } from "../utils/const/urlApi";
+import { urlApi } from "../../../utils/const/urlApi.js";
 import {
   BoxContext,
   DataContext,
+  AmbianceContext,
   CompteContext,
-} from "../utils/context/fetchContext";
+} from "../../../utils/context/fetchContext.jsx";
 import { useContext, useState, useEffect } from "react";
-import useApi from "../utils/hooks/useApi.js";
-import useEvent from "../utils/hooks/useEvent.js";
+import useApi from "../../../utils/hooks/useApi.js";
+import useEvent from "../../../utils/hooks/useEvent.js";
 
-const Adele = ({ closeAgentPage }) => {
+const Tim = ({ closeAgentPage }) => {
   const { currentBox } = useContext(BoxContext);
   const token = localStorage.getItem("token");
-  const { actionToggleDataAdele, toggleDataAdele, actionToggleDataHistory } =
+  const { actionToggleDataTim, toggleDataTim, actionToggleDataHistory } =
     useContext(DataContext);
-  // EXPLICATION : state spécifique pour afficher le mail de Lauren
-  const [youveGotMail, setYouveGotMail] = useState(false);
-  const [mailLauren1, setMailLauren1] = useState(false);
+  const { pauseNappe } = useContext(AmbianceContext);
   const { updateCharactersById, updateHistory, getCharactersById } = useApi();
   const { dispatch } = useEvent();
   const { closeCompte } = useContext(CompteContext);
 
-  //EXPLICATION : Adele est le personnage "1"
-
+  //EXPLICATION : Tim est le personnage "5"
   useEffect(() => {
     const fetchData = async () => {
-      const result = await getCharactersById(token, 1);
-      setDataAdele(result);
+      const result = await getCharactersById(token, 5);
+      setDataTim(result);
     };
     fetchData();
-  }, [toggleDataAdele]);
+  }, [toggleDataTim]);
 
-  const [dataAdele, setDataAdele] = useState(null);
+  const [dataTim, setDataTim] = useState(null);
 
   const [value, setValue] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -59,23 +58,28 @@ const Adele = ({ closeAgentPage }) => {
 
   // EXPLICATION : Les réponses peuvent être trouvées dans la box actuelle ou les boxs précédentes
   // EXPLICATION : Les réponses du personnage dépendent de la location de la réponse (box précedente ou box actuelle) et du status de la réponse (déjà demandé ou pas)
-  // EXPLICATION : Pour rappel, Adèle n'apparait pas en box 1
   const handleSubmit = (e) => {
-    const thisBox = dataAdele.find(
+    const thisBox = dataTim.find(
       (element) => element.box_id == currentBox
     ).data;
-    const box2 = dataAdele.find((element) => element.box_id == 2).data;
+    const box1 = dataTim.find((element) => element.box_id == 1).data;
+    const box2 = dataTim.find((element) => element.box_id == 2).data;
     const answerInThisBox = thisBox.find((element) =>
       element.ask.includes(slugify(value))
     );
     const previouslyAnsweredInThisBox =
       answerInThisBox && answerInThisBox.status;
+    const answerInBox1 = box1.some((element) =>
+      element.ask.includes(slugify(value))
+    );
     const answerInBox2 = box2.some((element) =>
       element.ask.includes(slugify(value))
     );
     e.preventDefault();
     if (value == "") {
-      setErrorMessage("Je dois bien analyser quelque chose !");
+      setErrorMessage(
+        "Vous n'avez rien à me faire analyser ? Je retourne gamer alors."
+      );
       setValue("");
       return;
     }
@@ -93,15 +97,22 @@ const Adele = ({ closeAgentPage }) => {
       setErrorMessage("");
       return;
     }
-    if (currentBox == 3 && answerInBox2) {
+    if (currentBox == 2 && answerInBox1) {
       setValue("");
       setErrorMessage(
-        "Vous avez déjà analysé cet élément lors d'une box précédente. Il est désormais disponible dans votre Historique.”"
+        "Vous avez déjà analysé cet élément lors d'une box précédente. Il est désormais disponible dans votre Historique."
+      );
+      return;
+    }
+    if (currentBox == 3 && (answerInBox2 || answerInBox1)) {
+      setValue("");
+      setErrorMessage(
+        "Vous avez déjà analysé cet élément lors d'une box précédente. Il est désormais disponible dans votre Historique."
       );
       return;
     }
     setValue("");
-    setErrorMessage("Je n'ai pas pu analyser ce que vous m'avez demandé.");
+    setErrorMessage("Nan, j'ai rien sur ce que vous me demandez.");
   };
 
   const renderModal = () => {
@@ -143,6 +154,19 @@ const Adele = ({ closeAgentPage }) => {
 
   const renderText = () => {
     const text = answer.text.map((el, i) => {
+      if (el.startsWith("https://")) {
+        return (
+          <a
+            className="modal-objectif__subtitle--link"
+            key={i}
+            href={el}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            {el}
+          </a>
+        );
+      }
       return (
         <p className="modal-objectif__subtitle" key={i}>
           {el}
@@ -152,95 +176,67 @@ const Adele = ({ closeAgentPage }) => {
     return text;
   };
 
-  const validateModal = () => {
+  const validateModal = async () => {
     setModal(false);
+    if (answer.ask == ["stellalouiseberg"]) {
+      await updateHistory(token, 2, "box2document2");
+      dispatch({
+        type: "setEvent",
+        id: "box2document2",
+      });
+      actionToggleDataHistory();
+    }
   };
 
   const openMedia = () => {
+    if (answer.id.includes("video")) {
+      pauseNappe();
+    }
     validateModal();
     setModalMedia(true);
   };
 
   const renderModalMedia = () => {
     closeCompte();
-    return (
-      <Document
-        title={answer.title}
-        srcElement={urlApi.cdn() + answer.src}
-        handleModalDocument={() => closeModalMedia(answer.id, answer.ask)}
-      />
-    );
+    if (answer.id.includes("document")) {
+      return (
+        <Document
+          title={answer.title}
+          srcElement={urlApi.cdn() + answer.src}
+          handleModalDocument={() => closeModalMedia(answer.id, answer.ask)}
+        />
+      );
+    }
+    if (answer.id.includes("video")) {
+      return (
+        <Video
+          title={answer.title}
+          srcVideo={urlApi.cdn() + answer.src + ""}
+          handleModalVideo={() => closeModalMedia(answer.id, answer.ask)}
+        />
+      );
+    }
   };
 
   const closeModalMedia = async (answerId, asnwerAsk) => {
-    await updateCharactersById(token, 1, currentBox, asnwerAsk);
+    await updateCharactersById(token, 5, currentBox, asnwerAsk);
     await updateHistory(token, currentBox, answerId);
     dispatch({
       type: "setEvent",
       id: answerId,
     });
-    actionToggleDataAdele();
+    actionToggleDataTim();
     setModalMedia(false);
-    if (answerId == "box2document4") {
-      setYouveGotMail(true);
-      await updateHistory(token, 2, "box2document8");
-      dispatch({
-        type: "setEvent",
-        id: "box2document8",
-      });
-      actionToggleDataHistory();
-    }
-  };
-
-  const displayYouveGotMail = () => {
-    closeCompte();
-    return (
-      <div className="modal-objectif__background">
-        <div className="modal-objectif__box">
-          <audio autoPlay>
-            <source src={urlApi.cdn() + "sounds/ding.mp3"} type="audio/mpeg" />
-            Votre navigateur ne prend pas en charge ce format
-          </audio>
-          <div>Vous avez un mail</div>
-          <button
-            className="modal-objectif__button button--red"
-            onClick={handleCloseYouveGotMail}
-          >
-            Valider
-          </button>
-        </div>
-      </div>
-    );
-  };
-
-  const handleCloseYouveGotMail = () => {
-    setMailLauren1(true);
-    setYouveGotMail(false);
-  };
-
-  const displayMailLauren1 = () => {
-    closeCompte();
-    return (
-      <Document
-        title="Email de Lauren Fraser"
-        srcElement={urlApi.cdn() + "assets/document/219_Message_Lauren_1.jpg"}
-        handleModalDocument={handleCloseMail1}
-      />
-    );
-  };
-
-  const handleCloseMail1 = async () => {
-    setMailLauren1(false);
   };
 
   const catchphrase = [
-    "sounds/405-repliques-adele-1.mp3",
-    "sounds/405-repliques-adele-2.mp3",
-    "sounds/405-repliques-adele-3.mp3",
-    "sounds/405-repliques-adele-4.mp3",
-    "sounds/405-repliques-adele-5.mp3",
-    "sounds/405-repliques-adele-6.mp3",
-    "sounds/405-repliques-adele-7.mp3",
+    "sounds/404-repliques-tim-1.mp3",
+    "sounds/404-repliques-tim-2.mp3",
+    "sounds/404-repliques-tim-3.mp3",
+    "sounds/404-repliques-tim-4.mp3",
+    "sounds/404-repliques-tim-5.mp3",
+    "sounds/404-repliques-tim-6.mp3",
+    "sounds/404-repliques-tim-7.mp3",
   ];
 
   const randomNumber = Math.floor(Math.random() * catchphrase.length);
@@ -249,8 +245,6 @@ const Adele = ({ closeAgentPage }) => {
     <>
       {modal ? renderModal() : ""}
       {modalMedia ? renderModalMedia() : ""}
-      {youveGotMail ? displayYouveGotMail() : ""}
-      {mailLauren1 ? displayMailLauren1() : ""}
       <audio autoPlay>
         <source
           src={urlApi.cdn() + catchphrase[randomNumber]}
@@ -262,8 +256,8 @@ const Adele = ({ closeAgentPage }) => {
         <div className="agent__portrait--container">
           <img
             className="agent__portrait"
-            src="https://db2cdn.fra1.cdn.digitaloceanspaces.com/assets/photos-personnages/adele.jpg"
-            alt="photo d'adèle"
+            src="https://db2cdn.fra1.cdn.digitaloceanspaces.com/assets/photos-personnages/tim.jpg"
+            alt="photo de tim"
           />
         </div>
         <div className="agent__main">
@@ -275,7 +269,7 @@ const Adele = ({ closeAgentPage }) => {
             <Input
               type="texte"
               label="Elément à analyser"
-              name="adele"
+              name="tim"
               placeholder="Ce champ est vide"
               value={value}
               setValue={setValue}
@@ -283,19 +277,16 @@ const Adele = ({ closeAgentPage }) => {
             <button className="agent__form__button button--red">Valider</button>
           </form>
         </div>
-        <button
-          className="agent__closeButton--container"
-          onClick={closeAgentPage}
-        >
+        <div className="agent__closeButton--container" onClick={closeAgentPage}>
           <img src={Cross} className="agent__closeButton" alt="fermer" />
-        </button>
+        </div>
       </div>
     </>
   );
 };
 
-Adele.propTypes = {
+Tim.propTypes = {
   closeAgentPage: PropTypes.func,
 };
 
-export default Adele;
+export default Tim;

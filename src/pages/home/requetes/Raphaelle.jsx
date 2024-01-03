@@ -2,18 +2,18 @@
 // EXPLICATION : Page pour faire les requêtes auprès du personnage de Raphaelle
 // EXPLICATION : Les validations des requêtes sont faites ici
 
-import Input from "../components/Input.jsx";
+import Input from "../../../components/Input.jsx";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";
-import { urlApi } from "../utils/const/urlApi";
+import { urlApi } from "../../../utils/const/urlApi.js";
 import {
   BoxContext,
   DataContext,
   CompteContext,
-} from "../utils/context/fetchContext";
+} from "../../../utils/context/fetchContext.jsx";
 import { useContext, useState, useEffect } from "react";
-import useApi from "../utils/hooks/useApi.js";
-import useLieu from "../utils/hooks/useLieu.jsx";
+import useApi from "../../../utils/hooks/useApi.js";
+import useLieu from "../../../utils/hooks/useLieu.jsx";
 //import useEvent from "../utils/hooks/useEvent.js";
 
 const Raphaelle = ({ closeAgentPage }) => {

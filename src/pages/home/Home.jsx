@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 // EXPLICATION : Page Home pour afficher les cartes personnages + les formulaires personnages pour les requêtes
 
-import Card from "../components/Card";
+import Card from "../../components/Card.jsx";
 import IconLauren from "../assets/icons/Logo_Lauren.svg";
 import IconRaphaelle from "../assets/icons/Logo_Raphaelle.svg";
 import IconCeline from "../assets/icons/Logo_Celine.svg";
@@ -13,10 +13,10 @@ import Lauren from "./Lauren";
 import Raphaelle from "./Raphaelle";
 import Celine from "./Celine";
 import { useState } from "react";
-import { BoxContext, DataContext } from "../utils/context/fetchContext";
+import { BoxContext, DataContext } from "../../utils/context/fetchContext.jsx";
 import { useContext, useEffect } from "react";
-import { urlApi } from "../utils/const/urlApi";
-import useApi from "../utils/hooks/useApi.js";
+import { urlApi } from "../../utils/const/urlApi.js";
+import useApi from "../../utils/hooks/useApi.js";
 
 function Home() {
   const [characterDisplayed, setCharacterDisplayed] = useState(null);

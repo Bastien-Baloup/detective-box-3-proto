@@ -2,14 +2,14 @@
 // EXPLICATION : Page pour afficher les renforts
 
 import { useState } from "react";
-import Slider from "../components/Slider";
+import Slider from "../../components/Slider.jsx";
 import Check from "../assets/icons/Icon_Check-green.svg";
 import LockClosed from "../assets/icons/Icon_Lock-closed-red.svg";
 import LockOpen from "../assets/icons/Icon_Lock-open-black.svg";
-import { urlApi } from "../utils/const/urlApi";
-import { BoxContext, DataContext } from "../utils/context/fetchContext";
+import { urlApi } from "../../utils/const/urlApi.js";
+import { BoxContext, DataContext } from "../../utils/context/fetchContext.jsx";
 import { useContext, useEffect } from "react";
-import useApi from '../utils/hooks/useApi.js';
+import useApi from '../../utils/hooks/useApi.js';
 
 function Renfort() {
 	const { currentBox } = useContext(BoxContext);

@@ -1,69 +1,50 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-// EXPLICATION : Page pour faire les requêtes auprès du personnage de Céline
+// EXPLICATION : Page pour faire les requêtes auprès du personnage de Adèle
 // EXPLICATION : Les validations des requêtes sont faites ici
 
-import Input from "../components/Input.jsx";
-import Document from "../components/Document.jsx";
+import Input from "../../../components/Input.jsx";
+import Document from "../../../components/Document.jsx";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";
-import { urlApi } from "../utils/const/urlApi";
+import { urlApi } from "../../../utils/const/urlApi.js";
 import {
   BoxContext,
   DataContext,
   CompteContext,
-} from "../utils/context/fetchContext";
+} from "../../../utils/context/fetchContext.jsx";
 import { useContext, useState, useEffect } from "react";
-import useApi from "../utils/hooks/useApi.js";
-import useEvent from "../utils/hooks/useEvent.js";
+import useApi from "../../../utils/hooks/useApi.js";
+import useEvent from "../../../utils/hooks/useEvent.js";
 
-const Celine = ({ closeAgentPage }) => {
+const Adele = ({ closeAgentPage }) => {
   const { currentBox } = useContext(BoxContext);
   const token = localStorage.getItem("token");
-  const { actionToggleDataCeline, toggleDataCeline, toggleDataHistory } =
-    useContext(DataContext);
-  const {
-    updateCharactersById,
-    updateHistory,
-    getCharactersById,
-    getHistoryByBox,
-  } = useApi();
+  const { 
+    actionToggleDataAdele,
+    toggleDataAdele,
+    // actionToggleDataHistory
+  } = useContext(DataContext);
+  const { updateCharactersById, updateHistory, getCharactersById } = useApi();
   const { dispatch } = useEvent();
   const { closeCompte } = useContext(CompteContext);
 
-  //EXPLICATION : Celine est le personnage "3"
+  //EXPLICATION : Adele est le personnage "1"
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await getCharactersById(token, 3);
-      setDataCeline(result);
+      const result = await getCharactersById(token, 1);
+      setDataAdele(result);
     };
     fetchData();
-  }, [toggleDataCeline]);
+  }, [toggleDataAdele]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await getHistoryByBox(token, 3);
-      const box3audio3Data = result.data.find(
-        (event) => event.id == "box3audio3"
-      );
-      setBox3Audio3(box3audio3Data.status);
-    };
-    fetchData();
-  }, [toggleDataHistory]);
-
-  const [dataCeline, setDataCeline] = useState(null);
-  const [box3audio3, setBox3Audio3] = useState(false);
+  const [dataAdele, setDataAdele] = useState(null);
 
   const [value, setValue] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [modal, setModal] = useState(false);
   const [modalMedia, setModalMedia] = useState(false);
   const [answer, setAnswer] = useState("");
-
-  //EXPLICATION : Fonction pour sortir les joueurs de la page de Celine si elle vient de se faire enlever (box3audio3 dans historique)
-  if (currentBox == 3 && box3audio3) {
-    closeAgentPage();
-  }
 
   // EXPLICATION : Fonction pour slugifier l'input des joueurs
   const slugify = (input) => {
@@ -77,39 +58,28 @@ const Celine = ({ closeAgentPage }) => {
   };
 
   // EXPLICATION : Les réponses peuvent être trouvées dans la box actuelle ou les boxs précédentes
-  // EXPLICATION : Les réponses du personnage dépendent de la location de la réponse (générique, box précedente ou box actuelle) et du status de la réponse (déjà demandé ou pas)
-  // EXPLICATION : Celine et Lauren sont les seules à avoir des boxs génériques
+  // EXPLICATION : Les réponses du personnage dépendent de la location de la réponse (box précedente ou box actuelle) et du status de la réponse (déjà demandé ou pas)
+  // EXPLICATION : Pour rappel, Adèle n'apparait pas en box 1
   const handleSubmit = (e) => {
-    const thisBox = dataCeline.find(
+    e.preventDefault();
+
+    const thisBox = dataAdele.find(
       (element) => element.box_id == currentBox
     ).data;
-    const box1 = dataCeline.find((element) => element.box_id == 1).data;
-    const box2 = dataCeline.find((element) => element.box_id == 2).data;
-    const generic = dataCeline.find((element) => element.box_id == 4).data;
     const answerInThisBox = thisBox.find((element) =>
       element.ask.includes(slugify(value))
     );
     const previouslyAnsweredInThisBox =
       answerInThisBox && answerInThisBox.status;
-    const answerInFailedInterview = generic.find((element) =>
-      element.ask.includes(slugify(value))
-    );
-    const answerInBox1 = box1.some((element) =>
-      element.ask.includes(slugify(value))
-    );
-    const answerInBox2 = box2.some((element) =>
-      element.ask.includes(slugify(value))
-    );
-    e.preventDefault();
     if (value == "") {
-      setErrorMessage("Je ne peux pas fouiller les archives sans un nom !");
+      setErrorMessage("Je dois bien analyser quelque chose !");
       setValue("");
       return;
     }
     if (previouslyAnsweredInThisBox) {
       setValue("");
       setErrorMessage(
-        "Vous m'avez dejà demandé le dossier cette personne. Rendez-vous dans l'Historique pour le consulter de nouveau."
+        "Vous m'avez dejà demandé d'analyser cet élément. Il est désormais disponible dans votre Historique.”"
       );
       return;
     }
@@ -120,29 +90,9 @@ const Celine = ({ closeAgentPage }) => {
       setErrorMessage("");
       return;
     }
-    if (answerInFailedInterview) {
-      setAnswer(answerInFailedInterview);
-      setModal(true);
-      setValue("");
-      setErrorMessage("");
-      return;
-    }
-    if (currentBox == 2 && answerInBox1) {
-      setValue("");
-      setErrorMessage(
-        "Vous avez déjà demandé le dossier de cette personne lors d'une box précédente. Rendez-vous dans l'Historique pour le consulter de nouveau."
-      );
-      return;
-    }
-    if (currentBox == 3 && (answerInBox2 || answerInBox1)) {
-      setValue("");
-      setErrorMessage(
-        "Vous avez déjà demandé le dossier de cette personne lors d'une box précédente. Rendez-vous dans l'Historique pour le consulter de nouveau."
-      );
-      return;
-    }
+
     setValue("");
-    setErrorMessage("Je ne trouve pas cette personne.");
+    setErrorMessage("Je n'ai pas pu analyser ce que vous m'avez demandé.");
   };
 
   const renderModal = () => {
@@ -213,33 +163,25 @@ const Celine = ({ closeAgentPage }) => {
     );
   };
 
-  // EXPLICATION : Précision particuilère pour le personnage de Xavier Monrency (archive 23) qui fait apparaitre un deuxième document dans l'historique
   const closeModalMedia = async (answerId, asnwerAsk) => {
-    await updateCharactersById(token, 3, currentBox, asnwerAsk);
+    await updateCharactersById(token, 1, currentBox, asnwerAsk);
     await updateHistory(token, currentBox, answerId);
     dispatch({
       type: "setEvent",
       id: answerId,
     });
-    if (answerId == "box1archive23") {
-      await updateHistory(token, 1, "box1document4");
-      dispatch({
-        type: "setEvent",
-        id: "box1document4",
-      });
-    }
-    actionToggleDataCeline();
+    actionToggleDataAdele();
     setModalMedia(false);
   };
 
   const catchphrase = [
-    "sounds/403-repliques-celine-1.mp3",
-    "sounds/403-repliques-celine-2.mp3",
-    "sounds/403-repliques-celine-3.mp3",
-    "sounds/403-repliques-celine-4.mp3",
-    "sounds/403-repliques-celine-5.mp3",
-    "sounds/403-repliques-celine-6.mp3",
-    "sounds/403-repliques-celine-7.mp3",
+    "sounds/405-repliques-adele-1.mp3",
+    "sounds/405-repliques-adele-2.mp3",
+    "sounds/405-repliques-adele-3.mp3",
+    "sounds/405-repliques-adele-4.mp3",
+    "sounds/405-repliques-adele-5.mp3",
+    "sounds/405-repliques-adele-6.mp3",
+    "sounds/405-repliques-adele-7.mp3",
   ];
 
   const randomNumber = Math.floor(Math.random() * catchphrase.length);
@@ -259,20 +201,20 @@ const Celine = ({ closeAgentPage }) => {
         <div className="agent__portrait--container">
           <img
             className="agent__portrait"
-            src="https://db2cdn.fra1.cdn.digitaloceanspaces.com/assets/photos-personnages/celine.jpg"
-            alt="photo de celine"
+            src={urlApi.cdn() + "assets/photos-personnages/adele.jpg"}
+            alt="photo d'adèle"
           />
         </div>
         <div className="agent__main">
           <div className="agent__title--container">
-            <p className="agent__title">Quel dossier cherchez-vous ?</p>
+            <p className="agent__title">Que souhaitez-vous analyser ?</p>
           </div>
           <div className="agent__errorMessage">{errorMessage}</div>
           <form className="agent__form" onSubmit={handleSubmit}>
             <Input
               type="texte"
-              label="Prénom et Nom"
-              name="celine"
+              label="Elément à analyser"
+              name="adele"
               placeholder="Ce champ est vide"
               value={value}
               setValue={setValue}
@@ -291,8 +233,8 @@ const Celine = ({ closeAgentPage }) => {
   );
 };
 
-Celine.propTypes = {
+Adele.propTypes = {
   closeAgentPage: PropTypes.func,
 };
 
-export default Celine;
+export default Adele;

@@ -1,33 +1,26 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-// EXPLICATION : Page pour faire les requêtes auprès du personnage de Lauren
+// EXPLICATION : Page pour faire les requêtes auprès du personnage de Céline
 // EXPLICATION : Les validations des requêtes sont faites ici
 
-import Input from "../components/Input.jsx";
-import Audio from "../components/Audio.jsx";
+import Input from "../../../components/Input.jsx";
+import Document from "../../../components/Document.jsx";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";
-import { urlApi } from "../utils/const/urlApi";
+import { urlApi } from "../../../utils/const/urlApi.js";
 import {
   BoxContext,
   DataContext,
-  AmbianceContext,
   CompteContext,
-} from "../utils/context/fetchContext";
+} from "../../../utils/context/fetchContext.jsx";
 import { useContext, useState, useEffect } from "react";
-// import { dataLauren } from "../utils/const/dataLauren";
-import useApi from "../utils/hooks/useApi.js";
-import useEvent from "../utils/hooks/useEvent.js";
+import useApi from "../../../utils/hooks/useApi.js";
+import useEvent from "../../../utils/hooks/useEvent.js";
 
-const Lauren = ({ closeAgentPage }) => {
+const Celine = ({ closeAgentPage }) => {
   const { currentBox } = useContext(BoxContext);
-  const { pauseNappe } = useContext(AmbianceContext);
   const token = localStorage.getItem("token");
-  const {
-    actionToggleDataLauren,
-    toggleDataLauren,
-    toggleDataHistory,
-    actionToggleDataHistory,
-  } = useContext(DataContext);
+  const { actionToggleDataCeline, toggleDataCeline, toggleDataHistory } =
+    useContext(DataContext);
   const {
     updateCharactersById,
     updateHistory,
@@ -37,29 +30,29 @@ const Lauren = ({ closeAgentPage }) => {
   const { dispatch } = useEvent();
   const { closeCompte } = useContext(CompteContext);
 
-  //EXPLICATION : Lauren est le personnage "2"
+  //EXPLICATION : Celine est le personnage "3"
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await getCharactersById(token, 2);
-      setDataLauren(result);
+      const result = await getCharactersById(token, 3);
+      setDataCeline(result);
     };
     fetchData();
-  }, [toggleDataLauren]);
+  }, [toggleDataCeline]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await getHistoryByBox(token, 2);
-      const box2document6Data = result.data.find(
-        (event) => event.id == "box2document6"
+      const result = await getHistoryByBox(token, 3);
+      const box3audio3Data = result.data.find(
+        (event) => event.id == "box3audio3"
       );
-      setBox2Document6(box2document6Data.status);
+      setBox3Audio3(box3audio3Data.status);
     };
     fetchData();
   }, [toggleDataHistory]);
 
-  const [dataLauren, setDataLauren] = useState(null);
-  const [box2document6, setBox2Document6] = useState(false);
+  const [dataCeline, setDataCeline] = useState(null);
+  const [box3audio3, setBox3Audio3] = useState(false);
 
   const [value, setValue] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -67,8 +60,8 @@ const Lauren = ({ closeAgentPage }) => {
   const [modalMedia, setModalMedia] = useState(false);
   const [answer, setAnswer] = useState("");
 
-  //EXPLICATION : Fonction pour sortir les joueurs de la page de Lauren si elle vient de se faire enlever (box2document6 dans historique)
-  if (currentBox == 2 && box2document6) {
+  //EXPLICATION : Fonction pour sortir les joueurs de la page de Celine si elle vient de se faire enlever (box3audio3 dans historique)
+  if (currentBox == 3 && box3audio3) {
     closeAgentPage();
   }
 
@@ -87,12 +80,12 @@ const Lauren = ({ closeAgentPage }) => {
   // EXPLICATION : Les réponses du personnage dépendent de la location de la réponse (générique, box précedente ou box actuelle) et du status de la réponse (déjà demandé ou pas)
   // EXPLICATION : Celine et Lauren sont les seules à avoir des boxs génériques
   const handleSubmit = (e) => {
-    const thisBox = dataLauren.find(
+    const thisBox = dataCeline.find(
       (element) => element.box_id == currentBox
     ).data;
-    const box1 = dataLauren.find((element) => element.box_id == 1).data;
-    const box2 = dataLauren.find((element) => element.box_id == 2).data;
-    const generic = dataLauren.find((element) => element.box_id == 4).data;
+    const box1 = dataCeline.find((element) => element.box_id == 1).data;
+    const box2 = dataCeline.find((element) => element.box_id == 2).data;
+    const generic = dataCeline.find((element) => element.box_id == 4).data;
     const answerInThisBox = thisBox.find((element) =>
       element.ask.includes(slugify(value))
     );
@@ -109,14 +102,14 @@ const Lauren = ({ closeAgentPage }) => {
     );
     e.preventDefault();
     if (value == "") {
-      setErrorMessage("Il me faut l'identité de la personne à interroger");
+      setErrorMessage("Je ne peux pas fouiller les archives sans un nom !");
       setValue("");
       return;
     }
     if (previouslyAnsweredInThisBox) {
       setValue("");
       setErrorMessage(
-        "Vous m'avez dejà demandé d'interroger cette personne. Rendez-vous dans l'Historique pour réécouter l'interview."
+        "Vous m'avez dejà demandé le dossier cette personne. Rendez-vous dans l'Historique pour le consulter de nouveau."
       );
       return;
     }
@@ -137,19 +130,19 @@ const Lauren = ({ closeAgentPage }) => {
     if (currentBox == 2 && answerInBox1) {
       setValue("");
       setErrorMessage(
-        "Vous avez déjà interrogé cette personne lors d'une box précédente. Rendez-vous dans l'Historique pour réécouter l'interview."
+        "Vous avez déjà demandé le dossier de cette personne lors d'une box précédente. Rendez-vous dans l'Historique pour le consulter de nouveau."
       );
       return;
     }
     if (currentBox == 3 && (answerInBox2 || answerInBox1)) {
       setValue("");
       setErrorMessage(
-        "Vous avez déjà interrogé cette personne lors d'une box précédente. Rendez-vous dans l'Historique pour réécouter l'interview."
+        "Vous avez déjà demandé le dossier de cette personne lors d'une box précédente. Rendez-vous dans l'Historique pour le consulter de nouveau."
       );
       return;
     }
     setValue("");
-    setErrorMessage("Je n'ai pas pu joindre la personne dont vous me parlez.");
+    setErrorMessage("Je ne trouve pas cette personne.");
   };
 
   const renderModal = () => {
@@ -205,7 +198,6 @@ const Lauren = ({ closeAgentPage }) => {
   };
 
   const openMedia = () => {
-    pauseNappe();
     validateModal();
     setModalMedia(true);
   };
@@ -213,60 +205,44 @@ const Lauren = ({ closeAgentPage }) => {
   const renderModalMedia = () => {
     closeCompte();
     return (
-      <Audio
+      <Document
         title={answer.title}
-        srcImg1={urlApi.cdn() + answer.img1}
-        srcImg2={urlApi.cdn() + answer.img2}
-        srcTranscription={urlApi.cdn() + answer.srcTranscript}
-        srcAudio={urlApi.cdn() + answer.srcAudio}
-        handleModalAudio={() => closeModalMedia(answer.id, answer.ask)}
+        srcElement={urlApi.cdn() + answer.src}
+        handleModalDocument={() => closeModalMedia(answer.id, answer.ask)}
       />
     );
   };
 
+  // EXPLICATION : Précision particuilère pour le personnage de Xavier Monrency (archive 23) qui fait apparaitre un deuxième document dans l'historique
   const closeModalMedia = async (answerId, asnwerAsk) => {
-    await updateCharactersById(token, 2, currentBox, asnwerAsk);
+    await updateCharactersById(token, 3, currentBox, asnwerAsk);
     await updateHistory(token, currentBox, answerId);
     dispatch({
       type: "setEvent",
       id: answerId,
     });
-    if (answerId == "box2audio1") {
-      await updateHistory(token, 2, "box2document3");
+    if (answerId == "box1archive23") {
+      await updateHistory(token, 1, "box1document4");
       dispatch({
         type: "setEvent",
-        id: "box2document3",
+        id: "box1document4",
       });
     }
-    actionToggleDataLauren();
-    actionToggleDataHistory();
+    actionToggleDataCeline();
     setModalMedia(false);
   };
 
-  const catchphraseLauren = [
-    "sounds/402-repliques-lauren-1.mp3",
-    "sounds/402-repliques-lauren-2.mp3",
-    "sounds/402-repliques-lauren-3.mp3",
-    "sounds/402-repliques-lauren-4.mp3",
-    "sounds/402-repliques-lauren-5.mp3",
-    "sounds/402-repliques-lauren-6.mp3",
-    "sounds/402-repliques-lauren-7.mp3",
-  ];
-  const catchphraseRaphaelle = [
-    "sounds/401-repliques-raphaelle-1.mp3",
-    "sounds/401-repliques-raphaelle-2.mp3",
-    "sounds/401-repliques-raphaelle-3.mp3",
-    "sounds/401-repliques-raphaelle-5.mp3",
-    "sounds/401-repliques-raphaelle-6.mp3",
-    "sounds/401-repliques-raphaelle-7.mp3",
+  const catchphrase = [
+    "sounds/403-repliques-celine-1.mp3",
+    "sounds/403-repliques-celine-2.mp3",
+    "sounds/403-repliques-celine-3.mp3",
+    "sounds/403-repliques-celine-4.mp3",
+    "sounds/403-repliques-celine-5.mp3",
+    "sounds/403-repliques-celine-6.mp3",
+    "sounds/403-repliques-celine-7.mp3",
   ];
 
-  const randomNumberLauren = Math.floor(
-    Math.random() * catchphraseLauren.length
-  );
-  const randomNumberRaphaelle = Math.floor(
-    Math.random() * catchphraseRaphaelle.length
-  );
+  const randomNumber = Math.floor(Math.random() * catchphrase.length);
 
   return (
     <>
@@ -274,11 +250,7 @@ const Lauren = ({ closeAgentPage }) => {
       {modalMedia ? renderModalMedia() : ""}
       <audio autoPlay>
         <source
-          src={
-            currentBox == 3
-              ? urlApi.cdn() + catchphraseRaphaelle[randomNumberRaphaelle]
-              : urlApi.cdn() + catchphraseLauren[randomNumberLauren]
-          }
+          src={urlApi.cdn() + catchphrase[randomNumber]}
           type="audio/mpeg"
         />
         Votre navigateur ne prend pas en charge ce format
@@ -287,24 +259,20 @@ const Lauren = ({ closeAgentPage }) => {
         <div className="agent__portrait--container">
           <img
             className="agent__portrait"
-            src={
-              currentBox == 3
-                ? "https://db2cdn.fra1.cdn.digitaloceanspaces.com/assets/photos-personnages/raphaelle.jpg"
-                : "https://db2cdn.fra1.cdn.digitaloceanspaces.com/assets/photos-personnages/lauren.jpg"
-            }
-            alt={currentBox == 3 ? "Photo de Raphaelle" : "Photo de Lauren"}
+            src="https://db2cdn.fra1.cdn.digitaloceanspaces.com/assets/photos-personnages/celine.jpg"
+            alt="photo de celine"
           />
         </div>
         <div className="agent__main">
           <div className="agent__title--container">
-            <p className="agent__title">Qui souhaitez-vous interroger ?</p>
+            <p className="agent__title">Quel dossier cherchez-vous ?</p>
           </div>
           <div className="agent__errorMessage">{errorMessage}</div>
           <form className="agent__form" onSubmit={handleSubmit}>
             <Input
               type="texte"
               label="Prénom et Nom"
-              name="lauren"
+              name="celine"
               placeholder="Ce champ est vide"
               value={value}
               setValue={setValue}
@@ -323,8 +291,8 @@ const Lauren = ({ closeAgentPage }) => {
   );
 };
 
-Lauren.propTypes = {
+Celine.propTypes = {
   closeAgentPage: PropTypes.func,
 };
 
-export default Lauren;
+export default Celine;

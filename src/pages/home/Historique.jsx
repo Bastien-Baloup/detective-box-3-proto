@@ -2,17 +2,17 @@
 // EXPLICATION : Page Historique qui permet d'afficher toutes les preuves + les filtres de tri pour trier ces mêmes preuves en fonction de leur type et des boxs.
 
 import { useState } from "react";
-import Filter from "../components/Filter";
-import Preuve from "../components/Preuve";
-import Document from "../components/Document";
-import Audio from "../components/Audio";
-import Video from "../components/Video";
-import { urlApi } from "../utils/const/urlApi";
+import Filter from "../../components/Filter.jsx";
+import Preuve from "../../components/Preuve.jsx";
+import Document from "../../components/Document.jsx";
+import Audio from "../../components/Audio.jsx";
+import Video from "../../components/Video.jsx";
+import { urlApi } from "../../utils/const/urlApi.js";
 import Cross from "../assets/icons/Icon_Cross-white.svg";
-import { BoxContext, DataContext, AmbianceContext, CompteContext } from "../utils/context/fetchContext";
+import { BoxContext, DataContext, AmbianceContext, CompteContext } from "../../utils/context/fetchContext.jsx";
 import { useContext, useEffect } from "react";
-import useApi from "../utils/hooks/useApi";
-import useLieu from '../utils/hooks/useLieu.jsx'
+import useApi from "../../utils/hooks/useApi.js";
+import useLieu from '../../utils/hooks/useLieu.jsx'
 
 function Historique() {
 	const filtersType = ["Document", "Vidéo", "Audio", "Lieu", "Archive"];
