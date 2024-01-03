@@ -82,11 +82,11 @@ const Lauren = ({ closeAgentPage }) => {
   // EXPLICATION : Les réponses du personnage dépendent de la location de la réponse (générique, box précedente ou box actuelle) et du status de la réponse (déjà demandé ou pas)
   // EXPLICATION : Celine et Lauren sont les seules à avoir des boxs génériques
   const handleSubmit = (e) => {
+    e.preventDefault();
+
     const thisBox = dataLauren.find(
       (element) => element.box_id == currentBox
     ).data;
-    const box1 = dataLauren.find((element) => element.box_id == 1).data;
-    const box2 = dataLauren.find((element) => element.box_id == 2).data;
     const generic = dataLauren.find((element) => element.box_id == 4).data;
     const answerInThisBox = thisBox.find((element) =>
       element.ask.includes(slugify(value))
@@ -96,13 +96,6 @@ const Lauren = ({ closeAgentPage }) => {
     const answerInFailedInterview = generic.find((element) =>
       element.ask.includes(slugify(value))
     );
-    const answerInBox1 = box1.some((element) =>
-      element.ask.includes(slugify(value))
-    );
-    const answerInBox2 = box2.some((element) =>
-      element.ask.includes(slugify(value))
-    );
-    e.preventDefault();
     if (value == "") {
       setErrorMessage("Il me faut l'identité de la personne à interroger");
       setValue("");
@@ -127,20 +120,6 @@ const Lauren = ({ closeAgentPage }) => {
       setModal(true);
       setValue("");
       setErrorMessage("");
-      return;
-    }
-    if (currentBox == 2 && answerInBox1) {
-      setValue("");
-      setErrorMessage(
-        "Vous avez déjà interrogé cette personne lors d'une box précédente. Rendez-vous dans l'Historique pour réécouter l'interview."
-      );
-      return;
-    }
-    if (currentBox == 3 && (answerInBox2 || answerInBox1)) {
-      setValue("");
-      setErrorMessage(
-        "Vous avez déjà interrogé cette personne lors d'une box précédente. Rendez-vous dans l'Historique pour réécouter l'interview."
-      );
       return;
     }
     setValue("");
@@ -247,20 +226,9 @@ const Lauren = ({ closeAgentPage }) => {
     "sounds/402-repliques-lauren-6.mp3",
     "sounds/402-repliques-lauren-7.mp3",
   ];
-  const catchphraseRaphaelle = [
-    "sounds/401-repliques-raphaelle-1.mp3",
-    "sounds/401-repliques-raphaelle-2.mp3",
-    "sounds/401-repliques-raphaelle-3.mp3",
-    "sounds/401-repliques-raphaelle-5.mp3",
-    "sounds/401-repliques-raphaelle-6.mp3",
-    "sounds/401-repliques-raphaelle-7.mp3",
-  ];
 
   const randomNumberLauren = Math.floor(
     Math.random() * catchphraseLauren.length
-  );
-  const randomNumberRaphaelle = Math.floor(
-    Math.random() * catchphraseRaphaelle.length
   );
 
   return (
@@ -269,11 +237,7 @@ const Lauren = ({ closeAgentPage }) => {
       {modalMedia ? renderModalMedia() : ""}
       <audio autoPlay>
         <source
-          src={
-            currentBox == 3
-              ? urlApi.cdn() + catchphraseRaphaelle[randomNumberRaphaelle]
-              : urlApi.cdn() + catchphraseLauren[randomNumberLauren]
-          }
+          src={ urlApi.cdn() + catchphraseLauren[randomNumberLauren] }
           type="audio/mpeg"
         />
         Votre navigateur ne prend pas en charge ce format
@@ -282,12 +246,8 @@ const Lauren = ({ closeAgentPage }) => {
         <div className="agent__portrait--container">
           <img
             className="agent__portrait"
-            src={
-              currentBox == 3
-                ? "https://db2cdn.fra1.cdn.digitaloceanspaces.com/assets/photos-personnages/raphaelle.jpg"
-                : "https://db2cdn.fra1.cdn.digitaloceanspaces.com/assets/photos-personnages/lauren.jpg"
-            }
-            alt={currentBox == 3 ? "Photo de Raphaelle" : "Photo de Lauren"}
+            src={urlApi.cdn() + "assets/photos-personnages/lauren.jpg"}
+            alt="Photo de Lauren"
           />
         </div>
         <div className="agent__main">
