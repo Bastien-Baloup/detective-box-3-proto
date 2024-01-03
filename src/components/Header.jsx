@@ -67,11 +67,10 @@ const Header = () => {
 	// EXPLICATION : Cette fonction récupère les événements
 	useEffect(() => {
 		const fetchData = async () => {
-			const events = await getEventByBox(token, currentBox);
-			if (currentBox == 3) {
-				const event33Data = events.data.find((event) => event.id == 33);
-				setEvent33(event33Data.status);
-			}
+			//TODO Récupération data des évènements
+			// const events = await getEventByBox(token, currentBox);
+			// const event33Data = events.data.find((event) => event.id == 33);
+			// setEvent33(event33Data.status);
 		};
 		fetchData();
 	}, [toggleDataEvent]);
@@ -79,29 +78,15 @@ const Header = () => {
 	// EXPLICATION : Cette fonction récupère l'état des vidéos de brief dans l'historique (il ne se joue qu'une fois par box)
 	useEffect(() => {
 		const fetchData = async () => {
-			const clues = await getHistoryByBox(token, currentBox);
-			if (currentBox == 1) {
-				const box1video1Data = clues.data.find((event) => event.id == "box1video1");
-				setBox1Video1(box1video1Data.status);
-			}
-			if (currentBox == 2) {
-				const box2video1Data = clues.data.find((event) => event.id == "box2video1");
-				setBox2Video1(box2video1Data.status);
-			}
-			if (currentBox == 3) {
-				const box3video1Data = clues.data.find((event) => event.id == "box3video1");
-				setBox3Video1(box3video1Data.status);
-			}
+			//TODO Récupération data de l'historique
+			// const clues = await getHistoryByBox(token, currentBox);
+			// const box1video1Data = clues.data.find((event) => event.id == "box1video1");
+			// setBox1Video1(box1video1Data.status);
 		};
 		fetchData();
 	}, []);
 
-	const [box1video1, setBox1Video1] = useState(false);
-	const [box2video1, setBox2Video1] = useState(false);
-	const [box3video1, setBox3Video1] = useState(false);
 	const [dataQuizz, setDataQuizz] = useState("");
-
-	const [event33, setEvent33] = useState("");
 
 	// EXPLICATION : Le joueur choisi d'activer la musique d'ambiance > son état se met à jour dans le context > ferme la modale.
 	const activateNappe = () => {
@@ -116,60 +101,25 @@ const Header = () => {
 	};
 
 	const handleModalVideoBrief = async () => {
-		if (currentBox == 1) {
-			await updateHistory(token, 1, "box1video1");
-			dispatch({
-        type: 'setEvent',
-        id: 'box1video1'
-      })
-		}
-		if (currentBox == 2) {
-			await updateHistory(token, 2, "box2video1");
-			dispatch({
-        type: 'setEvent',
-        id: 'box2video1'
-      })
-		}
-		if (currentBox == 3) {
-			await updateHistory(token, 3, "box3video1");
-			dispatch({
-        type: 'setEvent',
-        id: 'box3video1'
-      })
-		}
+		//TODO Gestion validation Briefing
+		// await updateHistory(token, 1, "box1video1");
+		// dispatch({
+    //   type: 'setEvent',
+    //   id: 'box1video1'
+    // })
 		actionToggleDataHistory()
 		setModaleVideo(false);
 		setNappeModalIsActive(true);
 	};
 
 	const displayBrief = () => {
-		if (currentBox == 1) {
-			return (
-				<Video
-					title="Briefing box 1"
-					srcVideo={urlApi.cdn() + "videos/db-s02-101-def.mp4"}
-					handleModalVideo={handleModalVideoBrief}
-				/>
-			);
-		}
-		if (currentBox == 2) {
-			return (
-				<Video
-					title="Briefing box 2"
-					srcVideo={urlApi.cdn() + "videos/db-s02-201-vdef.mp4"}
-					handleModalVideo={handleModalVideoBrief}
-				/>
-			);
-		}
-		if (currentBox == 3) {
-			return (
-				<Video
-					title="Briefing box 3"
-					srcVideo={urlApi.cdn() + "videos/db-s02-301-def.mp4"}
-					handleModalVideo={handleModalVideoBrief}
-				/>
-			);
-		}
+		return (
+			<Video
+				title="Briefing"
+				srcVideo={urlApi.cdn() + "videos/db-s02-101-def.mp4"}
+				handleModalVideo={handleModalVideoBrief}
+			/>
+		);
 	};
 
 	// EXPLICATION : On affiche le Quizz en fonction de la box. Box 1 pas de quizz !
