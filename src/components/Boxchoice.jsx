@@ -18,7 +18,7 @@ import { BoxContext } from "../utils/context/fetchContext.jsx";
 import { useContext } from "react";
 
 const BoxChoice = ({ data }) => {
-	const { fetchCurrentBox } = useContext(BoxContext);
+	const { setCurrentBox } = useContext(BoxContext);
 
 	const [modal, setModal] = useState(false);
 
@@ -95,7 +95,7 @@ const BoxChoice = ({ data }) => {
 			}
 			if (data.status == "open") {
 				return (
-					<article className="boxchoice boxchoice--open" onClick={() => fetchCurrentBox(data.id)}>
+					<article className="boxchoice boxchoice--open" onClick={() => setCurrentBox(data.id)}>
 						<Link to={"/"} className="boxchoice__link"></Link>
 						<div className="boxchoice__picture-wrapper">
 							<img src={renderCover()} className="boxchoice__picture" alt=''/>

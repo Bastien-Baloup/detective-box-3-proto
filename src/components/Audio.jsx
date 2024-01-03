@@ -15,7 +15,7 @@ const Audio = ({ title, srcImg1, srcImg2, srcTranscription, handleModalAudio, sr
 //	const waveSurferRef = useRef(false);
 //	const [isPlaying, setIsPlaying] = useState(true);
 //	const [isLoading, setIsLoading] = useState(true);
-	const { fetchResumeNappe } = useContext(AmbianceContext);
+	const { resumeNappe } = useContext(AmbianceContext);
 
 	// EXPLICATION : Cette fonction est utilisée pour faire fonctioner la librairie waveSurfer
 /*	useEffect(() => {
@@ -51,7 +51,7 @@ const Audio = ({ title, srcImg1, srcImg2, srcTranscription, handleModalAudio, sr
 
 	const handleEndAudioModal = () => {
 		handleModalAudio();
-		fetchResumeNappe();
+		resumeNappe();
 	};
 
 	return (

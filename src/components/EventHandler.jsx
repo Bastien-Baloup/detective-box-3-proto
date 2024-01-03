@@ -15,7 +15,7 @@ import Video from "../components/Video";
 
 const EventHandler = () => {
   const { actionToggleDataEvent, actionToggleDataHistory, toggleDataEvent, toggleDataHistory } = useContext(DataContext);
-	const { fetchPreviousStateNappe } = useContext(AmbianceContext);
+	const { pauseNappe } = useContext(AmbianceContext);
   const { currentBox } = useContext(BoxContext);
 
   const { updateEvent, updateHistory, getHistoryByBox, getEventByBox, updateBox, updateTimeEndBox} = useApi();
@@ -158,13 +158,13 @@ const EventHandler = () => {
       // EXPLICATION : Pour faire le lien entre le composant Home (carte Lauren) et ici
       if (event25 == "open" && box2video5 == false) {
         setVideoBureauLauren(true);
-        fetchPreviousStateNappe();
+        pauseNappe();
       }
     }
   }, [toggleEvent2]);
 
   const handleOpenRebeccaAudio = () => {
-    fetchPreviousStateNappe();
+    pauseNappe();
     setModaleMalle(false);
     setModaleRebecca(true);
   };
@@ -290,7 +290,7 @@ const EventHandler = () => {
   const handleOpenInterrogatoire = () => {
     setModaleInterrogatoireGarraud(false);
     setVideoInterrogatoireGarraud(true);
-    fetchPreviousStateNappe();
+    pauseNappe();
   };
 
   const displayVideoInterrogatoireGarraud = () => {

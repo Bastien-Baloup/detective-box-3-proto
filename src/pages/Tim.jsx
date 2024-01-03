@@ -23,7 +23,7 @@ const Tim = ({ closeAgentPage }) => {
   const token = localStorage.getItem("token");
   const { actionToggleDataTim, toggleDataTim, actionToggleDataHistory } =
     useContext(DataContext);
-  const { fetchPreviousStateNappe } = useContext(AmbianceContext);
+  const { pauseNappe } = useContext(AmbianceContext);
   const { updateCharactersById, updateHistory, getCharactersById } = useApi();
   const { dispatch } = useEvent();
   const { closeCompte } = useContext(CompteContext);
@@ -190,7 +190,7 @@ const Tim = ({ closeAgentPage }) => {
 
   const openMedia = () => {
     if (answer.id.includes("video")) {
-      fetchPreviousStateNappe();
+      pauseNappe();
     }
     validateModal();
     setModalMedia(true);

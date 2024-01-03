@@ -1,5 +1,5 @@
 const eventReducer = (state, action) => {
-  console.log(action)
+  // console.log(action)
 
   switch (action.type) {
     case 'setEvent':

@@ -5,10 +5,10 @@ import { AmbianceContext } from "../utils/context/fetchContext.jsx";
 import { useContext } from "react";
 
 const Video = ({ title, srcVideo, handleModalVideo }) => {
-	const { fetchResumeNappe } = useContext(AmbianceContext);
+	const { resumeNappe } = useContext(AmbianceContext);
 
 	const handleEndVideoModal = () => {
-		fetchResumeNappe();
+		resumeNappe();
 		handleModalVideo();
 	};
 

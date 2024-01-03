@@ -20,7 +20,7 @@ import useEvent from "../utils/hooks/useEvent.js";
 
 const Lauren = ({ closeAgentPage }) => {
   const { currentBox } = useContext(BoxContext);
-  const { fetchPreviousStateNappe } = useContext(AmbianceContext);
+  const { pauseNappe } = useContext(AmbianceContext);
   const token = localStorage.getItem("token");
   const {
     actionToggleDataLauren,
@@ -205,7 +205,7 @@ const Lauren = ({ closeAgentPage }) => {
   };
 
   const openMedia = () => {
-    fetchPreviousStateNappe();
+    pauseNappe();
     validateModal();
     setModalMedia(true);
   };

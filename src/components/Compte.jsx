@@ -15,7 +15,7 @@ import { useContext } from "react";
 const Compte = () => {
 	const { active, setActive } = useContext(CompteContext);
 	const { logout } = useContext(AuthContext);
-	const { fetchNappeMute, nappeMute } = useContext(AmbianceContext);
+	const { setNappeIsMute, nappeIsMute } = useContext(AmbianceContext);
 
 	const activeDrop = () => {
 		setActive(!active);
@@ -23,7 +23,7 @@ const Compte = () => {
 
 	// EXPLICATION : Cette fonction permet de récupérer l'état de la musique d'ambiance et d'activer son état inverse.
 	const handleNappe = () => {
-		fetchNappeMute(!nappeMute);
+		setNappeIsMute(!nappeIsMute);
 		activeDrop();
 	};
 

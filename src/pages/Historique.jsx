@@ -18,7 +18,7 @@ function Historique() {
 	const filtersType = ["Document", "Vidéo", "Audio", "Lieu", "Archive"];
 	const token = localStorage.getItem("token");
 	const { currentBox } = useContext(BoxContext);
-	const { fetchPreviousStateNappe } = useContext(AmbianceContext);
+	const { pauseNappe } = useContext(AmbianceContext);
 	const { toggleDataHistory } = useContext(DataContext);
   const { renderLieu, setLieu, setLieuOpen } = useLieu()
 	const { getHistoryByBox } = useApi()
@@ -95,7 +95,7 @@ function Historique() {
 
 	const openModal = (clue) => {
 		if (clue.category == "Audio" || clue.category == "vidéo") {
-			fetchPreviousStateNappe();
+			pauseNappe();
 		}
 		setModal(true);
 		setSelectedClue(clue);

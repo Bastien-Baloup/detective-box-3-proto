@@ -10,11 +10,8 @@ export const BoxContext = createContext("");
 
 export const BoxProvider = ({ children }) => {
 	const [currentBox, setCurrentBox] = useState(null);
-	const fetchCurrentBox = (value) => {
-		setCurrentBox(value);
-	};
 
-	return <BoxContext.Provider value={{ fetchCurrentBox, currentBox }}>{children}</BoxContext.Provider>;
+	return <BoxContext.Provider value={{ setCurrentBox, currentBox }}>{children}</BoxContext.Provider>;
 };
 
 export const AuthContext = createContext("");
@@ -72,31 +69,21 @@ export const AuthProvider = ({ children }) => {
 export const AmbianceContext = createContext("");
 
 export const AmbianceProvider = ({ children }) => {
-	const [nappeMute, setNappeMute] = useState(true);
-	const [ispreviouslyMuted, setIsPreviouslyMuted] = useState(true);
-	// console.log(nappeMute);
+	const [nappeIsMute, setNappeIsMute] = useState(true);
+	const [wasMuted, setWasMuted] = useState(true);
+	// console.log(nappeIsMute);
 
-	const fetchNappeMute = (value) => {
-		setNappeMute(value);
+	const pauseNappe = () => {
+		setWasMuted(nappeIsMute)
+		setNappeIsMute(true);
 	};
 
-	const fetchPreviousStateNappe = () => {
-		if (nappeMute) {
-			setIsPreviouslyMuted(true);
-		} else {
-			setIsPreviouslyMuted(false);
-		}
-		setNappeMute(true);
-	};
-
-	const fetchResumeNappe = () => {
-		if (!ispreviouslyMuted) {
-			setNappeMute(false);
-		}
+	const resumeNappe = () => {
+		setNappeIsMute(wasMuted);
 	};
 
 	return (
-		<AmbianceContext.Provider value={{ fetchNappeMute, fetchPreviousStateNappe, fetchResumeNappe, nappeMute }}>
+		<AmbianceContext.Provider value={{ setNappeIsMute, pauseNappe, resumeNappe, nappeIsMute }}>
 			{children}
 		</AmbianceContext.Provider>
 	);

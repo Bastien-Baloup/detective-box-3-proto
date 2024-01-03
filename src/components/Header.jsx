@@ -21,7 +21,7 @@ import useEvent from '../utils/hooks/useEvent.js';
 
 
 const Header = () => {
-	const { fetchNappeMute, nappeMute } = useContext(AmbianceContext);
+	const { setNappeIsMute, nappeIsMute } = useContext(AmbianceContext);
 	const { currentBox } = useContext(BoxContext);
 	const token = localStorage.getItem("token");
 	const { actionToggleDataEvent, toggleDataEvent, actionToggleDataHistory } = useContext(DataContext);
@@ -44,14 +44,14 @@ const Header = () => {
 
 	const audioElem = useRef();
 
-	// EXPLICATION : Cette fonction récupère l'état de la musique d'ambiance avec Context. Si nappemute, alors la musique d'ambiance est en pause, sinon elle se joue.
+	// EXPLICATION : Cette fonction récupère l'état de la musique d'ambiance avec Context. Si nappeIsMute, alors la musique d'ambiance est en pause, sinon elle se joue.
 	useEffect(() => {
-		if (nappeMute) {
+		if (nappeIsMute) {
 			audioElem.current.pause();
 		} else {
 			audioElem.current.play();
 		}
-	}, [nappeMute]);
+	}, [nappeIsMute]);
 
 	// EXPLICATION : Cette fonction récupère du quizz (il ne se joue qu'une fois par box)
 	useEffect(() => {
@@ -105,13 +105,13 @@ const Header = () => {
 
 	// EXPLICATION : Le joueur choisi d'activer la musique d'ambiance > son état se met à jour dans le context > ferme la modale.
 	const activateNappe = () => {
-		fetchNappeMute(false);
+		setNappeIsMute(false);
 		setNappeModalIsActive(false);
 	};
 
 	// EXPLICATION : Le joueur choisi de désactiver la musique d'ambiance > son état se met à jour dans le context > ferme la modale.
 	const desactivateNappe = () => {
-		fetchNappeMute(true);
+		setNappeIsMute(true);
 		setNappeModalIsActive(false);
 	};
 
@@ -277,7 +277,7 @@ const Header = () => {
 
 	// EXPLICATION : Le timer de fin s'affiche lors de la dernière étape du jeu. Il est en overlay sur le header pour que le joueur ne puisse pas cliquer sur les autres composants
 	const displayTimer = () => {
-		fetchNappeMute(true);
+		setNappeIsMute(true);
 		return (
 			<>
 				<div className="final__timer">
