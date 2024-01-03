@@ -5,7 +5,7 @@
 import Input from "../../../components/Input.jsx";
 import Document from "../../../components/Document.jsx";
 import Video from "../../../components/Video.jsx";
-import Cross from "../assets/icons/Icon_Cross-white.svg";
+import Cross from "../../../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";
 import { urlApi } from "../../../utils/const/urlApi.js";
 import {
@@ -21,8 +21,11 @@ import useEvent from "../../../utils/hooks/useEvent.js";
 const Tim = ({ closeAgentPage }) => {
   const { currentBox } = useContext(BoxContext);
   const token = localStorage.getItem("token");
-  const { actionToggleDataTim, toggleDataTim, actionToggleDataHistory } =
-    useContext(DataContext);
+  const { 
+    actionToggleDataTim, 
+    toggleDataTim, 
+    // actionToggleDataHistory 
+  } = useContext(DataContext);
   const { pauseNappe } = useContext(AmbianceContext);
   const { updateCharactersById, updateHistory, getCharactersById } = useApi();
   const { dispatch } = useEvent();
@@ -59,23 +62,16 @@ const Tim = ({ closeAgentPage }) => {
   // EXPLICATION : Les réponses peuvent être trouvées dans la box actuelle ou les boxs précédentes
   // EXPLICATION : Les réponses du personnage dépendent de la location de la réponse (box précedente ou box actuelle) et du status de la réponse (déjà demandé ou pas)
   const handleSubmit = (e) => {
+    e.preventDefault();
+
     const thisBox = dataTim.find(
       (element) => element.box_id == currentBox
     ).data;
-    const box1 = dataTim.find((element) => element.box_id == 1).data;
-    const box2 = dataTim.find((element) => element.box_id == 2).data;
     const answerInThisBox = thisBox.find((element) =>
       element.ask.includes(slugify(value))
     );
     const previouslyAnsweredInThisBox =
       answerInThisBox && answerInThisBox.status;
-    const answerInBox1 = box1.some((element) =>
-      element.ask.includes(slugify(value))
-    );
-    const answerInBox2 = box2.some((element) =>
-      element.ask.includes(slugify(value))
-    );
-    e.preventDefault();
     if (value == "") {
       setErrorMessage(
         "Vous n'avez rien à me faire analyser ? Je retourne gamer alors."
@@ -95,20 +91,6 @@ const Tim = ({ closeAgentPage }) => {
       setModal(true);
       setValue("");
       setErrorMessage("");
-      return;
-    }
-    if (currentBox == 2 && answerInBox1) {
-      setValue("");
-      setErrorMessage(
-        "Vous avez déjà analysé cet élément lors d'une box précédente. Il est désormais disponible dans votre Historique."
-      );
-      return;
-    }
-    if (currentBox == 3 && (answerInBox2 || answerInBox1)) {
-      setValue("");
-      setErrorMessage(
-        "Vous avez déjà analysé cet élément lors d'une box précédente. Il est désormais disponible dans votre Historique."
-      );
       return;
     }
     setValue("");
@@ -178,14 +160,15 @@ const Tim = ({ closeAgentPage }) => {
 
   const validateModal = async () => {
     setModal(false);
-    if (answer.ask == ["stellalouiseberg"]) {
-      await updateHistory(token, 2, "box2document2");
-      dispatch({
-        type: "setEvent",
-        id: "box2document2",
-      });
-      actionToggleDataHistory();
-    }
+    //TODO Gestion ajout document supplémentaire dans l'historique
+    // if (answer.ask == ["stellalouiseberg"]) {
+    //   await updateHistory(token, 2, "box2document2");
+    //   dispatch({
+    //     type: "setEvent",
+    //     id: "box2document2",
+    //   });
+    //   actionToggleDataHistory();
+    // }
   };
 
   const openMedia = () => {

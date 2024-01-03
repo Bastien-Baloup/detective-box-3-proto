@@ -4,7 +4,7 @@
 
 import Input from "../../../components/Input.jsx";
 import Document from "../../../components/Document.jsx";
-import Cross from "../assets/icons/Icon_Cross-white.svg";
+import Cross from "../../../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";
 import { urlApi } from "../../../utils/const/urlApi.js";
 import {

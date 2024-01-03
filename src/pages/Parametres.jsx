@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 // EXPLICATION : Page pour permettre aux joueurs de changer leur identifiant et leur mot de passe
 
-import Input from "../../components/Input.jsx";
+import Input from "../components/Input.jsx";
 import { useState, useEffect } from "react";
-import useApi from '../../utils/hooks/useApi.js';
+import useApi from '../utils/hooks/useApi.js';
 
 function Parametres() {
 	const token = localStorage.getItem("token");

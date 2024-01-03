@@ -3,7 +3,7 @@
 // EXPLICATION : Les validations des requêtes sont faites ici
 
 import Input from "../../../components/Input.jsx";
-import Cross from "../assets/icons/Icon_Cross-white.svg";
+import Cross from "../../../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";
 import { urlApi } from "../../../utils/const/urlApi.js";
 import {

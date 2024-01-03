@@ -2,16 +2,14 @@
 // EXPLICATION : Page Home pour afficher les cartes personnages + les formulaires personnages pour les requêtes
 
 import Card from "../../components/Card.jsx";
-import IconLauren from "../assets/icons/Logo_Lauren.svg";
-import IconRaphaelle from "../assets/icons/Logo_Raphaelle.svg";
-import IconCeline from "../assets/icons/Logo_Celine.svg";
-import IconTim from "../assets/icons/Logo_Tim.svg";
-import IconAdele from "../assets/icons/Logo_Adele.svg";
-import Tim from "./Tim";
-import Adele from "./Adele";
-import Lauren from "./Lauren";
-import Raphaelle from "./Raphaelle";
-import Celine from "./Celine";
+import IconLauren from "../../assets/icons/Logo_Lauren.svg";
+import IconRaphaelle from "../../assets/icons/Logo_Raphaelle.svg";
+import IconTim from "../../assets/icons/Logo_Tim.svg";
+import IconAdele from "../../assets/icons/Logo_Adele.svg";
+import Tim from "./requetes/Tim";
+import Adele from "./requetes/Adele";
+import Lauren from "./requetes/Lauren";
+import Raphaelle from "./requetes/Raphaelle";
 import { useState } from "react";
 import { BoxContext, DataContext } from "../../utils/context/fetchContext.jsx";
 import { useContext, useEffect } from "react";
@@ -37,18 +35,10 @@ function Home() {
         );
         setBox2Document6(box2document6Data.status);
       }
-      if (currentBox == 3) {
-        const result = await getHistoryByBox(token, 3);
-        const box3audio3Data = result.data.find(
-          (event) => event.id == "box3audio3"
-        );
-        setBox3Audio3(box3audio3Data.status);
-      }
     };
     fetchData();
   }, [toggleDataHistory]);
 
-  const [box3audio3, setBox3Audio3] = useState(false);
   const [box2document6, setBox2Document6] = useState(false);
 
   const specificCardActionLauren = () => {
@@ -168,32 +158,6 @@ function Home() {
     }
   };
 
-  const renderCelineCard = () => {
-    if (currentBox == 3 && box3audio3 == true) {
-      return (
-        <Card
-          srcImg="https://db2cdn.fra1.cdn.digitaloceanspaces.com/assets/photos-personnages/celine.jpg"
-          srcIcon={IconCeline}
-          name="Céline Valluy"
-          contentButton="Demander un dossier de police"
-          actionButton={specificCardActionCeline}
-          state="unavailable"
-        />
-      );
-    } else {
-      return (
-        <Card
-          srcImg="https://db2cdn.fra1.cdn.digitaloceanspaces.com/assets/photos-personnages/celine.jpg"
-          srcIcon={IconCeline}
-          name="Céline Valluy"
-          contentButton="Demander un dossier de police"
-          actionButton={() => setCharacterDisplayed("celine")}
-          state=""
-        />
-      );
-    }
-  };
-
   // EXPLICATION : Fonction pour afficher tout les personnages
   const displayAllCharacters = () => {
     return (
@@ -208,7 +172,6 @@ function Home() {
             state=""
           />
           {renderLaurenCard()}
-          {renderCelineCard()}
           <Card
             srcImg="https://db2cdn.fra1.cdn.digitaloceanspaces.com/assets/photos-personnages/tim.jpg"
             srcIcon={IconTim}
@@ -248,10 +211,6 @@ function Home() {
     return <Raphaelle closeAgentPage={backToHome} />;
   };
 
-  const displayCeline = () => {
-    return <Celine closeAgentPage={backToHome} />;
-  };
-
   const displayTim = () => {
     return <Tim closeAgentPage={backToHome} />;
   };
@@ -265,7 +224,6 @@ function Home() {
       {characterDisplayed == null ? displayAllCharacters() : null}
       {characterDisplayed == "lauren" ? displayLauren() : null}
       {characterDisplayed == "raphaelle" ? displayRaphaelle() : null}
-      {characterDisplayed == "celine" ? displayCeline() : null}
       {characterDisplayed == "tim" ? displayTim() : null}
       {characterDisplayed == "adele" ? displayAdele() : null}
     </main>

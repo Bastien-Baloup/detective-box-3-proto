@@ -8,7 +8,7 @@ import Document from "../../components/Document.jsx";
 import Audio from "../../components/Audio.jsx";
 import Video from "../../components/Video.jsx";
 import { urlApi } from "../../utils/const/urlApi.js";
-import Cross from "../assets/icons/Icon_Cross-white.svg";
+import Cross from "../../assets/icons/Icon_Cross-white.svg";
 import { BoxContext, DataContext, AmbianceContext, CompteContext } from "../../utils/context/fetchContext.jsx";
 import { useContext, useEffect } from "react";
 import useApi from "../../utils/hooks/useApi.js";

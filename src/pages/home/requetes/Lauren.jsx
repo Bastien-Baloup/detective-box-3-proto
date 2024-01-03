@@ -4,7 +4,7 @@
 
 import Input from "../../../components/Input.jsx";
 import Audio from "../../../components/Audio.jsx";
-import Cross from "../assets/icons/Icon_Cross-white.svg";
+import Cross from "../../../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";
 import { urlApi } from "../../../utils/const/urlApi.js";
 import {
@@ -32,7 +32,7 @@ const Lauren = ({ closeAgentPage }) => {
     updateCharactersById,
     updateHistory,
     getCharactersById,
-    getHistoryByBox,
+    // getHistoryByBox,
   } = useApi();
   const { dispatch } = useEvent();
   const { closeCompte } = useContext(CompteContext);
@@ -49,28 +49,23 @@ const Lauren = ({ closeAgentPage }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await getHistoryByBox(token, 2);
-      const box2document6Data = result.data.find(
-        (event) => event.id == "box2document6"
-      );
-      setBox2Document6(box2document6Data.status);
+      //TODO Récupération data historique
+      // const result = await getHistoryByBox(token, 2);
+      // const box2document6Data = result.data.find(
+      //   (event) => event.id == "box2document6"
+      // );
+      // setBox2Document6(box2document6Data.status);
     };
     fetchData();
   }, [toggleDataHistory]);
 
   const [dataLauren, setDataLauren] = useState(null);
-  const [box2document6, setBox2Document6] = useState(false);
 
   const [value, setValue] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [modal, setModal] = useState(false);
   const [modalMedia, setModalMedia] = useState(false);
   const [answer, setAnswer] = useState("");
-
-  //EXPLICATION : Fonction pour sortir les joueurs de la page de Lauren si elle vient de se faire enlever (box2document6 dans historique)
-  if (currentBox == 2 && box2document6) {
-    closeAgentPage();
-  }
 
   // EXPLICATION : Fonction pour slugifier l'input des joueurs
   const slugify = (input) => {
