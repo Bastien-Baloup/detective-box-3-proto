@@ -9,36 +9,31 @@ import Progression from "../components/Progression.jsx";
 import Compte from "../components/Compte.jsx";
 import Nav from "../components/Nav.jsx";
 import Nappe from "../components/Nappe.jsx";
-import Quizz from "../components/Quizz.jsx";
-import Timer from "./Timer.jsx";
+// import Quizz from "../components/Quizz.jsx";
 import Video from "../components/Video.jsx";
 import { Link } from "react-router-dom";
 import { urlApi } from "../utils/const/urlApi";
 import { AmbianceContext, BoxContext, DataContext } from "../utils/context/fetchContext.jsx";
 import { useEffect, useState, useRef, useContext } from "react";
-import useApi from '../utils/hooks/useApi.js';
-import useEvent from '../utils/hooks/useEvent.js';
+// import useApi from '../utils/hooks/useApi.js';
+// import useEvent from '../utils/hooks/useEvent.js';
 
 
 const Header = () => {
 	const { setNappeIsMute, nappeIsMute } = useContext(AmbianceContext);
 	const { currentBox } = useContext(BoxContext);
-	const token = localStorage.getItem("token");
-	const { actionToggleDataEvent, toggleDataEvent, actionToggleDataHistory } = useContext(DataContext);
-	const {
-		getQuizzByBox,
-		getEventByBox,
-		updateEvent,
-		updateQuizz,
-		updateHistory,
-		getHistoryByBox,
-	} = useApi()
-	const { dispatch } = useEvent()
+	// const token = localStorage.getItem("token");
+	const { toggleDataEvent, toggleDataHistory, actionToggleDataHistory } = useContext(DataContext);
+	// const {
+	// 	// getEventByBox,
+	// 	// updateHistory,
+	// 	// getHistoryByBox,
+	// } = useApi()
+	// const { dispatch } = useEvent()
 
 
 	const [tutorialModalIsActive, setTutorialModalIsActive] = useState(true);
 	const [tutorialIsActive, setTutorialIsActive] = useState(false);
-	const [quizzIsActive, setQuizzIsActive] = useState(false);
 	const [nappeModalIsActive, setNappeModalIsActive] = useState(false);
 	const [modaleVideo, setModaleVideo] = useState(false);
 
@@ -52,17 +47,6 @@ const Header = () => {
 			audioElem.current.play();
 		}
 	}, [nappeIsMute]);
-
-	// EXPLICATION : Cette fonction récupère du quizz (il ne se joue qu'une fois par box)
-	useEffect(() => {
-		const fetchData = async () => {
-			if (currentBox != 1) {
-				const quizz = await getQuizzByBox(token, currentBox);
-				setDataQuizz(quizz);
-			}
-		};
-		fetchData();
-	}, []);
 
 	// EXPLICATION : Cette fonction récupère les événements
 	useEffect(() => {
@@ -84,9 +68,7 @@ const Header = () => {
 			// setBox1Video1(box1video1Data.status);
 		};
 		fetchData();
-	}, []);
-
-	const [dataQuizz, setDataQuizz] = useState("");
+	}, [toggleDataHistory]);
 
 	// EXPLICATION : Le joueur choisi d'activer la musique d'ambiance > son état se met à jour dans le context > ferme la modale.
 	const activateNappe = () => {
@@ -122,44 +104,6 @@ const Header = () => {
 		);
 	};
 
-	// EXPLICATION : On affiche le Quizz en fonction de la box. Box 1 pas de quizz !
-	const displayQuizz = () => {
-		if (currentBox == 1) {
-			handleCloseQuizz();
-			return <></>;
-		}
-		if (currentBox == 2 || currentBox == 3) {
-			if (dataQuizz && dataQuizz.status == true) {
-				handleCloseQuizz();
-				return <></>;
-			}
-			if (dataQuizz && dataQuizz.status == false) {
-				return <Quizz data={dataQuizz} handleEndQuizz={handleCloseQuizz} url={urlApi.cdn()} />;
-			}
-		}
-	};
-
-	// EXPLICATION : On ferme le quizz > affiche la video de briefing en fonction de la box > si briefing déjà vu, on affiche la modale pour choisir si active ou desactive la nappe d'ambiance
-	const handleCloseQuizz = async () => {
-		if (currentBox == 2 || currentBox == 3) {
-			await updateQuizz(token, currentBox);
-		}
-		setQuizzIsActive(false);
-		if (currentBox == 1 && box1video1 == false) {
-			setModaleVideo(true);
-			return;
-		}
-		if (currentBox == 2 && box2video1 == false) {
-			setModaleVideo(true);
-			return;
-		}
-		if (currentBox == 3 && box3video1 == false) {
-			setModaleVideo(true);
-			return;
-		}
-		setNappeModalIsActive(true);
-	};
-
 	// EXPLICATION : On affiche une modale qui propose aux joueurs d'afficher le tutoriel ou non
 	const displayTutorial = () => {
 		return (
@@ -185,16 +129,14 @@ const Header = () => {
 		setTutorialModalIsActive(false);
 	};
 
-	// EXPLICATION : On ferme la modale de choix d'affichage du tutorial et on affiche le quizz
+	// EXPLICATION : On ferme la modale de choix d'affichage du tutorial
 	const handleCloseModalTutorial = () => {
 		setTutorialModalIsActive(false);
-		setQuizzIsActive(true);
 	};
 
-	// EXPLICATION : On ferme la video du tutorial et on affiche le quizz
+	// EXPLICATION : On ferme la video du tutorial
 	const handleCloseTutorial = () => {
 		setTutorialIsActive(false);
-		setQuizzIsActive(true);
 	};
 
 	// EXPLICATION : Audio pour les nappes d'ambiance en fonction de la box (une box = une musique d'ambiance)
@@ -225,62 +167,30 @@ const Header = () => {
 		}
 	};
 
-	// EXPLICATION : Le timer de fin s'affiche lors de la dernière étape du jeu. Il est en overlay sur le header pour que le joueur ne puisse pas cliquer sur les autres composants
-	const displayTimer = () => {
-		setNappeIsMute(true);
-		return (
-			<>
-				<div className="final__timer">
-					<Timer initialMinute={30} initialSecond={0} timerEndedFunction={tooLate} />;
-				</div>
-				<audio autoPlay>
-					<source src={urlApi.cdn() + "sounds/305-commentaires-pendant-timer.mp3"} type="audio/mpeg" />
-					Votre navigateur ne prend pas en charge ce format
-				</audio>
-			</>
-		);
-	};
-
-	const tooLate = async () => {
-		await updateEvent(token, 3, 33, "done");
-		await updateEvent(token, 3, 35, "open");
-		actionToggleDataEvent();
-	};
-
-	// Il manque ici la vidéo du TUTORIEL !! //
-
 	// EXPLICATION : Dans l'ordre : Modale Tutoriel > Si oui > affichage tutoriel video / si non > fermeture modale tutoriel
 	// EXPLICATION : PUIS affichage du quizz si box 2 ou box 3
 	// EXPLICATION : PUIS affichage de la video de brief si l'event correspondant est initialement "closed".
 	// EXPLICATION : PUIS affichage de la modale de choix de l'activation de la musique d'ambiance
 	return (
 		<header>
-			{tutorialModalIsActive ? displayTutorial() : <></>}
-			{tutorialIsActive ? (
+			{tutorialModalIsActive && displayTutorial()}
+			{tutorialIsActive && (
 				<Video
 					title="Vidéo du tutoriel"
 					srcVideo={urlApi.cdn() + "videos/tutoriel.mp4"}
 					handleModalVideo={handleCloseTutorial}
 				/>
-			) : (
-				<></>
 			)}
-			{quizzIsActive ? displayQuizz() : <></>}
-			{modaleVideo ? displayBrief() : null}
-			{nappeModalIsActive ? <Nappe activateNappe={activateNappe} desactivateNappe={desactivateNappe} /> : <></>}
+			{modaleVideo && displayBrief()}
+			{nappeModalIsActive && <Nappe activateNappe={activateNappe} desactivateNappe={desactivateNappe}/>}
 			{displayAudio()}
-			{event33 == "open" ? displayTimer() : <></>}
-			{event33 == "open" ? (
-				<></>
-			) : (
-				<div className="header__topSection">
-					<Link className="header__logo--container" to="/">
-						<img className="header__logo" src={Logo} alt='' />
-					</Link>
-					<Progression />
-					<Compte />
-				</div>
-			)}
+			<div className="header__topSection">
+				<Link className="header__logo--container" to="/">
+					<img className="header__logo" src={Logo} alt='' />
+				</Link>
+				<Progression />
+				<Compte />
+			</div>
 			<div className="header__bottomSection">
 				<Nav />
 			</div>
