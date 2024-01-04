@@ -36,12 +36,9 @@ import { useContext } from "react";
 const Objectif = ({ data }) => {
   const [modal, setModal] = useState(false);
   const [modalAnswer, setModalAnswer] = useState(false);
-  const [modalAnswerBis, setModalAnswerBis] = useState(false);
-  const [modalBis, setModalBis] = useState(false);
   const [doneObjectifModal, setDoneObjectifModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
   const [value, setValue] = useState("");
-  const [nextStep, setNextStep] = useState(false);
 
   // const { currentBox } = useContext(BoxContext);
   // const token = localStorage.getItem("token");
@@ -138,13 +135,6 @@ const Objectif = ({ data }) => {
     setValue("");
   };
 
-  const handleModalBis = () => {
-    if (!modalBis) { closeCompte() }
-    setModalBis(!modalBis);
-    setErrorMessage("");
-    setValue("");
-  };
-
   const slugify = (input) => {
     let inputSlugified = input
       .replace(/\s/g, "")
@@ -187,54 +177,37 @@ const Objectif = ({ data }) => {
   };
 
   const handleModalAnswer = async () => {
-    if (data.newdetail) {
-      setModalAnswer(false);
-      setModalBis(true);
-      setNextStep(true);
-      return;
-    } else {
-      setModalAnswer(false);
-      //TODO Gestion validation objectif, exemples:
-      // if (data.id == 21) {
-      //   setAudioSamuel(true);
-      //   pauseNappe();
-      //   return;
-      // }
-      // if (data.id == 23) {
-      //   await updateObjectives(token, 2, 23, "done");
-      //   await updateHelp(token, 2, "box2help3", "done");
-      //   actionToggleDataObjectif();
-      //   actionToggleDataHelp();
-      //   await updateHistory(token, 2, "box2document9");
-      //   dispatch({
-      //     type: "setEvent",
-      //     id: "box2document9",
-      //   });
-      //   actionToggleDataHistory();
-      //   return;
-      // }
-    }
+    setModalAnswer(false);
+    //TODO Gestion validation objectif, exemples:
+    // if (data.id == 21) {
+    //   setAudioSamuel(true);
+    //   pauseNappe();
+    //   return;
+    // }
+    // if (data.id == 23) {
+    //   await updateObjectives(token, 2, 23, "done");
+    //   await updateHelp(token, 2, "box2help3", "done");
+    //   actionToggleDataObjectif();
+    //   actionToggleDataHelp();
+    //   await updateHistory(token, 2, "box2document9");
+    //   dispatch({
+    //     type: "setEvent",
+    //     id: "box2document9",
+    //   });
+    //   actionToggleDataHistory();
+    //   return;
+    // }
   };
 
-  const handleSubmitBis = (e) => {
-    e.preventDefault();
-    if (data.newanswer.includes(slugify(value))) {
-      setErrorMessage("");
-      setValue("");
-      setModalBis(false);
-      setModalAnswerBis(true);
-      return;
-    } else {
-      setErrorMessage(data.newerrorMessage);
-      setValue("");
-    }
-  };
-
-  const handleModalAnswerBis = async () => {
-    setModalAnswerBis(false);
-    setNextStep(false);
-    //TODO validation objectifs à 2 réponses
-  };
+  const renderSousObjectif = () => {
+    const sousObjectifs = data?.sousObjectifs ? data.sousObjectifs : []
+    const listSousObjectif = sousObjectifs.map(sousObjectif => renderObjectif(sousObjectif))
+    return (
+      <div className='modal-objectif__list-sous-objectif'>
+        {listSousObjectif}
+      </div>
+    )
+  }
 
   const renderModal = () => {
     closeCompte()
@@ -255,47 +228,12 @@ const Objectif = ({ data }) => {
           </h2>
           <div className="modal-objectif__errorMessage">{errorMessage}</div>
           <div>{renderText(data.detail)}</div>
+          {renderSousObjectif()}
           <form className="modal-objectif__form" onSubmit={handleSubmit}>
             <Input
               type="texte"
               label={data.label}
               name="objectif"
-              placeholder="Ce champ est vide"
-              value={value}
-              setValue={setValue}
-            />
-            <button className="modal-objectif__button button--red">
-              Valider
-            </button>
-          </form>
-        </div>
-      </div>
-    );
-  };
-
-  const renderModalBis = () => {
-    closeCompte()
-    return (
-      <div className="modal-objectif__background">
-        <div className="modal-objectif__box">
-          <button className="modal-objectif__icon--container">
-            <img
-              className="modal-objectif__icon"
-              src={Cross}
-              onClick={handleModalBis}
-              alt=""
-            />
-          </button>
-          <h2 className="modal-objectif__title">
-            Objectif : <br></br> {data.title}
-          </h2>
-          <div className="modal-objectif__errorMessage">{errorMessage}</div>
-          <div>{renderText(data.newdetail)}</div>
-          <form className="modal-objectif__form" onSubmit={handleSubmitBis}>
-            <Input
-              type="texte"
-              label={data.newlabel}
-              name="objectifbis"
               placeholder="Ce champ est vide"
               value={value}
               setValue={setValue}
@@ -337,37 +275,6 @@ const Objectif = ({ data }) => {
     );
   };
 
-  const renderModalAnswerBis = () => {
-    closeCompte()
-    return (
-      <div className="modal-objectif__background">
-        <div className="modal-objectif__box">
-          <h2 className="modal-objectif__title">
-            Objectif : <br></br> {data.title}
-          </h2>
-          {data.newanswersrc ? (
-            <audio autoPlay>
-              <source
-                src={urlApi.cdn() + data.newanswersrc}
-                type="audio/mpeg"
-              />
-              Votre navigateur ne prend pas en charge ce format
-            </audio>
-          ) : (
-            ""
-          )}
-          <div>{renderText(data.newanswertext)}</div>
-          <button
-            className="modal-objectif__button button--red"
-            onClick={handleModalAnswerBis}
-          >
-            Continuer l&apos;enquête
-          </button>
-        </div>
-      </div>
-    );
-  };
-
   const renderText = (data) => {
     const text = data.map((el, i) => {
       return (
@@ -392,11 +299,7 @@ const Objectif = ({ data }) => {
           <h2 className="modal-objectif__title">
             Objectif : <br></br> {data.title}
           </h2>
-          {data.newanswertext ? (
-            <div>{renderText(data.newanswertext)}</div>
-          ) : (
-            <div>{renderText(data.answertext)}</div>
-          )}
+          <div>{renderText(data.answertext)}</div>
           <button
             className="modal-objectif__button button--red"
             onClick={handleDoneObjectifModal}
@@ -410,8 +313,8 @@ const Objectif = ({ data }) => {
 
   // -- RENDER DES BOUTONS OBJECTIFS -- //
 
-  const renderObjectif = () => {
-    if (data.status == "done") {
+  const renderObjectif = (objectif) => {
+    if (objectif.status == "done") {
       return (
         <>
           <button
@@ -426,21 +329,21 @@ const Objectif = ({ data }) => {
                   alt="objectif terminé"
                 />
               </div>
-              <h3 className="objectif__title">{data.title}</h3>
+              <h3 className="objectif__title">{objectif.title}</h3>
             </div>
             <div className="objectif__subInfo">
-              <p className="objectif__subtitle">{data.subtitle}</p>
+              <p className="objectif__subtitle">{objectif.subtitle}</p>
             </div>
           </button>
         </>
       );
     }
-    if (data.status == "open") {
+    if (objectif.status == "open") {
       return (
         <>
           <button
             className="objectif objectif--open"
-            onClick={nextStep ? handleModalBis : handleModal}
+            onClick={handleModal}
           >
             <div className="objectif__mainInfo">
               <div className="objectif__icon-wrapper">
@@ -450,16 +353,16 @@ const Objectif = ({ data }) => {
                   alt="objectif ouvert"
                 />
               </div>
-              <h3 className="objectif__title">{data.title}</h3>
+              <h3 className="objectif__title">{objectif.title}</h3>
             </div>
             <div className="objectif__subInfo">
-              <p className="objectif__subtitle">{data.subtitle}</p>
+              <p className="objectif__subtitle">{objectif.subtitle}</p>
             </div>
           </button>
         </>
       );
     }
-    if (data.status == "closed") {
+    if (objectif.status == "closed") {
       return (
         <>
           <button className="objectif objectif--closed">
@@ -481,12 +384,10 @@ const Objectif = ({ data }) => {
 
   return (
     <>
-      {renderObjectif()}
+      {renderObjectif(data)}
       {/* {renderLieu()} */}
       {modal ? renderModal() : ""}
-      {modalBis ? renderModalBis() : ""}
       {modalAnswer ? renderModalAnswer() : ""}
-      {modalAnswerBis ? renderModalAnswerBis() : ""}
       {doneObjectifModal ? renderDoneObjectifModal() : ""}
     </>
   );
