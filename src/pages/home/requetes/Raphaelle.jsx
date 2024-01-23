@@ -73,6 +73,7 @@ const Raphaelle = ({ closeAgentPage }) => {
   const [conciergeModal, setConciergeModal] = useState(false)
   const [conciergeModalBis, setConciergeModalBis] = useState(false)
   const [conciergeModalTer, setConciergeModalTer] = useState(false)
+  const [conciergeModalQuad, setConciergeModalQuad] = useState(false)
   const [retourCoffreModal, setRetourCoffreModal] = useState(false)
   const [value, setValue] = useState('')
   const [event231, setEvent231] = useState('')
@@ -201,7 +202,7 @@ const Raphaelle = ({ closeAgentPage }) => {
 
   const handleConciergeTer = async () => {
     setConciergeModalTer(false)
-    openLieu(answer.id, answer.ask)
+    setConciergeModalQuad(true)
   }
 
   const renderConciergeModalTer = () => {
@@ -215,6 +216,44 @@ const Raphaelle = ({ closeAgentPage }) => {
           {<div>{renderText(text)}</div>}
           <button className='modal-objectif__button button--red' onClick={handleConciergeTer}>
             Entrer dans la planque
+          </button>
+        </div>
+      </div>
+    )
+  }
+  const handleConciergeQuad = async () => {
+    setConciergeModalQuad(false)
+    openLieu(answer.id, answer.ask)
+  }
+
+  const renderConciergeModalQuad = () => {
+    const text = [
+      'Raphaëlle : “Ok, on y est... T’entends ça ?',
+      'Lauren : Ouais, on dirait bien qu’il y a du monde là-dedans... Et ça s’agite. C’est l’heure de faire valoir ton ancienne carrière de flic !',
+      'Raphaëlle : Alors on y va ! TOUS À TERRE, VOUS ÊTES EN ÉTAT D’ARRESTATION !!!',
+      '*cris de surprise des casseurs* *Hannah tente de se défendre*',
+      'Raphaëlle : *braque son arme sur elle* N’y pense même pas !',
+      'Henri : D’accord, d’accord, on se rend ! Ne tirez pas ! ... *tente de s’enfuir*',
+      'Raphaëlle : *tire à proximité de sa jambe* J’AI DIT : À TERRE ! Vous allez tous venir avec nous, et sans faire de vagues. On a des questions à vous poser.',
+      'Ellie : Et merde... Cédric n’est jamais là quand on en a besoin !',
+      'Lauren : Cédric... Romero ?',
+      'Sacha : Pas la peine de nous questionner sur lui, on sait pas où il est !',
+      'Henri : Il a dû s’enfuir avec sa part du butin...',
+      '*Lauren et Raphaëlle échangent un regard gêné*',
+      'Hannah : Quoi ? Il s’est fait attraper, c’est ça ?!',
+      '*Lauren et Raphaëlle semblent surprises de leur réaction*',
+      'Lauren : Je suis désolée de vous l’apprendre mais... Il est mort. *Chocs des membres de La Horde*',
+      'Henri : Non, c\'est pas possible ?! *regards suspicieux des autres membres de La Horde vers Henri*',
+      'Raphaëlle : C’est la vérité. On a retrouvé son corps dans le coffre-fort.',
+      'Ellie : Mais... Qu’est-ce qu’il s’est passé ? Qui aurait bien pu lui faire ça ?',
+      'Raphaëlle : C’est ce qu’on va découvrir. Nous vous interrogerons à tour de rôle, une fois qu’on aura fouillé tout ça.”'    
+    ]
+    return (
+      <div className='modal-objectif__background'>
+        <div className='modal-objectif__box'>
+          {<div>{renderText(text)}</div>}
+          <button className='modal-objectif__button button--red' onClick={handleConciergeQuad}>
+            Fouiller la planque
           </button>
         </div>
       </div>
@@ -478,6 +517,7 @@ const Raphaelle = ({ closeAgentPage }) => {
       {conciergeModal && renderConciergeModal()}
       {conciergeModalBis && renderConciergeModalBis()}
       {conciergeModalTer && renderConciergeModalTer()}
+      {conciergeModalQuad && renderConciergeModalQuad()}
       {retourCoffreModal && renderRetourCoffreModal()}
       {renderLieu(handleLieuClose, handleLieuChange)}
       <audio autoPlay>
