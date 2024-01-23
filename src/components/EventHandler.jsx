@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState, useContext } from 'react'
 import useEvent from '../utils/hooks/useEvent'
 import useApi from '../utils/hooks/useApi'
 import { urlApi } from '../utils/const/urlApi.js'
-import { CompteContext, DataContext, BoxContext } from '../utils/context/fetchContext'
+import { CompteContext, DataContext, AmbianceContext, BoxContext } from '../utils/context/fetchContext'
 import Audio from './Audio'
 import PortraitRobot from './mini-jeux/PortraitRobot.jsx'
 import EnqueteQuartier from './mini-jeux/EnqueteQuartier.jsx'
@@ -13,6 +13,7 @@ const EventHandler = () => {
   const { state, dispatch } = useEvent()
   const { getHistoryByBox, updateHistory, updateEvent } = useApi()
   const { toggleDataHistory, actionToggleDataHistory, actionToggleDataEvent } = useContext(DataContext)
+  const { pauseNappe } = useContext(AmbianceContext)
   const { closeCompte } = useContext(CompteContext)
   const { currentBox } = useContext(BoxContext)
   const [interrogatoirePharmacien, setInterrogatoirePharmacien] = useState(false)
@@ -22,6 +23,7 @@ const EventHandler = () => {
   const [enqueteQuartier, setEnqueteQuartier] = useState(false)
   const [appelConcierge, setAppelConcierge] = useState(false)
   const [interrogatoiresCasseurs, setInterrogatoiresCasseurs] = useState(false)
+  const [modalMedia, setModalMedia] = useState(false)
 
   const token = localStorage.getItem('token')
 
@@ -167,8 +169,60 @@ const EventHandler = () => {
       </div>
   )}
 
+  const openMedia = () => {
+    pauseNappe()
+    setInterrogatoiresCasseurs(false)
+    setModalMedia(true)
+  }
+
+  const renderModalMedia = (name) => {
+    closeCompte()
+    let document = null
+    if (name == "Hannah Evans") {
+      document
+    }
+    return (
+      <Audio
+        title={'Interrogatoire de ' + name}
+        srcImg1={urlApi.cdn() + answer.img1}
+        srcImg2={urlApi.cdn() + answer.img2}
+        srcTranscription={urlApi.cdn() + answer.srcTranscript}
+        srcAudio={urlApi.cdn() + answer.srcAudio}
+        handleModalAudio={() => closeModalMedia(answer.id, answer.ask)}
+      />
+    )
+  }
+
+  const closeModalMedia = async (answerId, asnwerAsk) => {
+    await updateEvent(token, 2, 0, 'done')
+    await updateHistory(token, currentBox, answerId)
+    actionToggleDataLauren()
+    actionToggleDataHistory()
+    setModalMedia(false)
+  }
+
   const renderInterrogatoiresCasseurs = () => {
-    return <></>
+    return (
+      <div className='modal-objectif__background'>
+        <div className='modal-objectif__box'>
+          <div>
+            Bien, nous avons mis les cambrioleurs au chaud, qui voulez-vous interroger ?
+          </div>
+          <button className='modal-objectif__button button--red' onClick={onClick}>
+            Hannah Evans
+          </button>
+          <button className='modal-objectif__button button--red' onClick={onClick}>
+            Henri Leveaux
+          </button>
+          <button className='modal-objectif__button button--red' onClick={onClick}>
+            Sacha Leza
+          </button>
+          <button className='modal-objectif__button button--red' onClick={onClick}>
+            Ellie Levyn
+          </button>
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -180,6 +234,7 @@ const EventHandler = () => {
       {enqueteQuartier && <EnqueteQuartier onValid={handleValidEnqueteQuartier} />}
       {appelConcierge && renderAppelConcierge()}
       {interrogatoiresCasseurs && renderInterrogatoiresCasseurs()}
+      {modalMedia && renderModalMedia()}
     </>
   )
 }

@@ -334,7 +334,7 @@ const Objectif = ({ data }) => {
 
         setErrorMessage('')
         setValue('')
-        setSousObjectif(null)
+        
         setModal(false)
         setModalAnswer(true)
         return
@@ -350,7 +350,6 @@ const Objectif = ({ data }) => {
 
         setErrorMessage('')
         setValue('')
-        setSousObjectif(null)
         setModal(false)
         setModalAnswer(true)
         return

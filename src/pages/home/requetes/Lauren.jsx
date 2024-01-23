@@ -75,12 +75,12 @@ const Lauren = ({ closeAgentPage }) => {
   // EXPLICATION : Celine et Lauren sont les seules à avoir des boxs génériques
   const handleSubmit = e => {
     e.preventDefault()
-
     const thisBox = dataLauren.find(element => element.box_id == currentBox).data
-    const generic = dataLauren.find(element => element.box_id == 4).data
+    //const generic = dataLauren.find(element => element.box_id == 4).data
+    console.log(slugify(value))
     const answerInThisBox = thisBox.find(element => element.ask.includes(slugify(value)))
     const previouslyAnsweredInThisBox = answerInThisBox && answerInThisBox.status
-    const answerInFailedInterview = generic.find(element => element.ask.includes(slugify(value)))
+    //const answerInFailedInterview = generic.find(element => element.ask.includes(slugify(value)))
     if (value == '') {
       setErrorMessage("Il me faut l'identité de la personne à interroger")
       setValue('')
@@ -106,13 +106,13 @@ const Lauren = ({ closeAgentPage }) => {
       setModal(true)
       return
     }
-    if (answerInFailedInterview) {
-      setAnswer(answerInFailedInterview)
-      setModal(true)
-      setValue('')
-      setErrorMessage('')
-      return
-    }
+    // if (answerInFailedInterview) {
+    //   setAnswer(answerInFailedInterview)
+    //   setModal(true)
+    //   setValue('')
+    //   setErrorMessage('')
+    //   return
+    // }
     setValue('')
     setErrorMessage("Je n'ai pas pu joindre la personne dont vous me parlez.")
   }
@@ -222,8 +222,8 @@ const Lauren = ({ closeAgentPage }) => {
 
   return (
     <>
-      {modal ? renderModal() : ''}
-      {modalMedia ? renderModalMedia() : ''}
+      {modal && renderModal()}
+      {modalMedia && renderModalMedia()}
       {pharmacie && renderPharmacie()}
 
       <audio autoPlay>
