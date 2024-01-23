@@ -1,0 +1,39 @@
+[
+  {
+    "ask": [
+      "casino"
+    ],
+    "text": [
+      "Le Casino a déjà été fouillé par la police. Tout est dans le rapport de police."
+    ],
+    "id": "",
+    "status": false
+  },
+  {
+    "ask": [
+      "pharmacie",
+      "pharmaciefontvieille",
+      "pharmaciedefontvieille"
+    ],
+    "text": [
+      "Je ne pense pas que les voleurs soient là... Mais ils ont l'air de s'être arrêtés dans cette pharmacie. Allons interroger le gérant."
+    ],
+    "id": "box1audio2",
+    "status": false
+  },
+  {
+    "ask": [
+      "4quaijean-charlesrey",
+      "4quaijean-charlesreymonaco",
+      "4quaijean-charlesrey,monaco",
+      "4quaijeancharlesrey",
+      "4quaijeancharlesreymonaco",
+      "4quaijeancharlesrey,monaco"
+    ],
+    "text": [
+      "Merci agents, nous allons vérifier ça ! Viens Lauren, on y va !"
+    ],
+    "id": "box1lieu1",
+    "status": false
+  }
+]

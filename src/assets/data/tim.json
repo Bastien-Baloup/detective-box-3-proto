@@ -1,0 +1,60 @@
+[
+  {
+    "ask": [
+      "telephonevictime"
+    ],
+    "text1": [
+      "Le téléphone est toujours entre les mains de la police et ils n’ont pas l’air de vouloir me laisser l’analyser pour le moment... Je vous tiens au jus dès que j’y aurai accès. Continuez votre enquête en attendant."
+    ],
+    "text": [
+      "Ok, j'ai pu analyser le téléphone de la victime.",
+      "Voilà ce que j’ai récupéré sur son répondeur, j’espère que ça vous aidera."
+    ],
+    "srcComment": null,
+    "id": "box1document4",
+    "title": "Accès Messagerie téléphone",
+    "src": "proto3/assets/documents/messagerie_telephone.jpg",
+    "status": false
+  },
+  {
+    "ask": [
+      "video",
+      "surveillance"
+    ],
+    "text": [
+      "D'accord, mais vous voulez voir lesquelles ?"
+    ],
+    "srcComment": null,
+    "status": false
+  },
+  {
+    "ask": [
+      "videocouloirs",
+      "surveillancecouloirs"
+    ],
+    "text1": [
+      "Franchement, avant que les caméras se fassent hacker, il n’y a rien d’intéressant, mon père est dans son bureau, Simon dans le sien... Et après... Bah après c’est une boucle donc on ne voit rien et malheureusement, je doute qu’on puisse récupérer les données. Le hacker qui a fait ça est sacrément doué..."
+    ],
+    "text": [
+      "Je ne vous ai pas menti, y a rien sur ces enregistrements, même si vous avez trouvé mon nom dessus, ça ne change rien."
+    ],
+    "srcComment": null,
+    "status": false
+  },
+  {
+    "ask": [
+      "videosalledejeu",
+      "suveillancesalledejeu",
+      "videocasionsalledejeu",
+      "surveillancecasionsalledejeu"
+    ],
+    "text": [
+      "Voilà ce que j’ai pu trouver. Je vous ai rassemblé les moments intéressants de la soirée."
+    ],
+    "srcComment": null,
+    "id": "box1video2",
+    "title": "Vidéo surveillance de la salle de jeu",
+    "src": "proto3/videos/salle-de-jeu.mp4",
+    "status": false
+  }
+]

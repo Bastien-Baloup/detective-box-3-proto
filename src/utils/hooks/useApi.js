@@ -256,20 +256,6 @@ const useApi = () => {
 				})
 		},
 		
-		// getHelp : () => {
-		// 	return fetch(url + "/help/", {
-		// 		method: "GET",
-		// 	})
-		// 		.then((response) => response.json())
-		// 		.then((data) => {
-		// 			console.log(data)
-		// 			return data
-		// 		})
-		// 		.catch((error) => {
-		// 			console.error(error)
-		// 		})
-		// }
-		
 		getHelpByBox : (token, boxid) => {
 			return fetch(url + "/help/" + boxid, {
 				method: "GET",

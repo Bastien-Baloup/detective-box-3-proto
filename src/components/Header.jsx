@@ -15,21 +15,21 @@ import { Link } from "react-router-dom";
 import { urlApi } from "../utils/const/urlApi";
 import { AmbianceContext, BoxContext, DataContext } from "../utils/context/fetchContext.jsx";
 import { useEffect, useState, useRef, useContext } from "react";
-// import useApi from '../utils/hooks/useApi.js';
-// import useEvent from '../utils/hooks/useEvent.js';
+import useApi from '../utils/hooks/useApi.js';
+import useEvent from '../utils/hooks/useEvent.js';
 
 
 const Header = () => {
 	const { setNappeIsMute, nappeIsMute } = useContext(AmbianceContext);
 	const { currentBox } = useContext(BoxContext);
-	// const token = localStorage.getItem("token");
+	const token = localStorage.getItem("token");
 	const { toggleDataEvent, toggleDataHistory, actionToggleDataHistory } = useContext(DataContext);
-	// const {
-	// 	// getEventByBox,
-	// 	// updateHistory,
-	// 	// getHistoryByBox,
-	// } = useApi()
-	// const { dispatch } = useEvent()
+	const {
+		getEventByBox,
+		// updateHistory,
+		// getHistoryByBox,
+	} = useApi()
+	const { dispatch } = useEvent()
 
 
 	const [tutorialModalIsActive, setTutorialModalIsActive] = useState(true);
@@ -48,16 +48,22 @@ const Header = () => {
 		}
 	}, [nappeIsMute]);
 
-	// EXPLICATION : Cette fonction récupère les événements
-	useEffect(() => {
-		const fetchData = async () => {
-			//TODO Récupération data des évènements
-			// const events = await getEventByBox(token, currentBox);
-			// const event33Data = events.data.find((event) => event.id == 33);
-			// setEvent33(event33Data.status);
-		};
-		fetchData();
-	}, [toggleDataEvent]);
+  const [event241, setEvent241] = useState('')
+  const [event242, setEvent242] = useState('')
+  const [event31, setEvent31] = useState('')
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const events = await getEventByBox(token, currentBox)
+      const event31Data = events.data.find(event => event.id == 31)
+      setEvent31(event31Data?.status)
+      const event241Data = events.data.find(event => event.id == 241)
+      setEvent241(event241Data?.status)
+      const event242Data = events.data.find(event => event.id == 242)
+      setEvent242(event242Data?.status)
+    }
+    fetchData()
+  }, [toggleDataEvent])
 
 	// EXPLICATION : Cette fonction récupère l'état des vidéos de brief dans l'historique (il ne se joue qu'une fois par box)
 	useEffect(() => {
@@ -123,6 +129,30 @@ const Header = () => {
 		);
 	};
 
+	const handleEventEnCours = () => {
+		if (event241 == 'open') {
+			dispatch({
+				type: 'setEvent',
+				id: 'portraitRobo'
+			})
+			return
+		}
+		if (event242 == 'open') {
+			dispatch({
+				type: 'setEvent',
+				id: 'enqueteQuartier'
+			})
+			return
+		}
+		if (event31 == 'open') {
+			dispatch({
+				type: 'setEvent',
+				id: 'obj3'
+			})
+			return
+		}
+	}
+
 	// EXPLICATION : On affiche le tutorial en video et on ferme la modale de choix d'affichage du tutorial
 	const handleOpenTutorial = () => {
 		setTutorialIsActive(true);
@@ -132,11 +162,13 @@ const Header = () => {
 	// EXPLICATION : On ferme la modale de choix d'affichage du tutorial
 	const handleCloseModalTutorial = () => {
 		setTutorialModalIsActive(false);
+		handleEventEnCours()
 	};
 
 	// EXPLICATION : On ferme la video du tutorial
 	const handleCloseTutorial = () => {
 		setTutorialIsActive(false);
+		handleEventEnCours()
 	};
 
 	// EXPLICATION : Audio pour les nappes d'ambiance en fonction de la box (une box = une musique d'ambiance)
@@ -168,7 +200,6 @@ const Header = () => {
 	};
 
 	// EXPLICATION : Dans l'ordre : Modale Tutoriel > Si oui > affichage tutoriel video / si non > fermeture modale tutoriel
-	// EXPLICATION : PUIS affichage du quizz si box 2 ou box 3
 	// EXPLICATION : PUIS affichage de la video de brief si l'event correspondant est initialement "closed".
 	// EXPLICATION : PUIS affichage de la modale de choix de l'activation de la musique d'ambiance
 	return (

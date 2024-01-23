@@ -1,0 +1,57 @@
+[
+  {
+    "ask": [
+      "michellegris"
+    ],
+    "text": [
+      "Le docteur Michel Legris est injoignable. N’oubliez pas qu’Adèle est sur le coup, elle vous donnera toutes les informations nécessaires dès qu’elle aura fini ses analyses."
+    ],
+    "srcComment": null
+  },
+  {
+    "ask": [
+      "lombardoeric",
+      "richardgranville",
+      "palmerosophie",
+      "pizziophilippe",
+      "allavenaalexandra",
+      "simonberbre"
+    ],
+    "text": [
+      "Ils n’ont rien eu de plus à me dire que ce qu’ils ont déjà déclaré à la police."
+    ],
+    "srcComment": null
+  },
+  {
+    "ask": [
+      "genevievrefunard"
+    ],
+    "text": [
+      "J’ai réussi à la joindre, voici une retranscription de notre échange"
+    ],
+    "id": "box1audio1",
+    "title": "Interrogatoire Geneviève Funard",
+    "img1": "proto3/assets/photos-personnages/genevieve-funard.jpg",
+    "img2": "assets/photos-personnages/lauren.jpg",
+    "srcAudio": "proto3/sounds/interrogatoire-genevieve-funard.mp3",
+    "srcTranscript": "proto3/assets/transcripts/3A116-interrogatoire-genevieve-funard.pdf",
+    "status": false
+  },
+  {
+    "ask": [
+      "pharmacie",
+      "pharmaciefontvieille",
+      "pharmaciedefontvieille"
+    ],
+    "text": [
+      "Je me suis entretenue avec lui, je vous envoie l’enregistrement !"
+    ],
+    "id": "box1audio2",
+    "title": "Interrogatoire Pharmacien",
+    "img1": "proto3/assets/photos-personnages/pharmacien.jpg",
+    "img2": "assets/photos-personnages/lauren.jpg",
+    "srcAudio": "proto3/sounds/interrogatoire-pharmacien.mp3",
+    "srcTranscript": "proto3/assets/transcripts/3A227-interrogatoire-pharmacien.pdf",
+    "status": false
+  }
+]

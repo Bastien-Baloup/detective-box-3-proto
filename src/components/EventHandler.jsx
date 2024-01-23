@@ -1,459 +1,185 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useContext, useState, useCallback, useEffect, useLayoutEffect } from 'react';
-import { useNavigate } from "react-router-dom";
-
-import { DataContext, AmbianceContext, BoxContext } from '../utils/context/fetchContext';
-
-import useApi from '../utils/hooks/useApi';
-import useEvent from '../utils/hooks/useEvent';
-import { urlApi } from "../utils/const/urlApi";
-
-import Audio from "../components/Audio";
-import Video from "../components/Video";
-
-
+import { useCallback, useEffect, useState, useContext } from 'react'
+import useEvent from '../utils/hooks/useEvent'
+import useApi from '../utils/hooks/useApi'
+import { urlApi } from '../utils/const/urlApi.js'
+import { CompteContext, DataContext, BoxContext } from '../utils/context/fetchContext'
+import Audio from './Audio'
+import PortraitRobot from './mini-jeux/PortraitRobot.jsx'
+import EnqueteQuartier from './mini-jeux/EnqueteQuartier.jsx'
+import Document from './Document.jsx'
 
 const EventHandler = () => {
-  const { actionToggleDataEvent, actionToggleDataHistory, toggleDataEvent, toggleDataHistory } = useContext(DataContext);
-	const { pauseNappe } = useContext(AmbianceContext);
-  const { currentBox } = useContext(BoxContext);
+  const { state, dispatch } = useEvent()
+  const { getHistoryByBox, updateHistory, updateEvent } = useApi()
+  const { toggleDataHistory, actionToggleDataHistory, actionToggleDataEvent } = useContext(DataContext)
+  const { closeCompte } = useContext(CompteContext)
+  const { currentBox } = useContext(BoxContext)
+  const [interrogatoirePharmacien, setInterrogatoirePharmacien] = useState(false)
+  const [portraitRobot, setPortraitRobot] = useState(false)
+  const [portraitRobotValid, setPortraitRobotValid] = useState(false)
+  const [modalEnqueteQuartier, setModalEnqueteQuartier] = useState(false)
+  const [enqueteQuartier, setEnqueteQuartier] = useState(false)
+  const [appelConcierge, setAppelConcierge] = useState(false)
+  const [interrogatoiresCasseurs, setInterrogatoiresCasseurs] = useState(false)
 
-  const { updateEvent, updateHistory, getHistoryByBox, getEventByBox, updateBox, updateTimeEndBox} = useApi();
-  const { state, dispatch } = useEvent();
+  const token = localStorage.getItem('token')
 
-  const [event25, setEvent25] = useState("");
-
-  const [box2video5, setBox2Video5] = useState(false);
-
-  const [toggleEvent2, setActionToggleEvent2] = useState(false);
-
-  const [modaleMalle, setModaleMalle] = useState(false);
-  const [modaleRebecca, setModaleRebecca] = useState(false);
-  const [modaleVHS, setModaleVHS] = useState(false);
-  const [modaleInterrogatoireGarraud, setModaleInterrogatoireGarraud] = useState(false);
-  const [videoInterrogatoireGarraud, setVideoInterrogatoireGarraud] = useState(false);
-  const [modaleSquelette, setModaleSquelette] = useState(false);
-
-  const [videoBureauLauren, setVideoBureauLauren] = useState(false);
-  const [endGameModale, setEndGameModale] = useState(false);
-
-  const navigate = useNavigate();
-
-
-
-    // EXPLICATION : Fonction pour récupérer l'état des événements
-    useLayoutEffect(() => {
-      const fetchData = async () => {
-        const events = await getEventByBox(token, currentBox);
-        if (events != undefined) {
-          if (currentBox === 2) {
-            const event25Data = events.data.find((event) => event.id === 25);
-            setEvent25(event25Data.status);
-            setActionToggleEvent2(!toggleEvent2);
-          }
-          
-        }
-      };
-      fetchData();
-    }, [toggleDataEvent]);
-
-    useEffect(() => {
-      const fetchData = async () => {
-        const clues = await getHistoryByBox(token, currentBox);
-        // if (currentBox == 1) {
-        //   const box1lieu2Data = clues.data.find(
-        //     (event) => event.id == "box1lieu2"
-        //   );
-        //   setBox1Lieu2(box1lieu2Data.status);
-        // }
-        if (currentBox == 2) {
-        // const box2lieu1Data = clues.data.find(
-        //   (event) => event.id == "box2lieu1"
-        // );
-        // setBox2Lieu1(box2lieu1Data.status);
-        // const box2lieu3Data = clues.data.find(
-        //   (event) => event.id == "box2lieu3"
-        // );
-        // setBox2Lieu3(box2lieu3Data.status);
-        const box2video5Data = clues.data.find(
-          (event) => event.id == "box2video5"
-        );
-          setBox2Video5(box2video5Data.status);
-        }
-        // if (currentBox == 3) {
-        //   const box3audio3Data = clues.data.find(
-        //     (event) => event.id == "box3audio3"
-        //   );
-        //   setBox3Audio3(box3audio3Data.status);
-        //   const box3lieu2Data = clues.data.find(
-        //     (event) => event.id == "box3lieu2"
-        //   );
-        //   setBox3Lieu2(box3lieu2Data.status);
-        //   const box3lieu3Data = clues.data.find(
-        //     (event) => event.id == "box3lieu3"
-        //   );
-        //   setBox3Lieu3(box3lieu3Data.status);
-        // }
-      };
-      fetchData();
-    }, [toggleDataHistory]);
-
-  const token = localStorage.getItem("token");
-
-  
-
-  const openModaleMalle = useCallback(
-    () => setModaleMalle(true),
-    [setModaleMalle]
-  );
-  const openModaleVHS = useCallback(() => setModaleVHS(true), [setModaleVHS]);
-  const openModaleInterrogatoireGarraud = useCallback(
-    () => setModaleInterrogatoireGarraud(true),
-    [setModaleInterrogatoireGarraud]
-  );
-  const openModaleSquelette = useCallback(
-    () => setModaleSquelette(true),
-    [setModaleSquelette]
-  );
-  const openEndGameModale = useCallback(
-    () => setEndGameModale(true),
-    [setEndGameModale]
-  )
-
-	const reset = useCallback(() => dispatch({ type: "resetEvent" }), [dispatch]);
+  const [box1audio2, setBox1audio2] = useState()
 
   useEffect(() => {
-    console.log("Event triggered: " + state.id);
-    if (currentBox == 1 && state.id === "box1document1" && !modaleMalle) {
-      openModaleMalle();
+    const fetchData = async () => {
+      console.log('fetchData')
+      const documents = await getHistoryByBox(token, currentBox)
+      const box1audio2Data = documents.data.find(document => document.id == 'box1audio2')
+      setBox1audio2(box1audio2Data)
     }
-    if (state.id === "box1video2" && !modaleVHS) {
-      openModaleVHS();
+    fetchData()
+  }, [toggleDataHistory])
+
+  const reset = useCallback(() => dispatch({ type: 'resetEvent' }), [dispatch])
+
+  useEffect(() => {
+    console.log('Event triggered: ' + state.id)
+
+    if (state.id === 'box1audio2') {
+      setInterrogatoirePharmacien(true)
     }
-    if (
-      currentBox == 1 &&
-      state.id === "box1document6" &&
-      !modaleInterrogatoireGarraud
-    ) {
-      openModaleInterrogatoireGarraud();
+
+    if (state.id === 'obj3') {
+      setInterrogatoiresCasseurs(true)
     }
-    if (state.id === "box1video3") {
-      actionToggleDataHistory();
+
+    if (state.id === 'portraitRobo') {
+      setPortraitRobot(true)
     }
-    if (state.id === "box3document2" && !modaleSquelette) {
-      openModaleSquelette();
+
+    if (state.id === 'enqueteQuartier') {
+      setModalEnqueteQuartier(true)
     }
-    if (state.id === "box3video3") {
-      openEndGameModale()
-    }
+
     return () => {
-      console.log("cleanup");
-      reset();
-    };
-  }, [state.toogleEvent]);
-
-  useEffect(() => {
-    if (currentBox == 2) {
-      console.log(event25, box2video5);
-      // EXPLICATION : Pour faire le lien entre le composant Home (carte Lauren) et ici
-      if (event25 == "open" && box2video5 == false) {
-        setVideoBureauLauren(true);
-        pauseNappe();
-      }
+      console.log('cleanup')
+      reset()
     }
-  }, [toggleEvent2]);
+  }, [state.toogleEvent])
 
-  const handleOpenRebeccaAudio = () => {
-    pauseNappe();
-    setModaleMalle(false);
-    setModaleRebecca(true);
-  };
-
-	const displayContentMalle = () => {
-    return (
-      <div className="modal-objectif__background">
-        <div className="modal-objectif__box">
-          <p>
-            Je vous transmets l&apos;enregistrement qu&apos;on a trouvé dans la
-            malle pour que vous puissiez l&apos;écouter.
-          </p>
-          <p> Tim nous confirme que c&apos;est bien la voix de Rebecca.</p>
-          <p>
-            Attention, j&apos;ai écouté l&apos;enregistrement et il est assez
-            dur. Pour les âmes sensibles, cliquez sur la transcription.
-          </p>
-          <p> On a aussi un médaillon, difficile de dire à quoi il sert. </p>
-          <p>
-            Quant aux inscriptions, je vous laisse me dire ce que ça vous
-            inspire... tous les éléments sont dans l&apos;historique
-          </p>
-          <button
-            className="modal-objectif__button button--red"
-            onClick={handleOpenRebeccaAudio}
-          >
-            Ecouter l&apos;enregistrement
-          </button>
-        </div>
-      </div>
-    );
-  };
-
-	const displayAudioRebecca = () => {
+  const renderInterrogatoirePharmacien = () => {
+    closeCompte()
     return (
       <Audio
-        title="Derniers mots de Rebecca"
-        srcImg1={urlApi.cdn() + "assets/photos-personnages/rebecca_dumont.jpg"}
-        srcImg2={null}
-        srcTranscription={
-          urlApi.cdn() +
-          "assets/transcripts/102_Derniers_mots_Rebecca_transcript.pdf"
-        }
-        handleModalAudio={closeAudioRebecca}
-        srcAudio={urlApi.cdn() + "sounds/102-derniers-mots-rebecca.mp3"}
+        title={box1audio2.title}
+        srcImg1={urlApi.cdn() + box1audio2.img1}
+        srcImg2={urlApi.cdn() + box1audio2.img2}
+        srcTranscription={urlApi.cdn() + box1audio2.srcTranscript}
+        srcAudio={urlApi.cdn() + box1audio2.srcAudio}
+        handleModalAudio={() => closeInterrogatoirePharmacien(box1audio2.id)}
       />
-    );
-  };
+    )
+  }
 
-	const closeAudioRebecca = async () => {
-    await updateEvent(token, 1, 13, "done");
-    actionToggleDataEvent();
-    await updateHistory(token, 1, "box1audio1");
-    dispatch({
-      type: "setEvent",
-      id: "box1audio1",
-    });
-    actionToggleDataHistory();
-    setModaleRebecca(false);
-  };
+  const closeInterrogatoirePharmacien = async answerId => {
+    await updateHistory(token, currentBox, answerId)
+    actionToggleDataHistory()
+    await updateEvent(token, 1, 241, 'open')
+    actionToggleDataEvent()
+    setInterrogatoirePharmacien(false)
+    setPortraitRobot(true)
+  }
 
-  const displayModaleVHS = () => {
+  const renderModalPortraitRobot = () => {
+    const onValid = () => {
+      setPortraitRobot(false)
+      setPortraitRobotValid(true)
+    }
     return (
-      <div className="modal-objectif__background">
-        <div className="modal-objectif__box">
-          <p>Voilà ce qu&apos;on a retrouvé dans le coffre:</p>
-          <p>LETTRE</p>
-          <p>La lettre est disponible dans l&apos;onglet Historique</p>
-          <p>VHS</p>
-          <p>
-            Il y a deux passages intéressants dans la video: un vers 15min où on
-            voit Charles Garraud et un autre à la fin... La VHS est entre les
-            mains de Tim pour de plus amples analyses. N&apos;hésitez pas à le
-            solliciter pour accéder au contenu.
-          </p>
-          <p>PLAN</p>
-          <p>
-            Il y avait aussi ce plan étrange, il n&apos;a pas l&apos;air bien
-            vieux, il a dû être accroché à la maison il n&apos;y a pas
-            longtemps.
-          </p>
-          <p>
-            Ça ne correspond à aucune des adresses qu&apos;on a trouvées
-            jusqu&apos;ici...
-          </p>
-          <p>Vous pouvez l&apos;étudier depuis l&apos;Historique</p>
-          <button
-            className="modal-objectif__button button--red"
-            onClick={handleCloseModaleVHS}
-          >
-            Continuer l&apos;enquête
-          </button>
+      <div className='modal-objectif__background'>
+        <div className='modal-objectif__box'>
+          <h2 className='modal-objectif__title'>Portrait Robot</h2>
+          <div>
+            On a une description. C&apos;est l&apos;heure de reprendre les bonnes vieilles méthodes : le portrait-robot
+          </div>
+          <PortraitRobot onValid={onValid} />
         </div>
       </div>
-    );
-  };
+    )
+  }
 
-  const handleCloseModaleVHS = async () => {
-    await updateEvent(token, 1, 14, "done");
-    actionToggleDataEvent();
-    setModaleVHS(false);
-  };
+  const handlePortraitRobotValid = async () => {
+    setPortraitRobotValid(false)
+    setModalEnqueteQuartier(true)
+    await updateEvent(token, 1, 241, 'done')
+    await updateEvent(token, 1, 242, 'open')
+    actionToggleDataEvent()
+  }
 
-	const displayModaleInterrogatoireGarraud = () => {
+  const renderModalPortraitRobotValid = () => {
     return (
-      <div className="modal-objectif__background">
-        <div className="modal-objectif__box">
-          <p>
-            Ça fait de sacrées révélations tout ça... Je pense qu&apos;avec ce
-            qu&apos;on a là, on devrait pouvoir interroger Charles Garraud.
-          </p>
-          <button
-            className="modal-objectif__button button--red"
-            onClick={handleOpenInterrogatoire}
-          >
-            Passer à l&apos;interrogatoire
-          </button>
-        </div>
-      </div>
-    );
-  };
-
-  const handleOpenInterrogatoire = () => {
-    setModaleInterrogatoireGarraud(false);
-    setVideoInterrogatoireGarraud(true);
-    pauseNappe();
-  };
-
-  const displayVideoInterrogatoireGarraud = () => {
-    return (
-      <Video
-        title="Interrogatoire de Charles Garraud"
-        srcVideo={urlApi.cdn() + "videos/db-s02-104-vdef.mp4"}
-        handleModalVideo={handleCloseVideoInterrogatoire}
+      <Document
+        title={'C’est elle, je la reconnais !'}
+        srcElement={urlApi.cdn() + 'proto3/assets/photos-personnages/hannah-evans-lynx.png'}
+        handleModalDocument={handlePortraitRobotValid}
       />
-    );
-  };
+    )
+  }
 
-  const handleCloseVideoInterrogatoire = async () => {
-    setVideoInterrogatoireGarraud(false);
-    setEndGameModale(true);
-  };
-
-    // --- LOGIQUE EVENT BOX 2 --- //
-
-    const displayVideoBureauLauren = () => {
-      return (
-        <Video
-          title="Bureau de Lauren Fraser"
-          srcVideo={urlApi.cdn() + "videos/db-s02-209-vdef.mp4"}
-          handleModalVideo={handleCloseVideoBureau}
-        />
-      );
-    };
-  
-    const handleCloseVideoBureau = async () => {
-      setVideoBureauLauren(false);
-      setEndGameModale(true);
-    };
-  
-      // --- LOGIQUE EVENT BOX 3 --- //
-
-  const displayModaleSquelette = () => {
+  const renderModalEnqueteQuartier = () => {
+    const onClick = () => {
+      setModalEnqueteQuartier(false)
+      setEnqueteQuartier(true)
+    }
     return (
-      <div className="modal-objectif__background">
-        <div className="modal-objectif__box">
-          <p>Bon travail, regardons ce qu&apos;il y a dans ce coffre :</p>
-          <p>
-            Un squelette entier, je ne sais pas de quand il date, mais
-            c&apos;est sacrément bien conservé, sauf la tête.
-          </p>
-          <p>
-            Vous devriez demander à Adèle ce qu&apos;elle peut trouver dessus.{" "}
-          </p>
-          <p>Et une vieille photo…</p>
-          <p>Vous trouverez tout ça dans l&apos;Historique.</p>
-          <button
-            className="modal-objectif__button button--red"
-            onClick={handleCloseModaleSquelette}
-          >
-            Continuer l&apos;enquête
+      <div className='modal-objectif__background'>
+        <div className='modal-objectif__box'>
+          <div>
+            Raphaëlle : Bon bah, on n’a plus qu’à retourner aux bases, on prend le portrait et on va le présenter aux
+            habitants du quartier, c’est parti !
+          </div>
+          <button className='modal-objectif__button button--red' onClick={onClick}>
+            Démarrer
           </button>
         </div>
       </div>
-    );
-  };
+    )
+  }
 
-  const handleCloseModaleSquelette = () => {
-    setModaleSquelette(false);
-  };
+  const handleValidEnqueteQuartier = () => {
+    setEnqueteQuartier(false)
+    setAppelConcierge(true)
+  }
 
-  const handleEndGameModale = async () => {
-    if (currentBox == 1) {
-      // await updateHistory(token, 1, "box1video4");
-      await updateEvent(token, 1, 15, "done");
-      await updateBox(token, 1, "done");
-      await updateBox(token, 2, "open");
-      await updateTimeEndBox(token, 1);
+  const renderAppelConcierge = () => {
+    const onClick = async () => {
+      setAppelConcierge(false)
+      await updateEvent(token, 1, 242, 'done')
+      actionToggleDataEvent()
     }
-    if (currentBox == 2) {
-      // await updateHistory(token, 2, "box2video5");
-      await updateEvent(token, 2, 25, "done");
-      await updateBox(token, 2, "done");
-      await updateBox(token, 3, "open");
-      await updateTimeEndBox(token, 2);
-    }
-    if (currentBox == 3) {
-      updateHistory(token, 3, "box3video3");
-      dispatch({
-        type: "setEvent",
-        id: "box3video3",
-      });
-      //await updateBox(token, 3, "done");
-      await updateTimeEndBox(token, 3);
-    }
-    navigate("/box-choice");
-  };
-
-  const renderEndText = () => {
-    if (currentBox == 1) {
-      return (
-        <div className="modal-objectif__endGame--text">
-          <p>Vous avez fini la première partie</p>
-          <p>Rendez-vous en box 2 pour la suite de l&apos;enquête</p>
-        </div>
-      );
-    }
-    if (currentBox == 2) {
-      return (
-        <div className="modal-objectif__endGame--text">
-          <p>Vous avez fini la seconde partie</p>
-          <p>Rendez-vous en box 3 pour clore cette affaire</p>
-        </div>
-      );
-    }
-    if (currentBox == 3) {
-      return (
-        <div className="modal-objectif__endGame--text">
-          <p>
-            Vous avez définitivement clôturé le dossier du Tueur au Tarot, bravo
-            Agents !
-          </p>
-          <p>Au plaisir de vous retrouver sur de prochaines enquêtes.</p>
-        </div>
-      );
-    }
-  };
-
-  const displayEndGameModale = () => {
     return (
-      <div className="modal-objectif__background">
-        <div className="modal-objectif__box modal-objectif__endGame">
-          {renderEndText()}
-          {currentBox == 3 ? (
-            <button
-              className="modal-objectif__button button--red"
-              onClick={handleEndGameModale}
-            >
-              Classer l&apos;affaire
-            </button>
-          ) : (
-            <button
-              className="modal-objectif__button button--red"
-              onClick={handleEndGameModale}
-            >
-              Clore cette partie de l&apos;enquête
-            </button>
-          )}
+    <div className='modal-objectif__background'>
+        <div className='modal-objectif__box'>
+          <div>
+            &quot;Bonjour, vous êtes bien à la conciergerie de la résidence du port, au 4 Quai Jean-Charles Rey. Je suis absent pour le moment, rappelez plus tard ou passez directement à la résidence.&quot;
+          </div>
+          <button className='modal-objectif__button button--red' onClick={onClick}>
+            Démarrer
+          </button>
         </div>
       </div>
-    );
-  };
+  )}
 
-
-
-
+  const renderInterrogatoiresCasseurs = () => {
+    return <></>
+  }
 
   return (
     <>
-    {modaleMalle ? displayContentMalle() : null}
-    {modaleRebecca ? displayAudioRebecca() : null}
-    {modaleVHS ? displayModaleVHS() : null}
-    {modaleInterrogatoireGarraud
-      ? displayModaleInterrogatoireGarraud()
-      : null}
-    {videoInterrogatoireGarraud ? displayVideoInterrogatoireGarraud() : null}
-    {videoBureauLauren ? displayVideoBureauLauren() : null}
-    {modaleSquelette ? displayModaleSquelette() : null}
-    {endGameModale ? displayEndGameModale() : null}
+      {interrogatoirePharmacien && renderInterrogatoirePharmacien()}
+      {portraitRobot && renderModalPortraitRobot()}
+      {portraitRobotValid && renderModalPortraitRobotValid()}
+      {modalEnqueteQuartier && renderModalEnqueteQuartier()}
+      {enqueteQuartier && <EnqueteQuartier onValid={handleValidEnqueteQuartier} />}
+      {appelConcierge && renderAppelConcierge()}
+      {interrogatoiresCasseurs && renderInterrogatoiresCasseurs()}
     </>
   )
 }

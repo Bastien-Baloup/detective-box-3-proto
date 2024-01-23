@@ -6,9 +6,18 @@
 		@include modaleBox;
 		gap: 1.5rem;
 		width: 100%;
+		max-height: 80dvh;
+		overflow: auto;
 	}
 	&__icon {
 		width: 2.5rem;
+		margin-left: auto;
+
+		&-left {
+			margin-left: O;
+			margin-right: auto;
+		}
+
 		&--container {
 			background-color: transparent;
 			border: none;
@@ -31,6 +40,43 @@
 	&__errorMessage {
 		color: $tertiary-color;
 		font-weight: 800;
+	}
+	&__list-sous-objectif {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+
+	&__empreintes_zone {
+		display: flex;
+		flex-direction: row;
+		gap: 1rem;
+		justify-content: center;
+	}
+
+	&__empreinte {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		height: 70%;
+		min-width: min-content;
+		max-width: 20%;
+		flex-wrap: wrap;
+
+		&--photo {
+			height: 20dvh;
+		}
+		&--photo img {
+			height: inherit;
+			object-fit: contain;
+		}
+		&--photo &--selected {
+			outline: 0.2rem solid $tertiary-color;
+			outline-offset: 0.2rem;
+		}
+		&--input {
+			width: 100%;
+		}
 	}
 }
 
@@ -357,5 +403,27 @@
 	}
 	100% {
 		transform: skewX(0deg);
+	}
+}
+
+.modal-objectif__portrait-robot {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.5rem;
+	.modal-objectif__select-container {
+		display: flex;
+		width: 21rem;
+
+		label {
+			margin-right: auto;
+		}
+		select {
+			width: 10rem;
+		}
+	}
+	.modal-objectif__button {
+		width: fit-content;
 	}
 }

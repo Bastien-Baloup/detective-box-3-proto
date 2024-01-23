@@ -1,0 +1,129 @@
+[
+  {
+    "id": "box1document1",
+    "box": "Box 1",
+    "title": "Copie des empreintes par lieu",
+    "category": "Document",
+    "detail": null,
+    "poster": "proto3/thumbnails/documents/empreintes-par-lieu.jpg",
+    "src": "proto3/assets/documents/empreintes-par-lieu.pdf",
+    "status": false
+  },
+  {
+    "id": "box1document2",
+    "box": "Box 1",
+    "title": "Fiche d'identité Sacha",
+    "category": "Document",
+    "detail": null,
+    "poster": "proto3/thumbnails/documents/fiche-identite-sacha.jpg",
+    "src": "proto3/assets/documents/fiche-identite-sacha.pdf",
+    "status": false
+  },
+  {
+    "id": "box1document3",
+    "box": "Box 1",
+    "title": "Tips Lauren",
+    "category": "Document",
+    "detail": null,
+    "poster": "proto3/thumbnails/documents/tips-lauren.jpg",
+    "src": "proto3/assets/documents/tips-lauren.pdf",
+    "status": false
+  },
+  {
+    "id": "box1document5",
+    "box": "Box 1",
+    "title": "Images caméra",
+    "category": "Document",
+    "detail": null,
+    "poster": "proto3/thumbnails/documents/images_camera.jpg",
+    "src": "proto3/assets/documents/images_camera.jpg",
+    "status": false
+  },
+  {
+    "id": "box1document10",
+    "box": "Box 1",
+    "title": "Chasse au trésor",
+    "category": "Document",
+    "detail": null,
+    "poster": "proto3/thumbnails/documents/chasse-au-tresor.jpg",
+    "src": "proto3/assets/documents/interieur-coffre-fort.pdf",
+    "status": false
+  },
+  {
+    "id": "box1audio1",
+    "box": "Box 1",
+    "title": "Interrogatoire Geneviève Funard",
+    "category": "Audio",
+    "detail": null,
+    "poster": "proto3/assets/photos-personnages/genevieve-funard.jpg",
+    "img1": "proto3/assets/photos-personnages/genevieve-funard.jpg",
+    "img2": "assets/photos-personnages/lauren.jpg",
+    "srcAudio": "proto3/sounds/interrogatoire-genevieve-funard.mp3",
+    "srcTranscript": "proto3/assets/transcripts/3A116-interrogatoire-genevieve-funard.pdf",
+    "status": false
+  },
+  {
+    "id": "box1audio2",
+    "box": "Box 1",
+    "title": "Interrogatoire pharmacien",
+    "category": "Audio",
+    "detail": null,
+    "poster": "proto3/assets/photos-personnages/pharmacien.jpg",
+    "img1": "proto3/assets/photos-personnages/pharmacien.jpg",
+    "img2": "assets/photos-personnages/lauren.jpg",
+    "srcAudio": "proto3/sounds/interrogatoire-pharmacien.mp3",
+    "srcTranscript": "proto3/assets/transcripts/3A227-interrogatoire-pharmacien.pdf",
+    "status": false
+  },
+  {
+    "id": "box1audio3",
+    "box": "Box 1",
+    "title": "Messagerie téléphone",
+    "category": "Audio",
+    "detail": null,
+    "poster": "proto3/thumbnails/documents/messagerie_telephone.jpg",
+    "img1": "proto3/assets/photos-personnages/messagerie_telephone.jpg",
+    "srcAudio": "proto3/sounds/messagerie_telephone.mp3",
+    "srcTranscript": "proto3/assets/transcripts/messagerie_telephone.pdf",
+    "status": false
+  },
+  {
+    "id": "box1video1",
+    "box": "Box 1",
+    "title": "Briefing box 1",
+    "category": "Video",
+    "detail": "Une vieille affaire ressurgit ",
+    "poster": "thumbnails/video/db-s02-101-def-miniature.jpg",
+    "src": "videos/db-s02-101-def.mp4",
+    "status": false
+  },
+  {
+    "id": "box1video2",
+    "box": "Box 1",
+    "title": "Vidéo surveillance de la salle de jeu",
+    "category": "Video",
+    "poster": "proto3/thumbnails/video/salle-de-jeu.jpg",
+    "src": "proto3/videos/salle-de-jeu.mp4",
+    "status": false
+  },
+  {
+    "id": "box1lieu1",
+    "box": "Box 1",
+    "title": "Planque des casseurs",
+    "category": "Lieu",
+    "detail": null,
+    "poster": "proto3/thumbnails/lieux/planque.jpg",
+    "src": "",
+    "status": false
+  },
+  {
+    "id": "box1archive1",
+    "box": "Box 1",
+    "title": "Archives Alphonse StYves",
+    "category": "Archive",
+    "detail": "",
+    "poster": "assets/archive/Archives_miniatures_homme_low.jpg",
+    "src": "assets/archive/1_Archives_Alphonse_StYves.jpg",
+    "status": false
+  }
+]

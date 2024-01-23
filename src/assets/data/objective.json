@@ -1,0 +1,222 @@
+[
+  {
+    "id": 1,
+    "title": "RECONSTITUER LE CASSE",
+    "status": "open",
+    "sousobjectifs": [
+      {
+        "id": 11,
+        "title": "Qui a volé la clé de la Cheffe de table ?",
+        "label": "Réponse",
+        "answer": [
+          "henrileveaux"
+        ],
+        "answertext": [
+          "Bien joué agents, vous avez réussi à retrouver le pickpoket !",
+          "C'était donc Henri Leveaux."
+        ],
+        "answersrc": null,
+        "errorMessage": "Je ne pense pas que ce soit cela.",
+        "status": "open"
+      },
+      {
+        "id": 12,
+        "title": "À qui appartiennent les empreintes retrouvées dans le Casino ?",
+        "label": "",
+        "choices": [
+          "Inconnu",
+          "Alexandra Allavena",
+          "Eric Lombardo",
+          "Philippe Pizzio",
+          "Richard Granville",
+          "Simon Berbre",
+          "Sophie Palmero",
+          "Tim Lombardo"
+        ],
+        "zones": [
+          {
+            "nom": "Zone du banquier",
+            "empreintes": [
+              "proto3/assets/empreintes/richard-granville.jpg",
+              "proto3/assets/empreintes/philippe-pizzio.jpg",
+              "proto3/assets/empreintes/inconnu-sacha.jpg"
+            ]
+          },
+          {
+            "nom": "Accès à la zone sécurisée",
+            "empreintes": [
+              "proto3/assets/empreintes/alexandra-allavena.jpg",
+              "proto3/assets/empreintes/eric-lombardo.jpg",
+              "proto3/assets/empreintes/philippe-pizzio.jpg",
+              "proto3/assets/empreintes/sophie-palmero.jpg"
+            ]
+          },
+          {
+            "nom": "Local du STAFF et Réserve",
+            "empreintes": [
+              "proto3/assets/empreintes/philippe-pizzio.jpg",
+              "proto3/assets/empreintes/sophie-palmero.jpg",
+              "proto3/assets/empreintes/simon-berbre.jpg",
+              "proto3/assets/empreintes/alexandra-allavena.jpg"
+            ]
+          },
+          {
+            "nom": "Maintenance et Surveillance",
+            "empreintes": [
+              "proto3/assets/empreintes/simon-berbre.jpg",
+              "proto3/assets/empreintes/sophie-palmero.jpg",
+              "proto3/assets/empreintes/tim-lombardo.jpg"
+            ]
+          },
+          {
+            "nom": "Zone sécurisée de transfert de fonds",
+            "empreintes": [
+              "proto3/assets/empreintes/eric-lombardo.jpg",
+              "proto3/assets/empreintes/inconnu-sacha.jpg",
+              "proto3/assets/empreintes/simon-berbre.jpg",
+              "proto3/assets/empreintes/philippe-pizzio.jpg"
+            ]
+          },
+          {
+            "nom": "Bureau du Directeur et Coffre",
+            "empreintes": [
+              "proto3/assets/empreintes/philippe-pizzio.jpg",
+              "proto3/assets/empreintes/sophie-palmero.jpg",
+              "proto3/assets/empreintes/tim-lombardo.jpg",
+              "proto3/assets/empreintes/eric-lombardo.jpg",
+              "proto3/assets/empreintes/inconnu-sacha.jpg"
+            ]
+          }
+        ],
+        "answer": [
+          "richardgranville",
+          "philippepizzio",
+          "inconnu",
+          "alexandraallavena",
+          "ericlombardo",
+          "philippepizzio",
+          "sophiepalmero",
+          "philippepizzio",
+          "sophiepalmero",
+          "simonberbre",
+          "alexandraallavena",
+          "simonberbre",
+          "sophiepalmero",
+          "timlombardo",
+          "ericlombardo",
+          "inconnu",
+          "simonberbre",
+          "philippepizzio",
+          "philippepizzio",
+          "sophiepalmero",
+          "timlombardo",
+          "ericlombardo",
+          "inconnu"
+        ],
+        "answertext": [
+          "Bien vu, Il semblerait que nous ayons une empreinte intruse, je lance de ce pas une identification !",
+          "Vous pourrez retrouver la liste de relevés d'empreinte dans votre historique."
+        ],
+        "answersrc": null,
+        "errorMessage": "Je ne pense pas que ce soit cela.",
+        "detail2": [
+          "Ah, tenez j’en ai trois qui correspondent à 90%. Vous pensez que vous pouvez identifier la bonne ?"
+        ],
+        "empreintes2": [
+          "proto3/assets/empreintes/inconnu-mauvais-1.jpg",
+          "proto3/assets/empreintes/inconnu-mauvais-2.jpg",
+          "proto3/assets/empreintes/inconnu-sacha.jpg"
+        ],
+        "answer2": 2,
+        "answertext2": [
+          "Attendez, je vérifie... Mortel !",
+          "Ça correspond à 100%, merci !",
+          "Voici donc le résultat : Sacha Leza, né·e le 22 février 1994.",
+          "Je vous mets sa fiche identité dans votre historique. Iel n’a pas beaucoup d’antécédents...",
+          "Ah, si ! Une interpellation pour avoir tenté d’usurper l’identité de quelqu’un dans une banque en prenant son apparence.",
+          "On dirait qu’iel est plutôt doué·e pour se déguiser..."
+        ],
+        "answersrc2": null,
+        "errorMessage2": "Je ne pense pas que ce soit cela.",
+        "status": "open"
+      },
+      {
+        "id": 13,
+        "title": "Qui a hacké les caméras ?",
+        "label": "Réponse",
+        "answer": [
+          "lonewood", "timlonewood", "timlombardo", "lombardo"
+        ],
+        "answertext": [
+          "LONEWOOD... Tim ?? Notre hacker ?",
+          "Ok, c’est bizarre, on va l’interroger pour comprendre. Mais je pense qu’il vaut mieux que vous vous en chargiez.",
+          "Je vous envoie Lauren pour qu’elle vous donne quelques conseils."
+        ],
+        "answersrc": null,
+        "errorMessage": "Je ne pense pas que ce soit cela.",
+        "status": "closed"
+      }
+    ],
+    "answersrc": null,
+    "answertext": [
+      "Bravo agents, vous avez réussi à reconstituer le casse et identifier certains des malfaiteurs.",
+      "Passons à la suite maintenant..."
+    ]
+  },
+  {
+    "id": 2,
+    "label": "Réponse",
+    "title": "RETROUVER LES VOLEURS",
+    "status": "closed",
+    "sousobjectifs": [
+      {
+        "id": 21,
+        "title": "Remonter la trace des cambrioleurs.",
+        "subtitle": "Où se trouve la planque des casseurs ?",
+        "label": "Réponse",
+        "answer": [
+          "4quaijean-charlesrey",
+          "4quaijeancharlesrey"
+        ],
+        "answertext": [
+          "On a plus qu'a aller fouiller. Demandez à Sanchez."
+        ],
+        "answersrc": null,
+        "errorMessage": "Je ne pense pas que ce soit cela.",
+        "status": "open"
+      },
+      {
+        "id": 22,
+        "title": "Explorer la planque des casseurs",
+        "subtitle": "Allons vérifier qu'il s'agit bien de la planque de nos cambrioleurs !"
+      } 
+    ]
+  },
+  {
+    "id": 3,
+    "title": "QUI A TUE CEDRIC ROMERO ?",
+    "choices": [
+      "-- Identifiez le mobile du tueur --",
+      "Adultère",
+      "Conflit d'intérêts financiers",
+      "Dette impayée",
+      "Enjeux d'héritage",
+      "Jalousie",
+      "Kompromat (chantage à cause d'informations compromettantes)",
+      "Lutte pour le contrôle d'une entreprise",
+      "Motifs passionnels",
+      "Rivalité professionnelle",
+      "Secret révélé",
+      "Trafic de drogue",
+      "Union illégitime",
+      "Vengeance personnelle",
+      "Xénophobie (haine envers une personne étrangère)"
+    ],
+    "answer": [
+      "matthieulefort",
+      "vengeancepersonnelle"
+    ],
+    "status": "closed",
+    "errorMessage": "Je ne pense pas que ce soit cela."
+  }
+]

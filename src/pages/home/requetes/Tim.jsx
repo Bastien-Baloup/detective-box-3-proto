@@ -14,31 +14,43 @@ import {
   AmbianceContext,
   CompteContext,
 } from "../../../utils/context/fetchContext.jsx";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useMemo } from "react";
 import useApi from "../../../utils/hooks/useApi.js";
-import useEvent from "../../../utils/hooks/useEvent.js";
 
 const Tim = ({ closeAgentPage }) => {
   const { currentBox } = useContext(BoxContext);
   const token = localStorage.getItem("token");
   const { 
     actionToggleDataTim, 
+    actionToggleDataHistory,
     toggleDataTim, 
+    toggleDataObjectif,
     // actionToggleDataHistory 
   } = useContext(DataContext);
   const { pauseNappe } = useContext(AmbianceContext);
-  const { updateCharactersById, updateHistory, getCharactersById } = useApi();
-  const { dispatch } = useEvent();
+  const { updateCharactersById, updateHistory, getCharactersById, getObjectivesByBox } = useApi();
   const { closeCompte } = useContext(CompteContext);
 
   //EXPLICATION : Tim est le personnage "5"
-  useEffect(() => {
+  useMemo(() => {
     const fetchData = async () => {
       const result = await getCharactersById(token, 5);
       setDataTim(result);
     };
     fetchData();
   }, [toggleDataTim]);
+
+  // EXPLICATION : UseEffect pour récupérer l'état des objectifs
+  const [objectif2, setObjectif2] = useState('')
+  useMemo(() => {
+    const getObjectives = async () => {
+      //TODO Récupération data des objectifs, exemple:
+      const objectifs = await getObjectivesByBox(token, currentBox);
+      const objectif2Data = objectifs.data.find((event) => event.id == 2);
+      setObjectif2(objectif2Data.status);
+    };
+    getObjectives();
+  }, [toggleDataObjectif]);
 
   const [dataTim, setDataTim] = useState(null);
 
@@ -135,26 +147,51 @@ const Tim = ({ closeAgentPage }) => {
   };
 
   const renderText = () => {
-    const text = answer.text.map((el, i) => {
-      if (el.startsWith("https://")) {
+    let text = ""
+    if (objectif2 == "closed" && answer?.text1) {
+      text = answer.text1.map((el, i) => {
+        if (el.startsWith("https://")) {
+          return (
+            <a
+              className="modal-objectif__subtitle--link"
+              key={i}
+              href={el}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              {el}
+            </a>
+          );
+        }
         return (
-          <a
-            className="modal-objectif__subtitle--link"
-            key={i}
-            href={el}
-            target="_blank"
-            rel="noreferrer noopener"
-          >
+          <p className="modal-objectif__subtitle" key={i}>
             {el}
-          </a>
+          </p>
         );
-      }
-      return (
-        <p className="modal-objectif__subtitle" key={i}>
-          {el}
-        </p>
-      );
-    });
+      });
+    } else {
+      text = answer.text.map((el, i) => {
+        if (el.startsWith("https://")) {
+          return (
+            <a
+              className="modal-objectif__subtitle--link"
+              key={i}
+              href={el}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              {el}
+            </a>
+          );
+        }
+        return (
+          <p className="modal-objectif__subtitle" key={i}>
+            {el}
+          </p>
+        );
+      });
+    }
+
     return text;
   };
 
@@ -203,11 +240,12 @@ const Tim = ({ closeAgentPage }) => {
 
   const closeModalMedia = async (answerId, asnwerAsk) => {
     await updateCharactersById(token, 5, currentBox, asnwerAsk);
-    await updateHistory(token, currentBox, answerId);
-    dispatch({
-      type: "setEvent",
-      id: answerId,
-    });
+
+    if (answerId !== "box1document4" || objectif2 !== 'closed') {
+      await updateHistory(token, currentBox, answerId);
+      actionToggleDataHistory()
+    }
+    
     actionToggleDataTim();
     setModalMedia(false);
   };
