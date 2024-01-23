@@ -402,7 +402,7 @@ const Objectif = ({ data }) => {
     if (sousObjectif?.id === 13) {
       await updateEvent(token, 1, 130, 'done')
       actionToggleDataEvent()
-      await updateHistory(token, currentBox, 'box1document1')
+      await updateHistory(token, currentBox, 'box1document3')
       actionToggleDataHistory()
       setInterrogatoireTim(true)
       setSousObjectif(null)

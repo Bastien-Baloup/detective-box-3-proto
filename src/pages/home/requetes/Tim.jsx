@@ -197,22 +197,14 @@ const Tim = ({ closeAgentPage }) => {
 
   const validateModal = async () => {
     setModal(false);
-    //TODO Gestion ajout document supplémentaire dans l'historique
-    // if (answer.ask == ["stellalouiseberg"]) {
-    //   await updateHistory(token, 2, "box2document2");
-    //   dispatch({
-    //     type: "setEvent",
-    //     id: "box2document2",
-    //   });
-    //   actionToggleDataHistory();
-    // }
+    closeModalMedia(answer.id, answer.ask)
   };
 
   const openMedia = () => {
     if (answer.id.includes("video")) {
       pauseNappe();
     }
-    validateModal();
+    setModal(false);
     setModalMedia(true);
   };
 
