@@ -197,9 +197,9 @@ const Objectif = ({ data }) => {
   }
 
   // après fin l'interrogatoire de tim
-  const onCloseInterrogatoireTim = async (byCross = false) => {
+  const onCloseInterrogatoireTim = async (closedByCross = false) => {
     setInterrogatoireTim(false)
-    if (byCross) {
+    if (closedByCross) {
       return
     }
     await updateObjectives(token, 1, 1, 'done')
@@ -334,7 +334,6 @@ const Objectif = ({ data }) => {
 
         setErrorMessage('')
         setValue('')
-        
         setModal(false)
         setModalAnswer(true)
         return
@@ -400,6 +399,7 @@ const Objectif = ({ data }) => {
       }
     }
     if (sousObjectif?.id === 13) {
+      console.log('test box1document3')
       await updateEvent(token, 1, 130, 'done')
       actionToggleDataEvent()
       await updateHistory(token, currentBox, 'box1document3')
