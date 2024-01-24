@@ -126,13 +126,23 @@ const Tim = ({ closeAgentPage }) => {
             ""
           )}
           <div>{renderText()}</div>
-          {answer.id ? (
-            <button
+          {(answer.id ? (
+            (answer.id !== "box1document4" || objectif2 !== 'closed') ? (
+              <button
               className="modal-objectif__button button--red"
               onClick={openMedia}
             >
               Voir l&apos;élément
             </button>
+            ) : (
+              <button
+              className="modal-objectif__button button--red"
+              onClick={validateModal}
+            >
+              Fermer
+            </button>
+            )
+            
           ) : (
             <button
               className="modal-objectif__button button--red"
@@ -140,7 +150,7 @@ const Tim = ({ closeAgentPage }) => {
             >
               Nouvelle requête
             </button>
-          )}
+          ))}
         </div>
       </div>
     );

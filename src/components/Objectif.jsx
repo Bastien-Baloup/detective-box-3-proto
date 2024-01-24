@@ -107,6 +107,7 @@ const Objectif = ({ data }) => {
       const result = await getCharactersById(token, 5)
       const thisBox = result.find(element => element.box_id == currentBox).data
       const demande = thisBox.find(element => element.ask.includes('telephonevictime'))
+      console.log(demande)
       if (demande) {
         setAnalyseTelephone(demande.status)
       }
@@ -211,6 +212,7 @@ const Objectif = ({ data }) => {
   // début objectif 2
   const [popupImagesCamera, setPopupImagesCamera] = useState(false)
   const renderPopupImagesCamera = () => {
+    console.log(analyseTelephone)
     let onClosePopupImageCamera = async () => {
       await updateHistory(token, currentBox, 'box1document5')
       actionToggleDataHistory()
@@ -225,7 +227,7 @@ const Objectif = ({ data }) => {
     if (analyseTelephone) {
       onClosePopupImageCamera = async () => {
         await updateHistory(token, currentBox, 'box1document5')
-        await updateHistory(token, currentBox, 'box1document4')
+        await updateHistory(token, currentBox, 'box1audio3')
         actionToggleDataHistory()
         setPopupImagesCamera(false)
       }
