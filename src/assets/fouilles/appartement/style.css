@@ -988,6 +988,13 @@
 	background-color: red;
 }
 
+#modal-appartement-jour #coffre {
+	max-height: 100dvh;
+	#malle {
+		width: auto !important;
+		max-height: 100dvh;
+	}
+}
 
 #modal-appartement-jour #coffre .see-all {
 	width: 90%;

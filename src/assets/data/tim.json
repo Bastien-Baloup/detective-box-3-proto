@@ -1,7 +1,10 @@
 [
   {
     "ask": [
-      "telephonevictime"
+      "telephonevictime",
+      "telephonecedric",
+      "telephonedelavictime",
+      "telephonedecedric"
     ],
     "text1": [
       "Le téléphone est toujours entre les mains de la police et ils n’ont pas l’air de vouloir me laisser l’analyser pour le moment... Je vous tiens au jus dès que j’y aurai accès. Continuez votre enquête en attendant."

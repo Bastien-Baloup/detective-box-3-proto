@@ -211,7 +211,7 @@ const LieuAppartementJour = ({ onClose, onChange }) => {
             style={{
               backgroundColor: 'rgba(0, 0, 0, 0.5)',
               padding: '30px',
-              position: 'absolute',
+              position: 'fixed',
               left: '33%',
               bottom: '10vh',
               color: 'white',

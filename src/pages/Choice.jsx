@@ -45,7 +45,7 @@ function Choice() {
 	const displayBoxChoice = () => {
 		return (
 			<div className="boxchoice__wrapper">
-				{dataBox?.map((box, index) => (
+				{dataBox && dataBox.map((box, index) => (
 					<Boxchoice data={box} key={`boxChoiceKey-${index}`} />
 				))}
 			</div>
@@ -133,7 +133,7 @@ function Choice() {
 				<source src={urlApi.cdn() + "sounds/musiques-db-s2-theme-tueur.wav"} type="audio/wav" />
 				Votre navigateur ne prend pas en charge ce format
 			</audio>
-			<img className="choice__logo" src={Logo} />
+			<img className="choice__logo" src={Logo} alt=''/>
 			<h1 className="choice__title">Bienvenue Agents</h1>
 			<p className="choice__subtitle">Veuillez sélectionner votre niveau d&apos;avancement</p>
 			{displayBoxChoice()}
