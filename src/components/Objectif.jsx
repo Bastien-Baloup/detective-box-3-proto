@@ -6,8 +6,8 @@
 import PropTypes from 'prop-types'
 import {
   useState,
-  useEffect
-  // useCallback,
+  useEffect,
+  useMemo
 } from 'react'
 import Check from '../assets/icons/Icon_Check-green.svg'
 import LockClosed from '../assets/icons/Icon_Lock-closed-red.svg'
@@ -15,21 +15,17 @@ import LockOpen from '../assets/icons/Icon_Lock-open-black.svg'
 import Input from './Input.jsx'
 import Cross from '../assets/icons/Icon_Cross-white.svg'
 import InterrogatoireInterractif from './mini-jeux/InterrogatoireInterractif.jsx'
-// import Document from "../components/Document";
-// import Video from "../components/Video";
-// import Audio from "../components/Audio";
+import Audio from '../components/Audio'
 
 import { urlApi } from '../utils/const/urlApi'
 import {
   BoxContext,
   DataContext,
-  // AmbianceContext,
   CompteContext
 } from '../utils/context/fetchContext'
 import { useContext } from 'react'
 import useApi from '../utils/hooks/useApi.js'
 import useEvent from '../utils/hooks/useEvent.js'
-// import useLieu from '../utils/hooks/useLieu.jsx'
 
 const Objectif = ({ data }) => {
   const [modal, setModal] = useState(false)
@@ -44,61 +40,57 @@ const Objectif = ({ data }) => {
 
   const { currentBox } = useContext(BoxContext)
   const token = localStorage.getItem('token')
-  // const { pauseNappe } = useContext(AmbianceContext);
   const {
     actionToggleDataEvent,
     toggleDataEvent,
-    // actionToggleDataHelp,
-    toggleDataHelp,
     actionToggleDataHistory,
     toggleDataHistory,
     actionToggleDataObjectif,
-    toggleDataObjectif,
     toggleDataTim
   } = useContext(DataContext)
   const { closeCompte } = useContext(CompteContext)
 
-  const {
-    // updateHelp,
-    getEventByBox,
-    getCharactersById,
-    updateEvent,
-    // getHistoryByBox,
-    // getHelpByBox,
-    updateHistory,
-    updateObjectives
-    // getObjectivesByBox,
-  } = useApi()
+  const { getEventByBox, getCharactersById, updateEvent, getHistoryByBox, updateHistory, updateObjectives } = useApi()
 
   const { dispatch } = useEvent()
-  // const { renderLieu, setLieu, setLieuOpen } = useLieu()
-
-  // const openLieu = (lieu) => {
-  // 	setLieu(lieu)
-  // 	setLieuOpen(true)
-  // 	setModal(false)
-  // }
 
   const [events, setEvents] = useState(null)
-  const [listSousObjectifs, setListSousObjectifs] = useState(null)
+  const [history, sethistory] = useState(null)
   // EXPLICATION : Fonction pour récupérer l'état des événements
   useEffect(() => {
     const getEvents = async () => {
       const events_ = await getEventByBox(token, currentBox)
       setEvents(events_.data)
-      const sousObjectifs = data?.sousobjectifs ? data.sousobjectifs : []
-      sousObjectifs.forEach(sousObjectif => {
-        sousObjectif.isSousObjectif = true
-        const event = events_.data.find(event => event.id === sousObjectif.id)
-        if (event) {
-          sousObjectif.status = event.status
-        }
-      })
-      console.log(sousObjectifs)
-      setListSousObjectifs(sousObjectifs)
     }
     getEvents()
   }, [toggleDataEvent])
+
+  useEffect(() => {
+    const getEvents = async () => {
+      const history = await getHistoryByBox(token, currentBox)
+      sethistory(history.data)
+    }
+    getEvents()
+  }, [toggleDataHistory])
+
+  const listSousObjectifs = useMemo(() => {
+    const sousObjectifs = data?.sousobjectifs ? data.sousobjectifs : []
+    sousObjectifs.forEach(sousObjectif => {
+      sousObjectif.isSousObjectif = true
+      const event = events && events.find(event => event.id === sousObjectif.id)
+      if (event) {
+        sousObjectif.status = event.status
+      }
+    })
+    return sousObjectifs
+  }, [data, events])
+
+  const box1document8 = useMemo(
+    () => history && history.find(document => document.id === 'box1document8')?.status,
+    [history]
+  )
+
+  const box1audio12 = useMemo(() => history && history.find(document => document.id === 'box1audio12'))
 
   //EXPLICATION : Tim est le personnage "5"
   const [analyseTelephone, setAnalyseTelephone] = useState(false)
@@ -107,48 +99,12 @@ const Objectif = ({ data }) => {
       const result = await getCharactersById(token, 5)
       const thisBox = result.find(element => element.box_id == currentBox).data
       const demande = thisBox.find(element => element.ask.includes('telephonevictime'))
-      console.log(demande)
       if (demande) {
         setAnalyseTelephone(demande.status)
       }
     }
     getTimData()
   }, [toggleDataTim])
-
-  // EXPLICATION : Fonction pour récupérer l'état de l'historique
-  useEffect(() => {
-    const getHistory = async () => {
-      //TODO Récupération data de l'historique, exemple:
-      // const clues = await getHistoryByBox(token, currentBox);
-      // const box1video3Data = clues.data.find((event) => event.id == "box1video3");
-      // setBox1Video3(box1video3Data.status);
-    }
-    getHistory()
-  }, [toggleDataHistory])
-
-  // EXPLICATION : Fonction pour récupérer l'état des renforts (help)
-  useEffect(() => {
-    const getHelps = async () => {
-      //TODO Récupération data des renforts, exemple:
-      // const help = await getHelpByBox(token, currentBox);
-      // const box3help4Data = help.data.find(
-      //   (event) => event.id == "box3help4"
-      // );
-      // setBox3Help4(box3help4Data.status);
-    }
-    getHelps()
-  }, [toggleDataHelp])
-
-  // EXPLICATION : UseEffect pour récupérer l'état des objectifs
-  useEffect(() => {
-    const getObjectives = async () => {
-      //TODO Récupération data des objectifs, exemple:
-      // const objectifs = await getObjectivesByBox(token, currentBox);
-      // const objectif12Data = objectifs.data.find((event) => event.id == 12);
-      // setObjectif12(objectif12Data.status);
-    }
-    getObjectives()
-  }, [toggleDataObjectif])
 
   //TODO traitements spécifiques d'objectifs
 
@@ -247,6 +203,74 @@ const Objectif = ({ data }) => {
     )
   }
 
+  const closeInterrogatoireSimon = async () => {
+    await updateHistory(token, 1, 'box1audio12')
+    actionToggleDataHistory()
+    setInterrogatoireSimon(false)
+    setDenoncerTim(true)
+  }
+
+  const [interrogatoireSimon, setInterrogatoireSimon] = useState(false)
+
+  const renderInterrogatoireSimon = () => {
+    return (
+      <Audio
+        title={box1audio12?.title}
+        srcImg1={box1audio12?.img1}
+        srcImg2={box1audio12?.img2}
+        srcTranscription={urlApi.cdn()+box1audio12?.srcTranscript}
+        handleModalAudio={closeInterrogatoireSimon}
+        srcAudio={urlApi.cdn()+box1audio12?.srcAudio}
+      />
+    )
+
+  }
+  const [denoncerTim, setDenoncerTim] = useState(false)
+
+  const denoncer = async () => {
+    await updateEvent(token, 1, 32, 'done')
+    actionToggleDataEvent()
+    setDenoncerTim(false)
+    setReponseEmail(true)
+  }
+
+  const pasDenoncer = async () => {
+    await updateEvent(token, 1, 32, 'open')
+    actionToggleDataEvent()
+    setDenoncerTim(false)
+    setReponseEmail(true)
+  }
+
+  const renderDenoncerTim = () => {
+    return (
+      <div className='modal-objectif__background'>
+        <div className='modal-objectif__box'>
+          <h2 className='modal-objectif__title'>Dénoncer Tim ?</h2>
+          <button className='modal-objectif__button button--red' onClick={denoncer}>Oui</button>
+          <button className='modal-objectif__button button--red' onClick={pasDenoncer}>Non</button>
+        </div>
+      </div>
+    )
+  }
+
+  const [reponseEmail, setReponseEmail] = useState(false)
+
+  const renderReponseEmail = () => {
+    return (
+      <div className='modal-objectif__background'>
+        <div className='modal-objectif__box'>
+          <div>Bonjour, Agents. Mes clients souhaiteraient obtenir l’identité de la personne qui a tué leur Chef des opérations, Cédric Romero. Si vous acceptez de nous transmettre cette information, vous aurez accès à une belle récompense...</div>
+          <select name="" id="">
+            <option value="">Simon</option>
+            <option value="">Philippe</option>
+          </select>
+          <button className='modal-objectif__button button--red' onClick={() => setReponseEmail(false)}>Envoyer</button>
+        </div>
+      </div>
+    )
+      
+  }
+
   // -- GENERIQUE -- //
 
   const openModal = objectif => {
@@ -288,6 +312,7 @@ const Objectif = ({ data }) => {
   }
 
   const renderText = data => {
+    if (!data) {return}
     const text = data.map((el, i) => {
       return (
         <p className='modal-objectif__subtitle' key={i}>
@@ -346,6 +371,21 @@ const Objectif = ({ data }) => {
         setValue('')
       }
     } else {
+      if (data.id === 3) {
+        if (!box1document8) {
+          setErrorMessage("Ce n'est pas un peu tôt pour accuser quelqu'un ?")
+          setValue('')
+          return
+        } else {
+          if (data.answer.includes(slugify(value)) && data.answer.includes(slugify(selectedChoice))) {
+            setErrorMessage('')
+            setValue('')
+            setModal(false)
+            setModalAnswer(true)
+            return
+          }
+        }
+      }
       if (data.answer.includes(slugify(value))) {
         //TODO Gestion spécifique bonnes réponses
 
@@ -413,6 +453,9 @@ const Objectif = ({ data }) => {
     if (sousObjectif?.id === 21) {
       setSousObjectif(null)
       return
+    }
+    if (data.id === 3) {
+      setInterrogatoireSimon(true)
     }
   }
 
@@ -578,7 +621,6 @@ const Objectif = ({ data }) => {
     if (sousObjectif.id === 22) {
       answerForm = (
         <form className='modal-objectif__form' onSubmit={handleSubmit}>
-          
           <button className='modal-objectif__button button--red'>Valider</button>
         </form>
       )
@@ -593,6 +635,12 @@ const Objectif = ({ data }) => {
         {answerForm}
       </>
     )
+  }
+
+  const [selectedChoice, setSelectedChoice] = useState('')
+
+  const handleChange = event => {
+    setSelectedChoice(event.target.value)
   }
 
   const renderModal = () => {
@@ -635,6 +683,15 @@ const Objectif = ({ data }) => {
                   value={value}
                   setValue={setValue}
                 />
+                {data.id === 3 && (
+                  <select id='mobileChoice' value={selectedChoice} onChange={handleChange}>
+                    {data?.choices.map((choice, index) => (
+                      <option key={index} value={choice}>
+                        {choice}
+                      </option>
+                    ))}
+                  </select>
+                )}
                 <button className='modal-objectif__button button--red'>Valider</button>
               </form>
             )}
@@ -734,7 +791,7 @@ const Objectif = ({ data }) => {
                 Votre navigateur ne prend pas en charge ce format
               </audio>
             )}
-            <div>{renderText(data.answertext)}</div>
+            <div>{renderText(data?.answertext)}</div>
             <button className='modal-objectif__button button--red' onClick={handleModalAnswer}>
               Continuer l&apos;enquête
             </button>
@@ -883,6 +940,9 @@ const Objectif = ({ data }) => {
       {interrogatoireTim && <InterrogatoireInterractif onClose={onCloseInterrogatoireTim} />}
       {popupImagesCamera && renderPopupImagesCamera()}
       {pharmacie && renderPharmacie()}
+      {interrogatoireSimon && renderInterrogatoireSimon()}
+      {denoncerTim && renderDenoncerTim()}
+      {reponseEmail && renderReponseEmail()}
     </>
   )
 }

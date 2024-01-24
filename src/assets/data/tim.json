@@ -134,5 +134,42 @@
     "title": "Vidéo surveillance de la salle de jeux",
     "src": "proto3/videos/salle-de-jeu.mp4",
     "status": false
+  },
+  {
+    "ask": [
+      "lefort"
+    ],
+    "text": [
+      "Je n’ai rien de rien ! C’est chelou... C’est comme si leurs empreintes digitales avaient complètement été effacées..."
+    ],
+    "srcComment": null,
+    "status": false
+  },
+  {
+    "ask": [
+      "philippe",
+      "philippepiazolli",
+      "piazolliphilippe"
+    ],
+    "text": [
+      "Rien d'interessant."
+    ],
+    "srcComment": null,
+    "status": false
+  },
+  {
+    "ask": [
+      "simon",
+      "simonberbre",
+      "berbresimon"
+    ],
+    "text": [
+      "Oui, j’ai noté aussi qu’il a menti à plusieurs reprises, attendez je demande à Tim qu’il me sorte ce qu’il a sur lui... Voilà, tenez !"
+    ],
+    "srcComment": null,
+    "id": "box1document8",
+    "title": "Dossier sur Simon Berbre",
+    "src": "proto3/assets/documents/3D345-dossier-simon-berbre.pdf",
+    "status": false
   }
 ]

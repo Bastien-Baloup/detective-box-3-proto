@@ -12,29 +12,30 @@ import Lauren from "./requetes/Lauren";
 import Raphaelle from "./requetes/Raphaelle";
 import { useState } from "react";
 import { BoxContext, DataContext } from "../../utils/context/fetchContext.jsx";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useMemo } from "react";
 import { urlApi } from "../../utils/const/urlApi.js";
-// import useApi from "../../utils/hooks/useApi.js";
+import useApi from "../../utils/hooks/useApi.js";
 
 function Home() {
   const [characterDisplayed, setCharacterDisplayed] = useState(null);
-  // const { getHistoryByBox } = useApi();
+  const [dataEvent, setDataEvent] = useState(null);
+  const { getEventByBox } = useApi();
 
   const { currentBox } = useContext(BoxContext);
-  // const token = localStorage.getItem("token");
-  const { toggleDataHistory } = useContext(DataContext);
+  const { toggleDataEvent } = useContext(DataContext);
+
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     const fetchData = async () => {
-      //TODO Recupération data de l'historique
-      // const result = await getHistoryByBox(token, 2);
-      // const box2document6Data = result.data.find(
-      //   (event) => event.id == "box2document6"
-      // );
-      // setBox2Document6(box2document6Data.status);
-    };
-    fetchData();
-  }, [toggleDataHistory]);
+      const events_ = await getEventByBox(token, currentBox)
+      setDataEvent(events_.data)
+    }
+    fetchData()
+  }, [toggleDataEvent])
+
+  const event31 = useMemo(() => dataEvent && dataEvent.find(event => event.id == 31)?.status, [dataEvent])
+
 
   // EXPLICATION : Fonction pour afficher tout les personnages
   const displayAllCharacters = () => {
@@ -71,9 +72,9 @@ function Home() {
             name="Adèle Leinu"
             contentButton="Demander une analyse scientifique"
             actionButton={
-              currentBox == 1 ? null : () => setCharacterDisplayed("adele")
+              event31 !== 'done' ? null : () => setCharacterDisplayed("adele")
             }
-            state={currentBox == 1 ? "unavailable" : ""}
+            state={event31 !== 'done' ? "unavailable" : ""}
           />
         </div>
       </>

@@ -40,6 +40,36 @@
     "status": false
   },
   {
+    "id": "box1document6",
+    "box": "Box 1",
+    "title": "Compte-rendu d'hospitalisation d'Henri",
+    "category": "Document",
+    "detail": null,
+    "poster": "proto3/thumbnails/documents/3D337-compte-rendu-hospitalisation-henri.jpg",
+    "src": "proto3/assets/documents/3D337-compte-rendu-hospitalisation-henri.pdf",
+    "status": false
+  },
+  {
+    "id": "box1document7",
+    "box": "Box 1",
+    "title": "Rapport d'autopsie de Cédric Romero",
+    "category": "Document",
+    "detail": null,
+    "poster": "proto3/thumbnails/documents/3D343-autopsie.jpg",
+    "src": "proto3/assets/documents/3D343-autopsie.pdf",
+    "status": false
+  },
+  {
+    "id": "box1document8",
+    "box": "Box 1",
+    "title": "Dossier sur Simon Berbre",
+    "category": "Document",
+    "detail": null,
+    "poster": "proto3/thumbnails/documents/3D345-dossier-simon-berbre.jpg",
+    "src": "proto3/assets/documents/3D345-dossier-simon-berbre.pdf",
+    "status": false
+  },
+  {
     "id": "box1document10",
     "box": "Box 1",
     "title": "Chasse au trésor",
@@ -49,10 +79,11 @@
     "src": "proto3/assets/documents/interieur-coffre-fort.pdf",
     "status": false
   },
+
   {
     "id": "box1audio1",
     "box": "Box 1",
-    "title": "Interrogatoire Geneviève Funard",
+    "title": "Interrogatoire de Geneviève Funard",
     "category": "Audio",
     "detail": null,
     "poster": "proto3/assets/photos-personnages/genevieve-funard.jpg",
@@ -65,7 +96,7 @@
   {
     "id": "box1audio2",
     "box": "Box 1",
-    "title": "Interrogatoire pharmacien",
+    "title": "Interrogatoire du pharmacien",
     "category": "Audio",
     "detail": null,
     "poster": "proto3/assets/photos-personnages/pharmacien.jpg",
@@ -85,6 +116,123 @@
     "img1": "proto3/assets/photos-personnages/messagerie_telephone.jpg",
     "srcAudio": "proto3/sounds/messagerie_telephone.mp3",
     "srcTranscript": "proto3/assets/transcripts/messagerie_telephone.pdf",
+    "status": false
+  },
+  {
+    "id": "box1audio4",
+    "box": "Box 1",
+    "title": "Interrogatoire d'Ellie",
+    "category": "Audio",
+    "detail": null,
+    "poster": "proto3/thumbnails/transcripts/3A340-interrogatoire-ellie-levyn-mauvais.jpg",
+    "img1": "proto3/assets/photos-personnages/ellie-levyn.jpg",
+    "img2": "assets/photos-personnages/lauren.jpg",
+    "srcAudio": "proto3/sounds/interrogatoire-ellie-levyn-mauvais.mp3",
+    "srcTranscript": "proto3/assets/transcripts/3A340-interrogatoire-ellie-levyn-mauvais.pdf",
+    "status": false
+  },
+  {
+    "id": "box1audio5",
+    "box": "Box 1",
+    "title": "Interrogatoire d'Ellie",
+    "category": "Audio",
+    "detail": null,
+    "poster": "proto3/thumbnails/transcripts/3A341-interrogatoire-ellie-levyn-bon.jpg",
+    "img1": "proto3/assets/photos-personnages/ellie-levyn.jpg",
+    "img2": "assets/photos-personnages/lauren.jpg",
+    "srcAudio": "proto3/sounds/interrogatoire-ellie-levyn-bon.mp3",
+    "srcTranscript": "proto3/assets/transcripts/3A341-interrogatoire-ellie-levyn-bon.pdf",
+    "status": false
+  },
+  {
+    "id": "box1audio6",
+    "box": "Box 1",
+    "title": "Interrogatoire de Hannah",
+    "category": "Audio",
+    "detail": null,
+    "poster": "proto3/thumbnails/transcripts/3A342-interrogatoire-hannah-evans.jpg",
+    "img1": "proto3/assets/photos-personnages/hannah-evans.jpg",
+    "img2": "assets/photos-personnages/lauren.jpg",
+    "srcAudio": "proto3/sounds/interrogatoire-hannah-evans.mp3",
+    "srcTranscript": "proto3/assets/transcripts/3A342-interrogatoire-hannah-evans.pdf",
+    "status": false
+  },
+  {
+    "id": "box1audio7",
+    "box": "Box 1",
+    "title": "Interrogatoire de Sacha",
+    "category": "Audio",
+    "detail": null,
+    "poster": "proto3/thumbnails/transcripts/3A338-interrogatoire-sacha-leza.jpg",
+    "img1": "proto3/assets/photos-personnages/sacha-leza.jpg",
+    "img2": "assets/photos-personnages/lauren.jpg",
+    "srcAudio": "proto3/sounds/interrogatoire-sacha-leza.mp3",
+    "srcTranscript": "proto3/assets/transcripts/3A338-interrogatoire-sacha-leza.pdf",
+    "status": false
+  },
+  {
+    "id": "box1audio8",
+    "box": "Box 1",
+    "title": "Interrogatoire de Henri",
+    "category": "Audio",
+    "detail": null,
+    "poster": "proto3/thumbnails/transcripts/3A336-interrogatoire-henri-leveaux.jpg",
+    "img1": "proto3/assets/photos-personnages/henri-leveaux.jpg",
+    "img2": "assets/photos-personnages/lauren.jpg",
+    "srcAudio": "proto3/sounds/interrogatoire-hannah-evans.mp3",
+    "srcTranscript": "proto3/assets/transcripts/3A336-interrogatoire-henri-leveaux.pdf",
+    "status": false
+  },
+  {
+    "id": "box1audio9",
+    "box": "Box 1",
+    "title": "Interrogatoire de Simon Berbre",
+    "category": "Audio",
+    "detail": null,
+    "poster": "proto3/thumbnails/transcripts/3A347-interrogatoire-simon-berbre-bis.jpg",
+    "img1": "proto3/assets/photos-personnages/simon-berbre.jpg",
+    "img2": "assets/photos-personnages/lauren.jpg",
+    "srcAudio": "proto3/sounds/interrogatoire-simon-berbre-bis.mp3",
+    "srcTranscript": "proto3/assets/transcripts/3A347-interrogatoire-simon-berbre-bis.pdf",
+    "status": false
+  },
+  {
+    "id": "box1audio10",
+    "box": "Box 1",
+    "title": "Interrogatoire de Philippe Pizzio",
+    "category": "Audio",
+    "detail": null,
+    "poster": "proto3/thumbnails/transcripts/3A346-interrogatoire-philippe-pizzio-bis.jpg",
+    "img1": "proto3/assets/photos-personnages/philippe-pizzio.jpg",
+    "img2": "assets/photos-personnages/lauren.jpg",
+    "srcAudio": "proto3/sounds/interrogatoire-philippe-pizzio.mp3",
+    "srcTranscript": "proto3/assets/transcripts/3A346-interrogatoire-philippe-pizzio-bis.pdf",
+    "status": false
+  },
+  {
+    "id": "box1audio11",
+    "box": "Box 1",
+    "title": "Interrogatoire d'Eric Lombardo",
+    "category": "Audio",
+    "detail": null,
+    "poster": "proto3/thumbnails/transcripts/3A344-interrogatoire-eric-lombardo-bis.jpg",
+    "img1": "proto3/assets/photos-personnages/eric-lombardo.jpg",
+    "img2": "assets/photos-personnages/lauren.jpg",
+    "srcAudio": "proto3/sounds/interrogatoire-eric-lombardo.mp3",
+    "srcTranscript": "proto3/assets/transcripts/3A344-interrogatoire-eric-lombardo-bis.pdf",
+    "status": false
+  },
+  {
+    "id": "box1audio12",
+    "box": "Box 1",
+    "title": "Interrogatoire de Simon Berbre - confession",
+    "category": "Audio",
+    "detail": null,
+    "poster": "proto3/thumbnails/transcripts/3A350-interrogatoire-confession.jpg",
+    "img1": "proto3/assets/photos-personnages/simon-berbre.jpg",
+    "img2": "assets/photos-personnages/lauren.jpg",
+    "srcAudio": "proto3/sounds/interrogatoire-confession.mp3",
+    "srcTranscript": "proto3/assets/transcripts/3A350-interrogatoire-confession.pdf",
     "status": false
   },
   {

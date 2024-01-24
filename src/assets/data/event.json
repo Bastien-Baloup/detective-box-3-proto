@@ -70,23 +70,8 @@
     "comment": "obj3-interrogatoiresCasseurs"
   },
   {
-    "id": 311,
-    "status": "open",
-    "comment": "obj3-interrogatoiresCasseurs-hannah"
-  },
-  {
-    "id": 312,
-    "status": "open",
-    "comment": "obj3-interrogatoiresCasseurs-henri"
-  },
-  {
-    "id": 313,
-    "status": "open",
-    "comment": "obj3-interrogatoiresCasseurs-sacha"
-  },
-  {
-    "id": 314,
-    "status": "open",
-    "comment": "obj3-interrogatoiresCasseurs-ellie"
+    "id": 32,
+    "status": "closed",
+    "comment": "obj3-denoncerTim, done = oui, open = non"
   }
 ]
