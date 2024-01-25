@@ -195,6 +195,9 @@
   {
     "id": 3,
     "title": "QUI A TUE CEDRIC ROMERO ?",
+    "answertext": [
+      "Félicitations"
+    ],
     "choices": [
       "-- Identifiez le mobile du tueur --",
       "Adultère",

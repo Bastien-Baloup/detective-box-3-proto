@@ -5,6 +5,7 @@
 import Input from "../../../components/Input.jsx";
 import Document from "../../../components/Document.jsx";
 import Video from "../../../components/Video.jsx";
+import Audio from '../../../components/Audio.jsx';
 import Cross from "../../../assets/icons/Icon_Cross-white.svg";
 import PropTypes from "prop-types";
 import { urlApi } from "../../../utils/const/urlApi.js";
@@ -211,7 +212,7 @@ const Tim = ({ closeAgentPage }) => {
   };
 
   const openMedia = () => {
-    if (answer.id.includes("video")) {
+    if (answer.id.includes("video") || answer.id.includes("audio")) {
       pauseNappe();
     }
     setModal(false);
@@ -237,6 +238,18 @@ const Tim = ({ closeAgentPage }) => {
           handleModalVideo={() => closeModalMedia(answer.id, answer.ask)}
         />
       );
+    }
+    if (answer.id.includes('audio')) {
+      return (
+        <Audio  
+          title={answer.title}
+          srcImg1={urlApi.cdn() + answer.img1}
+          srcImg2={null}
+          srcTranscription={urlApi.cdn() + answer.srcTranscript}
+          handleModalAudio={() => closeModalMedia(answer.id, answer.ask)}
+          srcAudio={urlApi.cdn() + answer.srcAudio}
+        />
+      )
     }
   };
 

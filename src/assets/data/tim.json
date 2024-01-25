@@ -14,9 +14,12 @@
       "Voilà ce que j’ai récupéré sur son répondeur, j’espère que ça vous aidera."
     ],
     "srcComment": null,
-    "id": "box1document4",
+    "id": "box1audio3",
     "title": "Accès Messagerie téléphone",
-    "src": "proto3/assets/documents/messagerie_telephone.jpg",
+    "poster": "proto3/thumbnails/documents/messagerie_telephone.jpg",
+    "img1": "proto3/assets/photos-personnages/messagerie_telephone.jpg",
+    "srcAudio": "proto3/sounds/messagerie_telephone.mp3",
+    "srcTranscript": "proto3/assets/transcripts/messagerie_telephone.pdf",
     "status": false
   },
   {
