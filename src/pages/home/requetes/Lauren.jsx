@@ -312,7 +312,7 @@ const Lauren = ({ closeAgentPage }) => {
     return (
       <div className='modal-objectif__background'>
         <div className='modal-objectif__box'>
-          <div>"Lauren :Oui, vous avez raison, il n’a pas l'air d'avoir tout dit. Il n’a pas d’alibi, rien ?"</div>  
+          <div>"Il n'a pas l'air d'avoir tout dit en effet mais quelque chose ne colle pas…"</div>  
           <button className='modal-objectif__button button--red' onClick={() => setPhilippe(false)}>Continuer l&apos;enquête</button>
         </div>
       </div>
