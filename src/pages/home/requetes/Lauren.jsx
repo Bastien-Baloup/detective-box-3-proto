@@ -18,7 +18,7 @@ const Lauren = ({ closeAgentPage }) => {
   const { currentBox } = useContext(BoxContext)
   const { pauseNappe } = useContext(AmbianceContext)
   const token = localStorage.getItem('token')
-  const { actionToggleDataLauren, toggleDataLauren, actionToggleDataHistory, toggleDataObjectif } =
+  const { actionToggleDataLauren, toggleDataLauren, actionToggleDataHistory, toggleDataObjectif, toggleDataHistory } =
     useContext(DataContext)
   const {
     updateCharactersById,
@@ -60,10 +60,10 @@ const Lauren = ({ closeAgentPage }) => {
       setDataHistory(documents.data)
     }
     fetchData()
-  }, [toggleDataObjectif])
+  }, [toggleDataHistory])
 
-  const box1audio9 = useMemo(() => dataHistory && dataHistory.find(document => document.id === 'box1audio9')?.status)
-  const box1audio10 = useMemo(() => dataHistory && dataHistory.find(document => document.id === 'box1audio10')?.status)
+  const box1audio9 = useMemo(() => dataHistory && dataHistory.find(document => document.id === 'box1audio9')?.status, [dataHistory])
+  const box1audio10 = useMemo(() => dataHistory && dataHistory.find(document => document.id === 'box1audio10')?.status, [dataHistory])
 
   const [dataLauren, setDataLauren] = useState(null)
 
