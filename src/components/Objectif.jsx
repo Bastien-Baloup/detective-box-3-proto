@@ -255,6 +255,12 @@ const Objectif = ({ data }) => {
 
   const [reponseEmail, setReponseEmail] = useState(false)
 
+  const handleReponseEmail = async () => {
+    await updateObjectives(token, 1, 3, 'done')
+    actionToggleDataObjectif()
+    setReponseEmail(false)
+  }
+
   const renderReponseEmail = () => {
     return (
       <div className='modal-objectif__background'>
@@ -264,7 +270,7 @@ const Objectif = ({ data }) => {
             <option value="">Simon</option>
             <option value="">Philippe</option>
           </select>
-          <button className='modal-objectif__button button--red' onClick={() => setReponseEmail(false)}>Envoyer</button>
+          <button className='modal-objectif__button button--red' onClick={handleReponseEmail}>Envoyer</button>
         </div>
       </div>
     )
@@ -383,22 +389,27 @@ const Objectif = ({ data }) => {
             setModal(false)
             setModalAnswer(true)
             return
+          } else {
+            setErrorMessage(data.errorMessage)
+            setValue('')
+            return
           }
         }
-      }
-      if (data.answer.includes(slugify(value))) {
-        //TODO Gestion spécifique bonnes réponses
-
-        setErrorMessage('')
-        setValue('')
-        setModal(false)
-        setModalAnswer(true)
-        return
       } else {
-        //TODO Gestion spécifique réponses fausses
-
-        setErrorMessage(data.errorMessage)
-        setValue('')
+        if (data.answer.includes(slugify(value))) {
+          //TODO Gestion spécifique bonnes réponses
+  
+          setErrorMessage('')
+          setValue('')
+          setModal(false)
+          setModalAnswer(true)
+          return
+        } else {
+          //TODO Gestion spécifique réponses fausses
+  
+          setErrorMessage(data.errorMessage)
+          setValue('')
+        }
       }
     }
   }
@@ -637,7 +648,7 @@ const Objectif = ({ data }) => {
     )
   }
 
-  const [selectedChoice, setSelectedChoice] = useState('')
+  const [selectedChoice, setSelectedChoice] = useState('none')
 
   const handleChange = event => {
     setSelectedChoice(event.target.value)
