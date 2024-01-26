@@ -208,7 +208,6 @@ const Tim = ({ closeAgentPage }) => {
 
   const validateModal = async () => {
     setModal(false);
-    closeModalMedia(answer.id, answer.ask)
   };
 
   const openMedia = () => {
@@ -256,7 +255,7 @@ const Tim = ({ closeAgentPage }) => {
   const closeModalMedia = async (answerId, asnwerAsk) => {
     await updateCharactersById(token, 5, currentBox, asnwerAsk);
 
-    if (answerId !== "box1document4" || objectif2 !== 'closed') {
+    if (answerId !== "box1audio3" || objectif2 !== 'closed') {
       await updateHistory(token, currentBox, answerId);
       actionToggleDataHistory()
     }
