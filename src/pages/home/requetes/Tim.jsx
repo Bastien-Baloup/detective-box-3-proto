@@ -256,6 +256,7 @@ const Tim = ({ closeAgentPage }) => {
     await updateCharactersById(token, 5, currentBox, asnwerAsk);
 
     if (answerId !== "box1audio3" || objectif2 !== 'closed') {
+      console.log(answerId)
       await updateHistory(token, currentBox, answerId);
       actionToggleDataHistory()
     }
