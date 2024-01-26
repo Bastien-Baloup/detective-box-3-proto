@@ -1,7 +1,10 @@
 [
   {
     "ask": [
-      "michellegris"
+      "michellegris",
+      "legrismichel",
+      "docteurmichellegris",
+      "docteurlegrismichel"
     ],
     "text": [
       "Le docteur Michel Legris est injoignable. N’oubliez pas qu’Adèle est sur le coup, elle vous donnera toutes les informations nécessaires dès qu’elle aura fini ses analyses."
@@ -21,7 +24,8 @@
   },
   {
     "ask": [
-      "genevievefunard"
+      "genevievefunard",
+      "funardgenevieve"
     ],
     "text": [
       "J’ai réussi à la joindre, voici une retranscription de notre échange"

@@ -36,7 +36,18 @@
   {
     "ask": [
       "videocouloirs",
-      "surveillancecouloirs"
+      "videoscouloirs",
+      "videosdescouloirs",
+      "surveillancecouloirs",
+      "surveillancedescouloirs",
+      "videosurveillancecouloirs",
+      "videosurveillancedescouloirs",
+      "videossurveillancecouloirs",
+      "videossurveillancedescouloirs",
+      "videodesurveillancecouloirs",
+      "videodesurveillancedescouloirs",
+      "videosdesurveillancecouloirs",
+      "videosdesurveillancedescouloirs"
     ],
     "text1": [
       "Franchement, avant que les caméras se fassent hacker, il n’y a rien d’intéressant, mon père est dans son bureau, Simon dans le sien... Et après... Bah après c’est une boucle donc on ne voit rien et malheureusement, je doute qu’on puisse récupérer les données. Le hacker qui a fait ça est sacrément doué..."
