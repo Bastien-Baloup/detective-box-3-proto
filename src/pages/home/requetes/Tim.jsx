@@ -128,7 +128,7 @@ const Tim = ({ closeAgentPage }) => {
           )}
           <div>{renderText()}</div>
           {(answer.id ? (
-            (answer.id !== "box1document4" || objectif2 !== 'closed') ? (
+            (answer.id !== "box1audio3" || objectif2 !== 'closed') ? (
               <button
               className="modal-objectif__button button--red"
               onClick={openMedia}
