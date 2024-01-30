@@ -2,7 +2,7 @@
 
 import PropTypes from "prop-types";
 
-const Document = ({ title, srcElement, handleModalDocument }) => {
+const Document = ({ title, srcElement, handleModalDocument, buttonText }) => {
 	// EXPLICATION : Cette fonction permet d'ouvrir le document dans un nouvel onglet (pour le voir en plus grand)
 	const openInNewTab = () => {
 		window.open(srcElement, "_blank");
@@ -25,7 +25,7 @@ const Document = ({ title, srcElement, handleModalDocument }) => {
 				<div className="modal-document__element-container">{mediaFactory(srcElement)}</div>
 				<div className="modal-document__buttons">
 					<button className="modal-document__button button--red" onClick={handleModalDocument}>
-						Continuer l&apos;enquête
+						{buttonText ? buttonText : "Continuer l'enquête"}
 					</button>
 					<button className="modal-document__button button--white" onClick={openInNewTab}>
 						Ouvrir
@@ -40,6 +40,7 @@ Document.propTypes = {
 	title: PropTypes.string,
 	srcElement: PropTypes.string,
 	handleModalDocument: PropTypes.func,
+	buttonText: PropTypes.string
 };
 
 export default Document;

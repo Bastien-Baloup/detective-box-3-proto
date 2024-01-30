@@ -16,6 +16,7 @@ import Input from './Input.jsx'
 import Cross from '../assets/icons/Icon_Cross-white.svg'
 import InterrogatoireInterractif from './mini-jeux/InterrogatoireInterractif.jsx'
 import Audio from '../components/Audio'
+import Document from './Document.jsx'
 
 import { urlApi } from '../utils/const/urlApi'
 import {
@@ -90,7 +91,8 @@ const Objectif = ({ data }) => {
     [history]
   )
 
-  const box1audio12 = useMemo(() => history && history.find(document => document.id === 'box1audio12'))
+  const box1audio12 = useMemo(() => history && history.find(document => document.id === 'box1audio12'), [history])
+  const box1document3 = useMemo(() => history && history.find(document => document.id === 'box1document3'), [history])
 
   //EXPLICATION : Tim est le personnage "5"
   const [analyseTelephone, setAnalyseTelephone] = useState(false)
@@ -153,10 +155,29 @@ const Objectif = ({ data }) => {
     )
   }
 
+  const [tipsLauren, setTipsLauren] = useState(false)
+
+  const handleTipLauren = () => {
+    setTipsLauren(false)
+    setInterrogatoireTim(true)
+  }
+
+  const renderTipsLauren = () => {
+    return (
+      <Document
+        title={box1document3?.title}
+        srcElement={urlApi.cdn()+box1document3.src}
+        handleModalDocument={handleTipLauren}
+        buttonText={"Commencer l'interrogatoire de Tim"}
+      />
+    )
+  }
+
   // après fin l'interrogatoire de tim
   const onCloseInterrogatoireTim = async (closedByCross = false) => {
     setInterrogatoireTim(false)
     if (closedByCross) {
+      setSousObjectif(null)
       return
     }
     await updateObjectives(token, 1, 1, 'done')
@@ -227,27 +248,101 @@ const Objectif = ({ data }) => {
   }
   const [denoncerTim, setDenoncerTim] = useState(false)
 
+  const handleDenoncer = () => {
+    setDenoncerTim(false)
+    setDenoncerTimBis(true)
+  }
+
+  const renderDenoncerTim = () => {
+    const text = [
+      "Raphaëlle : Eh bah... quelle affaire. Un cambriolage haut en couleurs, un butin encore en partie dans la nature, de la vengeance... ça fera un bon polar un jour.",
+      "Lauren : Oui, un jour. Ou alors une autobiographie intéressante si Matthieu se décide à l’écrire...",
+      "Raphaëlle : Ouais... en tout cas, merci pour votre aide agents, sans vous, nous n’aurions pas été aussi rapides ! Nous vous en sommes reconnaissants... Et Tim aussi !",
+      "Lauren : A propos de Tim...",
+      "Raphaëlle : Quoi ?",
+      "Lauren : Je l’adore, tu le sais... Mais il reste un complice de ce casse. De deux autres cambriolages même, techniquement, puisque la méthode utilisée a été la même. Au fond, il savait que ces informations allaient servir à cambrioler des casinos, même s’il ne pensait pas que ce serait celui de son père.",
+      "Raphaëlle : Oui, c’est vrai... On fait quoi ?",
+      "Lauren : Bonne question... Vous en pensez quoi agents ? Doit-on dénoncer Tim à la police ou couvrir son implication dans l’affaire ?"
+    ]
+    return (
+      <div className='modal-objectif__background'>
+        <div className='modal-objectif__box'>
+          <div>{renderText(text)}</div>
+          <button className='modal-objectif__button button--red' onClick={handleDenoncer}>Répondre</button>
+        </div>
+      </div>
+    )
+  }
+
+  const [denoncerTimBis, setDenoncerTimBis] = useState(false)
+
   const denoncer = async () => {
     await updateEvent(token, 1, 32, 'done')
     actionToggleDataEvent()
-    setDenoncerTim(false)
-    setReponseEmail(true)
+    setDenoncerTimBis(false)
+    setDenoncerTimOui(true)
   }
 
   const pasDenoncer = async () => {
     await updateEvent(token, 1, 32, 'open')
     actionToggleDataEvent()
-    setDenoncerTim(false)
-    setReponseEmail(true)
+    setDenoncerTimBis(false)
+    setDenoncerTimNon(true)
   }
 
-  const renderDenoncerTim = () => {
+  const renderDenoncerTimBis = () => {
     return (
       <div className='modal-objectif__background'>
         <div className='modal-objectif__box'>
-          <h2 className='modal-objectif__title'>Dénoncer Tim ?</h2>
-          <button className='modal-objectif__button button--red' onClick={denoncer}>Oui</button>
-          <button className='modal-objectif__button button--red' onClick={pasDenoncer}>Non</button>
+          <h2 className='modal-objectif__title'>Quel choix voulez-vous faire ?</h2>
+          <button className='modal-objectif__button button--red' onClick={denoncer}>Dénoncer Tim</button>
+          <button className='modal-objectif__button button--red' onClick={pasDenoncer}>Protéger Tim</button>
+        </div>
+      </div>
+    )
+  }
+
+  const [denoncerTimOui, setDenoncerTimOui] = useState(false)
+
+  const handleDenoncerOui = () => {
+    setDenoncerTimOui(false)
+    setReponseEmail(true)
+  }
+
+  const renderDenoncerTimOui = () => {
+    const text = [
+      "Raphaëlle : J’imagine que c’est la bonne chose à faire... Ils auraient fini par comprendre de toute façon. J’espère qu’il n’écopera pas d’une trop lourde peine... Mais avec son casier, je crains que... rah.",
+      "Lauren : Tu as essayé Raphaëlle. Tu lui as offert ce job et ça l’a protégé de la prison. Mais certaines choses sont en dehors de ton contrôle.",
+      "Raphaëlle : Oui... j’imagine. Merci encore pour votre aide, agents."
+    ]
+    return (
+      <div className='modal-objectif__background'>
+        <div className='modal-objectif__box'>
+          <div>{renderText(text)}</div>
+          <button className='modal-objectif__button button--red' onClick={handleDenoncerOui}>Suite</button>
+        </div>
+      </div>
+    )
+  }
+
+  const [denoncerTimNon, setDenoncerTimNon] = useState(false)
+
+  const handleDenoncerNon = () => {
+    setDenoncerTimNon(false)
+    setReponseEmail(true)
+  }
+
+  const renderDenoncerTimNon = () => {
+    const text = [
+      "Raphaëlle : Ouf, merci agents ! J’avoue que j’aurais eu mal au cœur de devoir le dénoncer. Il nous a aidé à résoudre pas mal d’affaires et puis, il a bon fond ce petit... Peut-être un peu naïf.",
+      "Lauren : J’imagine qu’il aura retenu la leçon.",
+      "Raphaëlle : Oui. Bon je vais garder un œil sur lui quand même, au cas où. Merci encore de votre aide agents!"
+    ]
+    return (
+      <div className='modal-objectif__background'>
+        <div className='modal-objectif__box'>
+          <div>{renderText(text)}</div>
+          <button className='modal-objectif__button button--red' onClick={handleDenoncerNon}>Suite</button>
         </div>
       </div>
     )
@@ -457,7 +552,7 @@ const Objectif = ({ data }) => {
       actionToggleDataEvent()
       await updateHistory(token, currentBox, 'box1document3')
       actionToggleDataHistory()
-      setInterrogatoireTim(true)
+      setTipsLauren(true)
       setSousObjectif(null)
       return
     }
@@ -942,17 +1037,20 @@ const Objectif = ({ data }) => {
   return (
     <>
       {renderObjectif(data)}
-      {/* {renderLieu()} */}
       {modal && renderModal()}
       {modalAnswer && renderModalAnswer()}
       {doneObjectifModal && renderDoneObjectifModal()}
       {popupDebutHacking && renderPopupDebutHacking()}
       {popupFinHacking && renderPopupFinHacking()}
+      {tipsLauren && renderTipsLauren()}
       {interrogatoireTim && <InterrogatoireInterractif onClose={onCloseInterrogatoireTim} />}
       {popupImagesCamera && renderPopupImagesCamera()}
       {pharmacie && renderPharmacie()}
       {interrogatoireSimon && renderInterrogatoireSimon()}
       {denoncerTim && renderDenoncerTim()}
+      {denoncerTimBis && renderDenoncerTimBis()}
+      {denoncerTimOui && renderDenoncerTimOui()}
+      {denoncerTimNon && renderDenoncerTimNon()}
       {reponseEmail && renderReponseEmail()}
     </>
   )
