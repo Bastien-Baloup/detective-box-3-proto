@@ -24,11 +24,11 @@
 			"J’ai réussi à la joindre, voici une retranscription de notre échange"
 		],
 		"id": "box1audio1",
-		"title": "Interrogatoire Geneviève Funard",
+		"title": "Interrogatoire de Geneviève Funard",
 		"img1": "proto3/assets/photos-personnages/genevieve-funard.jpg",
 		"img2": "assets/photos-personnages/lauren.jpg",
 		"srcAudio": "proto3/sounds/interrogatoire-genevieve-funard.mp3",
-		"srcTranscript": "proto3/assets/transcripts/3A116-interrogatoire-genevieve-funard.pdf",
+		"srcTranscript": "proto3/assets/transcripts/3a121-interrogatoire-genevieve-funard-v2.pdf",
 		"status": false
 	},
 	{
@@ -37,22 +37,22 @@
 			"Je me suis entretenue avec lui, je vous envoie l’enregistrement !"
 		],
 		"id": "box1audio2",
-		"title": "Interrogatoire Pharmacien",
+		"title": "Interrogatoire du Pharmacien",
 		"img1": "proto3/assets/photos-personnages/pharmacien.jpg",
 		"img2": "assets/photos-personnages/lauren.jpg",
 		"srcAudio": "proto3/sounds/interrogatoire-pharmacien.mp3",
-		"srcTranscript": "proto3/assets/transcripts/3A227-interrogatoire-pharmacien.pdf",
+		"srcTranscript": "proto3/assets/transcripts/3a227-interrogatoire-pharmacien-v2.pdf",
 		"status": false
 	},
 	{
 		"ask": ["simon", "simonberbre", "berbresimon"],
 		"text": ["Voici ce qu’il avait à me dire, agents..."],
 		"id": "box1audio9",
-		"title": "Interrogatoire Simon Berbre",
+		"title": "Interrogatoire de Simon Berbre",
 		"img1": "proto3/assets/photos-personnages/simon-berbre.jpg",
 		"img2": "assets/photos-personnages/lauren.jpg",
 		"srcAudio": "proto3/sounds/interrogatoire-simon-berbre-bis.mp3",
-		"srcTranscript": "proto3/assets/transcripts/3A347-interrogatoire-simon-berbre-bis.pdf",
+		"srcTranscript": "proto3/assets/transcripts/3a347-nouvel-interrogatoire-simon-berbre-bis-v2.pdf",
 		"status": false
 	},
 	{
@@ -61,7 +61,7 @@
 			"Je me suis entretenue avec lui, je vous envoie l’enregistrement !"
 		],
 		"id": "box1audio10",
-		"title": "Interrogatoire Philippe Pizzio",
+		"title": "Interrogatoire de Philippe Pizzio",
 		"img1": "proto3/assets/photos-personnages/philippe-pizzio.jpg",
 		"img2": "assets/photos-personnages/lauren.jpg",
 		"srcAudio": "proto3/sounds/interrogatoire-philippe-pizzio.mp3",
@@ -72,11 +72,44 @@
 		"ask": ["eric", "ericlombardo", "lombardoeric"],
 		"text": ["Pas commode le directeur... Tenez, voici la retranscription !"],
 		"id": "box1audio11",
-		"title": "Interrogatoire Eric Lombardo",
+		"title": "Interrogatoire de Eric Lombardo",
 		"img1": "proto3/assets/photos-personnages/eric-lombardo.jpg",
 		"img2": "assets/photos-personnages/lauren.jpg",
 		"srcAudio": "proto3/sounds/interrogatoire-eric-lombardo.mp3",
-		"srcTranscript": "proto3/assets/transcripts/3A344-interrogatoire-eric-lombardo-bis.pdf",
+		"srcTranscript": "proto3/assets/transcripts/3a344-nouvel-interrogatoire-eric-lombardo-bis-v2.pdf",
+		"status": false
+	},
+	{
+		"ask": ["manonbondy", "bondymanon"],
+		"text": [""],
+		"id": "box1audio13",
+		"title": "Interrogatoire de Manon Bondy",
+		"img1": "proto3/assets/photos-personnages/manon-bondy.jpg",
+		"img2": "assets/photos-personnages/lauren.jpg",
+		"srcAudio": "proto3/sounds/interrogatoire-manon-bondy.mp3",
+		"srcTranscript": "proto3/assets/transcripts/3a122-interrogatoire-manon-bondy.pdf",
+		"status": false
+	},
+	{
+		"ask": ["agneschasse", "chasseagnes"],
+		"text": [""],
+		"id": "box1audio14",
+		"title": "Interrogatoire d'Agnès Chassé",
+		"img1": "proto3/assets/photos-personnages/agnes-chasse.jpg",
+		"img2": "assets/photos-personnages/lauren.jpg",
+		"srcAudio": "proto3/sounds/interrogatoire-agnes-chasse.mp3",
+		"srcTranscript": "proto3/assets/transcripts/3a123-interrogatoire-agnes-chasse.pdf",
+		"status": false
+	},
+	{
+		"ask": ["brunoclavet", "clavetbruno"],
+		"text": [""],
+		"id": "box1audio15",
+		"title": "Interrogatoire de Bruno Clavet",
+		"img1": "proto3/assets/photos-personnages/bruno-clavet.jpg",
+		"img2": "assets/photos-personnages/lauren.jpg",
+		"srcAudio": "proto3/sounds/interrogatoire-bruno-clavet.mp3",
+		"srcTranscript": "proto3/assets/transcripts/3a124-interrogatoire-bruno-clavet.pdf",
 		"status": false
 	}
 ]

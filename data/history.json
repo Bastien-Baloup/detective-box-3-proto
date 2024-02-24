@@ -90,7 +90,7 @@
 		"img1": "proto3/assets/photos-personnages/genevieve-funard.jpg",
 		"img2": "assets/photos-personnages/lauren.jpg",
 		"srcAudio": "proto3/sounds/interrogatoire-genevieve-funard.mp3",
-		"srcTranscript": "proto3/assets/transcripts/3A116-interrogatoire-genevieve-funard.pdf",
+		"srcTranscript": "proto3/assets/transcripts/3a121-interrogatoire-genevieve-funard-v2pdf",
 		"status": false
 	},
 	{
@@ -103,7 +103,7 @@
 		"img1": "proto3/assets/photos-personnages/pharmacien.jpg",
 		"img2": "assets/photos-personnages/lauren.jpg",
 		"srcAudio": "proto3/sounds/interrogatoire-pharmacien.mp3",
-		"srcTranscript": "proto3/assets/transcripts/3A227-interrogatoire-pharmacien.pdf",
+		"srcTranscript": "proto3/assets/transcripts/3a227-interrogatoire-pharmacien-v2.pdf",
 		"status": false
 	},
 	{
@@ -124,11 +124,11 @@
 		"title": "Interrogatoire d'Ellie",
 		"category": "Audio",
 		"detail": null,
-		"poster": "proto3/thumbnails/transcripts/3A340-interrogatoire-ellie-levyn-mauvais.jpg",
+		"poster": "proto3/assets/photos-personnages/ellie-levyn.jpg",
 		"img1": "proto3/assets/photos-personnages/ellie-levyn.jpg",
 		"img2": "assets/photos-personnages/lauren.jpg",
 		"srcAudio": "proto3/sounds/interrogatoire-ellie-levyn-mauvais.mp3",
-		"srcTranscript": "proto3/assets/transcripts/3A340-interrogatoire-ellie-levyn-mauvais.pdf",
+		"srcTranscript": "proto3/assets/transcripts/3a340-interrogatoire-ellie-levyn-si-on-ne-sait-pas-que-tim-a-menti-v2.pdf",
 		"status": false
 	},
 	{
@@ -137,11 +137,11 @@
 		"title": "Interrogatoire d'Ellie",
 		"category": "Audio",
 		"detail": null,
-		"poster": "proto3/thumbnails/transcripts/3A341-interrogatoire-ellie-levyn-bon.jpg",
+		"poster": "proto3/assets/photos-personnages/ellie-levyn.jpg",
 		"img1": "proto3/assets/photos-personnages/ellie-levyn.jpg",
 		"img2": "assets/photos-personnages/lauren.jpg",
 		"srcAudio": "proto3/sounds/interrogatoire-ellie-levyn-bon.mp3",
-		"srcTranscript": "proto3/assets/transcripts/3A341-interrogatoire-ellie-levyn-bon.pdf",
+		"srcTranscript": "proto3/assets/transcripts/3a341-interrogatoire-ellie-levyn-si-on-sait-que-tim-a-menti-v2.pdf",
 		"status": false
 	},
 	{
@@ -150,11 +150,11 @@
 		"title": "Interrogatoire de Hannah",
 		"category": "Audio",
 		"detail": null,
-		"poster": "proto3/thumbnails/transcripts/3A342-interrogatoire-hannah-evans.jpg",
+		"poster": "proto3/assets/photos-personnages/hannah-evans.jpg",
 		"img1": "proto3/assets/photos-personnages/hannah-evans.jpg",
 		"img2": "assets/photos-personnages/lauren.jpg",
 		"srcAudio": "proto3/sounds/interrogatoire-hannah-evans.mp3",
-		"srcTranscript": "proto3/assets/transcripts/3A342-interrogatoire-hannah-evans.pdf",
+		"srcTranscript": "proto3/assets/transcripts/3a342-interrogatoire-hannah-evans-v2.pdf",
 		"status": false
 	},
 	{
@@ -163,11 +163,11 @@
 		"title": "Interrogatoire de Sacha",
 		"category": "Audio",
 		"detail": null,
-		"poster": "proto3/thumbnails/transcripts/3A338-interrogatoire-sacha-leza.jpg",
+		"poster": "proto3/assets/photos-personnages/sacha-leza.jpg",
 		"img1": "proto3/assets/photos-personnages/sacha-leza.jpg",
 		"img2": "assets/photos-personnages/lauren.jpg",
 		"srcAudio": "proto3/sounds/interrogatoire-sacha-leza.mp3",
-		"srcTranscript": "proto3/assets/transcripts/3A338-interrogatoire-sacha-leza.pdf",
+		"srcTranscript": "proto3/assets/transcripts/3a338-interrogatoire-sacha-leza-v2.pdf",
 		"status": false
 	},
 	{
@@ -176,11 +176,11 @@
 		"title": "Interrogatoire de Henri",
 		"category": "Audio",
 		"detail": null,
-		"poster": "proto3/thumbnails/transcripts/3A336-interrogatoire-henri-leveaux.jpg",
+		"poster": "proto3/assets/photos-personnages/henri-leveaux.jpg",
 		"img1": "proto3/assets/photos-personnages/henri-leveaux.jpg",
 		"img2": "assets/photos-personnages/lauren.jpg",
-		"srcAudio": "proto3/sounds/interrogatoire-hannah-evans.mp3",
-		"srcTranscript": "proto3/assets/transcripts/3A336-interrogatoire-henri-leveaux.pdf",
+		"srcAudio": "proto3/sounds/interrogatoire-henri-leveaux.mp3",
+		"srcTranscript": "proto3/assets/transcripts/3a336-interrogatoire-henri-leveaux-v2.pdf",
 		"status": false
 	},
 	{
@@ -189,11 +189,11 @@
 		"title": "Interrogatoire de Simon Berbre",
 		"category": "Audio",
 		"detail": null,
-		"poster": "proto3/thumbnails/transcripts/3A347-interrogatoire-simon-berbre-bis.jpg",
+		"poster": "proto3/assets/photos-personnages/simon-berbre.jpg",
 		"img1": "proto3/assets/photos-personnages/simon-berbre.jpg",
 		"img2": "assets/photos-personnages/lauren.jpg",
 		"srcAudio": "proto3/sounds/interrogatoire-simon-berbre-bis.mp3",
-		"srcTranscript": "proto3/assets/transcripts/3A347-interrogatoire-simon-berbre-bis.pdf",
+		"srcTranscript": "proto3/assets/transcripts/3a347-nouvel-interrogatoire-simon-berbre-bis-v2.pdf",
 		"status": false
 	},
 	{
@@ -202,7 +202,7 @@
 		"title": "Interrogatoire de Philippe Pizzio",
 		"category": "Audio",
 		"detail": null,
-		"poster": "proto3/thumbnails/transcripts/3A346-interrogatoire-philippe-pizzio-bis.jpg",
+		"poster": "proto3/assets/photos-personnages/philippe-pizzio.jpg",
 		"img1": "proto3/assets/photos-personnages/philippe-pizzio.jpg",
 		"img2": "assets/photos-personnages/lauren.jpg",
 		"srcAudio": "proto3/sounds/interrogatoire-philippe-pizzio.mp3",
@@ -215,11 +215,11 @@
 		"title": "Interrogatoire d'Eric Lombardo",
 		"category": "Audio",
 		"detail": null,
-		"poster": "proto3/thumbnails/transcripts/3A344-interrogatoire-eric-lombardo-bis.jpg",
+		"poster": "proto3/assets/photos-personnages/eric-lombardo.jpg",
 		"img1": "proto3/assets/photos-personnages/eric-lombardo.jpg",
 		"img2": "assets/photos-personnages/lauren.jpg",
 		"srcAudio": "proto3/sounds/interrogatoire-eric-lombardo.mp3",
-		"srcTranscript": "proto3/assets/transcripts/3A344-interrogatoire-eric-lombardo-bis.pdf",
+		"srcTranscript": "proto3/assets/transcripts/3a344-nouvel-interrogatoire-eric-lombardo-bis-v2.pdf",
 		"status": false
 	},
 	{
@@ -228,11 +228,50 @@
 		"title": "Interrogatoire de Simon Berbre - confession",
 		"category": "Audio",
 		"detail": null,
-		"poster": "proto3/thumbnails/transcripts/3A350-interrogatoire-confession.jpg",
+		"poster": "proto3/assets/photos-personnages/simon-berbre.jpg",
 		"img1": "proto3/assets/photos-personnages/simon-berbre.jpg",
 		"img2": "assets/photos-personnages/lauren.jpg",
 		"srcAudio": "proto3/sounds/interrogatoire-confession.mp3",
-		"srcTranscript": "proto3/assets/transcripts/3A350-interrogatoire-confession.pdf",
+		"srcTranscript": "proto3/assets/transcripts/3a350-interrogatoire-confession-matthieu-lefort-dit-simon-berbre-v2.pdf",
+		"status": false
+	},
+	{
+		"id": "box1audio13",
+		"box": "Box 1",
+		"title": "Interrogatoire de Manon Bondy",
+		"category": "Audio",
+		"detail": null,
+		"poster": "proto3/assets/photos-personnages/manon-bondy.jpg",
+		"img1": "proto3/assets/photos-personnages/manon-bondy.jpg",
+		"img2": "assets/photos-personnages/lauren.jpg",
+		"srcAudio": "proto3/sounds/interrogatoire-manon-bondy.mp3",
+		"srcTranscript": "proto3/assets/transcripts/3a122-interrogatoire-manon-bondy.pdf",
+		"status": false
+	},
+	{
+		"id": "box1audio14",
+		"box": "Box 1",
+		"title": "Interrogatoire d'Agnès Chassé",
+		"category": "Audio",
+		"detail": null,
+		"poster": "proto3/assets/photos-personnages/agnes-chasse.jpg",
+		"img1": "proto3/assets/photos-personnages/agnes-chasse.jpg",
+		"img2": "assets/photos-personnages/lauren.jpg",
+		"srcAudio": "proto3/sounds/interrogatoire-agnes-chasse.mp3",
+		"srcTranscript": "proto3/assets/transcripts/3a123-interrogatoire-agnes-chasse.pdf",
+		"status": false
+	},
+	{
+		"id": "box1audio15",
+		"box": "Box 1",
+		"title": "Interrogatoire de Bruno Clavet",
+		"category": "Audio",
+		"detail": null,
+		"poster": "proto3/assets/photos-personnages/bruno-clavet.jpg",
+		"img1": "proto3/assets/photos-personnages/bruno-clavet.jpg",
+		"img2": "assets/photos-personnages/lauren.jpg",
+		"srcAudio": "proto3/sounds/interrogatoire-bruno-clavet.mp3",
+		"srcTranscript": "proto3/assets/transcripts/3a124-interrogatoire-bruno-clavet.pdf",
 		"status": false
 	},
 	{
