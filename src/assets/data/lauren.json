@@ -1,109 +1,82 @@
 [
-  {
-    "ask": [
-      "michellegris",
-      "legrismichel",
-      "docteurmichellegris",
-      "docteurlegrismichel"
-    ],
-    "text": [
-      "Le docteur Michel Legris est injoignable. N’oubliez pas qu’Adèle est sur le coup, elle vous donnera toutes les informations nécessaires dès qu’elle aura fini ses analyses."
-    ],
-    "srcComment": null
-  },
-  {
-    "ask": [
-      "richardgranville",
-      "palmerosophie",
-      "allavenaalexandra"
-    ],
-    "text": [
-      "Ils n’ont rien eu de plus à me dire que ce qu’ils ont déjà déclaré à la police."
-    ],
-    "srcComment": null
-  },
-  {
-    "ask": [
-      "genevievefunard",
-      "funardgenevieve"
-    ],
-    "text": [
-      "J’ai réussi à la joindre, voici une retranscription de notre échange"
-    ],
-    "id": "box1audio1",
-    "title": "Interrogatoire Geneviève Funard",
-    "img1": "proto3/assets/photos-personnages/genevieve-funard.jpg",
-    "img2": "assets/photos-personnages/lauren.jpg",
-    "srcAudio": "proto3/sounds/interrogatoire-genevieve-funard.mp3",
-    "srcTranscript": "proto3/assets/transcripts/3A116-interrogatoire-genevieve-funard.pdf",
-    "status": false
-  },
-  {
-    "ask": [
-      "pharmacie",
-      "pharmaciefontvieille",
-      "pharmaciedefontvieille"
-    ],
-    "text": [
-      "Je me suis entretenue avec lui, je vous envoie l’enregistrement !"
-    ],
-    "id": "box1audio2",
-    "title": "Interrogatoire Pharmacien",
-    "img1": "proto3/assets/photos-personnages/pharmacien.jpg",
-    "img2": "assets/photos-personnages/lauren.jpg",
-    "srcAudio": "proto3/sounds/interrogatoire-pharmacien.mp3",
-    "srcTranscript": "proto3/assets/transcripts/3A227-interrogatoire-pharmacien.pdf",
-    "status": false
-  },
-  {
-    "ask": [
-      "simon",
-      "simonberbre",
-      "berbresimon"
-    ],
-    "text": [
-      "Voici ce qu’il avait à me dire, agents..."
-    ],
-    "id": "box1audio9",
-    "title": "Interrogatoire Simon Berbre",
-    "img1": "proto3/assets/photos-personnages/simon-berbre.jpg",
-    "img2": "assets/photos-personnages/lauren.jpg",
-    "srcAudio": "proto3/sounds/interrogatoire-simon-berbre-bis.mp3",
-    "srcTranscript": "proto3/assets/transcripts/3A347-interrogatoire-simon-berbre-bis.pdf",
-    "status": false
-  },
-  {
-    "ask": [
-      "philippe",
-      "philippepizzio",
-      "pizziophilippe"
-    ],
-    "text": [
-      "Je me suis entretenue avec lui, je vous envoie l’enregistrement !"
-    ],
-    "id": "box1audio10",
-    "title": "Interrogatoire Philippe Pizzio",
-    "img1": "proto3/assets/photos-personnages/philippe-pizzio.jpg",
-    "img2": "assets/photos-personnages/lauren.jpg",
-    "srcAudio": "proto3/sounds/interrogatoire-philippe-pizzio.mp3",
-    "srcTranscript": "proto3/assets/transcripts/3A346-interrogatoire-philippe-pizzio-bis.pdf",
-    "status": false
-  },
-  {
-    "ask": [
-      "eric",
-      "ericlombardo",
-      "lombardoeric"
-    ],
-    "text": [
-      "Pas commode le directeur... Tenez, voici la retranscription !"
-    ],
-    "id": "box1audio11",
-    "title": "Interrogatoire Eric Lombardo",
-    "img1": "proto3/assets/photos-personnages/eric-lombardo.jpg",
-    "img2": "assets/photos-personnages/lauren.jpg",
-    "srcAudio": "proto3/sounds/interrogatoire-eric-lombardo.mp3",
-    "srcTranscript": "proto3/assets/transcripts/3A344-interrogatoire-eric-lombardo-bis.pdf",
-    "status": false
-  }
+	{
+		"ask": [
+			"michellegris",
+			"legrismichel",
+			"docteurmichellegris",
+			"docteurlegrismichel"
+		],
+		"text": [
+			"Le docteur Michel Legris est injoignable. N’oubliez pas qu’Adèle est sur le coup, elle vous donnera toutes les informations nécessaires dès qu’elle aura fini ses analyses."
+		],
+		"srcComment": null
+	},
+	{
+		"ask": ["richardgranville", "palmerosophie", "allavenaalexandra"],
+		"text": [
+			"Ils n’ont rien eu de plus à me dire que ce qu’ils ont déjà déclaré à la police."
+		],
+		"srcComment": null
+	},
+	{
+		"ask": ["genevievefunard", "funardgenevieve"],
+		"text": [
+			"J’ai réussi à la joindre, voici une retranscription de notre échange"
+		],
+		"id": "box1audio1",
+		"title": "Interrogatoire Geneviève Funard",
+		"img1": "proto3/assets/photos-personnages/genevieve-funard.jpg",
+		"img2": "assets/photos-personnages/lauren.jpg",
+		"srcAudio": "proto3/sounds/interrogatoire-genevieve-funard.mp3",
+		"srcTranscript": "proto3/assets/transcripts/3A116-interrogatoire-genevieve-funard.pdf",
+		"status": false
+	},
+	{
+		"ask": ["pharmacie", "pharmaciefontvieille", "pharmaciedefontvieille"],
+		"text": [
+			"Je me suis entretenue avec lui, je vous envoie l’enregistrement !"
+		],
+		"id": "box1audio2",
+		"title": "Interrogatoire Pharmacien",
+		"img1": "proto3/assets/photos-personnages/pharmacien.jpg",
+		"img2": "assets/photos-personnages/lauren.jpg",
+		"srcAudio": "proto3/sounds/interrogatoire-pharmacien.mp3",
+		"srcTranscript": "proto3/assets/transcripts/3A227-interrogatoire-pharmacien.pdf",
+		"status": false
+	},
+	{
+		"ask": ["simon", "simonberbre", "berbresimon"],
+		"text": ["Voici ce qu’il avait à me dire, agents..."],
+		"id": "box1audio9",
+		"title": "Interrogatoire Simon Berbre",
+		"img1": "proto3/assets/photos-personnages/simon-berbre.jpg",
+		"img2": "assets/photos-personnages/lauren.jpg",
+		"srcAudio": "proto3/sounds/interrogatoire-simon-berbre-bis.mp3",
+		"srcTranscript": "proto3/assets/transcripts/3A347-interrogatoire-simon-berbre-bis.pdf",
+		"status": false
+	},
+	{
+		"ask": ["philippe", "philippepizzio", "pizziophilippe"],
+		"text": [
+			"Je me suis entretenue avec lui, je vous envoie l’enregistrement !"
+		],
+		"id": "box1audio10",
+		"title": "Interrogatoire Philippe Pizzio",
+		"img1": "proto3/assets/photos-personnages/philippe-pizzio.jpg",
+		"img2": "assets/photos-personnages/lauren.jpg",
+		"srcAudio": "proto3/sounds/interrogatoire-philippe-pizzio.mp3",
+		"srcTranscript": "proto3/assets/transcripts/3A346-interrogatoire-philippe-pizzio-bis.pdf",
+		"status": false
+	},
+	{
+		"ask": ["eric", "ericlombardo", "lombardoeric"],
+		"text": ["Pas commode le directeur... Tenez, voici la retranscription !"],
+		"id": "box1audio11",
+		"title": "Interrogatoire Eric Lombardo",
+		"img1": "proto3/assets/photos-personnages/eric-lombardo.jpg",
+		"img2": "assets/photos-personnages/lauren.jpg",
+		"srcAudio": "proto3/sounds/interrogatoire-eric-lombardo.mp3",
+		"srcTranscript": "proto3/assets/transcripts/3A344-interrogatoire-eric-lombardo-bis.pdf",
+		"status": false
+	}
 ]

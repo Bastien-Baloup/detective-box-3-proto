@@ -1,0 +1,61 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "organizeImports": {
+    "enabled": true
+  },
+  "linter": {
+    "enabled": true,
+    "ignore": ["node_modules", "assets", "dist", "public", "fouilles","marzipanoInit.js"],
+    "rules": {
+      "all": true,
+      "style": {
+        "noDefaultExport": "off"
+      },
+      "nursery": {
+        "useImportRestrictions": "off"
+      },
+      "correctness": {
+        "useExhaustiveDependencies": "off"
+      },
+      "suspicious": {
+        "noArrayIndexKey": "off"
+      },
+      "a11y": {
+        "useKeyWithClickEvents": "off",
+        "useMediaCaption": "off",
+        "noSvgWithoutTitle": "off"
+      },
+      "complexity": {
+        "noExcessiveCognitiveComplexity": "off",
+        "noForEach": "off"
+      }
+    }
+  },
+  "formatter": {
+    "ignore": ["node_modules", "assets", "dist", "public", "fouilles","marzipanoInit.js"],
+    "formatWithErrors": true
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single",
+      "jsxQuoteStyle": "single",
+      "lineWidth": 120,
+      "semicolons": "asNeeded",
+      "trailingComma": "none"
+    }
+  },
+  "json": {
+    "parser": {
+      "allowComments": false,
+      "allowTrailingCommas": false
+    },
+    "formatter": {
+      "lineWidth": 120
+    }
+  },
+  "css": {
+    "formatter": {
+      "lineWidth": 120
+    }
+  }
+}

@@ -3,6 +3,6 @@ export const urlApi = {
 	// 	return import.meta.env.VITE_API + 'documents/?name=';
 	// },
 	cdn: () => {
-		return import.meta.env.VITE_CDN;
+		return import.meta.env.VITE_CDN
 	}
-};
+}

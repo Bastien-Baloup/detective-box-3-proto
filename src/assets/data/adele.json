@@ -1,27 +1,27 @@
 [
-  {
-    "ask": [
-      "henri",
-      "henrileveaux",
-      "leveauxhenri",
-      "dossiermedical",
-      "dossiermedicalhenri",
-      "dossiermedicalhenrileveaux",
-      "dossiermedicalleveauxhenri",
-      "compterenduhospitalisation",
-      "compterenduhospitalisationhenri",
-      "compterenduhospitalisationhenrileveaux",
-      "compterenduhospitalisationleveauxhenri"
-    ],
-    "text": [
-      "Sympa, les confrères monégasques ! ",
-      "Ils m’ont carrément donné le compte-rendu d’hospitalisation d’Henri.",
-      "Je vous laisse voir par vous-même"
-    ],
-    "srcComment": "",
-    "id": "box1document6",
-    "title": "Compte rendu d'hospitalisation d'Henri",
-    "src": "proto3/assets/documents/3D337-compte-rendu-hospitalisation-henri.pdf",
-    "status": false
-  }
+	{
+		"ask": [
+			"henri",
+			"henrileveaux",
+			"leveauxhenri",
+			"dossiermedical",
+			"dossiermedicalhenri",
+			"dossiermedicalhenrileveaux",
+			"dossiermedicalleveauxhenri",
+			"compterenduhospitalisation",
+			"compterenduhospitalisationhenri",
+			"compterenduhospitalisationhenrileveaux",
+			"compterenduhospitalisationleveauxhenri"
+		],
+		"text": [
+			"Sympa, les confrères monégasques ! ",
+			"Ils m’ont carrément donné le compte-rendu d’hospitalisation d’Henri.",
+			"Je vous laisse voir par vous-même"
+		],
+		"srcComment": "",
+		"id": "box1document6",
+		"title": "Compte rendu d'hospitalisation d'Henri",
+		"src": "proto3/assets/documents/3D337-compte-rendu-hospitalisation-henri.pdf",
+		"status": false
+	}
 ]
