@@ -16,7 +16,7 @@
 		"category": "Document",
 		"detail": null,
 		"poster": "proto3/thumbnails/documents/fiche-identite-sacha.jpg",
-		"src": "proto3/assets/documents/fiche-indentite-sacha.pdf",
+		"src": "proto3/assets/documents/3d117-fiche-identite-sacha-v2.pdf",
 		"status": false
 	},
 	{
@@ -55,8 +55,8 @@
 		"title": "Rapport d'autopsie de Cédric Romero",
 		"category": "Document",
 		"detail": null,
-		"poster": "proto3/thumbnails/documents/3D343-autopsie.jpg",
-		"src": "proto3/assets/documents/3D343-autopsie.pdf",
+		"poster": "proto3/thumbnails/documents/3d343-autopsie-par-adele-leinu-v2.jpg",
+		"src": "proto3/assets/documents/3d343-autopsie-par-adele-leinu-v2.pdf",
 		"status": false
 	},
 	{
@@ -65,8 +65,8 @@
 		"title": "Dossier sur Simon Berbre",
 		"category": "Document",
 		"detail": null,
-		"poster": "proto3/thumbnails/documents/3D345-dossier-simon-berbre.jpg",
-		"src": "proto3/assets/documents/3D345-dossier-simon-berbre.pdf",
+		"poster": "proto3/thumbnails/documents/3d345-dossier-simon-berbre-v2.jpg",
+		"src": "proto3/assets/documents/3d345-dossier-simon-berbre-v2.pdf",
 		"status": false
 	},
 	{
