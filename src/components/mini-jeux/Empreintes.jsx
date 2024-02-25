@@ -2,8 +2,10 @@ import { useState, useContext, useEffect } from 'react'
 import { DataContext, BoxContext } from '../../utils/context/fetchContext'
 import useApi from '../../utils/hooks/useApi.js'
 import { urlApi } from '../../utils/const/urlApi.js'
+import PropTypes from 'prop-types'
 
-const Empreintes = () => {
+
+const Empreintes = ({ toggleReset }) => {
   const { toggleDataEvent, actionToggleDataEvent, actionToggleDataHistory } = useContext(DataContext)
   const { getEventByBox, updateEvent, updateHistory } = useApi()
 
@@ -12,6 +14,11 @@ const Empreintes = () => {
 
   const [modal, setModal] = useState(true)
   const [modalAnswer, setModalAnswer] = useState(false)
+
+  useEffect(() => {
+    setModal(true)
+    setModalAnswer(false)
+  }, [toggleReset])
 
   const data = {
     title: "Liste des empreintes ",
@@ -126,6 +133,11 @@ const Empreintes = () => {
     getEvents()
   }, [toggleDataEvent])
 
+  const event121 = events && events.find((event) => event.id === 121)
+  const firstPartIsDone = event121?.status === 'done'
+  const event122 = events && events.find((event) => event.id === 122)
+  const secondPartIsDone = event122?.status === 'done'
+
   const renderText = (data) => {
     if (!data) {
       return
@@ -153,13 +165,9 @@ const Empreintes = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     let condition = null
-    const event121 = events && events.find((event) => event.id === 121)
-    const firstPartIsDone = event121?.status === 'done'
     if (!firstPartIsDone) {
       // first part
       condition = data?.answer.every((answer, id) => selectedChoices[id] === answer)
-      console.log(data.answer)
-      console.log(selectedChoices)
     } else {
       // second part
       condition = value === data?.answer2
@@ -173,9 +181,6 @@ const Empreintes = () => {
       setErrorMessage(data.errorMessage)
     }
   }
-
-  const event121 = events && events.find((event) => event.id === 121)
-  const firstPartIsDone = event121?.status === 'done'
 
 
 
@@ -199,7 +204,6 @@ const Empreintes = () => {
 
       updatedChoices[index] = slugify(value)
       setSelectedChoices(updatedChoices)
-      console.log(JSON.stringify(updatedChoices))
     }
 
     const renderEmpreintes = (empreintes, zoneId) =>
@@ -273,6 +277,12 @@ const Empreintes = () => {
   }
 
   const renderModal = () => {
+
+    if (secondPartIsDone) {
+      setModalAnswer(true)
+      setModal(false)
+    }
+
     return (
       <div className='modal-objectif__background'>
         <div className='modal-objectif__box'>
@@ -290,8 +300,11 @@ const Empreintes = () => {
   const handleModalAnswer = async () => {
     setModalAnswer(false)
 
-    const event121 = events && events.find((event) => event.id === 121)
-    const firstPartIsDone = event121?.status === 'done'
+
+    if (secondPartIsDone) {
+      return
+    }
+
     if (!firstPartIsDone) {
       // first part
       await updateEvent(token, 1, 121, 'done')
@@ -300,12 +313,19 @@ const Empreintes = () => {
       actionToggleDataHistory()
       setModal(true)
       return
+    } else {
+      // second part
+      await updateEvent(token, 1, 122, 'done')
+      actionToggleDataEvent()
+      await updateHistory(token, currentBox, 'box1document2')
+      actionToggleDataHistory()
     }
+
+
   }
 
   const renderModalAnswer = () => {
-    const event121 = events && events.find((event) => event.id === 121)
-    const firstPartIsDone = event121?.status === 'done'
+
     if (firstPartIsDone) {
       // second part
       return (
@@ -344,6 +364,10 @@ const Empreintes = () => {
       {modalAnswer && renderModalAnswer()}
     </>
   )
+}
+
+Empreintes.propTypes = {
+  toggleReset: PropTypes.bool
 }
 
 export default Empreintes

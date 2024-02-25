@@ -43,6 +43,11 @@ const Adele = ({ closeAgentPage }) => {
 	const [modalMedia, setModalMedia] = useState(false)
 	const [answer, setAnswer] = useState('')
 	const [empreintes, setEmpreintes] = useState(false)
+	const [toggleReset, setToggleReset] = useState(false)
+
+	const resetEmpreintes = () => {
+		setToggleReset(!toggleReset)
+	}
 
 	// EXPLICATION : Fonction pour slugifier l'input des joueurs
 	const slugify = (input) => {
@@ -91,6 +96,7 @@ const Adele = ({ closeAgentPage }) => {
 	const openEmpreinte = () => {
 		setModal(false)
 		setEmpreintes(true)
+		resetEmpreintes()
 	}
 
 	const renderButton = () => {
@@ -194,7 +200,7 @@ const Adele = ({ closeAgentPage }) => {
 		<>
 			{modal && renderModal()}
 			{modalMedia && renderModalMedia()}
-			{empreintes && <Empreintes />}
+			{empreintes && <Empreintes toggleReset={toggleReset} />}
 			<audio autoPlay>
 				<source src={urlApi.cdn() + catchphrase[randomNumber]} type='audio/mpeg' />
 				Votre navigateur ne prend pas en charge ce format

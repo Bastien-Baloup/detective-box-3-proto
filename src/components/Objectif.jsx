@@ -520,8 +520,6 @@ const Objectif = ({ data }) => {
 				setPopupDebutHacking(true)
 			}
 			actionToggleDataEvent()
-			await updateHistory(token, currentBox, 'box1document2')
-			actionToggleDataHistory()
 			setSousObjectif(null)
 			return
 		}
