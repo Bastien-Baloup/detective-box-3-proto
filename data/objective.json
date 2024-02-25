@@ -9,10 +9,7 @@
 				"title": "Qui a volé la clé de la Cheffe de table ?",
 				"label": "Réponse",
 				"answer": ["henrileveaux"],
-				"answertext": [
-					"Bien joué agents, vous avez réussi à retrouver le pickpoket !",
-					"C'était donc Henri Leveaux."
-				],
+				"answertext": ["Bien joué agents, vous avez réussi à retrouver le pickpoket !", "C'était donc Henri Leveaux."],
 				"answersrc": null,
 				"errorMessage": "Je ne pense pas que ce soit cela.",
 				"status": "open"

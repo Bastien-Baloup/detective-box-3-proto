@@ -1,11 +1,6 @@
 [
 	{
-		"ask": [
-			"michellegris",
-			"legrismichel",
-			"docteurmichellegris",
-			"docteurlegrismichel"
-		],
+		"ask": ["michellegris", "legrismichel", "docteurmichellegris", "docteurlegrismichel"],
 		"text": [
 			"Le docteur Michel Legris est injoignable. N’oubliez pas qu’Adèle est sur le coup, elle vous donnera toutes les informations nécessaires dès qu’elle aura fini ses analyses."
 		],
@@ -13,16 +8,12 @@
 	},
 	{
 		"ask": ["richardgranville", "palmerosophie", "allavenaalexandra"],
-		"text": [
-			"Ils n’ont rien eu de plus à me dire que ce qu’ils ont déjà déclaré à la police."
-		],
+		"text": ["Ils n’ont rien eu de plus à me dire que ce qu’ils ont déjà déclaré à la police."],
 		"srcComment": null
 	},
 	{
 		"ask": ["genevievefunard", "funardgenevieve"],
-		"text": [
-			"J’ai réussi à la joindre, voici une retranscription de notre échange"
-		],
+		"text": ["J’ai réussi à la joindre, voici une retranscription de notre échange"],
 		"id": "box1audio1",
 		"title": "Interrogatoire de Geneviève Funard",
 		"img1": "proto3/assets/photos-personnages/genevieve-funard.jpg",
@@ -33,9 +24,7 @@
 	},
 	{
 		"ask": ["pharmacie", "pharmaciefontvieille", "pharmaciedefontvieille"],
-		"text": [
-			"Je me suis entretenue avec lui, je vous envoie l’enregistrement !"
-		],
+		"text": ["Je me suis entretenue avec lui, je vous envoie l’enregistrement !"],
 		"id": "box1audio2",
 		"title": "Interrogatoire du Pharmacien",
 		"img1": "proto3/assets/photos-personnages/pharmacien.jpg",
@@ -57,9 +46,7 @@
 	},
 	{
 		"ask": ["philippe", "philippepizzio", "pizziophilippe"],
-		"text": [
-			"Je me suis entretenue avec lui, je vous envoie l’enregistrement !"
-		],
+		"text": ["Je me suis entretenue avec lui, je vous envoie l’enregistrement !"],
 		"id": "box1audio10",
 		"title": "Interrogatoire de Philippe Pizzio",
 		"img1": "proto3/assets/photos-personnages/philippe-pizzio.jpg",

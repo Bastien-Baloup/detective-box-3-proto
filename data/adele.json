@@ -25,18 +25,108 @@
 		"status": false
 	},
 	{
-		"ask": [
-			"analyseempreinte",
-			"analyseempreintes",
-			"analysesempreinte",
-			"analysesempreintes",
-			"empreintes"
-		],
+		"ask": ["analyseempreinte", "analyseempreintes", "analysesempreinte", "analysesempreintes", "empreintes"],
+		"objectifs": [1],
 		"text": [
 			"J'ai pu récupérer les empreintes relevées par le police de Monaco dans les espaces réservés aux employés. On devrait commencer par voir si un intrus s'y trouvait le soir du casse.",
 			"Bon par contre, je suis un peu \"busy\" par l'autopsie de notre cher Cédric. Est-ce que vous pourriez me donner un coup de main et vous occuper de faire la correspondance ?"
 		],
 		"id": "empreintes",
+		"status": false
+	},
+	{
+		"ask": [
+			"griffures",
+			"analysegriffures",
+			"analysesgriffures",
+			"griffure",
+			"analysegriffure",
+			"analysesgriffure",
+			"autopsie",
+			"autopsiecedric",
+			"autopsiecedricromero",
+			"griffurescedric",
+			"analysegriffurescedric",
+			"analysesgriffurescedric",
+			"griffurebras",
+			"analysegriffurebras",
+			"analysesgriffurebras",
+			"griffuresbras",
+			"analysegriffuresbras",
+			"analysesgriffuresbras"
+		],
+		"objectifs": [1, 2],
+		"text": [
+			"La nature, la profondeur et l'angle des griffures sur le bras de Cédric, indiquent qu'il n'a pas été pris par surprise ou attaqué par derrière.",
+			"On peut donc en déduire que l'altercation a éclatée dans un second temps et que la victime connaissait surement le meurtrier.",
+			"Je reviens vers vous dès que j'ai pu en terminer mes analyses."
+		],
+		"status": false
+	},
+	{
+		"ask": ["tatouage", "tatouagecedric", "tatouagecou", "tatouagecoucedric"],
+		"objectifs": [1, 2],
+		"text": [
+			"Je n'ai pour l'instant pas plus d'infos que ce qui est noté dans le rapport de police. Le coup de couteau a été porté dans le cou, en plein sur le tatouage.",
+			"Est-ce que c'était voulu ? Difficile à dire à ce stade mais je vais creuser."
+		],
+		"status": false
+	},
+	{
+		"ask": ["tatouage", "tatouagecedric", "tatouagecou", "tatouagecoucedric"],
+		"objectifs": [3],
+		"text": [
+			"Je n'ai rien trouvé de plus que ce qui est mentionné sur le rapport de police.",
+			"Le tatouage était trop emdommagé par le coup de couteau pour que je puisse l'identifier.",
+			"Même une recherche Google Lens n'a rien donné. C'est pourtant sacrément efficace comme outil, ce truc-là !"
+		],
+		"status": false
+	},
+	{
+		"ask": ["rapportpolice", "rapportpolicepreliminaire", "rapportdepolice", "rapportdepolicepreliminaire"],
+		"objectifs": [1, 2],
+		"text": [
+			"Je n'ai rien de plus à partager à ce stade sur le rapport de police préliminaire.",
+			"Ah si, la nature, la profondeur et l'angle des griffures sur le bras de Cédric, indiquent qu'il n'a pas été pris par surprise ou attaqué par derrière.",
+			"On peut donc en déduire que l'altercation a éclatée dans un second temps et que la victime connaissait surement le meurtrier.",
+			"Je reviens vers vous dès que j'ai pu en terminer mes analyses."
+		],
+		"status": false
+	},
+	{
+		"ask": ["billetsdebanque", "billetdebanque", "billetscoffre", "billetcoffre", "billets", "billet"],
+		"objectifs": [1, 2],
+		"text": [
+			"Je n'ai trouvé aucune empreinte ou tache de sang sur ces billets",
+			"Enfin… à part l'hémoglobine de la victime, mais vous deviez vous en douter.",
+			"Je continue mes analyses et reviens vers vous si je trouve du nouveau."
+		],
+		"status": false
+	},
+	{
+		"ask": ["masque", "masquedeloup"],
+		"text": [
+			"Le masque de loup que vous avez reçu ne comportait aucune empreinte.",
+			"Pas très étonnant, ils devaient tous porter des gants."
+		],
+		"status": false
+	},
+	{
+		"ask": ["jeton", "jetonpoker", "jetondepoker"],
+		"text": [
+			"J'ai trouvé plusieurs empreintes sur le jeton mais aucune qui ne matche avec les données de la police ou un membre du personnel du Casino."
+		],
+		"status": false
+	},
+	{
+		"ask": ["tatouagesimon", "tatouagecousimon"],
+		"objectifs": [3],
+		"text": [
+			"Vous pouvez utiliser Google Lens. C'est magique ce truc-là et hyper utile pour une fan de tatouage comme moi.",
+			"En tout cas, quand je le scanne, je tombe sur la page d'un tatoueur. Tenez, voici le lien : https://www.facebook.com/profile.php?id=61555057479231",
+			"Ca devrait vous intéresser."
+		],
+		"id": "tatouageSimon",
 		"status": false
 	}
 ]

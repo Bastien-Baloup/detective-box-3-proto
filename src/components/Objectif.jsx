@@ -27,7 +27,6 @@ const Objectif = ({ data }) => {
 	const [errorMessage, setErrorMessage] = useState(false)
 	const [value, setValue] = useState('')
 	const [sousObjectif, setSousObjectif] = useState(null)
-	const [selectedChoices, setSelectedChoices] = useState([])
 	const [interrogatoireTim, setInterrogatoireTim] = useState(false)
 	const [pharmacie, setPharmacie] = useState(false)
 

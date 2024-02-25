@@ -16,17 +16,14 @@ import Empreintes from '../../../components/mini-jeux/Empreintes.jsx'
 const Adele = ({ closeAgentPage }) => {
 	const { currentBox } = useContext(BoxContext)
 	const token = localStorage.getItem('token')
-	const {
-		actionToggleDataAdele,
-		toggleDataAdele
-		// actionToggleDataHistory
-	} = useContext(DataContext)
-	const { updateCharactersById, updateHistory, getCharactersById } = useApi()
+	const { actionToggleDataAdele, toggleDataAdele, toggleDataEvent, actionToggleDataEvent } = useContext(DataContext)
+	const { updateCharactersById, updateHistory, getCharactersById, getEventByBox, updateEvent, getObjectivesByBox } =
+		useApi()
 	const { dispatch } = useEvent()
 	const { closeCompte } = useContext(CompteContext)
 
 	//EXPLICATION : Adele est le personnage "1"
-
+	const [dataAdele, setDataAdele] = useState(null)
 	useEffect(() => {
 		const fetchData = async () => {
 			const result = await getCharactersById(token, 1)
@@ -35,7 +32,20 @@ const Adele = ({ closeAgentPage }) => {
 		fetchData()
 	}, [toggleDataAdele])
 
-	const [dataAdele, setDataAdele] = useState(null)
+	const [dataObjectif, setDataObjectif] = useState(null)
+	useEffect(() => {
+		const fetchData = async () => {
+			const result = await getObjectivesByBox(token, currentBox)
+			setDataObjectif(result.data)
+		}
+		fetchData()
+	}, [toggleDataObjectif, currentBox, token])
+	let maxDoneObjectif = 0
+	for (const objectif of dataObjectif) {
+		if (objectif?.status === 'done' && objectif.id > maxDoneObjectif) {
+			maxDoneObjectif = objectif.id
+		}
+	}
 
 	const [value, setValue] = useState('')
 	const [errorMessage, setErrorMessage] = useState('')
@@ -44,6 +54,17 @@ const Adele = ({ closeAgentPage }) => {
 	const [answer, setAnswer] = useState('')
 	const [empreintes, setEmpreintes] = useState(false)
 	const [toggleReset, setToggleReset] = useState(false)
+	const [events, setEvents] = useState(null)
+
+	useEffect(() => {
+		const getEvents = async () => {
+			const events_ = await getEventByBox(token, currentBox)
+			setEvents(events_.data)
+		}
+		getEvents()
+	}, [toggleDataEvent])
+
+	const event301 = events && events.find((event) => event.id === 301)
 
 	const resetEmpreintes = () => {
 		setToggleReset(!toggleReset)
@@ -67,8 +88,18 @@ const Adele = ({ closeAgentPage }) => {
 		e.preventDefault()
 
 		const thisBox = dataAdele.find((element) => element.box_id === currentBox).data
-		const answerInThisBox = thisBox.find((element) => element.ask.includes(slugify(value)))
+		const answerInThisBox = thisBox.find(
+			(element) =>
+				element.ask.includes(slugify(value)) && (!element?.objectifs || element.objectifs.includes(maxDoneObjectif))
+		)
 		const previouslyAnsweredInThisBox = answerInThisBox?.status
+
+		if (answerInThisBox?.id === 'tatouageSimon' && event301?.status === 'done') {
+			setValue('')
+			setErrorMessage("Je n'ai pas pu analyser ce que vous m'avez demandé.")
+			return
+		}
+
 		if (value === '') {
 			setErrorMessage('Je dois bien analyser quelque chose !')
 			setValue('')
@@ -108,9 +139,16 @@ const Adele = ({ closeAgentPage }) => {
 			)
 		}
 		if (answer?.id) {
+			if (answer.id !== 'tatouageSimon') {
+				return (
+					<button type='button' className='modal-objectif__button button--red' onClick={openMedia}>
+						Voir l&apos;élément
+					</button>
+				)
+			}
 			return (
-				<button type='button' className='modal-objectif__button button--red' onClick={openMedia}>
-					Voir l&apos;élément
+				<button type='button' className='modal-objectif__button button--red' onClick={validateModal}>
+					Fermer
 				</button>
 			)
 		}
@@ -154,6 +192,10 @@ const Adele = ({ closeAgentPage }) => {
 
 	const validateModal = () => {
 		setModal(false)
+		if (answer?.id === 'tatouageSimon') {
+			updateEvent(token, currentBox, 301, 'done')
+			actionToggleDataEvent()
+		}
 	}
 
 	const openMedia = () => {

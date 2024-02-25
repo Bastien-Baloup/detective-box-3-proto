@@ -39,9 +39,7 @@
 			},
 			{
 				"id": 6,
-				"text": [
-					"Manipulez bien le jeton de poker... Vous ne sentez pas comme des reliefs ?"
-				],
+				"text": ["Manipulez bien le jeton de poker... Vous ne sentez pas comme des reliefs ?"],
 				"image": null
 			},
 			{
@@ -60,16 +58,12 @@
 			},
 			{
 				"id": 9,
-				"text": [
-					"Le message codé indique : “LA CHANCE N’EST PAS DUE AU HASARD, HENRI LEVEAUX”."
-				],
+				"text": ["Le message codé indique : “LA CHANCE N’EST PAS DUE AU HASARD, HENRI LEVEAUX”."],
 				"image": null
 			},
 			{
 				"id": 10,
-				"text": [
-					"Le tricheur est Henri Leveaux, c’est sûrement lui qui a volé la clé de la cheffe de table."
-				],
+				"text": ["Le tricheur est Henri Leveaux, c’est sûrement lui qui a volé la clé de la cheffe de table."],
 				"image": null
 			}
 		],
@@ -188,9 +182,7 @@
 			},
 			{
 				"id": 3,
-				"text": [
-					"Avez-vous essayé de suivre le parcours des voleurs sur une carte ? (Google map, par exemple)."
-				],
+				"text": ["Avez-vous essayé de suivre le parcours des voleurs sur une carte ? (Google map, par exemple)."],
 				"image": null
 			},
 			{
@@ -263,9 +255,7 @@
 			},
 			{
 				"id": 3,
-				"text": [
-					"Avez-vous essayé de suivre le parcours des voleurs sur une carte ? (Google map, par exemple)."
-				],
+				"text": ["Avez-vous essayé de suivre le parcours des voleurs sur une carte ? (Google map, par exemple)."],
 				"image": null
 			},
 			{
@@ -298,9 +288,7 @@
 		"hints": [
 			{
 				"id": 1,
-				"text": [
-					"Avez-vous essayé d’actionner l’interrupteur dans la planque ?"
-				],
+				"text": ["Avez-vous essayé d’actionner l’interrupteur dans la planque ?"],
 				"image": null
 			},
 			{
@@ -312,9 +300,7 @@
 			},
 			{
 				"id": 3,
-				"text": [
-					"Essayez de superposer les différents schémas qui apparaissent... Ça pourrait révéler un code."
-				],
+				"text": ["Essayez de superposer les différents schémas qui apparaissent... Ça pourrait révéler un code."],
 				"image": null
 			},
 			{

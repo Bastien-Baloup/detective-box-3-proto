@@ -1,11 +1,6 @@
 [
 	{
-		"ask": [
-			"telephonevictime",
-			"telephonecedric",
-			"telephonedelavictime",
-			"telephonedecedric"
-		],
+		"ask": ["telephonevictime", "telephonecedric", "telephonedelavictime", "telephonedecedric"],
 		"text1": [
 			"Le téléphone est toujours entre les mains de la police et ils n’ont pas l’air de vouloir me laisser l’analyser pour le moment... Je vous tiens au jus dès que j’y aurai accès. Continuez votre enquête en attendant."
 		],
@@ -23,26 +18,20 @@
 		"status": false
 	},
 	{
-		"ask": ["video", "surveillance"],
+		"ask": ["video", "surveillance", "videosurveillance", "camera", "cameras", "cameradesecurite", "camerasdesecurite"],
 		"text": ["D'accord, mais vous voulez voir lesquelles ?"],
 		"srcComment": null,
 		"status": false
 	},
 	{
 		"ask": [
-			"videocouloirs",
-			"videoscouloirs",
-			"videosdescouloirs",
-			"surveillancecouloirs",
-			"surveillancedescouloirs",
-			"videosurveillancecouloirs",
-			"videosurveillancedescouloirs",
-			"videossurveillancecouloirs",
-			"videossurveillancedescouloirs",
-			"videodesurveillancecouloirs",
-			"videodesurveillancedescouloirs",
-			"videosdesurveillancecouloirs",
-			"videosdesurveillancedescouloirs"
+			"cameradesecuritecouloirsecurise",
+			"camerasdesecuritecouloirsecurise",
+			"videocouloirsecurise",
+			"videoscouloirsecurise",
+			"cameracouloirsecurise",
+			"camerascouloirsecurise",
+			"videosurveillancecouloirsecurise"
 		],
 		"text1": [
 			"Franchement, avant que les caméras se fassent hacker, il n’y a rien d’intéressant, mon père est dans son bureau, Simon dans le sien... Et après... Bah après c’est une boucle donc on ne voit rien et malheureusement, je doute qu’on puisse récupérer les données. Le hacker qui a fait ça est sacrément doué..."
@@ -97,6 +86,18 @@
 			"suveillancesalledejeuducasino",
 			"suveillancedelasalledejeucasino",
 			"suveillancedelasalledejeuducasino",
+			"camerasalledejeu",
+			"cameradelasalledejeu",
+			"camerasalledejeucasino",
+			"camerasalledejeuducasino",
+			"cameradelasalledejeucasino",
+			"cameradelasalledejeuducasino",
+			"camerassalledejeu",
+			"camerasdelasalledejeu",
+			"camerassalledejeucasino",
+			"camerassalledejeuducasino",
+			"camerasdelasalledejeucasino",
+			"camerasdelasalledejeuducasino",
 			"camerassuveillancesalledejeu",
 			"camerassuveillancedelasalledejeu",
 			"camerasdesuveillancesalledejeu",
@@ -138,9 +139,7 @@
 			"camerasdesuveillancedelasalledejeuxcasino",
 			"camerasdesuveillancedelasalledejeuxducasino"
 		],
-		"text": [
-			"Voilà ce que j’ai pu trouver. Je vous ai rassemblé les moments intéressants de la soirée."
-		],
+		"text": ["Voilà ce que j’ai pu trouver. Je vous ai rassemblé les moments intéressants de la soirée."],
 		"srcComment": null,
 		"id": "box1video2",
 		"title": "Vidéo surveillance de la salle de jeux",
@@ -168,6 +167,17 @@
 		"id": "box1document8",
 		"title": "Dossier sur Simon Berbre",
 		"src": "proto3/assets/documents/3D345-dossier-simon-berbre.pdf",
+		"status": false
+	},
+	{
+		"ask": ["tatouagesimon", "tatouagecousimon"],
+		"objectifs": [3],
+		"text": [
+			"Je ne suis pas un grand connaisseur de tatouage mais en faisant quelques recherches par correspondance, je trouve la page d'un salon de tatouage.",
+			"Voici pour vous y rendre : https://www.facebook.com/profile.php?id=61555057479231",
+			"Ca nous en dira peut-être plus sur son passé..."
+		],
+		"id": "tatouageSimon",
 		"status": false
 	}
 ]

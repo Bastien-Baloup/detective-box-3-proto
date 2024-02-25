@@ -20,14 +20,16 @@ const Tim = ({ closeAgentPage }) => {
 		actionToggleDataTim,
 		actionToggleDataHistory,
 		toggleDataTim,
-		toggleDataObjectif
-		// actionToggleDataHistory
+		toggleDataObjectif,
+		toggleDataEvent,
+		actionToggleDataEvent
 	} = useContext(DataContext)
 	const { pauseNappe } = useContext(AmbianceContext)
-	const { updateCharactersById, updateHistory, getCharactersById, getObjectivesByBox } = useApi()
+	const { updateCharactersById, updateHistory, getCharactersById, getObjectivesByBox, updateEvent } = useApi()
 	const { closeCompte } = useContext(CompteContext)
 
 	//EXPLICATION : Tim est le personnage "5"
+	const [dataTim, setDataTim] = useState(null)
 	useMemo(() => {
 		const fetchData = async () => {
 			const result = await getCharactersById(token, 5)
@@ -38,17 +40,35 @@ const Tim = ({ closeAgentPage }) => {
 
 	// EXPLICATION : UseEffect pour récupérer l'état des objectifs
 	const [objectif2, setObjectif2] = useState('')
+	const [maxDoneObjectif, setMaxDoneObjectif] = useState(0)
 	useMemo(() => {
 		const getObjectives = async () => {
-			//TODO Récupération data des objectifs, exemple:
 			const objectifs = await getObjectivesByBox(token, currentBox)
 			const objectif2Data = objectifs.data.find((event) => event.id === 2)
 			setObjectif2(objectif2Data.status)
+
+			let maxDoneObjectif_ = 0
+			for (const objectif of objectifs.data) {
+				if (objectif?.status === 'done' && objectif.id > maxDoneObjectif_) {
+					maxDoneObjectif_ = objectif.id
+				}
+			}
+			setMaxDoneObjectif(maxDoneObjectif_)
 		}
 		getObjectives()
 	}, [toggleDataObjectif])
 
-	const [dataTim, setDataTim] = useState(null)
+	const [events, setEvents] = useState(null)
+
+	useEffect(() => {
+		const getEvents = async () => {
+			const events_ = await getEventByBox(token, currentBox)
+			setEvents(events_.data)
+		}
+		getEvents()
+	}, [toggleDataEvent])
+
+	const event301 = events && events.find((event) => event.id === 301)
 
 	const [value, setValue] = useState('')
 	const [errorMessage, setErrorMessage] = useState('')
@@ -73,20 +93,30 @@ const Tim = ({ closeAgentPage }) => {
 		e.preventDefault()
 
 		const thisBox = dataTim.find((element) => element.box_id === currentBox).data
-		const answerInThisBox = thisBox.find((element) => element.ask.includes(slugify(value)))
+		const answerInThisBox = thisBox.find(
+			(element) =>
+				element.ask.includes(slugify(value)) && (!element?.objectifs || element.objectifs.includes(maxDoneObjectif))
+		)
 		const previouslyAnsweredInThisBox = answerInThisBox?.status
+
+		if (answerInThisBox?.id === 'tatouageSimon' && event301?.status === 'done') {
+			setValue('')
+			setErrorMessage("Nan, j'ai rien sur ce que vous me demandez.")
+			return
+		}
+
 		if (value === '') {
 			setErrorMessage("Vous n'avez rien à me faire analyser ? Je retourne gamer alors.")
 			setValue('')
 			return
 		}
-		if (previouslyAnsweredInThisBox) {
-			setValue('')
-			setErrorMessage(
-				"Vous m'avez dejà demandé d'analyser cet élément. Il est désormais disponible dans votre Historique.”"
-			)
-			return
-		}
+		// if (previouslyAnsweredInThisBox) {
+		// 	setValue('')
+		// 	setErrorMessage(
+		// 		"Vous m'avez dejà demandé d'analyser cet élément. Il est désormais disponible dans votre Historique.”"
+		// 	)
+		// 	return
+		// }
 		if (answerInThisBox) {
 			setAnswer(answerInThisBox)
 			setModal(true)
@@ -96,6 +126,28 @@ const Tim = ({ closeAgentPage }) => {
 		}
 		setValue('')
 		setErrorMessage("Nan, j'ai rien sur ce que vous me demandez.")
+	}
+
+	const renderButton = () => {
+		if (answer?.id) {
+			if ((answer.id !== 'box1audio3' || objectif2 !== 'closed') && answer.id !== 'tatouageSimon') {
+				return (
+					<button type='button' className='modal-objectif__button button--red' onClick={openMedia}>
+						Voir l&apos;élément
+					</button>
+				)
+			}
+			return (
+				<button type='button' className='modal-objectif__button button--red' onClick={validateModal}>
+					Fermer
+				</button>
+			)
+		}
+		return (
+			<button type='button' className='modal-objectif__button button--red' onClick={validateModal}>
+				Nouvelle requête
+			</button>
+		)
 	}
 
 	const renderModal = () => {
@@ -171,6 +223,10 @@ const Tim = ({ closeAgentPage }) => {
 
 	const validateModal = async () => {
 		setModal(false)
+		if (answer?.id === 'tatouageSimon') {
+			updateEvent(token, currentBox, 301, 'done')
+			actionToggleDataEvent()
+		}
 	}
 
 	const openMedia = () => {
