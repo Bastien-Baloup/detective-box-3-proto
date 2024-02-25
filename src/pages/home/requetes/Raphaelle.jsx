@@ -149,7 +149,9 @@ const Raphaelle = ({ closeAgentPage }) => {
 							value={value}
 							setValue={setValue}
 						/>
-						<button type='submit' className='modal-objectif__button button--red'>Valider</button>
+						<button type='submit' className='modal-objectif__button button--red'>
+							Valider
+						</button>
 					</form>
 				</div>
 			</div>
@@ -193,7 +195,9 @@ const Raphaelle = ({ closeAgentPage }) => {
 							value={value}
 							setValue={setValue}
 						/>
-						<button type='submit' className='modal-objectif__button button--red'>Valider</button>
+						<button type='submit' className='modal-objectif__button button--red'>
+							Valider
+						</button>
 					</form>
 				</div>
 			</div>
@@ -455,7 +459,11 @@ const Raphaelle = ({ closeAgentPage }) => {
 				<div className='modal-objectif__box'>
 					<div>{renderText(answer.text)}</div>
 					{answer.id ? (
-						<button type='button' className='modal-objectif__button button--red' onClick={() => openLieu(answer.id, answer.ask)}>
+						<button
+							type='button'
+							className='modal-objectif__button button--red'
+							onClick={() => openLieu(answer.id, answer.ask)}
+						>
 							Explorer le lieu
 						</button>
 					) : (
@@ -525,11 +533,7 @@ const Raphaelle = ({ closeAgentPage }) => {
 			</audio>
 			<div className='agent'>
 				<div className='agent__portrait--container'>
-					<img
-						className='agent__portrait'
-						src={`${urlApi.cdn()}assets/photos-personnages/raphaelle.jpg`}
-						alt=''
-					/>
+					<img className='agent__portrait' src={`${urlApi.cdn()}assets/photos-personnages/raphaelle.jpg`} alt='' />
 				</div>
 				<div className='agent__main'>
 					<div className='agent__title--container'>
@@ -565,7 +569,9 @@ const Raphaelle = ({ closeAgentPage }) => {
 								setValue={setValueLongitude}
 							/>
 						</div>
-						<button type='submit' className='agent__form__button button--red'>Valider</button>
+						<button type='submit' className='agent__form__button button--red'>
+							Valider
+						</button>
 					</form>
 				</div>
 				<div className='agent__closeButton--container' onClick={closeAgentPage}>

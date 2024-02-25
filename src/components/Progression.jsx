@@ -67,19 +67,31 @@ const Progression = () => {
 					<img className='progressBar__box__icon--small' src={currentStep < 1 ? RoundRed : RoundWhite} alt='' />
 				</div>
 				<div className='progressBar__box__icon--small--container'>
-					<img className='progressBar__box__icon--small' src={currentStep < 2 ? LineMediumRed : LineMediumWhite} alt='' />
+					<img
+						className='progressBar__box__icon--small'
+						src={currentStep < 2 ? LineMediumRed : LineMediumWhite}
+						alt=''
+					/>
 				</div>
 				<div className='progressBar__box__icon--small--container'>
 					<img className='progressBar__box__icon--small' src={currentStep < 2 ? RoundRed : RoundWhite} alt='' />
 				</div>
 				<div className='progressBar__box__icon--small--container'>
-					<img className='progressBar__box__icon--small' src={currentStep < 3 ? LineMediumRed : LineMediumWhite} alt='' />
+					<img
+						className='progressBar__box__icon--small'
+						src={currentStep < 3 ? LineMediumRed : LineMediumWhite}
+						alt=''
+					/>
 				</div>
 				<div className='progressBar__box__icon--small--container'>
 					<img className='progressBar__box__icon--small' src={currentStep < 3 ? RoundRed : RoundWhite} alt='' />
 				</div>
 				<div className='progressBar__box__icon--small--container'>
-					<img className='progressBar__box__icon--small' src={currentStep < 4 ? LineMediumRed : LineMediumWhite} alt='' />
+					<img
+						className='progressBar__box__icon--small'
+						src={currentStep < 4 ? LineMediumRed : LineMediumWhite}
+						alt=''
+					/>
 				</div>
 				<div className='progressBar__box__icon--small--container'>
 					<img className='progressBar__box__icon--small' src={currentStep < 4 ? RoundRed : RoundWhite} alt='' />

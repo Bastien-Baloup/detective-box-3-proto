@@ -270,7 +270,9 @@ const Tim = ({ closeAgentPage }) => {
 							value={value}
 							setValue={setValue}
 						/>
-						<button type='submit' className='agent__form__button button--red'>Valider</button>
+						<button type='submit' className='agent__form__button button--red'>
+							Valider
+						</button>
 					</form>
 				</div>
 				<div className='agent__closeButton--container' onClick={closeAgentPage}>

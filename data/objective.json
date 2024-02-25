@@ -21,112 +21,9 @@
 				"id": 12,
 				"title": "À qui appartiennent les empreintes retrouvées dans le Casino ?",
 				"label": "",
-				"choices": [
-					"Inconnu",
-					"Alexandra Allavena",
-					"Eric Lombardo",
-					"Philippe Pizzio",
-					"Richard Granville",
-					"Simon Berbre",
-					"Sophie Palmero",
-					"Tim Lombardo"
-				],
-				"zones": [
-					{
-						"nom": "Zone du banquier",
-						"empreintes": [
-							"proto3/assets/empreintes/richard-granville.jpg",
-							"proto3/assets/empreintes/philippe-pizzio.jpg",
-							"proto3/assets/empreintes/inconnu-sacha.jpg"
-						]
-					},
-					{
-						"nom": "Accès à la zone sécurisée",
-						"empreintes": [
-							"proto3/assets/empreintes/alexandra-allavena.jpg",
-							"proto3/assets/empreintes/eric-lombardo.jpg",
-							"proto3/assets/empreintes/philippe-pizzio.jpg",
-							"proto3/assets/empreintes/sophie-palmero.jpg"
-						]
-					},
-					{
-						"nom": "Local du STAFF et Réserve",
-						"empreintes": [
-							"proto3/assets/empreintes/philippe-pizzio.jpg",
-							"proto3/assets/empreintes/sophie-palmero.jpg",
-							"proto3/assets/empreintes/simon-berbre.jpg",
-							"proto3/assets/empreintes/alexandra-allavena.jpg"
-						]
-					},
-					{
-						"nom": "Maintenance et Surveillance",
-						"empreintes": [
-							"proto3/assets/empreintes/simon-berbre.jpg",
-							"proto3/assets/empreintes/sophie-palmero.jpg",
-							"proto3/assets/empreintes/tim-lombardo.jpg"
-						]
-					},
-					{
-						"nom": "Zone sécurisée de transfert de fonds",
-						"empreintes": [
-							"proto3/assets/empreintes/eric-lombardo.jpg",
-							"proto3/assets/empreintes/inconnu-sacha.jpg",
-							"proto3/assets/empreintes/simon-berbre.jpg",
-							"proto3/assets/empreintes/philippe-pizzio.jpg"
-						]
-					},
-					{
-						"nom": "Bureau du Directeur et Coffre",
-						"empreintes": [
-							"proto3/assets/empreintes/philippe-pizzio.jpg",
-							"proto3/assets/empreintes/sophie-palmero.jpg",
-							"proto3/assets/empreintes/tim-lombardo.jpg",
-							"proto3/assets/empreintes/eric-lombardo.jpg",
-							"proto3/assets/empreintes/inconnu-sacha.jpg"
-						]
-					}
-				],
-				"answer": [
-					"richardgranville",
-					"philippepizzio",
-					"inconnu",
-					"alexandraallavena",
-					"ericlombardo",
-					"philippepizzio",
-					"sophiepalmero",
-					"philippepizzio",
-					"sophiepalmero",
-					"simonberbre",
-					"alexandraallavena",
-					"simonberbre",
-					"sophiepalmero",
-					"timlombardo",
-					"ericlombardo",
-					"inconnu",
-					"simonberbre",
-					"philippepizzio",
-					"philippepizzio",
-					"sophiepalmero",
-					"timlombardo",
-					"ericlombardo",
-					"inconnu"
-				],
-				"answertext": [
-					"Bien vu, Il semblerait que nous ayons une empreinte intruse, je lance de ce pas une identification !",
-					"Vous pourrez retrouver la liste de relevés d'empreinte dans votre historique."
-				],
-				"answersrc": null,
+				"answer": ["sachaleza", "lezasacha"],
 				"errorMessage": "Je ne pense pas que ce soit cela.",
-				"detail2": [
-					"Ah, tenez j’en ai trois qui correspondent à 90%. Vous pensez que vous pouvez identifier la bonne ?"
-				],
-				"empreintes2": [
-					"proto3/assets/empreintes/inconnu-mauvais-1.jpg",
-					"proto3/assets/empreintes/inconnu-mauvais-2.jpg",
-					"proto3/assets/empreintes/inconnu-sacha.jpg"
-				],
-				"answer2": 2,
-				"answertext2": [
+				"answertext": [
 					"Attendez, je vérifie... Mortel !",
 					"Ça correspond à 100%, merci !",
 					"Voici donc le résultat : Sacha Leza, né·e le 22 février 1994.",
@@ -134,8 +31,6 @@
 					"Ah, si ! Une interpellation pour avoir tenté d’usurper l’identité de quelqu’un dans une banque en prenant son apparence.",
 					"On dirait qu’iel est plutôt doué·e pour se déguiser..."
 				],
-				"answersrc2": null,
-				"errorMessage2": "Je ne pense pas que ce soit cela.",
 				"status": "open"
 			},
 			{

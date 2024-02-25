@@ -23,5 +23,20 @@
 		"title": "Compte rendu d'hospitalisation d'Henri",
 		"src": "proto3/assets/documents/3D337-compte-rendu-hospitalisation-henri.pdf",
 		"status": false
+	},
+	{
+		"ask": [
+			"analyseempreinte",
+			"analyseempreintes",
+			"analysesempreinte",
+			"analysesempreintes",
+			"empreintes"
+		],
+		"text": [
+			"J'ai pu récupérer les empreintes relevées par le police de Monaco dans les espaces réservés aux employés. On devrait commencer par voir si un intrus s'y trouvait le soir du casse.",
+			"Bon par contre, je suis un peu \"busy\" par l'autopsie de notre cher Cédric. Est-ce que vous pourriez me donner un coup de main et vous occuper de faire la correspondance ?"
+		],
+		"id": "empreintes",
+		"status": false
 	}
 ]

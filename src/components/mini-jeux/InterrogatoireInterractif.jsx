@@ -347,7 +347,12 @@ const InterrogatoireInterractif = ({ onClose }) => {
 
 	const renderChoices = (choices) =>
 		choices.map((choice, id) => (
-			<button type='button' className='modal-objectif__button button--red' key={id} onClick={() => handleChoice(choice.target)}>
+			<button
+				type='button'
+				className='modal-objectif__button button--red'
+				key={id}
+				onClick={() => handleChoice(choice.target)}
+			>
 				{choice.label}
 			</button>
 		))

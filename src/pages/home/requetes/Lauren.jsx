@@ -363,11 +363,7 @@ const Lauren = ({ closeAgentPage }) => {
 			</audio>
 			<div className='agent'>
 				<div className='agent__portrait--container'>
-					<img
-						className='agent__portrait'
-						src={`${urlApi.cdn()}assets/photos-personnages/lauren.jpg`}
-						alt=''
-					/>
+					<img className='agent__portrait' src={`${urlApi.cdn()}assets/photos-personnages/lauren.jpg`} alt='' />
 				</div>
 				<div className='agent__main'>
 					<div className='agent__title--container'>
@@ -383,7 +379,9 @@ const Lauren = ({ closeAgentPage }) => {
 							value={value}
 							setValue={setValue}
 						/>
-						<button type='submit' className='agent__form__button button--red'>Valider</button>
+						<button type='submit' className='agent__form__button button--red'>
+							Valider
+						</button>
 					</form>
 				</div>
 				<button type='button' className='agent__closeButton--container' onClick={closeAgentPage}>

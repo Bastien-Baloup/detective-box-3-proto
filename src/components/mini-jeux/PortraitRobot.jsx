@@ -106,7 +106,9 @@ const PortraitRobot = ({ onValid }) => {
 						</select>
 					</div>
 				))}
-				<button type='submit' className='modal-objectif__button button--red'>Valider</button>
+				<button type='submit' className='modal-objectif__button button--red'>
+					Valider
+				</button>
 			</form>
 		</>
 	)

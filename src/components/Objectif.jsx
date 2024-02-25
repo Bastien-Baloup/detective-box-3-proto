@@ -136,7 +136,11 @@ const Objectif = ({ data }) => {
 			<div className='modal-objectif__background'>
 				<div className='modal-objectif__box'>
 					{<div>{renderText(text)}</div>}
-					<button type='button' className='modal-objectif__button button--red' onClick={() => setPopupFinHacking(false)}>
+					<button
+						type='button'
+						className='modal-objectif__button button--red'
+						onClick={() => setPopupFinHacking(false)}
+					>
 						Continuer l’enquête
 					</button>
 				</div>
@@ -433,18 +437,6 @@ const Objectif = ({ data }) => {
 		e.preventDefault()
 
 		if (sousObjectif) {
-			let specialCondition = null
-			if (sousObjectif?.id === 12) {
-				const event121 = events.find((event) => event.id === 121)
-				const firstPartIsDone = event121?.status === 'done'
-				if (!firstPartIsDone) {
-					// first part
-					specialCondition = sousObjectif?.answer.every((answer, id) => selectedChoices[id] === answer)
-				} else {
-					// second part
-					specialCondition = value === sousObjectif?.answer2
-				}
-			}
 			if (
 				sousObjectif?.id === 21 &&
 				['pharmacie', 'pharmaciefontvieille', 'pharmaciedefontvieille'].includes(slugify(value))
@@ -462,7 +454,7 @@ const Objectif = ({ data }) => {
 				setModal(false)
 				return
 			}
-			if (specialCondition || (specialCondition === null && sousObjectif.answer.includes(slugify(value)))) {
+			if (sousObjectif.answer.includes(slugify(value))) {
 				//TODO Gestion spécifique bonnes réponses
 
 				setErrorMessage('')
@@ -522,18 +514,6 @@ const Objectif = ({ data }) => {
 			return
 		}
 		if (sousObjectif?.id === 12) {
-			const event121 = events.find((event) => event.id === 121)
-			const firstPartIsDone = event121?.status === 'done'
-			if (!firstPartIsDone) {
-				// first part
-				await updateEvent(token, 1, 121, 'done')
-				actionToggleDataEvent()
-				await updateHistory(token, currentBox, 'box1document1')
-				actionToggleDataHistory()
-				setSousObjectif(null)
-				return
-			}
-			// second part
 			await updateEvent(token, 1, 12, 'done')
 			if (listSousObjectifs.find((sousObjectif_) => sousObjectif_.id === 11)?.status === 'done') {
 				await updateEvent(token, 1, 13, 'open')
@@ -599,99 +579,28 @@ const Objectif = ({ data }) => {
 						value={value}
 						setValue={setValue}
 					/>
-					<button type='submit' className='modal-objectif__button button--red'>Envoyer</button>
+					<button type='submit' className='modal-objectif__button button--red'>
+						Envoyer
+					</button>
 				</form>
 			)
 		}
 		if (sousObjectif.id === 12) {
-			const event121 = events.find((event) => event.id === 121)
-			const firstPartIsDone = event121?.status === 'done'
-			if (!firstPartIsDone) {
-				if (selectedChoices.length === 0) {
-					const initialSelectedChoices = sousObjectif?.zones.flatMap((zone) => zone.empreintes.map(() => 'inconnu'))
-					setSelectedChoices(initialSelectedChoices)
-				}
-
-				const handleSelectChange = (zoneId, empreinteId, value) => {
-					let index = 0
-
-					for (let i = 0; i < zoneId; i++) {
-						index += sousObjectif?.zones[i]?.empreintes.length || 0
-					}
-					index += empreinteId
-					// Update the selected choices array
-					const updatedChoices = [...selectedChoices]
-
-					updatedChoices[index] = slugify(value)
-					setSelectedChoices(updatedChoices)
-					console.log(JSON.stringify(updatedChoices))
-				}
-
-				const renderEmpreintes = (empreintes, zoneId) =>
-					empreintes.map((empreinte, empreinteId) => (
-						<div key={empreinteId} className='modal-objectif__empreinte'>
-							<div className='modal-objectif__empreinte--photo'>
-								<img src={urlApi.cdn() + empreinte} alt='' />
-							</div>
-							<div className='modal-objectif__empreinte--input'>
-								<select
-									name='choix'
-									id={empreinteId}
-									onChange={(e) => handleSelectChange(zoneId, empreinteId, e.target.value)}
-								>
-									{sousObjectif?.choices.map((choice, index) => (
-										<option key={index} value={choice}>
-											{choice}
-										</option>
-									))}
-								</select>
-							</div>
-						</div>
-					))
-				const renderZone = (zone, zoneId) => {
-					if (!zone) {
-						return null
-					}
-					return (
-						<details key={zoneId}>
-							<summary>{zone?.nom}</summary>
-							<div className='modal-objectif__empreintes_zone'>{renderEmpreintes(zone?.empreintes, zoneId)}</div>
-						</details>
-					)
-				}
-				const renderedZones = sousObjectif?.zones.map((zone, index) => renderZone(zone, index))
-				// first part: identifier les empreintes par zones
-				answerForm = (
-					<form className='modal-objectif__form' onSubmit={handleSubmit}>
-						{renderedZones}
-						<button type='submit' className='modal-objectif__button button--red'>Envoyer</button>
-					</form>
-				)
-			} else {
-				const renderChoixEmpreintes = (empreintes) =>
-					empreintes.map((empreinte, empreinteId) => (
-						<div key={empreinteId} className='modal-objectif__empreinte'>
-							<div className='modal-objectif__empreinte--photo'>
-								<img
-									className={value === empreinteId ? 'modal-objectif__empreinte--selected' : ''}
-									src={urlApi.cdn() + empreinte}
-									alt=''
-									onClick={() => setValue(empreinteId)}
-								/>
-							</div>
-						</div>
-					))
-				// second part: selectionner parmis 3 empreintes
-				answerForm = (
-					<>
-						{sousObjectif?.detail2 && <div>{renderText(sousObjectif?.detail2)}</div>}
-						<form className='modal-objectif__form' onSubmit={handleSubmit}>
-							<div className='modal-objectif__empreintes_zone'>{renderChoixEmpreintes(sousObjectif?.empreintes2)}</div>
-							<button type='submit' className='modal-objectif__button button--red'>Envoyer</button>
-						</form>
-					</>
-				)
-			}
+			answerForm = (
+				<form className='modal-objectif__form' onSubmit={handleSubmit}>
+					<Input
+						type='texte'
+						label={sousObjectif.label}
+						name='objectif'
+						placeholder='Ce champ est vide'
+						value={value}
+						setValue={setValue}
+					/>
+					<button type='submit' className='modal-objectif__button button--red'>
+						Valider
+					</button>
+				</form>
+			)
 		}
 		if (sousObjectif.id === 13) {
 			answerForm = (
@@ -704,7 +613,9 @@ const Objectif = ({ data }) => {
 						value={value}
 						setValue={setValue}
 					/>
-					<button type='submit' className='modal-objectif__button button--red'>Valider</button>
+					<button type='submit' className='modal-objectif__button button--red'>
+						Valider
+					</button>
 				</form>
 			)
 		}
@@ -719,14 +630,18 @@ const Objectif = ({ data }) => {
 						value={value}
 						setValue={setValue}
 					/>
-					<button type='submit' className='modal-objectif__button button--red'>Valider</button>
+					<button type='submit' className='modal-objectif__button button--red'>
+						Valider
+					</button>
 				</form>
 			)
 		}
 		if (sousObjectif.id === 22) {
 			answerForm = (
 				<form className='modal-objectif__form' onSubmit={handleSubmit}>
-					<button type='submit' className='modal-objectif__button button--red'>Valider</button>
+					<button type='submit' className='modal-objectif__button button--red'>
+						Valider
+					</button>
 				</form>
 			)
 		}
@@ -797,7 +712,9 @@ const Objectif = ({ data }) => {
 									))}
 								</select>
 							)}
-							<button type='submit' className='modal-objectif__button button--red'>Valider</button>
+							<button type='submit' className='modal-objectif__button button--red'>
+								Valider
+							</button>
 						</form>
 					)}
 				</div>
@@ -831,35 +748,6 @@ const Objectif = ({ data }) => {
 	const renderModalAnswer = () => {
 		closeCompte()
 		if (sousObjectif) {
-			if (sousObjectif?.id === 12) {
-				const event121 = events.find((event) => event.id === 121)
-				const firstPartIsDone = event121?.status === 'done'
-				if (firstPartIsDone) {
-					// second part
-					return (
-						<div className='modal-objectif__background'>
-							<div className='modal-objectif__box'>
-								<h2 className='modal-objectif__title'>
-									Objectif : <br /> {data.title}
-								</h2>
-								<h3 className='modal-objectif__title'>
-									Sous-Objectif : <br /> {sousObjectif.title}
-								</h3>
-								{sousObjectif.answersrc2 && (
-									<audio autoPlay>
-										<source src={urlApi.cdn() + sousObjectif.answersrc2} type='audio/mpeg' />
-										Votre navigateur ne prend pas en charge ce format
-									</audio>
-								)}
-								<div>{renderText(sousObjectif.answertext2)}</div>
-								<button type='button' className='modal-objectif__button button--red' onClick={handleModalAnswer}>
-									Continuer l&apos;enquête
-								</button>
-							</div>
-						</div>
-					)
-				}
-			}
 			return (
 				<div className='modal-objectif__background'>
 					<div className='modal-objectif__box'>

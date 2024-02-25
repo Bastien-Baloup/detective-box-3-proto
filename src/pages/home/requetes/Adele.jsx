@@ -11,6 +11,7 @@ import { BoxContext, DataContext, CompteContext } from '../../../utils/context/f
 import { useContext, useState, useEffect } from 'react'
 import useApi from '../../../utils/hooks/useApi.js'
 import useEvent from '../../../utils/hooks/useEvent.js'
+import Empreintes from '../../../components/mini-jeux/Empreintes.jsx'
 
 const Adele = ({ closeAgentPage }) => {
 	const { currentBox } = useContext(BoxContext)
@@ -41,6 +42,7 @@ const Adele = ({ closeAgentPage }) => {
 	const [modal, setModal] = useState(false)
 	const [modalMedia, setModalMedia] = useState(false)
 	const [answer, setAnswer] = useState('')
+	const [empreintes, setEmpreintes] = useState(false)
 
 	// EXPLICATION : Fonction pour slugifier l'input des joueurs
 	const slugify = (input) => {
@@ -86,6 +88,34 @@ const Adele = ({ closeAgentPage }) => {
 		setErrorMessage("Je n'ai pas pu analyser ce que vous m'avez demandé.")
 	}
 
+	const openEmpreinte = () => {
+		setModal(false)
+		setEmpreintes(true)
+	}
+
+	const renderButton = () => {
+		if (answer.id = 'empreintes') {
+			return (
+				<button type='button' className='modal-objectif__button button--red' onClick={openEmpreinte}>
+					Valider la correspondance
+				</button>
+			)
+		}
+		if (answer?.id) {
+			return (
+				<button type='button' className='modal-objectif__button button--red' onClick={openMedia}>
+					Voir l&apos;élément
+				</button>
+			)
+		} else {
+			return (
+				<button type='button' className='modal-objectif__button button--red' onClick={validateModal}>
+					Nouvelle requête
+				</button>
+			)
+		}
+	}
+
 	const renderModal = () => {
 		closeCompte()
 		return (
@@ -100,15 +130,7 @@ const Adele = ({ closeAgentPage }) => {
 						''
 					)}
 					<div>{renderText()}</div>
-					{answer.id ? (
-						<button type='button' className='modal-objectif__button button--red' onClick={openMedia}>
-							Voir l&apos;élément
-						</button>
-					) : (
-						<button type='button' className='modal-objectif__button button--red' onClick={validateModal}>
-							Nouvelle requête
-						</button>
-					)}
+					{renderButton()}
 				</div>
 			</div>
 		)
@@ -172,17 +194,14 @@ const Adele = ({ closeAgentPage }) => {
 		<>
 			{modal && renderModal()}
 			{modalMedia && renderModalMedia()}
+			{empreintes && <Empreintes />}
 			<audio autoPlay>
 				<source src={urlApi.cdn() + catchphrase[randomNumber]} type='audio/mpeg' />
 				Votre navigateur ne prend pas en charge ce format
 			</audio>
 			<div className='agent'>
 				<div className='agent__portrait--container'>
-					<img
-						className='agent__portrait'
-						src={`${urlApi.cdn()}assets/photos-personnages/adele.jpg`}
-						alt=""
-					/>
+					<img className='agent__portrait' src={`${urlApi.cdn()}assets/photos-personnages/adele.jpg`} alt='' />
 				</div>
 				<div className='agent__main'>
 					<div className='agent__title--container'>
@@ -198,7 +217,9 @@ const Adele = ({ closeAgentPage }) => {
 							value={value}
 							setValue={setValue}
 						/>
-						<button type='submit' className='agent__form__button button--red'>Valider</button>
+						<button type='submit' className='agent__form__button button--red'>
+							Valider
+						</button>
 					</form>
 				</div>
 				<button type='button' className='agent__closeButton--container' onClick={closeAgentPage}>
