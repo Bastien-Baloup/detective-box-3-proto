@@ -100,7 +100,7 @@ const Adele = ({ closeAgentPage }) => {
 	}
 
 	const renderButton = () => {
-		if (answer.id = 'empreintes') {
+		if (answer.id === 'empreintes') {
 			return (
 				<button type='button' className='modal-objectif__button button--red' onClick={openEmpreinte}>
 					Valider la correspondance
@@ -113,13 +113,12 @@ const Adele = ({ closeAgentPage }) => {
 					Voir l&apos;élément
 				</button>
 			)
-		} else {
-			return (
-				<button type='button' className='modal-objectif__button button--red' onClick={validateModal}>
-					Nouvelle requête
-				</button>
-			)
 		}
+		return (
+			<button type='button' className='modal-objectif__button button--red' onClick={validateModal}>
+				Nouvelle requête
+			</button>
+		)
 	}
 
 	const renderModal = () => {
