@@ -101,9 +101,6 @@ const Adele = ({ closeAgentPage }) => {
 				} else {
 					inObjectifs = true
 				}
-				console.log(element)
-				console.log('inAsk', inAsk)
-				console.log('inObjectifs', inObjectifs)
 				return inAsk && inObjectifs
 			}
 		)
