@@ -16,7 +16,7 @@ import { useContext, useEffect, useMemo } from 'react'
 import { urlApi } from '../../utils/const/urlApi.js'
 import useApi from '../../utils/hooks/useApi.js'
 
-function Home() {
+function Home () {
 	const [characterDisplayed, setCharacterDisplayed] = useState(null)
 	const [dataEvent, setDataEvent] = useState(null)
 	const { getEventByBox } = useApi()
@@ -70,8 +70,8 @@ function Home() {
 						srcIcon={IconAdele}
 						name='Adèle Leinu'
 						contentButton='Demander une analyse scientifique'
-						actionButton={event31 !== 'done' ? null : () => setCharacterDisplayed('adele')}
-						state={event31 !== 'done' ? 'unavailable' : ''}
+						actionButton={() => setCharacterDisplayed('adele')}
+						state=''
 					/>
 				</div>
 			</>

@@ -48,9 +48,11 @@ const Tim = ({ closeAgentPage }) => {
 			setObjectif2(objectif2Data.status)
 
 			let maxDoneObjectif_ = 0
-			for (const objectif of objectifs.data) {
-				if (objectif?.status === 'done' && objectif.id > maxDoneObjectif_) {
-					maxDoneObjectif_ = objectif.id
+			if (objectifs?.data) {
+				for (const objectif of objectifs.data) {
+					if (objectif?.status === 'done' && objectif.id > maxDoneObjectif_) {
+						maxDoneObjectif_ = objectif.id
+					}
 				}
 			}
 			setMaxDoneObjectif(maxDoneObjectif_)

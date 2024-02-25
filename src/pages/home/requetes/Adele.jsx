@@ -16,7 +16,7 @@ import Empreintes from '../../../components/mini-jeux/Empreintes.jsx'
 const Adele = ({ closeAgentPage }) => {
 	const { currentBox } = useContext(BoxContext)
 	const token = localStorage.getItem('token')
-	const { actionToggleDataAdele, toggleDataAdele, toggleDataEvent, actionToggleDataEvent } = useContext(DataContext)
+	const { actionToggleDataAdele, toggleDataAdele, toggleDataEvent, actionToggleDataEvent, toggleDataObjectif } = useContext(DataContext)
 	const { updateCharactersById, updateHistory, getCharactersById, getEventByBox, updateEvent, getObjectivesByBox } =
 		useApi()
 	const { dispatch } = useEvent()
@@ -41,11 +41,14 @@ const Adele = ({ closeAgentPage }) => {
 		fetchData()
 	}, [toggleDataObjectif, currentBox, token])
 	let maxDoneObjectif = 0
-	for (const objectif of dataObjectif) {
-		if (objectif?.status === 'done' && objectif.id > maxDoneObjectif) {
-			maxDoneObjectif = objectif.id
+	if (dataObjectif) {
+		for (const objectif of dataObjectif) {
+			if (objectif?.status === 'done' && objectif.id > maxDoneObjectif) {
+				maxDoneObjectif = objectif.id
+			}
 		}
 	}
+
 	const currentObjectif = Math.min(maxDoneObjectif + 1, 3)
 
 	const [value, setValue] = useState('')
@@ -90,8 +93,19 @@ const Adele = ({ closeAgentPage }) => {
 
 		const thisBox = dataAdele.find((element) => element.box_id === currentBox).data
 		const answerInThisBox = thisBox.find(
-			(element) =>
-				element.ask.includes(slugify(value)) && (!element?.objectifs || element.objectifs.includes(currentObjectif))
+			(element) => {
+				const inAsk = element.ask.includes(slugify(value))
+				let inObjectifs
+				if (element?.objectifs) {
+					inObjectifs = element.objectifs.includes(currentObjectif)
+				} else {
+					inObjectifs = true
+				}
+				console.log(element)
+				console.log('inAsk', inAsk)
+				console.log('inObjectifs', inObjectifs)
+				return inAsk && inObjectifs
+			}
 		)
 		const previouslyAnsweredInThisBox = answerInThisBox?.status
 
