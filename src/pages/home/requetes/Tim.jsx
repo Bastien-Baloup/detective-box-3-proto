@@ -57,6 +57,8 @@ const Tim = ({ closeAgentPage }) => {
 		}
 		getObjectives()
 	}, [toggleDataObjectif])
+	const currentObjectif = Math.min(maxDoneObjectif + 1, 3)
+
 
 	const [events, setEvents] = useState(null)
 
@@ -95,7 +97,7 @@ const Tim = ({ closeAgentPage }) => {
 		const thisBox = dataTim.find((element) => element.box_id === currentBox).data
 		const answerInThisBox = thisBox.find(
 			(element) =>
-				element.ask.includes(slugify(value)) && (!element?.objectifs || element.objectifs.includes(maxDoneObjectif))
+				element.ask.includes(slugify(value)) && (!element?.objectifs || element.objectifs.includes(currentObjectif))
 		)
 		const previouslyAnsweredInThisBox = answerInThisBox?.status
 

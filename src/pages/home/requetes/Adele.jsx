@@ -46,6 +46,7 @@ const Adele = ({ closeAgentPage }) => {
 			maxDoneObjectif = objectif.id
 		}
 	}
+	const currentObjectif = Math.min(maxDoneObjectif + 1, 3)
 
 	const [value, setValue] = useState('')
 	const [errorMessage, setErrorMessage] = useState('')
@@ -90,7 +91,7 @@ const Adele = ({ closeAgentPage }) => {
 		const thisBox = dataAdele.find((element) => element.box_id === currentBox).data
 		const answerInThisBox = thisBox.find(
 			(element) =>
-				element.ask.includes(slugify(value)) && (!element?.objectifs || element.objectifs.includes(maxDoneObjectif))
+				element.ask.includes(slugify(value)) && (!element?.objectifs || element.objectifs.includes(currentObjectif))
 		)
 		const previouslyAnsweredInThisBox = answerInThisBox?.status
 
