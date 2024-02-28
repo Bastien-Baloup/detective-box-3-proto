@@ -10,7 +10,7 @@ import Cross from '../../../assets/icons/Icon_Cross-white.svg'
 import PropTypes from 'prop-types'
 import { urlApi } from '../../../utils/const/urlApi.js'
 import { BoxContext, DataContext, AmbianceContext, CompteContext } from '../../../utils/context/fetchContext.jsx'
-import { useContext, useState, useMemo } from 'react'
+import { useContext, useState, useMemo, useEffect } from 'react'
 import useApi from '../../../utils/hooks/useApi.js'
 
 const Tim = ({ closeAgentPage }) => {
@@ -25,7 +25,7 @@ const Tim = ({ closeAgentPage }) => {
 		actionToggleDataEvent
 	} = useContext(DataContext)
 	const { pauseNappe } = useContext(AmbianceContext)
-	const { updateCharactersById, updateHistory, getCharactersById, getObjectivesByBox, updateEvent } = useApi()
+	const { updateCharactersById, updateHistory, getCharactersById, getObjectivesByBox, updateEvent, getEventByBox } = useApi()
 	const { closeCompte } = useContext(CompteContext)
 
 	//EXPLICATION : Tim est le personnage "5"
