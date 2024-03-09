@@ -68,7 +68,7 @@ const Adele = ({ closeAgentPage }) => {
 		getEvents()
 	}, [toggleDataEvent])
 
-	const event301 = events && events.find((event) => event.id === 301)
+	const event301 = events?.find((event) => event.id === 301)
 
 	const resetEmpreintes = () => {
 		setToggleReset(!toggleReset)

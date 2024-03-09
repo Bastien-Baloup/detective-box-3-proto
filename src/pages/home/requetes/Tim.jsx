@@ -72,7 +72,7 @@ const Tim = ({ closeAgentPage }) => {
 		getEvents()
 	}, [toggleDataEvent])
 
-	const event301 = events && events.find((event) => event.id === 301)
+	const event301 = events?.find((event) => event.id === 301)
 
 	const [value, setValue] = useState('')
 	const [errorMessage, setErrorMessage] = useState('')
