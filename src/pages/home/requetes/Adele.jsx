@@ -16,10 +16,23 @@ import Empreintes from '../../../components/mini-jeux/Empreintes.jsx'
 const Adele = ({ closeAgentPage }) => {
 	const { currentBox } = useContext(BoxContext)
 	const token = localStorage.getItem('token')
-	const { actionToggleDataAdele, toggleDataAdele, toggleDataEvent, actionToggleDataEvent, toggleDataObjectif, toggleDataHistory } =
-		useContext(DataContext)
-	const { updateCharactersById, getHistoryByBox, updateHistory, getCharactersById, getEventByBox, updateEvent, getObjectivesByBox } =
-		useApi()
+	const {
+		actionToggleDataAdele,
+		toggleDataAdele,
+		toggleDataEvent,
+		actionToggleDataEvent,
+		toggleDataObjectif,
+		toggleDataHistory
+	} = useContext(DataContext)
+	const {
+		updateCharactersById,
+		getHistoryByBox,
+		updateHistory,
+		getCharactersById,
+		getEventByBox,
+		updateEvent,
+		getObjectivesByBox
+	} = useApi()
 	const { dispatch } = useEvent()
 	const { closeCompte } = useContext(CompteContext)
 
@@ -235,8 +248,8 @@ const Adele = ({ closeAgentPage }) => {
 	const [manqueAudio1, setManqueAudio1] = useState(false)
 	const renderManqueAudio1 = () => {
 		const text = [
-			"Les alibis des membres de la Horde ont l’air solides, il faut peut-être élargir les recherches.",
-			"Avez-vous interrogé les proches de Cédric ?"
+			'Les alibis des membres de la Horde ont l’air solides, il faut peut-être élargir les recherches.',
+			'Avez-vous interrogé les proches de Cédric ?'
 		]
 		const handleClick = () => {
 			setManqueAudio1(false)

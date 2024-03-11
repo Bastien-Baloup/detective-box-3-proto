@@ -16,7 +16,7 @@ import { useContext, useEffect, useMemo } from 'react'
 import { urlApi } from '../../utils/const/urlApi.js'
 import useApi from '../../utils/hooks/useApi.js'
 
-function Home () {
+function Home() {
 	const [characterDisplayed, setCharacterDisplayed] = useState(null)
 	const [dataEvent, setDataEvent] = useState(null)
 	const { getEventByBox } = useApi()

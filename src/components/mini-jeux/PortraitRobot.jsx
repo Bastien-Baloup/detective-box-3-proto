@@ -12,7 +12,7 @@ const PortraitRobot = ({ onValid }) => {
 		'Forme des yeux': 'Tombants',
 		'Forme des sourcils': 'Tombants',
 		'Forme du nez': 'Droit',
-		'Forme de la bouche': 'Très fine',
+		'Forme de la bouche': 'Très fine'
 	}
 
 	const validAnswer = {
@@ -24,7 +24,7 @@ const PortraitRobot = ({ onValid }) => {
 		'Forme des yeux': 'En amandes',
 		'Forme des sourcils': 'Arrondis',
 		'Forme du nez': 'Retroussé',
-		'Forme de la bouche': 'Pulpeuse',
+		'Forme de la bouche': 'Pulpeuse'
 	}
 
 	const [selectedValues, setSelectedValues] = useState(initialSelectedValues)

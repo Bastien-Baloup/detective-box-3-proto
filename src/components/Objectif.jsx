@@ -500,10 +500,9 @@ const Objectif = ({ data }) => {
 						setModal(false)
 						setModalAnswer(true)
 						return
-					} else {
-						setErrorMessage(sousObjectif.errorMessage)
-						return
 					}
+					setErrorMessage(sousObjectif.errorMessage)
+					return
 				}
 			}
 			if (sousObjectif?.id === 32) {
@@ -606,8 +605,8 @@ const Objectif = ({ data }) => {
 	const [manqueSousObj31, setManqueSousObj31] = useState(false)
 	const renderManqueSousObj31 = () => {
 		const text = [
-			"Bravo agents !",
-			"Maintenant qu’on a mis la main sur le meurtrier de Cédric Romero, je vous laisse boucler votre dossier sur le casse du Casino.",
+			'Bravo agents !',
+			'Maintenant qu’on a mis la main sur le meurtrier de Cédric Romero, je vous laisse boucler votre dossier sur le casse du Casino.',
 			"La police (et le père de Tim) seront plus que ravis d'avoir le fin mot de l’histoire et qui sait... peut-être retrouver l’argent volé."
 		]
 		const handleClick = () => {
@@ -628,8 +627,8 @@ const Objectif = ({ data }) => {
 	const [manqueSousObj32, setManqueSousObj32] = useState(false)
 	const renderManqueSousObj32 = () => {
 		const text = [
-			"On va pouvoir revenir à un sujet plus qu’important : qui a tué Cédric Romero ?",
-			"Je pense qu’on peut déjà revenir sur ce que Sacha Leza nous a dit à propos d’un bracelet métallique. Je vous laisse regarder ça !"
+			'On va pouvoir revenir à un sujet plus qu’important : qui a tué Cédric Romero ?',
+			'Je pense qu’on peut déjà revenir sur ce que Sacha Leza nous a dit à propos d’un bracelet métallique. Je vous laisse regarder ça !'
 		]
 		const handleClick = () => {
 			setManqueSousObj32(false)
@@ -771,7 +770,28 @@ const Objectif = ({ data }) => {
 
 	const renderListeBraqueurs = () => sousObjectif?.images?.map((src, indice) => renderBraqueur(src, indice))
 
-	const [braqueurValues, setBraqueurValues] = useState(["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""])
+	const [braqueurValues, setBraqueurValues] = useState([
+		'',
+		'',
+		'',
+		'',
+		'',
+		'',
+		'',
+		'',
+		'',
+		'',
+		'',
+		'',
+		'',
+		'',
+		'',
+		'',
+		'',
+		'',
+		'',
+		''
+	])
 	const updateBraqueurValues = (indice, value) => {
 		const temp = [...braqueurValues]
 		temp[indice] = value
@@ -779,55 +799,55 @@ const Objectif = ({ data }) => {
 	}
 	const renderBraqueur = (src, indice) => {
 		return (
-			<div className="modal-objectif__braqueur">
+			<div className='modal-objectif__braqueur'>
 				<div className='modal-objectif__braqueur--photo'>
 					<img src={urlApi.cdn() + src} alt='' />
 				</div>
 				<div className='modal-objectif__braqueur--input'>
 					<div className='input-wrapper-text'>
-						<label className='input-wrapper__label' htmlFor="nom">
+						<label className='input-wrapper__label' htmlFor='nom'>
 							Nom
 						</label>
 						<input
 							className='input-texte'
-							id="nom"
-							name="nom"
+							id='nom'
+							name='nom'
 							maxLength='60'
 							onChange={(e) => updateBraqueurValues(indice * 4 + 0, e.target.value)}
 						/>
 					</div>
 					<div className='input-wrapper-text'>
-						<label className='input-wrapper__label' htmlFor="prenom">
+						<label className='input-wrapper__label' htmlFor='prenom'>
 							Prénom
 						</label>
 						<input
 							className='input-texte'
-							id="prenom"
-							name="prenom"
+							id='prenom'
+							name='prenom'
 							maxLength='60'
 							onChange={(e) => updateBraqueurValues(indice * 4 + 1, e.target.value)}
 						/>
 					</div>
 					<div className='input-wrapper-text'>
-						<label className='input-wrapper__label' htmlFor="animal">
+						<label className='input-wrapper__label' htmlFor='animal'>
 							Animal
 						</label>
 						<input
 							className='input-texte'
-							id="animal"
-							name="animal"
+							id='animal'
+							name='animal'
 							maxLength='60'
 							onChange={(e) => updateBraqueurValues(indice * 4 + 2, e.target.value)}
 						/>
 					</div>
 					<div className='input-wrapper-select'>
-						<label className='input-wrapper__label' htmlFor={'choix-' + indice}>
+						<label className='input-wrapper__label' htmlFor={`choix-${indice}`}>
 							Animal
 						</label>
 					</div>
 					<select
-						name={'choix-' + indice}
-						id={'choix-' + indice}
+						name={`choix-${indice}`}
+						id={`choix-${indice}`}
 						onChange={(e) => updateBraqueurValues(indice * 4 + 3, e.target.value)}
 					>
 						{sousObjectif?.choices.map((choice, index) => (
