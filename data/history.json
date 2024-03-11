@@ -80,13 +80,33 @@
 		"status": false
 	},
 	{
+		"id": "box1document9",
+		"box": "Box 1",
+		"title": "Organisation du casse",
+		"category": "Document",
+		"detail": null,
+		"poster": "proto3/thumbnails/documents/db-e3-ldf-panneau-gang.jpg",
+		"src": "proto3/assets/documents/db-e3-ldf-panneau-gang.jpg",
+		"status": false
+	},
+	{
 		"id": "box1document10",
 		"box": "Box 1",
-		"title": "Chasse au trésor",
+		"title": "Intérieur du coffre",
 		"category": "Document",
 		"detail": null,
 		"poster": "proto3/thumbnails/documents/chasse-au-tresor.jpg",
-		"src": "proto3/assets/documents/interieur-coffre-fort.pdf",
+		"src": "proto3/assets/documents/db-e3-ldf-opened-malle.jpg",
+		"status": false
+	},
+	{
+		"id": "box1document11",
+		"box": "Box 1",
+		"title": "Poème",
+		"category": "Document",
+		"detail": null,
+		"poster": "proto3/thumbnails/documents/db-e3-poème-planque.jpg",
+		"src": "proto3/assets/documents/db-e3-poème-planque.pdf",
 		"status": false
 	},
 
