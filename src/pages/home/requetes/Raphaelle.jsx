@@ -160,12 +160,7 @@ const Raphaelle = ({ closeAgentPage }) => {
 
 	const handleSubmitConciergeBis = async (e) => {
 		e.preventDefault()
-		const validAnswers = [
-			'22fevrier1990',
-			'22fevrier90',
-			'22021990',
-			'220290'
-		]
+		const validAnswers = ['22fevrier1990', '22fevrier90', '22021990', '220290']
 		if (validAnswers?.includes(slugifyAdresse(value))) {
 			await updateEvent(token, 1, 232, 'done')
 			actionToggleDataEvent()
