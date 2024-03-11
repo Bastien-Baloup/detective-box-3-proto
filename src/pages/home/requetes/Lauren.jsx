@@ -94,7 +94,7 @@ const Lauren = ({ closeAgentPage }) => {
 		const thisBox = dataLauren.find((element) => element.box_id === currentBox).data
 		//const generic = dataLauren.find(element => element.box_id == 4).data
 		console.log(slugify(value))
-		const answerInThisBox = thisBox.find((element) => element.ask.includes(slugify(value)))
+		const answerInThisBox = thisBox.find((element) => element?.ask?.includes(slugify(value)))
 		const previouslyAnsweredInThisBox = answerInThisBox?.status
 		//const answerInFailedInterview = generic.find(element => element.ask.includes(slugify(value)))
 		if (value === '') {

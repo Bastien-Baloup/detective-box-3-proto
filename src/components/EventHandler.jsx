@@ -271,7 +271,7 @@ const EventHandler = () => {
 		(box1audio4?.status || box1audio5?.status) && box1audio6?.status && box1audio7?.status && box1audio8?.status
 
 	const closeInterrogatoireCasseurs = async () => {
-		await updateEvent(token, 1, 31, 'done')
+		await updateEvent(token, 1, 302, 'done')
 		actionToggleDataEvent()
 		setInterrogatoiresCasseurs(false)
 	}

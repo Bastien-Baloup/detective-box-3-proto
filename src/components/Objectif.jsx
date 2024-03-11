@@ -591,6 +591,7 @@ const Objectif = ({ data }) => {
 			if (sousObj32?.status !== 'done') {
 				setManqueSousObj32(true)
 			}
+			setSousObjectif(null)
 		}
 		if (sousObjectif?.id === 32) {
 			await updateEvent(token, 1, 32, 'done')
@@ -599,6 +600,7 @@ const Objectif = ({ data }) => {
 			if (sousObj31?.status !== 'done') {
 				setManqueSousObj31(true)
 			}
+			setSousObjectif(null)
 		}
 	}
 
@@ -749,7 +751,31 @@ const Objectif = ({ data }) => {
 		if (sousObjectif.id === 31) {
 			answerForm = (
 				<form className='modal-objectif__form' onSubmit={handleSubmit}>
-					{renderListeBraqueurs()}
+					<div className='modal-objectif__liste-braqueurs'>{renderListeBraqueurs()}</div>
+					<button type='submit' className='modal-objectif__button button--red'>
+						Valider
+					</button>
+				</form>
+			)
+		}
+		if (sousObjectif.id === 32) {
+			answerForm = (
+				<form className='modal-objectif__form' onSubmit={handleSubmit}>
+					<Input
+						type='texte'
+						label={sousObjectif.label}
+						name='objectif'
+						placeholder='Ce champ est vide'
+						value={value}
+						setValue={setValue}
+					/>
+					<select id='mobileChoice' value={selectedChoice} onChange={handleChange}>
+						{sousObjectif?.choices.map((choice, index) => (
+							<option key={index} value={choice}>
+								{choice}
+							</option>
+						))}
+					</select>
 					<button type='submit' className='modal-objectif__button button--red'>
 						Valider
 					</button>
@@ -796,6 +822,7 @@ const Objectif = ({ data }) => {
 		const temp = [...braqueurValues]
 		temp[indice] = value
 		setBraqueurValues(temp)
+		console.log(temp)
 	}
 	const renderBraqueur = (src, indice) => {
 		return (
@@ -842,7 +869,7 @@ const Objectif = ({ data }) => {
 					</div>
 					<div className='input-wrapper-select'>
 						<label className='input-wrapper__label' htmlFor={`choix-${indice}`}>
-							Animal
+							Rôle
 						</label>
 					</div>
 					<select
@@ -873,7 +900,7 @@ const Objectif = ({ data }) => {
 		if (sousObjectif) {
 			return (
 				<div className='modal-objectif__background'>
-					<div className='modal-objectif__box'>
+					<div className='modal-objectif__box modal-objectif__oferflow-container'>
 						<button type='button' className='modal-objectif__icon--container'>
 							<img className='modal-objectif__icon' src={Cross} onClick={closeModal} alt='' />
 						</button>
@@ -907,15 +934,6 @@ const Objectif = ({ data }) => {
 								value={value}
 								setValue={setValue}
 							/>
-							{data.id === 3 && (
-								<select id='mobileChoice' value={selectedChoice} onChange={handleChange}>
-									{data?.choices.map((choice, index) => (
-										<option key={index} value={choice}>
-											{choice}
-										</option>
-									))}
-								</select>
-							)}
 							<button type='submit' className='modal-objectif__button button--red'>
 								Valider
 							</button>

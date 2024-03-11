@@ -99,6 +99,7 @@
 					"vol à la tire",
 					"vol à l'arraché",
 					"hacking et conduite",
+					"cambriolage de coffres",
 					"spécialiste du déguisement",
 					"spécialiste de l'armement",
 					"artiste",
@@ -106,7 +107,6 @@
 					"acrobate"
 				],
 				"answer": [
-					[
 						"romero",
 						"cedric",
 						"loup",
@@ -127,7 +127,6 @@
 						"hannah",
 						"lynx",
 						"cambriolagedecoffres"
-					]
 				],
 				"errorMessage": "Je ne pense pas que ce soit cela."
 			},

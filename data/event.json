@@ -86,12 +86,12 @@
 	},
 	{
 		"id": 31,
-		"status": "closed",
+		"status": "open",
 		"comment": "Objectif 3 - Sous-objectif 1"
 	},
 	{
 		"id": 32,
-		"status": "closed",
+		"status": "open",
 		"comment": "Objectif 3 - Sous-objectif 2"
 	}
 ]

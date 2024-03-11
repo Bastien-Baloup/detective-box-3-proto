@@ -9,6 +9,9 @@
 		max-height: 80dvh;
 		overflow: auto;
 	}
+	&__oferflow-container {
+		justify-content: unset;
+	}
 	&__icon {
 		width: 2.5rem;
 		margin-left: auto;
@@ -84,6 +87,37 @@
 		flex-wrap: wrap;
 		justify-content: center;
 	}
+
+	&__liste-braqueurs {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-around;
+		align-content: center;
+		column-gap: 0.5rem;
+		row-gap: 1rem;
+	}
+
+	&__braqueur {
+		width: min-content;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		&--photo {
+			img {
+				width: 10rem;
+				height: 10rem;
+				object-fit: contain;
+			}
+		}
+		&--input {
+			width: min-content;
+			display: flex;
+			flex-direction: column;
+			gap: 0.5rem;
+		}
+	}
+
 }
 
 @include responsive(tablet) {

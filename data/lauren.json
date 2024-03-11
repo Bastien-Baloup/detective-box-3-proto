@@ -75,7 +75,7 @@
 		"status": false
 	},
 	{
-		"aks": [
+		"ask": [
 			"tim",
 			"timlombardo",
 			"lombardotim",
@@ -92,7 +92,7 @@
 		"srcComment": null
 	},
 	{
-		"aks": ["henri", "henrileveaux", "leveauxhenri", "henry", "henryleveaux", "leveauxhenry"],
+		"ask": ["henri", "henrileveaux", "leveauxhenri", "henry", "henryleveaux", "leveauxhenry"],
 		"objectifs": [1],
 		"text": [
 			"Je n'ai pas pu joindre cette personne.",
@@ -101,7 +101,7 @@
 		"srcComment": null
 	},
 	{
-		"aks": [
+		"ask": [
 			"simon",
 			"simonberbre",
 			"berbresimon",
