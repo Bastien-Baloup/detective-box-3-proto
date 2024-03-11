@@ -5,6 +5,7 @@
 
 import Input from '../../../components/Input.jsx'
 import Audio from '../../../components/Audio.jsx'
+import Document from '../../../components/Document.jsx'
 import Cross from '../../../assets/icons/Icon_Cross-white.svg'
 import PropTypes from 'prop-types'
 import { urlApi } from '../../../utils/const/urlApi.js'
@@ -61,6 +62,7 @@ const Lauren = ({ closeAgentPage }) => {
 		() => dataHistory?.find((document) => document.id === 'box1audio10')?.status,
 		[dataHistory]
 	)
+	const box1document7 = useMemo(() => dataHistory?.find((document) => document.id === 'box1document7'), [dataHistory])
 
 	const [dataLauren, setDataLauren] = useState(null)
 
@@ -71,6 +73,7 @@ const Lauren = ({ closeAgentPage }) => {
 	const [answer, setAnswer] = useState('')
 	const [pharmacie, setPharmacie] = useState(false)
 	const [autopsie, setAutopsie] = useState(false)
+	const [documentAutopsie, setDocumentAutopsie] = useState(false)
 
 	// EXPLICATION : Fonction pour slugifier l'input des joueurs
 	const slugify = (input) => {
@@ -255,11 +258,11 @@ const Lauren = ({ closeAgentPage }) => {
 	const renderAutopsie = () => {
 		closeCompte()
 		const text = [
-			"Ça y est, j'ai enfin fini l'autopsie ! Voici les résultats :",
-			'Conclusion de l’autopsie complète :',
-			'Informations données lors de l’autopsie préliminaire : Aucune contradiction',
-			'Informations supplémentaires : Au vu des caractéristiques d’angle et de profondeur de la blessure, celle-ci a été infligée par une personne d’une taille égale ou inférieure à celle de la victime.',
-			'Remarques : J’ai analysé les tatouages de la victime avec Google Lens, c’est trop pratique pour ça ! Malheureusement ils étaient trop abimés pour que ça donne un résultat...'
+			"J'ai enfin fini l'autopsie, je vous partage mes conclusions dans votre historique.",
+			'',
+			"J’ai analysé les tatouages de la victime avec Google Lens, je n'ai rien trouvé de plus que ce qui est mentionné sur le rapport de police.",
+			"Le tatouage était trop emdommagé par le coup de couteau pour que je puisse l'identifier.",
+			"C'est pourtant sacrément efficace comme outil, ce truc - là!"
 		]
 		return (
 			<div className='modal-objectif__background'>
@@ -276,8 +279,26 @@ const Lauren = ({ closeAgentPage }) => {
 					<button type='button' className='modal-objectif__button button--red' onClick={closeAutopsie}>
 						Continuer l&apos;enquête
 					</button>
+					<button type='button' className='modal-objectif__button button--red' onClick={openDocumentAutopsie}>
+						Lire l&apos;autopsie
+					</button>
 				</div>
 			</div>
+		)
+	}
+
+	const openDocumentAutopsie = async () => {
+		await closeAutopsie()
+		setDocumentAutopsie(true)
+	}
+
+	const renderDocumentAutopsie = () => {
+		return (
+			<Document
+				title={box1document7.title}
+				srcElement={box1document7.src}
+				handleModalDocument={() => setDocumentAutopsie(false)}
+			/>
 		)
 	}
 
@@ -315,7 +336,10 @@ const Lauren = ({ closeAgentPage }) => {
 		return (
 			<div className='modal-objectif__background'>
 				<div className='modal-objectif__box'>
-					<div>"Il n'a pas l'air d'avoir tout dit en effet mais quelque chose ne colle pas…"</div>
+					<div>
+						Son alibi a été corroboré par les autres membres du personnel. Par contre Simon a l'air louche, voyez avec
+						Tim s'il peut nous trouver des choses sur lui.
+					</div>
 					<button type='button' className='modal-objectif__button button--red' onClick={() => setPhilippe(false)}>
 						Continuer l&apos;enquête
 					</button>
@@ -337,8 +361,8 @@ const Lauren = ({ closeAgentPage }) => {
 			<div className='modal-objectif__background'>
 				<div className='modal-objectif__box'>
 					<div>
-						"Oui, j’ai noté aussi qu’il a menti à plusieurs reprises, attendez je demande à Tim qu’il me sorte ce qu’il
-						a sur lui... Voilà, tenez !"
+						Oui, j’ai aussi noté qu’il a menti à plusieurs reprises. Allez demander à Tim, je suis sûre qu'il peut vous
+						trouver des infos sur lui.
 					</div>
 					<button type='button' className='modal-objectif__button button--red' onClick={closeSimon}>
 						Continuer l&apos;enquête
@@ -354,6 +378,7 @@ const Lauren = ({ closeAgentPage }) => {
 			{modalMedia && renderModalMedia()}
 			{pharmacie && renderPharmacie()}
 			{autopsie && renderAutopsie()}
+			{documentAutopsie && renderDocumentAutopsie()}
 			{mensonge && renderMensonge()}
 			{philippe && renderPhilippe()}
 			{simon && renderSimon()}

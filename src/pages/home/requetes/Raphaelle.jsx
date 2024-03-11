@@ -234,11 +234,10 @@ const Raphaelle = ({ closeAgentPage }) => {
 		const text = [
 			'Raphaëlle : “Ok, on y est... T’entends ça ?',
 			'Lauren : Ouais, on dirait bien qu’il y a du monde là-dedans... Et ça s’agite. C’est l’heure de faire valoir ton ancienne carrière de flic !',
-			'Raphaëlle : Alors on y va ! TOUS À TERRE, VOUS ÊTES EN ÉTAT D’ARRESTATION !!!',
+			'Raphaëlle : Alors on y va ! TOUS À TERRE, ONE NE BOUGE PLUS !!!',
 			'*cris de surprise des casseurs* *Hannah tente de se défendre*',
 			'Raphaëlle : *braque son arme sur elle* N’y pense même pas !',
-			'Henri : D’accord, d’accord, on se rend ! Ne tirez pas ! ... *tente de s’enfuir*',
-			'Raphaëlle : *tire à proximité de sa jambe* J’AI DIT : À TERRE ! Vous allez tous venir avec nous, et sans faire de vagues. On a des questions à vous poser.',
+			'Henri : D’accord, d’accord, on se rend ! Ne tirez pas ! ...  ',
 			'Ellie : Et merde... Cédric n’est jamais là quand on en a besoin !',
 			'Lauren : Cédric... Romero ?',
 			'Sacha : Pas la peine de nous questionner sur lui, on sait pas où il est !',
@@ -299,14 +298,26 @@ const Raphaelle = ({ closeAgentPage }) => {
 	}
 
 	const renderRetourCoffreModal = () => {
-		const text = ["Ouvrons d'abord le coffre avant d'explorer les nouvelles pistes"]
+		const text = [
+			"Pensez à ouvrir le coffre avant d'explorer de nouvelles pistes.",
+			"Vous pouvez retourner dans la planque depuis l'historique."
+		]
 		return (
 			<div className='modal-objectif__background'>
 				<div className='modal-objectif__box'>
 					{<div>{renderText(text)}</div>}
-					<button type='button' className='modal-objectif__button button--red' onClick={handleRetourCoffre}>
-						Retourner dans la planque
-					</button>
+					<div className='modal-objectif__buttons'>
+						<button type='button' className='modal-objectif__button button--red' onClick={handleRetourCoffre}>
+							Retourner dans la planque
+						</button>
+						<button
+							type='button'
+							className='modal-objectif__button button--white'
+							onClick={() => setRetourCoffreModal(false)}
+						>
+							Continuer l&apos;enquête
+						</button>
+					</div>
 				</div>
 			</div>
 		)

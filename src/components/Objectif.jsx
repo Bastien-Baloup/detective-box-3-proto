@@ -77,6 +77,9 @@ const Objectif = ({ data }) => {
 		return sousObjectifs
 	}, [data, events])
 
+	const sousObj31 = useMemo(() => listSousObjectifs?.find((sousObj) => sousObj.id === 31), [listSousObjectifs])
+	const sousObj32 = useMemo(() => listSousObjectifs?.find((sousObj) => sousObj.id === 32), [listSousObjectifs])
+
 	const box1document8 = useMemo(() => history?.find((document) => document.id === 'box1document8')?.status, [history])
 
 	const box1audio12 = useMemo(() => history?.find((document) => document.id === 'box1audio12'), [history])
@@ -107,12 +110,14 @@ const Objectif = ({ data }) => {
 	}
 	const renderPopupDebutHacking = () => {
 		const text = [
-			'J’ai récupéré l’accès au système de sécurité via Sophie Palmero,',
-			'ça devrait vous aider à obtenir des informations sur le hacking des caméras !'
+			'J’ai récupéré l’accès au système de sécurité via Sophie Palmero, je reconnais bien la méthode de piratage utilisée.',
+			'Je ne vous garantis pas que vous allez réussir à mettre la main sur les vraies images des caméras mais vous pouvez toujours essayer.'
 		]
 		const text2 = [
-			'Il nous faut trouver un moyen de débloquer le hacking mis en place par La Horde et peut-être découvrir qui se cache derrière tout ça...',
-			'J’ai l’impression que les traits ne peuvent pas se croiser ni être en diagonal. Ah oui et le système accepte 0, 1 ou 2 traits pour relier les points entre eux.'
+			'En gros, il faut créer des connexions entre les blocs.',
+			'Les connexions ne peuvent pas sur superposer et le système ne reconnait que les connexions verticales et horizontales mais pas de biais.',
+			'Le système accepte 0, 1 ou 2 connexions entre chaque bloc, un peu comme du binaire mais un peu plus complexe.',
+			'Il y a une logique d’équivalence : le nombre de connexions doit correspondre à la typologie du bloc. Si on est sur un bloc 4, il doit y avoir exactement 4 connexions qui partent du bloc.'
 		]
 		return (
 			<div className='modal-objectif__background'>
@@ -175,7 +180,32 @@ const Objectif = ({ data }) => {
 		await updateObjectives(token, 1, 1, 'done')
 		await updateObjectives(token, 1, 2, 'open')
 		actionToggleDataObjectif()
-		setPopupImagesCamera(true)
+		setApresInterrogatoireTim(true)
+	}
+
+	const [apresInterrogatoireTim, setApresInterrogatoireTim] = useState(false)
+	const renderApresInterrogatoireTim = () => {
+		const closeApresInterrogatoireTim = () => {
+			setPopupImagesCamera(true)
+			setApresInterrogatoireTim(false)
+		}
+		const text = [
+			'Bon agents, la véritable implication de Tim dans cette affaire n’est pas encore tout à fait claire.',
+			'En attendant d’en avoir le cœur net, on garde Tim dans l’équipe.',
+			'Mon instinct me dit que ce n’est pas lui le méchant dans l’histoire et de toute façon, ça nous permet de garder un œil sur lui au cas où.',
+			'',
+			'Retournez le voir, je crois qu’il a des infos à vous donner sur notre affaire !'
+		]
+		return (
+			<div className='modal-objectif__background'>
+				<div className='modal-objectif__box'>
+					{<div>{renderText(text)}</div>}
+					<button type='button' className='modal-objectif__button button--red' onClick={closeApresInterrogatoireTim}>
+						Continuer l&apos;enquête
+					</button>
+				</div>
+			</div>
+		)
 	}
 
 	// début objectif 2
@@ -270,14 +300,14 @@ const Objectif = ({ data }) => {
 	const [denoncerTimBis, setDenoncerTimBis] = useState(false)
 
 	const denoncer = async () => {
-		await updateEvent(token, 1, 32, 'done')
+		await updateEvent(token, 1, 303, 'done')
 		actionToggleDataEvent()
 		setDenoncerTimBis(false)
 		setDenoncerTimOui(true)
 	}
 
 	const pasDenoncer = async () => {
-		await updateEvent(token, 1, 32, 'open')
+		await updateEvent(token, 1, 303, 'open')
 		actionToggleDataEvent()
 		setDenoncerTimBis(false)
 		setDenoncerTimNon(true)
@@ -287,7 +317,7 @@ const Objectif = ({ data }) => {
 		return (
 			<div className='modal-objectif__background'>
 				<div className='modal-objectif__box'>
-					<h2 className='modal-objectif__title'>Quel choix voulez-vous faire ?</h2>
+					<h2 className='modal-objectif__title'>Voulez-vous dénoncer Tim ?</h2>
 					<button type='button' className='modal-objectif__button button--red' onClick={denoncer}>
 						Dénoncer Tim
 					</button>
@@ -317,7 +347,7 @@ const Objectif = ({ data }) => {
 				<div className='modal-objectif__box'>
 					<div>{renderText(text)}</div>
 					<button type='button' className='modal-objectif__button button--red' onClick={handleDenoncerOui}>
-						Suite
+						Terminer l&apos;enquête
 					</button>
 				</div>
 			</div>
@@ -342,7 +372,7 @@ const Objectif = ({ data }) => {
 				<div className='modal-objectif__box'>
 					<div>{renderText(text)}</div>
 					<button type='button' className='modal-objectif__button button--red' onClick={handleDenoncerNon}>
-						Suite
+						Terminer l&apos;enquête
 					</button>
 				</div>
 			</div>
@@ -367,8 +397,8 @@ const Objectif = ({ data }) => {
 						belle récompense...
 					</div>
 					<select name='' id=''>
-						<option value=''>Simon</option>
-						<option value=''>Philippe</option>
+						<option value=''>Donner le nom du meurtrier</option>
+						<option value=''>Ne pas donner le nom du meurtrier</option>
 					</select>
 					<button type='button' className='modal-objectif__button button--red' onClick={handleReponseEmail}>
 						Envoyer
@@ -453,6 +483,43 @@ const Objectif = ({ data }) => {
 				setModal(false)
 				return
 			}
+			if (sousObjectif?.id === 31) {
+				if (sousObjectif?.answer.length === braqueurValues.length) {
+					let allGood = true
+					for (let indice = 0; indice < braqueurValues.length; indice++) {
+						const goodAnswer = sousObjectif?.answer[indice]
+						const answer = braqueurValues[indice]
+						if (goodAnswer !== slugify(answer)) {
+							allGood = false
+							break
+						}
+					}
+					if (allGood) {
+						setErrorMessage('')
+						setValue('')
+						setModal(false)
+						setModalAnswer(true)
+						return
+					} else {
+						setErrorMessage(sousObjectif.errorMessage)
+						return
+					}
+				}
+			}
+			if (sousObjectif?.id === 32) {
+				if (!box1document8) {
+					setErrorMessage("Ce n'est pas un peu tôt pour accuser quelqu'un ?")
+					setValue('')
+					return
+				}
+				if (sousObjectif.answer.includes(slugify(value)) && sousObjectif.answer.includes(slugify(selectedChoice))) {
+					setErrorMessage('')
+					setValue('')
+					setModal(false)
+					setModalAnswer(true)
+					return
+				}
+			}
 			if (sousObjectif.answer.includes(slugify(value))) {
 				//TODO Gestion spécifique bonnes réponses
 
@@ -467,23 +534,6 @@ const Objectif = ({ data }) => {
 			setErrorMessage(sousObjectif.errorMessage)
 			setValue('')
 		} else {
-			if (data.id === 3) {
-				if (!box1document8) {
-					setErrorMessage("Ce n'est pas un peu tôt pour accuser quelqu'un ?")
-					setValue('')
-					return
-				}
-				if (data.answer.includes(slugify(value)) && data.answer.includes(slugify(selectedChoice))) {
-					setErrorMessage('')
-					setValue('')
-					setModal(false)
-					setModalAnswer(true)
-					return
-				}
-				setErrorMessage(data.errorMessage)
-				setValue('')
-				return
-			}
 			if (data.answer.includes(slugify(value))) {
 				//TODO Gestion spécifique bonnes réponses
 
@@ -536,9 +586,64 @@ const Objectif = ({ data }) => {
 			setSousObjectif(null)
 			return
 		}
-		if (data.id === 3) {
-			setInterrogatoireSimon(true)
+		if (sousObjectif?.id === 31) {
+			await updateEvent(token, 1, 31, 'done')
+			actionToggleDataEvent()
+			if (sousObj32?.status !== 'done') {
+				setManqueSousObj32(true)
+			}
 		}
+		if (sousObjectif?.id === 32) {
+			await updateEvent(token, 1, 32, 'done')
+			actionToggleDataEvent()
+			setInterrogatoireSimon(true)
+			if (sousObj31?.status !== 'done') {
+				setManqueSousObj31(true)
+			}
+		}
+	}
+
+	const [manqueSousObj31, setManqueSousObj31] = useState(false)
+	const renderManqueSousObj31 = () => {
+		const text = [
+			"Bravo agents !",
+			"Maintenant qu’on a mis la main sur le meurtrier de Cédric Romero, je vous laisse boucler votre dossier sur le casse du Casino.",
+			"La police (et le père de Tim) seront plus que ravis d'avoir le fin mot de l’histoire et qui sait... peut-être retrouver l’argent volé."
+		]
+		const handleClick = () => {
+			setManqueSousObj31(false)
+		}
+		return (
+			<div className='modal-objectif__background'>
+				<div className='modal-objectif__box'>
+					<div>{renderText(text)}</div>
+					<button type='button' className='modal-objectif__button button--red' onClick={handleClick}>
+						Continuer l&apos;enquête
+					</button>
+				</div>
+			</div>
+		)
+	}
+
+	const [manqueSousObj32, setManqueSousObj32] = useState(false)
+	const renderManqueSousObj32 = () => {
+		const text = [
+			"On va pouvoir revenir à un sujet plus qu’important : qui a tué Cédric Romero ?",
+			"Je pense qu’on peut déjà revenir sur ce que Sacha Leza nous a dit à propos d’un bracelet métallique. Je vous laisse regarder ça !"
+		]
+		const handleClick = () => {
+			setManqueSousObj32(false)
+		}
+		return (
+			<div className='modal-objectif__background'>
+				<div className='modal-objectif__box'>
+					<div>{renderText(text)}</div>
+					<button type='button' className='modal-objectif__button button--red' onClick={handleClick}>
+						Continuer l&apos;enquête
+					</button>
+				</div>
+			</div>
+		)
 	}
 
 	const renderListeSousObjectif = () => {
@@ -642,6 +747,16 @@ const Objectif = ({ data }) => {
 				</form>
 			)
 		}
+		if (sousObjectif.id === 31) {
+			answerForm = (
+				<form className='modal-objectif__form' onSubmit={handleSubmit}>
+					{renderListeBraqueurs()}
+					<button type='submit' className='modal-objectif__button button--red'>
+						Valider
+					</button>
+				</form>
+			)
+		}
 		return (
 			<>
 				<h3 className='modal-objectif__title'>
@@ -651,6 +766,78 @@ const Objectif = ({ data }) => {
 				<div className='modal-objectif__errorMessage'>{errorMessage}</div>
 				{answerForm}
 			</>
+		)
+	}
+
+	const renderListeBraqueurs = () => sousObjectif?.images?.map((src, indice) => renderBraqueur(src, indice))
+
+	const [braqueurValues, setBraqueurValues] = useState(["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""])
+	const updateBraqueurValues = (indice, value) => {
+		const temp = [...braqueurValues]
+		temp[indice] = value
+		setBraqueurValues(temp)
+	}
+	const renderBraqueur = (src, indice) => {
+		return (
+			<div className="modal-objectif__braqueur">
+				<div className='modal-objectif__braqueur--photo'>
+					<img src={urlApi.cdn() + src} alt='' />
+				</div>
+				<div className='modal-objectif__braqueur--input'>
+					<div className='input-wrapper-text'>
+						<label className='input-wrapper__label' htmlFor="nom">
+							Nom
+						</label>
+						<input
+							className='input-texte'
+							id="nom"
+							name="nom"
+							maxLength='60'
+							onChange={(e) => updateBraqueurValues(indice * 4 + 0, e.target.value)}
+						/>
+					</div>
+					<div className='input-wrapper-text'>
+						<label className='input-wrapper__label' htmlFor="prenom">
+							Prénom
+						</label>
+						<input
+							className='input-texte'
+							id="prenom"
+							name="prenom"
+							maxLength='60'
+							onChange={(e) => updateBraqueurValues(indice * 4 + 1, e.target.value)}
+						/>
+					</div>
+					<div className='input-wrapper-text'>
+						<label className='input-wrapper__label' htmlFor="animal">
+							Animal
+						</label>
+						<input
+							className='input-texte'
+							id="animal"
+							name="animal"
+							maxLength='60'
+							onChange={(e) => updateBraqueurValues(indice * 4 + 2, e.target.value)}
+						/>
+					</div>
+					<div className='input-wrapper-select'>
+						<label className='input-wrapper__label' htmlFor={'choix-' + indice}>
+							Animal
+						</label>
+					</div>
+					<select
+						name={'choix-' + indice}
+						id={'choix-' + indice}
+						onChange={(e) => updateBraqueurValues(indice * 4 + 3, e.target.value)}
+					>
+						{sousObjectif?.choices.map((choice, index) => (
+							<option key={indice * 4 + index} value={choice}>
+								{choice}
+							</option>
+						))}
+					</select>
+				</div>
+			</div>
 		)
 	}
 
@@ -837,7 +1024,7 @@ const Objectif = ({ data }) => {
 						<h3 className='modal-objectif__title'>
 							Sous-Objectif : <br /> {sousObjectif.title}
 						</h3>
-						<div>{renderText(sousObjectif?.answertext)}</div>
+						<div>{renderText(sousObjectif?.donetext || sousObjectif?.answertext)}</div>
 						<button type='button' className='modal-objectif__button button--red' onClick={closeDoneObjectifModal}>
 							Valider
 						</button>
@@ -851,7 +1038,7 @@ const Objectif = ({ data }) => {
 					<h2 className='modal-objectif__title'>
 						Objectif : <br /> {data.title}
 					</h2>
-					<div>{renderText(data.answertext)}</div>
+					<div>{renderText(data?.donetext || data?.answertext)}</div>
 					<button type='button' className='modal-objectif__button button--red' onClick={closeDoneObjectifModal}>
 						Valider
 					</button>
@@ -925,8 +1112,11 @@ const Objectif = ({ data }) => {
 			{popupFinHacking && renderPopupFinHacking()}
 			{tipsLauren && renderTipsLauren()}
 			{interrogatoireTim && <InterrogatoireInterractif onClose={onCloseInterrogatoireTim} />}
+			{apresInterrogatoireTim && renderApresInterrogatoireTim()}
 			{popupImagesCamera && renderPopupImagesCamera()}
 			{pharmacie && renderPharmacie()}
+			{manqueSousObj31 && renderManqueSousObj31()}
+			{manqueSousObj32 && renderManqueSousObj32()}
 			{interrogatoireSimon && renderInterrogatoireSimon()}
 			{denoncerTim && renderDenoncerTim()}
 			{denoncerTimBis && renderDenoncerTimBis()}

@@ -23,63 +23,38 @@
 		"status": false
 	},
 	{
-		"ask": ["pharmacie", "pharmaciefontvieille", "pharmaciedefontvieille"],
+		"ask": [
+			"pharmacie",
+			"pharmaciefontvieille",
+			"pharmaciedefontvieille",
+			"pharmacien",
+			"pharmacienfontvieille",
+			"pharmaciendefontvieille"
+		],
+		"objectifs": [2],
 		"text": ["Je me suis entretenue avec lui, je vous envoie l’enregistrement !"],
 		"id": "box1audio2",
 		"title": "Interrogatoire du Pharmacien",
 		"img1": "proto3/assets/photos-personnages/pharmacien.jpg",
 		"img2": "assets/photos-personnages/lauren.jpg",
 		"srcAudio": "proto3/sounds/interrogatoire-pharmacien.mp3",
-		"srcTranscript": "proto3/assets/transcripts/3a227-interrogatoire-pharmacien-v2.pdf",
-		"status": false
-	},
-	{
-		"ask": ["simon", "simonberbre", "berbresimon"],
-		"text": ["Voici ce qu’il avait à me dire, agents..."],
-		"id": "box1audio9",
-		"title": "Interrogatoire de Simon Berbre",
-		"img1": "proto3/assets/photos-personnages/simon-berbre.jpg",
-		"img2": "assets/photos-personnages/lauren.jpg",
-		"srcAudio": "proto3/sounds/interrogatoire-simon-berbre-bis.mp3",
-		"srcTranscript": "proto3/assets/transcripts/3a347-nouvel-interrogatoire-simon-berbre-bis-v2.pdf",
-		"status": false
-	},
-	{
-		"ask": ["philippe", "philippepizzio", "pizziophilippe"],
-		"text": ["Je me suis entretenue avec lui, je vous envoie l’enregistrement !"],
-		"id": "box1audio10",
-		"title": "Interrogatoire de Philippe Pizzio",
-		"img1": "proto3/assets/photos-personnages/philippe-pizzio.jpg",
-		"img2": "assets/photos-personnages/lauren.jpg",
-		"srcAudio": "proto3/sounds/interrogatoire-philippe-pizzio.mp3",
-		"srcTranscript": "proto3/assets/transcripts/3A346-interrogatoire-philippe-pizzio-bis.pdf",
-		"status": false
-	},
-	{
-		"ask": ["eric", "ericlombardo", "lombardoeric"],
-		"text": ["Pas commode le directeur... Tenez, voici la retranscription !"],
-		"id": "box1audio11",
-		"title": "Interrogatoire de Eric Lombardo",
-		"img1": "proto3/assets/photos-personnages/eric-lombardo.jpg",
-		"img2": "assets/photos-personnages/lauren.jpg",
-		"srcAudio": "proto3/sounds/interrogatoire-eric-lombardo.mp3",
-		"srcTranscript": "proto3/assets/transcripts/3a344-nouvel-interrogatoire-eric-lombardo-bis-v2.pdf",
+		"srcTranscript": "proto3/assets/transcripts/3a227-interrogatoire-pharmacien-v3.pdf",
 		"status": false
 	},
 	{
 		"ask": ["manonbondy", "bondymanon"],
-		"text": [""],
+		"text": ["Tenez agents, voici l’enregistrement !"],
 		"id": "box1audio13",
 		"title": "Interrogatoire de Manon Bondy",
 		"img1": "proto3/assets/photos-personnages/manon-bondy.jpg",
 		"img2": "assets/photos-personnages/lauren.jpg",
 		"srcAudio": "proto3/sounds/interrogatoire-manon-bondy.mp3",
-		"srcTranscript": "proto3/assets/transcripts/3a122-interrogatoire-manon-bondy.pdf",
+		"srcTranscript": "proto3/assets/transcripts/3a122-interrogatoire-manon-bondy-1.pdf",
 		"status": false
 	},
 	{
 		"ask": ["agneschasse", "chasseagnes"],
-		"text": [""],
+		"text": ["Voici notre échange, elle n'avait pas grand-chose à nous dire malheureusement"],
 		"id": "box1audio14",
 		"title": "Interrogatoire d'Agnès Chassé",
 		"img1": "proto3/assets/photos-personnages/agnes-chasse.jpg",
@@ -90,13 +65,100 @@
 	},
 	{
 		"ask": ["brunoclavet", "clavetbruno"],
-		"text": [""],
+		"text": ["Un peu austère comme commissaire, je vous laisse juger par vous-mêmes"],
 		"id": "box1audio15",
 		"title": "Interrogatoire de Bruno Clavet",
 		"img1": "proto3/assets/photos-personnages/bruno-clavet.jpg",
 		"img2": "assets/photos-personnages/lauren.jpg",
 		"srcAudio": "proto3/sounds/interrogatoire-bruno-clavet.mp3",
-		"srcTranscript": "proto3/assets/transcripts/3a124-interrogatoire-bruno-clavet.pdf",
+		"srcTranscript": "proto3/assets/transcripts/3a124-interrogatoire-bruno-clavet-1.pdf",
+		"status": false
+	},
+	{
+		"aks": [
+			"tim",
+			"timlombardo",
+			"lombardotim",
+			"timlonewood",
+			"lonewoodtim",
+			"timothee",
+			"timotheelombardo",
+			"lombardotimothee",
+			"timotheelonewood",
+			"lonewoodtimothee"
+		],
+		"objectifs": [1],
+		"text": ["On doit déjà trouver qui a hacké les caméras de surveillance avant d’interroger Tim, non ?"],
+		"srcComment": null
+	},
+	{
+		"aks": ["henri", "henrileveaux", "leveauxhenri", "henry", "henryleveaux", "leveauxhenry"],
+		"objectifs": [1],
+		"text": [
+			"Je n'ai pas pu joindre cette personne.",
+			"Voyez avec Tim, il pourra peut-être vous trouver des choses sur cette personne si vous jugez que c'est utile."
+		],
+		"srcComment": null
+	},
+	{
+		"aks": [
+			"simon",
+			"simonberbre",
+			"berbresimon",
+			"philippe",
+			"philippepizzio",
+			"pizziophilippe",
+			"alexandra",
+			"allavenaalexandra",
+			"alexandraallavena",
+			"sophie",
+			"sophiepalmero",
+			"palmerosophie",
+			"eric",
+			"ericlombardo",
+			"lombardoeric",
+			"richard",
+			"richardgranville",
+			"grandvillerichard"
+		],
+		"objectifs": [1, 2],
+		"text": ["Pour l'instant, nous n'avons plus de questions à lui poser."],
+		"srcComment": null
+	},
+	{
+		"ask": ["simon", "simonberbre", "berbresimon"],
+		"objectifs": [3],
+		"text": ["Voici ce qu’il avait à me dire, agents..."],
+		"id": "box1audio9",
+		"title": "Interrogatoire de Simon Berbre",
+		"img1": "proto3/assets/photos-personnages/simon-berbre.jpg",
+		"img2": "assets/photos-personnages/lauren.jpg",
+		"srcAudio": "proto3/sounds/interrogatoire-simon-berbre-bis.mp3",
+		"srcTranscript": "proto3/assets/transcripts/3a347-interrogatoire-simon-berbre-v3.pdf",
+		"status": false
+	},
+	{
+		"ask": ["philippe", "philippepizzio", "pizziophilippe"],
+		"objectifs": [3],
+		"text": ["Effectivement, de nouveaux éléments appellent à un nouvel interrogatoire... Je vous envoie l’audio !"],
+		"id": "box1audio10",
+		"title": "Interrogatoire de Philippe Pizzio",
+		"img1": "proto3/assets/photos-personnages/philippe-pizzio.jpg",
+		"img2": "assets/photos-personnages/lauren.jpg",
+		"srcAudio": "proto3/sounds/interrogatoire-philippe-pizzio.mp3",
+		"srcTranscript": "proto3/assets/transcripts/3a346-interrogatoire-philippe-pizzio.pdf",
+		"status": false
+	},
+	{
+		"ask": ["eric", "ericlombardo", "lombardoeric"],
+		"objectifs": [3],
+		"text": ["Pas commode le directeur... Tenez, voici la retranscription !"],
+		"id": "box1audio11",
+		"title": "Interrogatoire de Eric Lombardo",
+		"img1": "proto3/assets/photos-personnages/eric-lombardo.jpg",
+		"img2": "assets/photos-personnages/lauren.jpg",
+		"srcAudio": "proto3/sounds/interrogatoire-eric-lombardo.mp3",
+		"srcTranscript": "proto3/assets/transcripts/3a344-nouvel-interrogatoire-Éric-lombardo-bis-v3.pdf",
 		"status": false
 	}
 ]

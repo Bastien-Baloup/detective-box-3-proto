@@ -44,6 +44,41 @@
 	},
 	{
 		"ask": [
+			"cameradesecuritecouloirsecurise",
+			"camerasdesecuritecouloirsecurise",
+			"videocouloirsecurise",
+			"videoscouloirsecurise",
+			"cameracouloirsecurise",
+			"camerascouloirsecurise",
+			"videosurveillancecouloirsecurise"
+		],
+		"objectifs": [1],
+
+		"text": [
+			"Franchement, avant que les caméras se fassent hacker, il n’y a rien d’intéressant, mon père est dans son bureau, Simon dans le sien... Et après... Bah après c’est une boucle donc on ne voit rien et malheureusement, je doute qu’on puisse récupérer les données. Le hacker qui a fait ça est sacrément doué..."
+		],
+		"srcComment": null,
+		"status": false
+	},
+	{
+		"ask": [
+			"cameradesecuritecouloirsecurise",
+			"camerasdesecuritecouloirsecurise",
+			"videocouloirsecurise",
+			"videoscouloirsecurise",
+			"cameracouloirsecurise",
+			"camerascouloirsecurise",
+			"videosurveillancecouloirsecurise"
+		],
+		"objectifs": [2, 3],
+		"text": [
+			"Je ne vous ai pas menti, y a rien sur ces enregistrements, même si vous avez trouvé mon nom dessus, ça ne change rien."
+		],
+		"srcComment": null,
+		"status": false
+	},
+	{
+		"ask": [
 			"videosalledejeu",
 			"videodelasalledejeu",
 			"videosalledejeucasino",
@@ -56,36 +91,36 @@
 			"videossalledejeuducasino",
 			"videosdelasalledejeucasino",
 			"videosdelasalledejeuducasino",
-			"videosuveillancesalledejeu",
-			"videosuveillancedelasalledejeu",
-			"videosuveillancesalledejeucasino",
-			"videosuveillancesalledejeuducasino",
-			"videosuveillancedelasalledejeucasino",
-			"videosuveillancedelasalledejeuducasino",
-			"videodesuveillancesalledejeu",
-			"videodesuveillancedelasalledejeu",
-			"videodesuveillancesalledejeucasino",
-			"videodesuveillancesalledejeuducasino",
-			"videodesuveillancedelasalledejeucasino",
-			"videodesuveillancedelasalledejeuducasino",
-			"videossuveillancesalledejeu",
-			"videossuveillancedelasalledejeu",
-			"videossuveillancesalledejeucasino",
-			"videossuveillancesalledejeuducasino",
-			"videossuveillancedelasalledejeucasino",
-			"videossuveillancedelasalledejeuducasino",
-			"videosdesuveillancesalledejeu",
-			"videosdesuveillancedelasalledejeu",
-			"videosdesuveillancesalledejeucasino",
-			"videosdesuveillancesalledejeuducasino",
-			"videosdesuveillancedelasalledejeucasino",
-			"videosdesuveillancedelasalledejeuducasino",
-			"suveillancesalledejeu",
-			"suveillancedelasalledejeu",
-			"suveillancesalledejeucasino",
-			"suveillancesalledejeuducasino",
-			"suveillancedelasalledejeucasino",
-			"suveillancedelasalledejeuducasino",
+			"videosurveillancesalledejeu",
+			"videosurveillancedelasalledejeu",
+			"videosurveillancesalledejeucasino",
+			"videosurveillancesalledejeuducasino",
+			"videosurveillancedelasalledejeucasino",
+			"videosurveillancedelasalledejeuducasino",
+			"videodesurveillancesalledejeu",
+			"videodesurveillancedelasalledejeu",
+			"videodesurveillancesalledejeucasino",
+			"videodesurveillancesalledejeuducasino",
+			"videodesurveillancedelasalledejeucasino",
+			"videodesurveillancedelasalledejeuducasino",
+			"videossurveillancesalledejeu",
+			"videossurveillancedelasalledejeu",
+			"videossurveillancesalledejeucasino",
+			"videossurveillancesalledejeuducasino",
+			"videossurveillancedelasalledejeucasino",
+			"videossurveillancedelasalledejeuducasino",
+			"videosdesurveillancesalledejeu",
+			"videosdesurveillancedelasalledejeu",
+			"videosdesurveillancesalledejeucasino",
+			"videosdesurveillancesalledejeuducasino",
+			"videosdesurveillancedelasalledejeucasino",
+			"videosdesurveillancedelasalledejeuducasino",
+			"surveillancesalledejeu",
+			"surveillancedelasalledejeu",
+			"surveillancesalledejeucasino",
+			"surveillancesalledejeuducasino",
+			"surveillancedelasalledejeucasino",
+			"surveillancedelasalledejeuducasino",
 			"camerasalledejeu",
 			"cameradelasalledejeu",
 			"camerasalledejeucasino",
@@ -98,17 +133,28 @@
 			"camerassalledejeuducasino",
 			"camerasdelasalledejeucasino",
 			"camerasdelasalledejeuducasino",
-			"camerassuveillancesalledejeu",
-			"camerassuveillancedelasalledejeu",
-			"camerasdesuveillancesalledejeu",
-			"camerasdesuveillancedelasalledejeu",
-			"camerassuveillancesalledejeucasino",
-			"camerassuveillancesalledejeuducasino",
-			"camerassuveillancedelasalledejeucasino",
-			"camerassuveillancedelasalledejeuducasino",
-			"camerasdesuveillancesalledejeucasino",
-			"camerasdesuveillancedelasalledejeucasino",
-			"camerasdesuveillancedelasalledejeuducasino",
+			"camerassurveillancesalledejeu",
+			"camerassurveillancedelasalledejeu",
+			"camerasdesurveillancesalledejeu",
+			"camerasdesurveillancedelasalledejeu",
+			"camerassurveillancesalledejeucasino",
+			"camerassurveillancesalledejeuducasino",
+			"camerassurveillancedelasalledejeucasino",
+			"camerassurveillancedelasalledejeuducasino",
+			"camerasdesurveillancesalledejeucasino",
+			"camerasdesurveillancedelasalledejeucasino",
+			"camerasdesurveillancedelasalledejeuducasino",
+			"camerassecuritesalledejeu",
+			"camerassecuritedelasalledejeu",
+			"camerasdesecuritesalledejeu",
+			"camerasdesecuritedelasalledejeu",
+			"camerassecuritesalledejeucasino",
+			"camerassecuritesalledejeuducasino",
+			"camerassecuritedelasalledejeucasino",
+			"camerassecuritedelasalledejeuducasino",
+			"camerasdesecuritesalledejeucasino",
+			"camerasdesecuritedelasalledejeucasino",
+			"camerasdesecuritedelasalledejeuducasino",
 			"videosalledejeux",
 			"videodelasalledejeux",
 			"videosalledejeuxcasino",
@@ -121,24 +167,25 @@
 			"videossalledejeuxducasino",
 			"videosdelasalledejeuxcasino",
 			"videosdelasalledejeuxducasino",
-			"suveillancesalledejeux",
-			"suveillancedelasalledejeux",
-			"suveillancesalledejeuxcasino",
-			"suveillancesalledejeuxducasino",
-			"suveillancedelasalledejeuxcasino",
-			"suveillancedelasalledejeuxducasino",
-			"camerassuveillancesalledejeux",
-			"camerassuveillancedelasalledejeux",
-			"camerasdesuveillancesalledejeux",
-			"camerasdesuveillancedelasalledejeux",
-			"camerassuveillancesalledejeuxcasino",
-			"camerassuveillancesalledejeuxducasino",
-			"camerassuveillancedelasalledejeuxcasino",
-			"camerassuveillancedelasalledejeuxducasino",
-			"camerasdesuveillancesalledejeuxcasino",
-			"camerasdesuveillancedelasalledejeuxcasino",
-			"camerasdesuveillancedelasalledejeuxducasino"
+			"surveillancesalledejeux",
+			"surveillancedelasalledejeux",
+			"surveillancesalledejeuxcasino",
+			"surveillancesalledejeuxducasino",
+			"surveillancedelasalledejeuxcasino",
+			"surveillancedelasalledejeuxducasino",
+			"camerassurveillancesalledejeux",
+			"camerassurveillancedelasalledejeux",
+			"camerasdesurveillancesalledejeux",
+			"camerasdesurveillancedelasalledejeux",
+			"camerassurveillancesalledejeuxcasino",
+			"camerassurveillancesalledejeuxducasino",
+			"camerassurveillancedelasalledejeuxcasino",
+			"camerassurveillancedelasalledejeuxducasino",
+			"camerasdesurveillancesalledejeuxcasino",
+			"camerasdesurveillancedelasalledejeuxcasino",
+			"camerasdesurveillancedelasalledejeuxducasino"
 		],
+		"objectifs": [1],
 		"text": ["Voilà ce que j’ai pu trouver. Je vous ai rassemblé les moments intéressants de la soirée."],
 		"srcComment": null,
 		"id": "box1video2",
@@ -147,7 +194,7 @@
 		"status": false
 	},
 	{
-		"ask": ["lefort"],
+		"ask": ["lefort", "dossierlefort", "frereslefort", "dossierfrereslefort", "informationsfrereslefort"],
 		"text": [
 			"Je n’ai rien de rien ! C’est chelou... C’est comme si leurs empreintes digitales avaient complètement été effacées..."
 		],
@@ -155,18 +202,27 @@
 		"status": false
 	},
 	{
-		"ask": ["philippe", "philippepiazolli", "piazolliphilippe"],
-		"text": ["Rien d'interessant."],
-		"srcComment": null,
-		"status": false
-	},
-	{
-		"ask": ["simon", "simonberbre", "berbresimon"],
-		"text": ["Voilà, tenez !"],
+		"ask": ["simon", "simonberbre", "berbresimon", "dossiersimon", "informationssimomberbe"],
+		"text": [
+			"Tenez, voici ce que j’ai trouvé. C’est curieux, même en croisant différentes bases de données, il n’existe aucune trace de Simon Berbre avant 2015..."
+		],
 		"srcComment": null,
 		"id": "box1document8",
 		"title": "Dossier sur Simon Berbre",
-		"src": "proto3/assets/documents/3D345-dossier-simon-berbre.pdf",
+		"src": "proto3/assets/documents/3d345-dossier-simon-berbre-v3.pdf",
+		"status": false
+	},
+	{
+		"aks": ["henri", "henrileveaux", "leveauxhenri", "henry", "henryleveaux", "leveauxhenry"],
+		"objectifs": [1],
+		"text": [
+			"J'ai fait quelques recherches en hackant plusieurs bases de données de la police et voici ce que j'ai pu trouver sur la personne que vous cherchez.",
+			"Le type a manifestement un vrai problème avec la cleptomanie..."
+		],
+		"srcComment": null,
+		"id": "box1document12",
+		"title": "Fiche Henri Leveaux",
+		"src": "proto3/assets/documents/3d119-fiche-identité-henri.pdf",
 		"status": false
 	},
 	{
@@ -174,10 +230,28 @@
 		"objectifs": [3],
 		"text": [
 			"Je ne suis pas un grand connaisseur de tatouage mais en faisant quelques recherches par correspondance, je trouve la page d'un salon de tatouage.",
-			"Voici pour vous y rendre : https://www.facebook.com/profile.php?id=61555057479231",
-			"Ca nous en dira peut-être plus sur son passé..."
+			"Allez regarder, ça nous en dira peut-être plus sur son passé... https://www.facebook.com/profile.php?id=61555057479231"
 		],
 		"id": "tatouageSimon",
+		"status": false
+	},
+	{
+		"ask": [
+			"camerassurveillanceduquartier",
+			"camerassurveillancequartier",
+			"camerasurveillanceduquartier",
+			"camerasurveillancequartier"
+		],
+		"text": [
+			"Malheureusement, le quartier de Fontvieille n'est pas équipé de caméras de sécurité, il va falloir faire sans."
+		],
+		"srcComment": null,
+		"status": false
+	},
+	{
+		"ask": ["dossierphilippe", "philippe", "philippepiazolli", "piazolliphilippe"],
+		"text": ["J'ai rien trouvé de spécial, c'est un mec qui semble honnête et sans histoire."],
+		"srcComment": null,
 		"status": false
 	}
 ]

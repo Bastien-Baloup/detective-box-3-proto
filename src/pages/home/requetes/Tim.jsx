@@ -25,7 +25,8 @@ const Tim = ({ closeAgentPage }) => {
 		actionToggleDataEvent
 	} = useContext(DataContext)
 	const { pauseNappe } = useContext(AmbianceContext)
-	const { updateCharactersById, updateHistory, getCharactersById, getObjectivesByBox, updateEvent, getEventByBox } = useApi()
+	const { updateCharactersById, updateHistory, getCharactersById, getObjectivesByBox, updateEvent, getEventByBox } =
+		useApi()
 	const { closeCompte } = useContext(CompteContext)
 
 	//EXPLICATION : Tim est le personnage "5"
@@ -60,7 +61,6 @@ const Tim = ({ closeAgentPage }) => {
 		getObjectives()
 	}, [toggleDataObjectif])
 	const currentObjectif = Math.min(maxDoneObjectif + 1, 3)
-
 
 	const [events, setEvents] = useState(null)
 

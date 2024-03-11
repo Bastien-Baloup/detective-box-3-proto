@@ -48,13 +48,13 @@ const Header = () => {
 
 	const [event241, setEvent241] = useState('')
 	const [event242, setEvent242] = useState('')
-	const [event31, setEvent31] = useState('')
+	const [event302, setevent302] = useState('')
 
 	useEffect(() => {
 		const fetchData = async () => {
 			const events = await getEventByBox(token, currentBox)
-			const event31Data = events.data.find((event) => event.id === 31)
-			setEvent31(event31Data?.status)
+			const event302Data = events.data.find((event) => event.id === 302)
+			setevent302(event302Data?.status)
 			const event241Data = events.data.find((event) => event.id === 241)
 			setEvent241(event241Data?.status)
 			const event242Data = events.data.find((event) => event.id === 242)
@@ -142,7 +142,7 @@ const Header = () => {
 			})
 			return
 		}
-		if (event31 === 'open') {
+		if (event302 === 'open') {
 			dispatch({
 				type: 'setEvent',
 				id: 'obj3'

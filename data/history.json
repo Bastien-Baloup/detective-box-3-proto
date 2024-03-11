@@ -6,7 +6,7 @@
 		"category": "Document",
 		"detail": null,
 		"poster": "proto3/thumbnails/documents/empreintes-par-lieu.jpg",
-		"src": "proto3/assets/documents/empreintes-par-lieu.pdf",
+		"src": "proto3/assets/documents/3d116-correspondances-empreintes-digitales-v2.pdf",
 		"status": false
 	},
 	{
@@ -17,6 +17,16 @@
 		"detail": null,
 		"poster": "proto3/thumbnails/documents/fiche-identite-sacha.jpg",
 		"src": "proto3/assets/documents/3d117-fiche-identite-sacha-v2.pdf",
+		"status": false
+	},
+	{
+		"id": "box1document12",
+		"box": "Box 1",
+		"title": "Fiche d'identité Henri",
+		"category": "Document",
+		"detail": null,
+		"poster": "proto3/thumbnails/documents/3d119-fiche-identité-henri.jpg",
+		"src": "proto3/assets/documents/3d119-fiche-identité-henri.pdf",
 		"status": false
 	},
 	{
@@ -55,8 +65,8 @@
 		"title": "Rapport d'autopsie de Cédric Romero",
 		"category": "Document",
 		"detail": null,
-		"poster": "proto3/thumbnails/documents/3d343-autopsie-par-adele-leinu-v2.jpg",
-		"src": "proto3/assets/documents/3d343-autopsie-par-adele-leinu-v2.pdf",
+		"poster": "proto3/thumbnails/documents/3d343-autopsie-par-adèle-leinu-v3.jpg",
+		"src": "proto3/assets/documents/3d343-autopsie-par-adèle-leinu-v3.pdf",
 		"status": false
 	},
 	{
@@ -65,8 +75,8 @@
 		"title": "Dossier sur Simon Berbre",
 		"category": "Document",
 		"detail": null,
-		"poster": "proto3/thumbnails/documents/3d345-dossier-simon-berbre-v2.jpg",
-		"src": "proto3/assets/documents/3d345-dossier-simon-berbre-v2.pdf",
+		"poster": "proto3/thumbnails/documents/3d345-dossier-simon-berbre-v3.jpg",
+		"src": "proto3/assets/documents/3d345-dossier-simon-berbre-v3.pdf",
 		"status": false
 	},
 	{
@@ -90,7 +100,7 @@
 		"img1": "proto3/assets/photos-personnages/genevieve-funard.jpg",
 		"img2": "assets/photos-personnages/lauren.jpg",
 		"srcAudio": "proto3/sounds/interrogatoire-genevieve-funard.mp3",
-		"srcTranscript": "proto3/assets/transcripts/3a121-interrogatoire-genevieve-funard-v2pdf",
+		"srcTranscript": "proto3/assets/transcripts/3a121-interrogatoire-genevieve-funard-v2.pdf",
 		"status": false
 	},
 	{
@@ -103,7 +113,7 @@
 		"img1": "proto3/assets/photos-personnages/pharmacien.jpg",
 		"img2": "assets/photos-personnages/lauren.jpg",
 		"srcAudio": "proto3/sounds/interrogatoire-pharmacien.mp3",
-		"srcTranscript": "proto3/assets/transcripts/3a227-interrogatoire-pharmacien-v2.pdf",
+		"srcTranscript": "proto3/assets/transcripts/3a227-interrogatoire-pharmacien-v3.pdf",
 		"status": false
 	},
 	{
@@ -128,7 +138,7 @@
 		"img1": "proto3/assets/photos-personnages/ellie-levyn.jpg",
 		"img2": "assets/photos-personnages/lauren.jpg",
 		"srcAudio": "proto3/sounds/interrogatoire-ellie-levyn-mauvais.mp3",
-		"srcTranscript": "proto3/assets/transcripts/3a340-interrogatoire-ellie-levyn-si-on-ne-sait-pas-que-tim-a-menti-v2.pdf",
+		"srcTranscript": "proto3/assets/transcripts/3a340-interrogatoire-ellie-levyn-(si-tim-n'a-pas-donné-le-nom-d'ellie)-v3.pdf",
 		"status": false
 	},
 	{
@@ -141,7 +151,7 @@
 		"img1": "proto3/assets/photos-personnages/ellie-levyn.jpg",
 		"img2": "assets/photos-personnages/lauren.jpg",
 		"srcAudio": "proto3/sounds/interrogatoire-ellie-levyn-bon.mp3",
-		"srcTranscript": "proto3/assets/transcripts/3a341-interrogatoire-ellie-levyn-si-on-sait-que-tim-a-menti-v2.pdf",
+		"srcTranscript": "proto3/assets/transcripts/3a341-interrogatoire-ellie-levyn-(si-tim-a-donné-le-nom-d'ellie)-v3.pdf",
 		"status": false
 	},
 	{
@@ -154,7 +164,7 @@
 		"img1": "proto3/assets/photos-personnages/hannah-evans.jpg",
 		"img2": "assets/photos-personnages/lauren.jpg",
 		"srcAudio": "proto3/sounds/interrogatoire-hannah-evans.mp3",
-		"srcTranscript": "proto3/assets/transcripts/3a342-interrogatoire-hannah-evans-v2.pdf",
+		"srcTranscript": "proto3/assets/transcripts/3a342-interrogatoire-hannah-evans-v3.pdf",
 		"status": false
 	},
 	{
@@ -167,7 +177,7 @@
 		"img1": "proto3/assets/photos-personnages/sacha-leza.jpg",
 		"img2": "assets/photos-personnages/lauren.jpg",
 		"srcAudio": "proto3/sounds/interrogatoire-sacha-leza.mp3",
-		"srcTranscript": "proto3/assets/transcripts/3a338-interrogatoire-sacha-leza-v2.pdf",
+		"srcTranscript": "proto3/assets/transcripts/3a338-interrogatoire-sacha-leza-v3.pdf",
 		"status": false
 	},
 	{
@@ -180,7 +190,7 @@
 		"img1": "proto3/assets/photos-personnages/henri-leveaux.jpg",
 		"img2": "assets/photos-personnages/lauren.jpg",
 		"srcAudio": "proto3/sounds/interrogatoire-henri-leveaux.mp3",
-		"srcTranscript": "proto3/assets/transcripts/3a336-interrogatoire-henri-leveaux-v2.pdf",
+		"srcTranscript": "proto3/assets/transcripts/3a336-interrogatoire-henri-leveaux-v3.pdf",
 		"status": false
 	},
 	{
@@ -193,7 +203,7 @@
 		"img1": "proto3/assets/photos-personnages/simon-berbre.jpg",
 		"img2": "assets/photos-personnages/lauren.jpg",
 		"srcAudio": "proto3/sounds/interrogatoire-simon-berbre-bis.mp3",
-		"srcTranscript": "proto3/assets/transcripts/3a347-nouvel-interrogatoire-simon-berbre-bis-v2.pdf",
+		"srcTranscript": "proto3/assets/transcripts/3a347-interrogatoire-simon-berbre-v3.pdf",
 		"status": false
 	},
 	{
@@ -206,7 +216,7 @@
 		"img1": "proto3/assets/photos-personnages/philippe-pizzio.jpg",
 		"img2": "assets/photos-personnages/lauren.jpg",
 		"srcAudio": "proto3/sounds/interrogatoire-philippe-pizzio.mp3",
-		"srcTranscript": "proto3/assets/transcripts/3A346-interrogatoire-philippe-pizzio-bis.pdf",
+		"srcTranscript": "proto3/assets/transcripts/3a346-interrogatoire-philippe-pizzio.pdf",
 		"status": false
 	},
 	{
@@ -219,7 +229,7 @@
 		"img1": "proto3/assets/photos-personnages/eric-lombardo.jpg",
 		"img2": "assets/photos-personnages/lauren.jpg",
 		"srcAudio": "proto3/sounds/interrogatoire-eric-lombardo.mp3",
-		"srcTranscript": "proto3/assets/transcripts/3a344-nouvel-interrogatoire-eric-lombardo-bis-v2.pdf",
+		"srcTranscript": "proto3/assets/transcripts/3a344-nouvel-interrogatoire-Éric-lombardo-bis-v3.pdf",
 		"status": false
 	},
 	{
@@ -232,7 +242,7 @@
 		"img1": "proto3/assets/photos-personnages/simon-berbre.jpg",
 		"img2": "assets/photos-personnages/lauren.jpg",
 		"srcAudio": "proto3/sounds/interrogatoire-confession.mp3",
-		"srcTranscript": "proto3/assets/transcripts/3a350-interrogatoire-confession-matthieu-lefort-dit-simon-berbre-v2.pdf",
+		"srcTranscript": "proto3/assets/transcripts/3a350-interrogatoire-confession-matthieu-lefort-dit-simon-berbre-v3.pdf",
 		"status": false
 	},
 	{
@@ -245,7 +255,7 @@
 		"img1": "proto3/assets/photos-personnages/manon-bondy.jpg",
 		"img2": "assets/photos-personnages/lauren.jpg",
 		"srcAudio": "proto3/sounds/interrogatoire-manon-bondy.mp3",
-		"srcTranscript": "proto3/assets/transcripts/3a122-interrogatoire-manon-bondy.pdf",
+		"srcTranscript": "proto3/assets/transcripts/3a122-interrogatoire-manon-bondy-1.pdf",
 		"status": false
 	},
 	{
@@ -271,7 +281,7 @@
 		"img1": "proto3/assets/photos-personnages/bruno-clavet.jpg",
 		"img2": "assets/photos-personnages/lauren.jpg",
 		"srcAudio": "proto3/sounds/interrogatoire-bruno-clavet.mp3",
-		"srcTranscript": "proto3/assets/transcripts/3a124-interrogatoire-bruno-clavet.pdf",
+		"srcTranscript": "proto3/assets/transcripts/3a124-interrogatoire-bruno-clavet-1.pdf",
 		"status": false
 	},
 	{

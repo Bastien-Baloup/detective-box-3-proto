@@ -9,24 +9,24 @@
 				"title": "Qui a volé la clé de la Cheffe de table ?",
 				"label": "Réponse",
 				"answer": ["henrileveaux"],
-				"answertext": ["Bien joué agents, vous avez réussi à retrouver le pickpoket !", "C'était donc Henri Leveaux."],
+				"answertext": [
+					"Bien joué agents, c'était donc Henri Leveaux qui a subtilisé la clé à la cheffe de table.",
+					"Le profil des membres du gang commence à se dévoiler…"
+				],
 				"answersrc": null,
 				"errorMessage": "Je ne pense pas que ce soit cela.",
 				"status": "open"
 			},
 			{
 				"id": 12,
-				"title": "À qui appartiennent les empreintes retrouvées dans le Casino ?",
+				"title": "Qui a ouvert la porte de transfert de fonds ?",
 				"label": "",
 				"answer": ["sachaleza", "lezasacha"],
 				"errorMessage": "Je ne pense pas que ce soit cela.",
 				"answertext": [
-					"Attendez, je vérifie... Mortel !",
-					"Ça correspond à 100%, merci !",
-					"Voici donc le résultat : Sacha Leza, né·e le 22 février 1994.",
-					"Je vous mets sa fiche identité dans votre historique. Iel n’a pas beaucoup d’antécédents...",
-					"Ah, si ! Une interpellation pour avoir tenté d’usurper l’identité de quelqu’un dans une banque en prenant son apparence.",
-					"On dirait qu’iel est plutôt doué·e pour se déguiser..."
+					"Bravo Agents ! Sacha Leza a donc récupéré le code de la porte de transfert de fonds pendant la soirée.",
+					"Iel fait donc partie de l’équipe qui est responsable du casse du Bella Fortuna.",
+					"Le profil des membres de la Horde se précise."
 				],
 				"status": "open"
 			},
@@ -63,7 +63,7 @@
 				"subtitle": "Où se trouve la planque des casseurs ?",
 				"label": "Réponse",
 				"answer": ["4quaijean-charlesrey", "4quaijeancharlesrey"],
-				"answertext": ["On a plus qu'a aller fouiller. Demandez à Sanchez."],
+				"answertext": ["Merci agents, nous allons vérifier ça ! Viens Lauren, on y va !"],
 				"answersrc": null,
 				"errorMessage": "Je ne pense pas que ce soit cela.",
 				"status": "open"
@@ -77,27 +77,86 @@
 	},
 	{
 		"id": 3,
-		"title": "QUI A TUE CEDRIC ROMERO ?",
-		"answertext": ["Félicitations"],
-		"choices": [
-			"-- Identifiez le mobile du tueur --",
-			"Adultère",
-			"Conflit d'intérêts financiers",
-			"Dette impayée",
-			"Enjeux d'héritage",
-			"Jalousie",
-			"Kompromat (chantage à cause d'informations compromettantes)",
-			"Lutte pour le contrôle d'une entreprise",
-			"Motifs passionnels",
-			"Rivalité professionnelle",
-			"Secret révélé",
-			"Trafic de drogue",
-			"Union illégitime",
-			"Vengeance personnelle",
-			"Xénophobie (haine envers une personne étrangère)"
+		"title": "COINCER LE MEURTRIER",
+		"sousobjectifs": [
+			{
+				"id": 31,
+				"title": "Comment est organisée la Horde ?",
+				"answertext": [
+					"Ok, maintenant on y voit plus clair sur le fonctionnement de la Horde.",
+					"Je vais transmettre tout ça à la police locale, je suis sûre qu’elle sera ravie d'avoir sous la main un dossier aussi bien ficelé pour mettre les casseurs derrière les barreaux."
+				],
+				"images": [
+					"proto3/assets/photos-personnages/cedric.jpg",
+					"proto3/assets/photos-personnages/henri.jpg",
+					"proto3/assets/photos-personnages/sacha.jpg",
+					"proto3/assets/photos-personnages/ellie.jpg",
+					"proto3/assets/photos-personnages/hannah.jpg"
+				],
+				"choices": [
+					"",
+					"gestion des opérations",
+					"vol à la tire",
+					"vol à l'arraché",
+					"hacking et conduite",
+					"spécialiste du déguisement",
+					"spécialiste de l'armement",
+					"artiste",
+					"spécialiste des explosifs",
+					"acrobate"
+				],
+				"answer": [
+					[
+						"romero",
+						"cedric",
+						"loup",
+						"gestiondesoperations",
+						"leveaux",
+						"henri",
+						"renard",
+						"volalatire",
+						"leza",
+						"sacha",
+						"cameleon",
+						"specialistedudeguisement",
+						"levyn",
+						"ellie",
+						"lapin",
+						"hackingetconduite",
+						"evans",
+						"hannah",
+						"lynx",
+						"cambriolagedecoffres"
+					]
+				],
+				"errorMessage": "Je ne pense pas que ce soit cela."
+			},
+			{
+				"id": 32,
+				"title": "Qui à tué Cedric Romero ?",
+				"answertext": ["Les dernières infos qu’on a trouvées sont plus que louches, allons le réinterroger !"],
+				"choices": [
+					"-- Identifiez le mobile du tueur --",
+					"Adultère",
+					"Conflit d'intérêts financiers",
+					"Dette impayée",
+					"Enjeux d'héritage",
+					"Jalousie",
+					"Kompromat (chantage à cause d'informations compromettantes)",
+					"Lutte pour le contrôle d'une entreprise",
+					"Motifs passionnels",
+					"Rivalité professionnelle",
+					"Secret révélé",
+					"Trafic de drogue",
+					"Union illégitime",
+					"Vengeance personnelle",
+					"Xénophobie (haine envers une personne étrangère)"
+				],
+				"answer": ["matthieulefort", "mathieulefort", "vengeancepersonnelle"],
+				"errorMessage": "Je ne pense pas que ce soit cela."
+			}
 		],
-		"answer": ["matthieulefort", "vengeancepersonnelle"],
-		"status": "closed",
-		"errorMessage": "Je ne pense pas que ce soit cela."
+
+		"status": "closed"
 	}
 ]

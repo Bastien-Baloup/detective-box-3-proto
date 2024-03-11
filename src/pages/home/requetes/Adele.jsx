@@ -8,7 +8,7 @@ import Cross from '../../../assets/icons/Icon_Cross-white.svg'
 import PropTypes from 'prop-types'
 import { urlApi } from '../../../utils/const/urlApi.js'
 import { BoxContext, DataContext, CompteContext } from '../../../utils/context/fetchContext.jsx'
-import { useContext, useState, useEffect } from 'react'
+import { useContext, useState, useEffect, useMemo } from 'react'
 import useApi from '../../../utils/hooks/useApi.js'
 import useEvent from '../../../utils/hooks/useEvent.js'
 import Empreintes from '../../../components/mini-jeux/Empreintes.jsx'
@@ -16,8 +16,9 @@ import Empreintes from '../../../components/mini-jeux/Empreintes.jsx'
 const Adele = ({ closeAgentPage }) => {
 	const { currentBox } = useContext(BoxContext)
 	const token = localStorage.getItem('token')
-	const { actionToggleDataAdele, toggleDataAdele, toggleDataEvent, actionToggleDataEvent, toggleDataObjectif } = useContext(DataContext)
-	const { updateCharactersById, updateHistory, getCharactersById, getEventByBox, updateEvent, getObjectivesByBox } =
+	const { actionToggleDataAdele, toggleDataAdele, toggleDataEvent, actionToggleDataEvent, toggleDataObjectif, toggleDataHistory } =
+		useContext(DataContext)
+	const { updateCharactersById, getHistoryByBox, updateHistory, getCharactersById, getEventByBox, updateEvent, getObjectivesByBox } =
 		useApi()
 	const { dispatch } = useEvent()
 	const { closeCompte } = useContext(CompteContext)
@@ -31,6 +32,17 @@ const Adele = ({ closeAgentPage }) => {
 		}
 		fetchData()
 	}, [toggleDataAdele])
+
+	const [dataHistory, setDataHistory] = useState(null)
+	useEffect(() => {
+		const fetchData = async () => {
+			const result = await getHistoryByBox(token, 1)
+			setDataHistory(result?.data)
+		}
+		fetchData()
+	}, [toggleDataHistory])
+
+	const box1audio1 = useMemo(() => dataHistory?.find((document) => document?.id === 'box1audio1'), [dataHistory])
 
 	const [dataObjectif, setDataObjectif] = useState(null)
 	useEffect(() => {
@@ -92,18 +104,16 @@ const Adele = ({ closeAgentPage }) => {
 		e.preventDefault()
 
 		const thisBox = dataAdele.find((element) => element.box_id === currentBox).data
-		const answerInThisBox = thisBox.find(
-			(element) => {
-				const inAsk = element.ask.includes(slugify(value))
-				let inObjectifs
-				if (element?.objectifs) {
-					inObjectifs = element.objectifs.includes(currentObjectif)
-				} else {
-					inObjectifs = true
-				}
-				return inAsk && inObjectifs
+		const answerInThisBox = thisBox.find((element) => {
+			const inAsk = element.ask.includes(slugify(value))
+			let inObjectifs
+			if (element?.objectifs) {
+				inObjectifs = element.objectifs.includes(currentObjectif)
+			} else {
+				inObjectifs = true
 			}
-		)
+			return inAsk && inObjectifs
+		})
 		const previouslyAnsweredInThisBox = answerInThisBox?.status
 
 		if (answerInThisBox?.id === 'tatouageSimon' && event301?.status === 'done') {
@@ -146,7 +156,7 @@ const Adele = ({ closeAgentPage }) => {
 		if (answer.id === 'empreintes') {
 			return (
 				<button type='button' className='modal-objectif__button button--red' onClick={openEmpreinte}>
-					Valider la correspondance
+					Faire les correspondances
 				</button>
 			)
 		}
@@ -215,13 +225,41 @@ const Adele = ({ closeAgentPage }) => {
 		setModalMedia(true)
 	}
 
+	const handleModaleDocument = async () => {
+		await closeModalMedia(answer.id, answer.ask)
+		if (answer?.id === 'box1document6' && box1audio1?.status !== 'done') {
+			setManqueAudio1(true)
+		}
+	}
+
+	const [manqueAudio1, setManqueAudio1] = useState(false)
+	const renderManqueAudio1 = () => {
+		const text = [
+			"Les alibis des membres de la Horde ont l’air solides, il faut peut-être élargir les recherches.",
+			"Avez-vous interrogé les proches de Cédric ?"
+		]
+		const handleClick = () => {
+			setManqueAudio1(false)
+		}
+		return (
+			<div className='modal-objectif__background'>
+				<div className='modal-objectif__box'>
+					<div>{renderText(text)}</div>
+					<button type='button' className='modal-objectif__button button--red' onClick={handleClick}>
+						Continuer l&apos;enquête
+					</button>
+				</div>
+			</div>
+		)
+	}
+
 	const renderModalMedia = () => {
 		closeCompte()
 		return (
 			<Document
 				title={answer.title}
 				srcElement={urlApi.cdn() + answer.src}
-				handleModalDocument={() => closeModalMedia(answer.id, answer.ask)}
+				handleModalDocument={handleModaleDocument}
 			/>
 		)
 	}
@@ -253,6 +291,7 @@ const Adele = ({ closeAgentPage }) => {
 		<>
 			{modal && renderModal()}
 			{modalMedia && renderModalMedia()}
+			{manqueAudio1 && renderManqueAudio1()}
 			{empreintes && <Empreintes toggleReset={toggleReset} />}
 			<audio autoPlay>
 				<source src={urlApi.cdn() + catchphrase[randomNumber]} type='audio/mpeg' />

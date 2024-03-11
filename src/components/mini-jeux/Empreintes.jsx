@@ -1,11 +1,12 @@
-import { useState, useContext, useEffect } from 'react'
+import { useState, useContext, useEffect, useMemo } from 'react'
 import { DataContext, BoxContext } from '../../utils/context/fetchContext'
 import useApi from '../../utils/hooks/useApi.js'
 import { urlApi } from '../../utils/const/urlApi.js'
+import Document from '../Document.jsx'
 import PropTypes from 'prop-types'
 
 const Empreintes = ({ toggleReset }) => {
-	const { toggleDataEvent, actionToggleDataEvent, actionToggleDataHistory } = useContext(DataContext)
+	const { toggleDataEvent, actionToggleDataEvent, toggleDataHistory, actionToggleDataHistory } = useContext(DataContext)
 	const { getEventByBox, updateEvent, updateHistory } = useApi()
 
 	const { currentBox } = useContext(BoxContext)
@@ -13,10 +14,12 @@ const Empreintes = ({ toggleReset }) => {
 
 	const [modal, setModal] = useState(true)
 	const [modalAnswer, setModalAnswer] = useState(false)
+	const [modalDocument, setModalDocument] = useState(false)
 
 	useEffect(() => {
 		setModal(true)
 		setModalAnswer(false)
+		setModalDocument(false)
 	}, [toggleReset])
 
 	const data = {
@@ -97,8 +100,8 @@ const Empreintes = ({ toggleReset }) => {
 			'philippepizzio'
 		],
 		answertext: [
-			'Bien vu, Il semblerait que nous ayons une empreinte intruse, je lance de ce pas une identification !',
-			"Vous pourrez retrouver la liste de relevés d'empreinte dans votre historique."
+			'Bien joué, il semblerait que nous ayons une empreinte intruse, je lance de ce pas une identification !',
+			"Vous pourrez retrouver le relevé d'empreintes dans votre historique."
 		],
 		errorMessage: 'Je ne pense pas que ce soit cela.',
 		detail2: ['Ah, tenez j’en ai trois qui correspondent à 90%. Vous pensez que vous pouvez identifier la bonne ?'],
@@ -109,11 +112,9 @@ const Empreintes = ({ toggleReset }) => {
 		],
 		answer2: 2,
 		answertext2: [
-			'Attendez, je vérifie... Mortel !',
-			'Ça correspond à 100%, merci !',
-			'Voici donc le résultat : Sacha Leza, né·e le 22 février 1994.',
-			'Je vous mets sa fiche identité dans votre historique. Iel n’a pas beaucoup d’antécédents...',
-			'Ah, si ! Une interpellation pour avoir tenté d’usurper l’identité de quelqu’un dans une banque en prenant son apparence.',
+			'Mortel ! Ça correspond à 100%, merci !',
+			'Voici donc le résultat : Sacha Leza, né·e le 22 février 1990.',
+			'Iel n’a pas beaucoup d’antécédents... Ah, si ! Une interpellation pour avoir tenté d’usurper l’identité de quelqu’un dans une banque en prenant son apparence. ',
 			'On dirait qu’iel est plutôt doué·e pour se déguiser...'
 		],
 		errorMessage2: 'Je ne pense pas que ce soit cela.'
@@ -123,6 +124,7 @@ const Empreintes = ({ toggleReset }) => {
 	const [value, setValue] = useState('')
 	const [selectedChoices, setSelectedChoices] = useState([])
 	const [events, setEvents] = useState(null)
+	const [history, setHistory] = useState(null)
 
 	useEffect(() => {
 		const getEvents = async () => {
@@ -132,10 +134,20 @@ const Empreintes = ({ toggleReset }) => {
 		getEvents()
 	}, [toggleDataEvent])
 
-	const event121 = events?.find((event) => event.id === 121)
+	const event121 = useMemo(() => events?.find((event) => event.id === 121), [events])
 	const firstPartIsDone = event121?.status === 'done'
-	const event122 = events?.find((event) => event.id === 122)
+	const event122 = useMemo(() => events?.find((event) => event.id === 122), [events])
 	const secondPartIsDone = event122?.status === 'done'
+
+	useEffect(() => {
+		const getEvents = async () => {
+			const history_ = await getHistoryByBox(token, currentBox)
+			sethistory(history_.data)
+		}
+		getEvents()
+	}, [toggleDataHistory])
+
+	const box1document2 = useMemo(() => history?.find((document) => document.id === 'box1document2'), [history])
 
 	const renderText = (data) => {
 		if (!data) {
@@ -266,7 +278,7 @@ const Empreintes = ({ toggleReset }) => {
 				<form className='modal-objectif__form' onSubmit={handleSubmit}>
 					<div className='modal-objectif__empreintes_zone'>{renderChoixEmpreintes(data?.empreintes2)}</div>
 					<button type='submit' className='modal-objectif__button button--red'>
-						Envoyer
+						Identifier l&apos;empreinte
 					</button>
 				</form>
 			</>
@@ -314,6 +326,11 @@ const Empreintes = ({ toggleReset }) => {
 		actionToggleDataHistory()
 	}
 
+	const openModalDocument = async () => {
+		await handleModalAnswer()
+		setModalDocument(true)
+	}
+
 	const renderModalAnswer = () => {
 		if (firstPartIsDone) {
 			// second part
@@ -337,8 +354,21 @@ const Empreintes = ({ toggleReset }) => {
 					<button type='button' className='modal-objectif__button button--red' onClick={handleModalAnswer}>
 						Continuer l&apos;enquête
 					</button>
+					<button type='button' className='modal-objectif__button button--red' onClick={openModalDocument}>
+						Lire son dossier
+					</button>
 				</div>
 			</div>
+		)
+	}
+
+	const renderModalDocument = () => {
+		return (
+			<Document
+				title={box1document2.title}
+				srcElement={box1document2.src}
+				handleModalDocument={() => setModalDocument(false)}
+			/>
 		)
 	}
 
@@ -346,6 +376,7 @@ const Empreintes = ({ toggleReset }) => {
 		<>
 			{modal && renderModal()}
 			{modalAnswer && renderModalAnswer()}
+			{modalDocument && renderModalDocument()}
 		</>
 	)
 }

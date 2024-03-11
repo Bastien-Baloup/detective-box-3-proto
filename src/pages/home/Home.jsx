@@ -34,7 +34,7 @@ function Home () {
 		fetchData()
 	}, [toggleDataEvent])
 
-	const event31 = useMemo(() => dataEvent?.find((event) => event.id === 31)?.status, [dataEvent])
+	const event302 = useMemo(() => dataEvent?.find((event) => event.id === 302)?.status, [dataEvent])
 
 	// EXPLICATION : Fonction pour afficher tout les personnages
 	const displayAllCharacters = () => {

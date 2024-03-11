@@ -75,13 +75,23 @@
 		"comment": "Objectif 3 - Requete tatouage de Simon pour Tim et Adele"
 	},
 	{
+		"id": 302,
+		"status": "open",
+		"comment": "Objectif 3 - Interrogatoires des casseurs"
+	},
+	{
+		"id": 303,
+		"status": "open",
+		"comment": "Objectif 3 - Denoncer Tim, done = oui, open = non"
+	},
+	{
 		"id": 31,
 		"status": "closed",
-		"comment": "Objectif 3 - Interrogatoires des casseurs"
+		"comment": "Objectif 3 - Sous-objectif 1"
 	},
 	{
 		"id": 32,
 		"status": "closed",
-		"comment": "Objectif 3 - Denoncer Tim, done = oui, open = non"
+		"comment": "Objectif 3 - Sous-objectif 2"
 	}
 ]

@@ -19,6 +19,7 @@ const EventHandler = () => {
 	const [interrogatoirePharmacien, setInterrogatoirePharmacien] = useState(false)
 	const [portraitRobot, setPortraitRobot] = useState(false)
 	const [portraitRobotValid, setPortraitRobotValid] = useState(false)
+	const [tries, setTries] = useState(0)
 	const [modalEnqueteQuartier, setModalEnqueteQuartier] = useState(false)
 	const [enqueteQuartier, setEnqueteQuartier] = useState(false)
 	const [appelConcierge, setAppelConcierge] = useState(false)
@@ -107,7 +108,8 @@ const EventHandler = () => {
 	}
 
 	const renderModalPortraitRobot = () => {
-		const onValid = () => {
+		const onValid = (tries_ = 0) => {
+			setTries(tries_)
 			setPortraitRobot(false)
 			setPortraitRobotValid(true)
 		}
@@ -116,7 +118,8 @@ const EventHandler = () => {
 				<div className='modal-objectif__box'>
 					<h2 className='modal-objectif__title'>Portrait Robot</h2>
 					<div>
-						On a une description. C&apos;est l&apos;heure de reprendre les bonnes vieilles méthodes : le portrait-robot
+						On a une description assez précise. C&apos;est l&apos;heure de reprendre les bonnes vieilles méthodes : le
+						portrait-robot.
 					</div>
 					<PortraitRobot onValid={onValid} />
 				</div>
@@ -135,7 +138,11 @@ const EventHandler = () => {
 	const renderModalPortraitRobotValid = () => {
 		return (
 			<Document
-				title={'C’est elle, je la reconnais !'}
+				title={
+					tries === 0
+						? "Oui ça lui ressemble bien, à quelques détails près c'est la femme que vous recherchez !"
+						: "C'est beaucoup plus ressemblant, à quelques détails près c'est la femme que vous recherchez !"
+				}
 				srcElement={`${urlApi.cdn()}proto3/assets/photos-personnages/hannah-evans-lynx.png`}
 				handleModalDocument={handlePortraitRobotValid}
 			/>
@@ -272,7 +279,8 @@ const EventHandler = () => {
 		return (
 			<div className='modal-objectif__background'>
 				<div className='modal-objectif__box'>
-					<div>Bien, nous avons mis les cambrioleurs au chaud, qui voulez-vous interroger ?</div>
+					<div>On a retrouvé les casseurs, on va maintenant les interroger pour savoir qui a tué Cédric. </div>
+					<div>Par qui voulez-vous commencer ?</div>
 					{!box1audio6?.status && (
 						<button type='button' className='modal-objectif__button button--red' onClick={clickHannah}>
 							Hannah Evans

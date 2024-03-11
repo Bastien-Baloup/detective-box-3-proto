@@ -4,67 +4,65 @@ import PropTypes from 'prop-types'
 
 const PortraitRobot = ({ onValid }) => {
 	const initialSelectedValues = {
-		'La tête': 'Indéterminée',
-		'La mâchoire': 'Indéterminée',
-		'Longueur des cheveux': 'Chauve',
+		'Couleur de la peau': 'Pâle',
+		'Forme du visage': 'Rond',
 		'Couleur des cheveux': 'Bruns',
-		'Les sourcils': 'Inexistants',
-		'Forme des yeux': 'Indéterminée',
+		'Longueur des cheveux': 'Chauve',
 		'Couleur des yeux': 'Indéterminée',
-		'Le nez': 'Asymétrique',
-		'La bouche': 'Très fine',
-		'Le menton': 'Lisse'
+		'Forme des yeux': 'Tombants',
+		'Forme des sourcils': 'Tombants',
+		'Forme du nez': 'Droit',
+		'Forme de la bouche': 'Très fine',
 	}
 
 	const validAnswer = {
-		'La tête': 'Fine',
-		'La mâchoire': 'Carrée',
-		'Longueur des cheveux': 'Mi-longs',
+		'Couleur de la peau': 'Pâle',
+		'Forme du visage': 'Carré',
 		'Couleur des cheveux': 'Roux',
-		'Les sourcils': 'Taillés',
-		'Forme des yeux': 'En amandes',
+		'Longueur des cheveux': 'Mi-longs',
 		'Couleur des yeux': 'Verts',
-		'Le nez': 'Long',
-		'La bouche': 'Pulpeuse',
-		'Le menton': 'Lisse'
+		'Forme des yeux': 'En amandes',
+		'Forme des sourcils': 'Arrondis',
+		'Forme du nez': 'Retroussé',
+		'Forme de la bouche': 'Pulpeuse',
 	}
 
 	const [selectedValues, setSelectedValues] = useState(initialSelectedValues)
 	const [errorMessage, setErrorMessage] = useState('')
+	const [tries, setTries] = useState(0)
 
 	// Labels and values for each select
 	const data = [
-		{ label: 'La tête', values: ['Indéterminée', 'Fine', 'Arrondie', 'Ovale'] },
 		{
-			label: 'La mâchoire',
-			values: ['Indéterminée', 'Arrondie', 'Carrée', 'Décalée']
+			label: 'Couleur de la peau',
+			values: ['Pâle', 'Claire', 'Mâte', 'Foncée', 'Très foncée']
+		},
+		{ label: 'Forme du visage', values: ['Rond', 'Carré', 'Coeur', 'Triangle', 'Ovale'] },
+		{
+			label: 'Couleur des cheveux',
+			values: ['Bruns', 'Blonds', 'Châtains', 'Gris', 'Roux']
 		},
 		{
 			label: 'Longueur des cheveux',
 			values: ['Chauve', 'Courts', 'Mi-longs', 'Longs']
 		},
 		{
-			label: 'Couleur des cheveux',
-			values: ['Bruns', 'Blonds', 'Châtains', 'Roux']
-		},
-		{
-			label: 'Les sourcils',
-			values: ['Inexistants', 'Taillés', 'Broussailleux', 'Monosourcil']
+			label: 'Couleur des yeux',
+			values: ['Indéterminée', 'Bleus', 'Verts', 'Marrons', 'Gris']
 		},
 		{
 			label: 'Forme des yeux',
-			values: ['Indéterminée', 'En amandes', 'Ronds', 'Mono-paupière']
+			values: ['Tombants', 'En amandes', 'Ronds', 'Mono-paupière']
 		},
 		{
-			label: 'Couleur des yeux',
-			values: ['Indéterminée', 'Bleus', 'Verts', 'Marrons']
+			label: 'Forme des sourcils',
+			values: ['Tombants', 'Droits', 'Arrondis', 'Arqués', 'Monosourcils']
 		},
-		{ label: 'Le nez', values: ['Asymétrique', 'Cassé', 'Court', 'Long'] },
+		{ label: 'Forme du nez', values: ['Droit', 'Epaté', 'Tombant', 'Aquilin', 'Retroussé'] },
 		{
-			label: 'La bouche',
+			label: 'Forme de la bouche',
 			values: ['Très fine', 'Fine', 'Moyenne', 'Pulpeuse']
-		},
-		{ label: 'Le menton', values: ['Lisse', 'Fausseté', 'Fuyant', 'En avant'] }
+		}
 	]
 
 	// Event handler for select changes
@@ -83,10 +81,11 @@ const PortraitRobot = ({ onValid }) => {
 			}
 		}
 		if (errorCount > 2) {
-			setErrorMessage('Ça ne lui ressemble pas, il doit y avoir des erreurs quelque part.')
+			setTries(tries + 1)
+			setErrorMessage('Je suis désolé mais ça ne lui ressemble pas vraiment…')
 		} else {
 			setErrorMessage('')
-			onValid()
+			onValid(tries)
 		}
 	}
 

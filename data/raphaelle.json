@@ -1,6 +1,6 @@
 [
 	{
-		"ask": ["casino"],
+		"ask": ["casino", "bellafortuna", "casinobellafortuna"],
 		"text": ["Le Casino a déjà été fouillé par la police. Tout est dans le rapport de police."],
 		"id": "",
 		"status": false

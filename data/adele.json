@@ -25,7 +25,17 @@
 		"status": false
 	},
 	{
-		"ask": ["analyseempreinte", "analyseempreintes", "analysesempreinte", "analysesempreintes", "empreintes"],
+		"ask": [
+			"analyseempreinte",
+			"analyseempreintes",
+			"analysesempreinte",
+			"analysesempreintes",
+			"empreintes",
+			"emptreintesemployés",
+			"relevedempreintes",
+			"releveempreintes",
+			"releveempreinte"
+		],
 		"objectifs": [1],
 		"text": [
 			"J'ai pu récupérer les empreintes relevées par le police de Monaco dans les espaces réservés aux employés. On devrait commencer par voir si un intrus s'y trouvait le soir du casse.",
@@ -57,24 +67,14 @@
 		],
 		"objectifs": [1, 2],
 		"text": [
-			"La nature, la profondeur et l'angle des griffures sur le bras de Cédric, indiquent qu'il n'a pas été pris par surprise ou attaqué par derrière.",
-			"On peut donc en déduire que l'altercation a éclatée dans un second temps et que la victime connaissait surement le meurtrier.",
-			"Je reviens vers vous dès que j'ai pu en terminer mes analyses."
+			"La nature, la profondeur et l'angle des griffures sur le bras de Cédric indiquent qu'il n'a pas été pris par surprise ou attaqué par derrière.",
+			"On peut donc en déduire que l'altercation a éclaté dans un second temps et que la victime connaissait sûrement le meurtrier.",
+			"Je reviens vers vous dès que je termine mes analyses."
 		],
 		"status": false
 	},
 	{
 		"ask": ["tatouage", "tatouagecedric", "tatouagecou", "tatouagecoucedric"],
-		"objectifs": [1, 2],
-		"text": [
-			"Je n'ai pour l'instant pas plus d'infos que ce qui est noté dans le rapport de police. Le coup de couteau a été porté dans le cou, en plein sur le tatouage.",
-			"Est-ce que c'était voulu ? Difficile à dire à ce stade mais je vais creuser."
-		],
-		"status": false
-	},
-	{
-		"ask": ["tatouage", "tatouagecedric", "tatouagecou", "tatouagecoucedric"],
-		"objectifs": [3],
 		"text": [
 			"Je n'ai rien trouvé de plus que ce qui est mentionné sur le rapport de police.",
 			"Le tatouage était trop emdommagé par le coup de couteau pour que je puisse l'identifier.",
@@ -87,9 +87,9 @@
 		"objectifs": [1, 2],
 		"text": [
 			"Je n'ai rien de plus à partager à ce stade sur le rapport de police préliminaire.",
-			"Ah si, la nature, la profondeur et l'angle des griffures sur le bras de Cédric, indiquent qu'il n'a pas été pris par surprise ou attaqué par derrière.",
-			"On peut donc en déduire que l'altercation a éclatée dans un second temps et que la victime connaissait surement le meurtrier.",
-			"Je reviens vers vous dès que j'ai pu en terminer mes analyses."
+			"Ah si, la nature, la profondeur et l'angle des griffures sur le bras de Cédric indiquent qu'il n'a pas été pris par surprise ou attaqué par derrière.",
+			"On peut donc en déduire que l'altercation a éclaté dans un second temps et que la victime connaissait sûrement le meurtrier.",
+			"Je reviens vers vous dès que je termine mes analyses."
 		],
 		"status": false
 	},
@@ -113,9 +113,7 @@
 	},
 	{
 		"ask": ["jeton", "jetonpoker", "jetondepoker"],
-		"text": [
-			"J'ai trouvé plusieurs empreintes sur le jeton mais aucune qui ne matche avec les données de la police ou un membre du personnel du Casino."
-		],
+		"text": ["Je n'ai trouvé aucune empreinte sur ce jeton. C'est étrange quand on sait qu'il ne vient pas du Casino."],
 		"status": false
 	},
 	{

@@ -78,6 +78,12 @@
 			width: 100%;
 		}
 	}
+
+	&__buttons {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
 }
 
 @include responsive(tablet) {
