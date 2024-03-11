@@ -189,6 +189,14 @@ const LieuAppartementJour = ({ onClose, onChange }) => {
 						className="img-see"
 					/>
 				</div>
+				<div className="img" id="img-see6" style={{ display: "none" }}>
+					<span className="close-img">X</span>
+					<img
+						src={`${import.meta.env.BASE_URL
+							}fouilles/appartement/assets/poeme.jpg`}
+						className="img-see"
+					/>
+				</div>
 
 				<audio id="board" controls style={{ display: "none" }}>
 					<source

@@ -71,6 +71,12 @@ const data = {
 					title: "<span class='watch' id='see5'>Voir plus près</span>",
 					text: "",
 				},
+				{
+					yaw: 1.9917159253602101,
+					pitch: 1.01895464558309925,
+					title: "<span class='watch' id='see6'>Fouiller</span>",
+					text: ""
+        }
 			],
 		},
 	],
