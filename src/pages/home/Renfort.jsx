@@ -11,7 +11,7 @@ import { BoxContext, DataContext } from '../../utils/context/fetchContext.jsx'
 import { useContext, useEffect } from 'react'
 import useApi from '../../utils/hooks/useApi.js'
 
-function Renfort() {
+function Renfort () {
 	const { currentBox } = useContext(BoxContext)
 	const token = localStorage.getItem('token')
 	const { toggleDataHelp } = useContext(DataContext)
@@ -48,9 +48,46 @@ function Renfort() {
 		return <Slider data={data} handleModal={backToHome} url={urlApi.cdn()} />
 	}
 
-	// EXPLICATION : Afficher le choix des renforts (etat en fonction de leur statut)
+	const parties = [
+		{
+			id: 1,
+			nom: "RECONSTITUER LE CASSE"
+		},
+		{
+			id: 2,
+			nom: "RETROUVER LES VOLEURS"
+		},
+		{
+			id: 3,
+			nom: "COINCER LE MEURTRIER"
+		}
+	]
 	const displayMenu = () => {
+		const renderParties = () => {
+			return parties?.map((partie) => (
+				<div className="main__help--partie">
+					<h2>{`Partie ${partie.id}: ${partie.nom}`}</h2>
+					{displayRenfortPartie(partie.id)}
+				</div>
+			))
+		}
+		return (
+			<>
+				<p className='help__title'> Choisissez le sujet sur lequel vous avez besoin de renfort :</p>
+				<div className='main__help--menu'>
+					{renderParties()}
+				</div>
+			</>
+
+		)
+	}
+
+	// EXPLICATION : Afficher le choix des renforts (etat en fonction de leur statut)
+	const displayRenfortPartie = (IdColumn = 0) => {
 		const menuChoices = dataHelp?.map((help, index) => {
+			if (IdColumn > 0 && help?.column !== IdColumn) {
+				return
+			}
 			if (help.status === 'done') {
 				return (
 					<>
@@ -103,10 +140,7 @@ function Renfort() {
 			}
 		})
 		return (
-			<>
-				<p className='help__title'> Choisissez le sujet sur lequel vous avez besoin de renfort :</p>
-				<div className='help__menu'>{menuChoices}</div>
-			</>
+			<div className='help__menu'>{menuChoices}</div>
 		)
 	}
 
