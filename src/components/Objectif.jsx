@@ -38,11 +38,12 @@ const Objectif = ({ data }) => {
 		actionToggleDataHistory,
 		toggleDataHistory,
 		actionToggleDataObjectif,
-		toggleDataTim
+		toggleDataTim,
+		actionToggleDataHelp
 	} = useContext(DataContext)
 	const { closeCompte } = useContext(CompteContext)
 
-	const { getEventByBox, getCharactersById, updateEvent, getHistoryByBox, updateHistory, updateObjectives } = useApi()
+	const { getEventByBox, getCharactersById, updateEvent, getHistoryByBox, updateHistory, updateObjectives, updateHelp } = useApi()
 
 	const { dispatch } = useEvent()
 
@@ -179,6 +180,8 @@ const Objectif = ({ data }) => {
 		}
 		await updateObjectives(token, 1, 1, 'done')
 		await updateObjectives(token, 1, 2, 'open')
+		await updateHelp(token, 1, 'box1help21', 'open')
+		actionToggleDataHelp()
 		actionToggleDataObjectif()
 		setApresInterrogatoireTim(true)
 	}
@@ -554,6 +557,8 @@ const Objectif = ({ data }) => {
 		if (sousObjectif?.id === 11) {
 			if (listSousObjectifs.find((sousObjectif_) => sousObjectif_.id === 12)?.status === 'done') {
 				await updateEvent(token, 1, 13, 'open')
+				await updateHelp(token, 1, 'box1help13', 'open')
+				actionToggleDataHelp()
 				setPopupDebutHacking(true)
 			}
 			await updateEvent(token, 1, 11, 'done')
@@ -565,6 +570,8 @@ const Objectif = ({ data }) => {
 			await updateEvent(token, 1, 12, 'done')
 			if (listSousObjectifs.find((sousObjectif_) => sousObjectif_.id === 11)?.status === 'done') {
 				await updateEvent(token, 1, 13, 'open')
+				await updateHelp(token, 1, 'box1help13', 'open')
+				actionToggleDataHelp()
 				setPopupDebutHacking(true)
 			}
 			actionToggleDataEvent()

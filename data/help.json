@@ -1,6 +1,7 @@
 [
 	{
 		"id": "box1help11",
+		"column": 1,
 		"hints": [
 			{
 				"id": 1,
@@ -12,40 +13,40 @@
 			{
 				"id": 2,
 				"text": [
-					"La Cheffe de table est passée vérifier si chaque main gagnante de poker était bien validée. Elle soupçonne qu’au moins l’un des gagnants a triché lors du tournoi. Avez-vous bien manipulé les cartes et le jeton de poker ?"
+					"La Cheffe de table est passée vérifier si chaque main gagnante de poker était bien validée. Elle soupçonne qu’au moins l’un des gagnants a triché lors du tournoi. Avez-vous bien manipulé les cartes ?"
 				],
 				"image": null
 			},
 			{
 				"id": 3,
 				"text": [
-					"Avez-vous bien manipulé les deux cartes de la troisième main gagnante (Table 1) ? On dirait qu’elles ont une encre spéciale..."
+					"Avez-vous bien manipulé les deux cartes de la troisième main (Table 1) ? On dirait qu’elles ont une encre spéciale..."
 				],
 				"image": null
 			},
 			{
 				"id": 4,
 				"text": [
-					"En chauffant les cartes de la troisième main gagnante (Table 1), on dirait qu’un symbole et un message apparaissent..."
+					"En chauffant les cartes de la troisième main (Table 1), on dirait qu’un symbole et un message apparaissent..."
 				],
 				"image": null
 			},
 			{
 				"id": 5,
 				"text": [
-					"Il y a manifestement un message à décoder sur les deux cartes de la troisième main gagnante (Table 1) : “  NC EJCPEG P’GUV RCU FWG CW JCUCTF, JGPTK NGXGCWZ”. Avez-vous vu le symbole qui l’accompagne ? On dirait un jeton de poker."
+					"Il y a manifestement un message dont une partie est à décoder sur les deux cartes de la main gagnante (Table 1) : “CROYEZ-MOI, LA CHANCE N’EST PAS DUE AU HASARD. FCLPG JCTCYSV”. Avez-vous vu le symbole qui l’accompagne ? On dirait un jeton de poker."
 				],
 				"image": null
 			},
 			{
 				"id": 6,
-				"text": ["Manipulez bien le jeton de poker... Vous ne sentez pas comme des reliefs ?"],
+				"text": ["Le jeton de poker retrouvé dans le couloir sécurisé n’a rien de classique... Vous ne sentez pas comme des éléments en relief ?"],
 				"image": null
 			},
 			{
 				"id": 7,
 				"text": [
-					"Le chiffre 2 et les lettres A et C sont en reliefs. Ça pourrait être la clé de décryptage du message codé ?"
+					"Le chiffre 2 et les lettres A et C sont légèrement en relief. Ça devrait nous aider à décrypter le message codé."
 				],
 				"image": null
 			},
@@ -58,12 +59,17 @@
 			},
 			{
 				"id": 9,
-				"text": ["Le message codé indique : “LA CHANCE N’EST PAS DUE AU HASARD, HENRI LEVEAUX”."],
+				"text": ["Le message codé indique : “HENRI LEVEAUX”."],
 				"image": null
 			},
 			{
 				"id": 10,
-				"text": ["Le tricheur est Henri Leveaux, c’est sûrement lui qui a volé la clé de la cheffe de table."],
+				"text": ["Tim devrait pouvoir nous donner quelques infos sur cette personne."],
+				"image": null
+			},
+			{
+				"id": 11,
+				"text": ["Plus de doute, le tricheur est Henri Leveaux, c’est sûrement lui qui a volé la clé de la cheffe de table."],
 				"image": null
 			}
 		],
@@ -72,59 +78,76 @@
 	},
 	{
 		"id": "box1help12",
+		"column": 1,
 		"hints": [
 			{
 				"id": 1,
 				"text": [
-					"Cette liste d’empreintes par lieu doit être triée pour savoir qui a eu accès à ces zones. Avez-vous relié les différentes empreintes aux membres du personnel ?"
+					"Avez-vous lu les dépositions des membres du personnel ? Certains témoignages sont troublants."
 				],
 				"image": null
 			},
 			{
 				"id": 2,
 				"text": [
-					"En procédant par élimination avec les empreintes sur les badges du personnel, il doit y en avoir qui ne correspondent à aucun d’entre eux. Avez-vous trouvé les empreintes inconnues ?"
+					"Avez-vous demandé à Tim de vous donner accès aux caméras de la salle de jeu ?"
 				],
 				"image": null
 			},
 			{
 				"id": 3,
 				"text": [
-					"Voici la liste des empreintes par zone :",
-					"Zone du banquier (Richard Granville / Philippe Pizzio / Inconnu)",
-					"Accès à la zone sécurisée (Alexandra Allavena / Éric Lombardo / Philippe Pizzio / Sophie Palmero)",
-					"Local du Staff et Réserve (Philippe Pizzio / Sophie Palmero / Simon Berbre / Alexandra Allavena)",
-					"Maintenance et surveillance (Simon Berbre / Sophie Palmero / Timothée Lombardo)",
-					"Zone sécurisée de transfert de fonds (Éric Lombardo / Inconnu / Simon Berbre / Philippe Pizzio)",
-					"Bureau du Directeur et coffre (Philippe Pizzio / Sophie Palmero / Timothée Lombardo / Éric Lombardo / Inconnu)"
+					"Il y a des choses qui clochent sur ces images, vous ne trouvez pas ?"
 				],
 				"image": null
 			},
 			{
 				"id": 4,
 				"text": [
-					"Avez-vous superposé les trois empreintes données par Adèle à l’empreinte intru pour trouver la bonne ?"
+					"Avez-vous demandé à Adèle de vous fournir les empreintes relevées dans le Casino le soir du casse ? Ça devrait nous éclairer sur les personnes qui ont eu accès aux différentes zones."
 				],
 				"image": null
 			},
 			{
 				"id": 5,
-				"text": ["L’empreinte inconnue est la troisième."],
+				"text": ["Un travail de correspondance avec les informations des badges des employés devrait permettre d’y voir plus clair."],
 				"image": null
 			},
 			{
 				"id": 6,
 				"text": [
-					"L’empreinte intru est celle de Sacha Leza, on peut le voir dans la vidéo de surveillance, prendre l’apparence du gestionnaire de fonds, Philippe Pizzio."
+					"Voici la liste des empreintes par zone : Zone du banquier (Richard Granville / Philippe Pizzio / Inconnu) ; Accès à la zone sécurisée (Alexandra Allavena / Éric Lombardo / Inconnu / Sophie Palmero) ; Local du Staff et Réserve (Philippe Pizzio / Sophie Palmero / Simon Berbre / Alexandra Allavena) ; Maintenance et surveillance (Simon Berbre / Sophie Palmero / Timothée Lombardo) ; Zone sécurisée de transfert de fonds (Éric Lombardo / Inconnu / Simon Berbre / Philippe Pizzio) ;"
+				],
+				"image": null
+			},
+			{
+				"id": 7,
+				"text": [
+					"Avez-vous superposé les trois empreintes données par Adèle à l’empreinte intruse pour trouver la bonne ?"
+				],
+				"image": null
+			},
+			{
+				"id": 8,
+				"text": [
+					"L’empreinte inconnue est la troisième."
+				],
+				"image": null
+			},
+			{
+				"id": 9,
+				"text": [
+					"L’empreinte intruse est celle de Sacha Leza. On peut le voir dans la vidéo de surveillance prendre l’apparence du gestionnaire de fonds, Philippe Pizzio. Son extrait de casier judiciaire nous confirme son goût pour l’usurpation d’identité."
 				],
 				"image": null
 			}
 		],
-		"title": "Tri des empreintes.",
+		"title": "Qui a ouvert la porte de transfert de fonds ?",
 		"status": "open"
 	},
 	{
 		"id": "box1help13",
+		"column": 1,
 		"hints": [
 			{
 				"id": 1,
@@ -136,7 +159,7 @@
 			{
 				"id": 2,
 				"text": [
-					"Pour démêler ce système de sécurité, prenez bien en compte les consignes données par Sophie Palmero : reliez chaque chiffre orthogonalement à un autre, sans croiser les lignes. Selon vous, que signifient ces chiffres ?"
+					"Pour démêler ce système, prenez bien en compte les consignes données par Tim : reliez chaque chiffre orthogonalement à un autre, sans croiser les lignes. Selon vous, que signifient ces chiffres ?"
 				],
 				"image": null
 			},
@@ -150,9 +173,9 @@
 			{
 				"id": 4,
 				"text": [
-					"Voici la solution du système de sécurité : [INSÉRER LE VISUEL FINAL]. En le validant, des lettres apparaissent..."
+					"Voici la solution du système de sécurité : [Visuel ci-dessous]. En le validant, des lettres apparaissent..."
 				],
-				"image": null
+				"image": "proto3/assets/renforts/box1help13-4.png"
 			},
 			{
 				"id": 5,
@@ -161,10 +184,11 @@
 			}
 		],
 		"title": "Qui a hacké les caméras ?",
-		"status": "open"
+		"status": "closed"
 	},
 	{
 		"id": "box1help21",
+		"column": 2,
 		"hints": [
 			{
 				"id": 1,
@@ -176,42 +200,111 @@
 			{
 				"id": 2,
 				"text": [
-					"Sur la photo des caméras de vidéosurveillance, l’un des malfaiteurs a l’air d’avoir un téléphone à la main... Avez-vous pensé à faire analyser le téléphone de Cédric ? Peut-être essayait-il de l’appeler..."
+					"Sur la photo des caméras de vidéosurveillance extérieures, l’un des malfaiteurs a l’air d’avoir un téléphone à la main... Avez-vous pensé à faire analyser le téléphone de Cédric auprès de Tim ? Peut-être essayait-il de l’appeler..."
 				],
 				"image": null
 			},
 			{
 				"id": 3,
-				"text": ["Avez-vous essayé de suivre le parcours des voleurs sur une carte ? (Google map, par exemple)."],
+				"text": ["Avez-vous essayé de suivre le parcours des voleurs sur une carte ? (Google Maps, par exemple)."],
 				"image": null
 			},
 			{
 				"id": 4,
 				"text": [
-					"Aidez-vous des indications données dans le message audio pour retracer le trajet du van. Les voleurs ont emprunté un tunnel le long du Palai Princier de Monaco... D’où pourraient provenir les cris de mouettes à la sortie du tunnel ?"
+					"Aidez-vous des indications données dans le message audio pour retracer le trajet du fourgon. Les voleurs ont emprunté un tunnel le long du Palais Princier de Monaco... D’où pourraient provenir les cris de mouettes à la sortie du tunnel ?"
 				],
 				"image": null
 			},
 			{
 				"id": 5,
 				"text": [
-					"Les cris de mouettes indiquent que le van a longé le port de Fontvieille. Avez-vous suivi le trajet sur une carte ? Les voleurs ont apparemment pris la première sortie au rond-point, puis 2 fois à droite pour arriver à la pharmacie..."
+					"Les cris de mouettes indiquent que le fourgon a sûrement longé le port de Fontvieille. Avez-vous suivi le trajet sur une carte ? Les voleurs ont apparemment pris la première sortie au rond-point, puis 2 fois à droite pour arriver à la pharmacie..."
 				],
 				"image": null
 			},
 			{
 				"id": 6,
 				"text": [
-					"Ils se sont arrêtés à la pharmacie de Fontvieille, allez demander à Lauren d’interroger la personne qui y travaille."
+					"Ils se sont arrêtés à la pharmacie de Fontvieille, allez demander à Lauren d’interroger le pharmacien qui y travaille."
 				],
-				"image": "proto3/assets/renforts/google-maps.png"
+				"image": "proto3/assets/renforts/box1help21-6.png"
 			}
 		],
-		"title": "Retrouver la planque des casseurs",
-		"status": "open"
+		"title": "Pistage de La Horde",
+		"status": "closed"
 	},
 	{
 		"id": "box1help22",
+		"column": 2,
+		"hints": [
+			{
+				"id": 1,
+				"text": [
+					"Le pharmacien nous a donné des indications très utiles pour faire le portrait-robot de l’un des membres de La Horde."
+				],
+				"image": null
+			},
+			{
+				"id": 2,
+				"text": [
+					"Les champs à remplir pour générer le bon portrait-robot sont les suivants : ",
+					"Couleur de la peau : pâle",
+					"Forme du visage : carré",
+					"Couleur des cheveux : roux",
+					"Longueur des cheveux : mi-longs",
+					"Couleur des yeux : verts",
+					"Forme des yeux : en amandes",
+					"Forme des sourcils : arrondis",
+					"Forme du nez : retroussé",
+					"Forme de la bouche : pulpeuse"
+				],
+				"image": null
+			},
+			{
+				"id": 3,
+				"text": ["En rentrant ces informations dans le générateur de portrait-robot on obtient la bonne personne. On peut désormais se lancer dans une bonne vieille enquête de voisinage et faire du porte-à-porte auprès des différents commerces du coin."],
+				"image": null
+			}
+		],
+		"title": "Portrait-robot",
+		"status": "closed"
+	},
+	{
+		"id": "box1help23",
+		"column": 2,
+		"hints": [
+			{
+				"id": 1,
+				"text": [
+					"Le périmètre de recherche s’étend à chaque fois que vous interrogez le bon commerce. Êtes-vous allés voir le salon de beauté ?"
+				],
+				"image": null
+			},
+			{
+				"id": 2,
+				"text": [
+					"Il est fait mention de masques... il y a bien un magasin de déguisements dans le quartier, non ?"
+				],
+				"image": null
+			},
+			{
+				"id": 3,
+				"text": ["Le restaurateur nous a donné un numéro, peut-être devriez-vous l’appeler et voir ce que cela donne : 0* ** ** ** **"],
+				"image": null
+			},
+			{
+				"id": 3,
+				"text": ["Il semblerait que les cambrioleurs soient au 4 quai Jean-Charles Rey, demandez à Raphaëlle de s’y rendre !"],
+				"image": null
+			}
+		],
+		"title": "Enquête de voisinage",
+		"status": "closed"
+	},
+	{
+		"id": "box1help24",
+		"column": 2,
 		"hints": [
 			{
 				"id": 1,
@@ -223,68 +316,29 @@
 			{
 				"id": 2,
 				"text": [
-					"Dans votre cloud des indices, vous avez une fiche identité pour Sacha Leza, sur laquelle se trouve sa date de naissance."
+					"Dans votre historique, vous avez une fiche identité pour Sacha Leza, sur laquelle se trouve sa date de naissance."
 				],
 				"image": null
 			},
 			{
 				"id": 3,
-				"text": ["22 février 1994."],
-				"image": null
-			}
-		],
-		"title": "Enquête de quartier",
-		"status": "open"
-	},
-	{
-		"id": "box1help23",
-		"hints": [
-			{
-				"id": 1,
-				"text": [
-					"Tim nous a annoncé avoir perdu leur trace autour de la statue de Juan Manuel Fangio. N’a-t-on aucun moyen de savoir par où ils sont passés ensuite ?"
-				],
-				"image": null
-			},
-			{
-				"id": 2,
-				"text": [
-					"Sur la photo des caméras de vidéosurveillance, l’un des malfaiteurs a l’air d’avoir un téléphone à la main... Avez-vous pensé à faire analyser le téléphone de Cédric ? Peut-être essayait-il de l’appeler..."
-				],
-				"image": null
-			},
-			{
-				"id": 3,
-				"text": ["Avez-vous essayé de suivre le parcours des voleurs sur une carte ? (Google map, par exemple)."],
-				"image": null
-			},
-			{
-				"id": 4,
-				"text": [
-					"Aidez-vous des indications données dans le message audio pour retracer le trajet du van. Les voleurs ont emprunté un tunnel le long du Palai Princier de Monaco... D’où pourraient provenir les cris de mouettes à la sortie du tunnel ?"
-				],
-				"image": null
-			},
-			{
-				"id": 5,
-				"text": [
-					"Les cris de mouettes indiquent que le van a longé le port de Fontvieille. Avez-vous suivi le trajet sur une carte ? Les voleurs ont apparemment pris la première sortie au rond-point, puis 2 fois à droite pour arriver à la pharmacie..."
-				],
+				"text": ["22 février 1990."],
 				"image": null
 			},
 			{
 				"id": 6,
 				"text": [
-					"Ils se sont arrêtés à la pharmacie de Fontvieille, allez demander à Lauren d’interroger la personne qui y travaille."
+					"Ils se sont arrêtés à la pharmacie de Fontvieille, allez demander à Lauren d’interroger le pharmacien qui y travaille."
 				],
-				"image": "proto3/assets/renforts/google-maps.png"
+				"image": "proto3/assets/renforts/box1help21-6.png"
 			}
 		],
 		"title": "Planque des casseurs",
-		"status": "open"
+		"status": "closed"
 	},
 	{
-		"id": "box1help24",
+		"id": "box1help26",
+		"column": 2,
 		"hints": [
 			{
 				"id": 1,
@@ -294,22 +348,158 @@
 			{
 				"id": 2,
 				"text": [
-					"Des schémas apparaissent en phosphorescence sur les masques des casseurs ! Et sur celui du loup, ça donne quoi ?"
+					"Des éléments phosphorescents apparaissent sur les masques des casseurs accrochés au mur ! Et sur celui du loup, ça donne quoi ?"
 				],
 				"image": null
 			},
 			{
 				"id": 3,
-				"text": ["Essayez de superposer les différents schémas qui apparaissent... Ça pourrait révéler un code."],
+				"text": ["En voilà un drôle de poème. Quel rapport peut-il y avoir avec La Horde ?"],
 				"image": null
 			},
 			{
 				"id": 4,
-				"text": ["Le code est : 8419"],
+				"text": ["Le poème nous donne l’ordre des masques pour trouver la combinaison du coffre."],
+				"image": null
+			},
+			{
+				"id": 5,
+				"text": ["Je pense qu’il faut compter les traits phosphorescents sur les masques"],
+				"image": null
+			},
+			{
+				"id": 6,
+				"text": [
+					"En les prenant dans le bon ordre, on obtient :",
+					"Loup : 2",
+					"Lynx : 4",
+					"Lapin : 1",
+					"Renard : 6",
+					"Caméléon : 2"
+				],
+				"image": null
+			},
+			{
+				"id": 7,
+				"text": ["La combinaison du coffre doit donc être 24162"],
 				"image": null
 			}
 		],
 		"title": "Code du coffre",
-		"status": "open"
+		"status": "closed"
+	},
+	{
+		"id": "box1help31",
+		"column": 3,
+		"hints": [
+			{
+				"id": 1,
+				"text": ["Maintenant que les membres du gang ont été arrêtés, profitons-en pour monter un dossier béton afin d’aider la police"],
+				"image": null
+			},
+			{
+				"id": 2,
+				"text": [
+					"Avec l’aide des fiches récupérées par Tim et Adèle ainsi que les éléments trouvés dans leur planque, on devrait désormais être en mesure de donner les identités de chacun d’eux, leur animal associé et leur rôle dans le gang."
+				],
+				"image": null
+			},
+			{
+				"id": 3,
+				"text": [
+					"Voilà donc le dossier finalisé. Nous avons donc :",
+					"Cédric Romero / Loup / Gestion des opérations",
+					"Henri Leveaux / Renard / Vol à la tire",
+					"Sacha Leza / Caméléon / Spécialiste du déguisement",
+					"Ellie Levyn / Lapin / Hacking et conduite",
+					"Hannah Evans / Lynx / Cambriolage de coffres"
+				],
+				"image": null
+			}
+		],
+		"title": "Comment est organisée La Horde ?",
+		"status": "closed"
+	},
+	{
+		"id": "box1help32",
+		"column": 3,
+		"hints": [
+			{
+				"id": 1,
+				"text": ["Avez-vous interrogé tous les cambrioleurs ? Ne manquez aucune information qu’ils pourraient vous donner."],
+				"image": null
+			},
+			{
+				"id": 2,
+				"text": [
+					"Quelque chose cloche avec la version d’Henri... Avez-vous vérifié son histoire d’hospitalisation auprès d’Adèle ?"
+				],
+				"image": null
+			},
+			{
+				"id": 3,
+				"text": ["Sacha parle d’un bracelet vert au poignet d’Henri. Avez-vous déjà vu un bracelet de la sorte ailleurs ?"],
+				"image": null
+			},
+			{
+				"id": 4,
+				"text": ["Dans la vidéo de présentation de la soirée poker au casino, Éric Lombardo portait un bracelet vert. Il faudrait peut-être l’interroger..."],
+				"image": null
+			},
+			{
+				"id": 5,
+				"text": ["Eric Lombardo dit que Philippe Pizzio et Simon Berbre portent tous les deux ce bracelet. Allez les interroger."],
+				"image": null
+			},
+			{
+				"id": 6,
+				"text": [
+					"Avez-vous un moyen de disculper l’un ou l’autre ?"
+				],
+				"image": null
+			},
+			{
+				"id": 7,
+				"text": ["Philippe est vu sur les caméras de vidéosurveillance en train de manger, au moment du vol."],
+				"image": null
+			},
+			{
+				"id": 8,
+				"text": ["Peut-être que Tim pourrait vous dénicher des informations supplémentaires sur Simon."],
+				"image": null
+			},
+			{
+				"id": 9,
+				"text": ["Adèle a parlé de Google Lens en disant que c’était pratique pour analyser des images... comme le tatouage de Simon ?"],
+				"image": null
+			},
+			{
+				"id": 10,
+				"text": ["Matthieu et Victor Lefort... avez-vous déjà entendu ces noms ?"],
+				"image": null
+			},
+			{
+				"id": 11,
+				"text": ["Avez-vous interrogé Geneviève Funard, la mère de Cédric Romero, son nom est mentionné dans le rapport de police préliminaire ?"],
+				"image": null
+			},
+			{
+				"id": 12,
+				"text": ["Deux frères morts des suites d’un cambriolage où Cédric a été impliqué... Les frères Lefort qui meurent à la même période... ça ne peut pas être une coïncidence. Avez-vous remarqué que Simon a le même âge que Matthieu aurait eu ?"],
+				"image": null
+			},
+			{
+				"id": 13,
+				"text": ["Simon a le même tatouage que Matthieu, au même endroit. Il s’agit de la même personne."],
+				"image": null
+			},
+			{
+				"id": 14,
+				"text": ["Son mobile est la vengeance, après que Cédric les a laissés mourir dans le coffre-fort de la banque de Lyon."],
+				"image": null
+			}
+		],
+		"title": "Qui a tué Cédric Romero ?",
+		"status": "closed"
 	}
 ]

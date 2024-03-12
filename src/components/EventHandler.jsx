@@ -14,8 +14,8 @@ import Input from './Input.jsx'
 const EventHandler = () => {
 	const { state, dispatch } = useEvent()
 	const { renderLieu, setLieu, setLieuOpen } = useLieu()
-	const { getHistoryByBox, updateHistory, getEventByBox, updateEvent, getObjectivesByBox } = useApi()
-	const { toggleDataHistory, actionToggleDataHistory, toggleDataEvent, actionToggleDataEvent, toggleDataObjectif } = useContext(DataContext)
+	const { getHistoryByBox, updateHistory, getEventByBox, updateEvent, getObjectivesByBox, updateHelp } = useApi()
+	const { toggleDataHistory, actionToggleDataHistory, toggleDataEvent, actionToggleDataEvent, toggleDataObjectif, actionToggleDataHelp } = useContext(DataContext)
 	const { pauseNappe } = useContext(AmbianceContext)
 	const { closeCompte } = useContext(CompteContext)
 	const { currentBox } = useContext(BoxContext)
@@ -152,6 +152,8 @@ const EventHandler = () => {
 		actionToggleDataHistory()
 		await updateEvent(token, 1, 241, 'open')
 		actionToggleDataEvent()
+		await updateHelp(token, 1, 'box1help22', 'open')
+		actionToggleDataHelp()
 		setInterrogatoirePharmacien(false)
 		setPortraitRobot(true)
 	}
@@ -182,6 +184,8 @@ const EventHandler = () => {
 		await updateEvent(token, 1, 241, 'done')
 		await updateEvent(token, 1, 242, 'open')
 		actionToggleDataEvent()
+		await updateHelp(token, 1, 'box1help23', 'open')
+		actionToggleDataHelp()
 	}
 
 	const renderModalPortraitRobotValid = () => {
@@ -380,12 +384,14 @@ const EventHandler = () => {
 		}
 	}
 
-	const renderConciergeModal = () => {
+	const renderConciergeModal = async () => {
 		if (event231 === 'done') {
 			setConciergeModal(false)
 			setConciergeModalBis(true)
 			return
 		}
+		await updateHelp(token, 1, 'box1help24', 'open')
+		actionToggleDataHelp()
 		const text = [
 			'Raphaëlle : “Bon, ça a l’air d’être une résidence un peu huppée, il y a une porte sécurisée... tiens il y a quelqu’un qui rentre, viens Lauren on en profite !”',
 			'Gardien : “Hop, hop, hop, qu’est-ce vous faites ?”',
@@ -424,6 +430,8 @@ const EventHandler = () => {
 		if (validAnswers?.includes(slugify(value))) {
 			await updateEvent(token, 1, 232, 'done')
 			actionToggleDataEvent()
+			await updateHelp(token, 1, 'box1help26', 'open')
+			actionToggleDataHelp()
 			setValue('')
 			setErrorMessage('')
 			setConciergeModalBis(false)

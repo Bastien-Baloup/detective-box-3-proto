@@ -19,8 +19,9 @@ const LieuAppartementJour = ({ onClose, onChange }) => {
 		actionToggleDataHistory,
 		actionToggleDataObjectif,
 		actionToggleDataEvent,
+		actionToggleDataHelp
 	} = useContext(DataContext)
-	const { updateHistory, updateObjectives, updateEvent } = useApi()
+	const { updateHistory, updateObjectives, updateEvent, updateHelp } = useApi()
 
 	const closeCoffre = () => {
 		document.getElementById("fouille").style.display = "block"
@@ -50,6 +51,9 @@ const LieuAppartementJour = ({ onClose, onChange }) => {
 			await updateEvent(token, 1, 22, "done")
 			await updateEvent(token, 1, 31, "open")
 			actionToggleDataEvent()
+			await updateHelp(token, 1, 'box1help31', 'open')
+			await updateHelp(token, 1, 'box1help32', 'open')
+			actionToggleDataHelp()
 		}
 
 		const watchElements = document.querySelectorAll(".watch")
