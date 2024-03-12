@@ -15,7 +15,14 @@ const EventHandler = () => {
 	const { state, dispatch } = useEvent()
 	const { renderLieu, setLieu, setLieuOpen } = useLieu()
 	const { getHistoryByBox, updateHistory, getEventByBox, updateEvent, getObjectivesByBox, updateHelp } = useApi()
-	const { toggleDataHistory, actionToggleDataHistory, toggleDataEvent, actionToggleDataEvent, toggleDataObjectif, actionToggleDataHelp } = useContext(DataContext)
+	const {
+		toggleDataHistory,
+		actionToggleDataHistory,
+		toggleDataEvent,
+		actionToggleDataEvent,
+		toggleDataObjectif,
+		actionToggleDataHelp
+	} = useContext(DataContext)
 	const { pauseNappe } = useContext(AmbianceContext)
 	const { closeCompte } = useContext(CompteContext)
 	const { currentBox } = useContext(BoxContext)
@@ -39,7 +46,6 @@ const EventHandler = () => {
 	const [errorMessage, setErrorMessage] = useState('')
 	const [value, setValue] = useState('')
 	const [dataObjectif, setDataObjectif] = useState()
-
 
 	const token = localStorage.getItem('token')
 

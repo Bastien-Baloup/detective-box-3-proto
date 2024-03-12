@@ -43,7 +43,15 @@ const Objectif = ({ data }) => {
 	} = useContext(DataContext)
 	const { closeCompte } = useContext(CompteContext)
 
-	const { getEventByBox, getCharactersById, updateEvent, getHistoryByBox, updateHistory, updateObjectives, updateHelp } = useApi()
+	const {
+		getEventByBox,
+		getCharactersById,
+		updateEvent,
+		getHistoryByBox,
+		updateHistory,
+		updateObjectives,
+		updateHelp
+	} = useApi()
 
 	const { dispatch } = useEvent()
 

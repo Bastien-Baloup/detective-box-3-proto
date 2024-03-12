@@ -31,7 +31,6 @@ const Raphaelle = ({ closeAgentPage }) => {
 	const { updateCharactersById, updateHistory, getCharactersById, getEventByBox, updateEvent, getObjectivesByBox } =
 		useApi()
 
-
 	//EXPLICATION : Raphaelle est le personnage '4'
 
 	useEffect(() => {
@@ -97,8 +96,6 @@ const Raphaelle = ({ closeAgentPage }) => {
 			.replace(/[^0-9]/g, '')
 		return inputSlugified
 	}
-
-
 
 	const handleLieuClose = async () => {
 		if (answer.id === 'box1lieu1') {

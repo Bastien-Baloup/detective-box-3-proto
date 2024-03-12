@@ -40,7 +40,9 @@
 			},
 			{
 				"id": 6,
-				"text": ["Le jeton de poker retrouvé dans le couloir sécurisé n’a rien de classique... Vous ne sentez pas comme des éléments en relief ?"],
+				"text": [
+					"Le jeton de poker retrouvé dans le couloir sécurisé n’a rien de classique... Vous ne sentez pas comme des éléments en relief ?"
+				],
 				"image": null
 			},
 			{
@@ -69,7 +71,9 @@
 			},
 			{
 				"id": 11,
-				"text": ["Plus de doute, le tricheur est Henri Leveaux, c’est sûrement lui qui a volé la clé de la cheffe de table."],
+				"text": [
+					"Plus de doute, le tricheur est Henri Leveaux, c’est sûrement lui qui a volé la clé de la cheffe de table."
+				],
 				"image": null
 			}
 		],
@@ -82,23 +86,17 @@
 		"hints": [
 			{
 				"id": 1,
-				"text": [
-					"Avez-vous lu les dépositions des membres du personnel ? Certains témoignages sont troublants."
-				],
+				"text": ["Avez-vous lu les dépositions des membres du personnel ? Certains témoignages sont troublants."],
 				"image": null
 			},
 			{
 				"id": 2,
-				"text": [
-					"Avez-vous demandé à Tim de vous donner accès aux caméras de la salle de jeu ?"
-				],
+				"text": ["Avez-vous demandé à Tim de vous donner accès aux caméras de la salle de jeu ?"],
 				"image": null
 			},
 			{
 				"id": 3,
-				"text": [
-					"Il y a des choses qui clochent sur ces images, vous ne trouvez pas ?"
-				],
+				"text": ["Il y a des choses qui clochent sur ces images, vous ne trouvez pas ?"],
 				"image": null
 			},
 			{
@@ -110,7 +108,9 @@
 			},
 			{
 				"id": 5,
-				"text": ["Un travail de correspondance avec les informations des badges des employés devrait permettre d’y voir plus clair."],
+				"text": [
+					"Un travail de correspondance avec les informations des badges des employés devrait permettre d’y voir plus clair."
+				],
 				"image": null
 			},
 			{
@@ -129,9 +129,7 @@
 			},
 			{
 				"id": 8,
-				"text": [
-					"L’empreinte inconnue est la troisième."
-				],
+				"text": ["L’empreinte inconnue est la troisième."],
 				"image": null
 			},
 			{
@@ -263,7 +261,9 @@
 			},
 			{
 				"id": 3,
-				"text": ["En rentrant ces informations dans le générateur de portrait-robot on obtient la bonne personne. On peut désormais se lancer dans une bonne vieille enquête de voisinage et faire du porte-à-porte auprès des différents commerces du coin."],
+				"text": [
+					"En rentrant ces informations dans le générateur de portrait-robot on obtient la bonne personne. On peut désormais se lancer dans une bonne vieille enquête de voisinage et faire du porte-à-porte auprès des différents commerces du coin."
+				],
 				"image": null
 			}
 		],
@@ -283,19 +283,21 @@
 			},
 			{
 				"id": 2,
+				"text": ["Il est fait mention de masques... il y a bien un magasin de déguisements dans le quartier, non ?"],
+				"image": null
+			},
+			{
+				"id": 3,
 				"text": [
-					"Il est fait mention de masques... il y a bien un magasin de déguisements dans le quartier, non ?"
+					"Le restaurateur nous a donné un numéro, peut-être devriez-vous l’appeler et voir ce que cela donne : 0* ** ** ** **"
 				],
 				"image": null
 			},
 			{
 				"id": 3,
-				"text": ["Le restaurateur nous a donné un numéro, peut-être devriez-vous l’appeler et voir ce que cela donne : 0* ** ** ** **"],
-				"image": null
-			},
-			{
-				"id": 3,
-				"text": ["Il semblerait que les cambrioleurs soient au 4 quai Jean-Charles Rey, demandez à Raphaëlle de s’y rendre !"],
+				"text": [
+					"Il semblerait que les cambrioleurs soient au 4 quai Jean-Charles Rey, demandez à Raphaëlle de s’y rendre !"
+				],
 				"image": null
 			}
 		],
@@ -394,7 +396,9 @@
 		"hints": [
 			{
 				"id": 1,
-				"text": ["Maintenant que les membres du gang ont été arrêtés, profitons-en pour monter un dossier béton afin d’aider la police"],
+				"text": [
+					"Maintenant que les membres du gang ont été arrêtés, profitons-en pour monter un dossier béton afin d’aider la police"
+				],
 				"image": null
 			},
 			{
@@ -426,7 +430,9 @@
 		"hints": [
 			{
 				"id": 1,
-				"text": ["Avez-vous interrogé tous les cambrioleurs ? Ne manquez aucune information qu’ils pourraient vous donner."],
+				"text": [
+					"Avez-vous interrogé tous les cambrioleurs ? Ne manquez aucune information qu’ils pourraient vous donner."
+				],
 				"image": null
 			},
 			{
@@ -438,24 +444,28 @@
 			},
 			{
 				"id": 3,
-				"text": ["Sacha parle d’un bracelet vert au poignet d’Henri. Avez-vous déjà vu un bracelet de la sorte ailleurs ?"],
+				"text": [
+					"Sacha parle d’un bracelet vert au poignet d’Henri. Avez-vous déjà vu un bracelet de la sorte ailleurs ?"
+				],
 				"image": null
 			},
 			{
 				"id": 4,
-				"text": ["Dans la vidéo de présentation de la soirée poker au casino, Éric Lombardo portait un bracelet vert. Il faudrait peut-être l’interroger..."],
+				"text": [
+					"Dans la vidéo de présentation de la soirée poker au casino, Éric Lombardo portait un bracelet vert. Il faudrait peut-être l’interroger..."
+				],
 				"image": null
 			},
 			{
 				"id": 5,
-				"text": ["Eric Lombardo dit que Philippe Pizzio et Simon Berbre portent tous les deux ce bracelet. Allez les interroger."],
+				"text": [
+					"Eric Lombardo dit que Philippe Pizzio et Simon Berbre portent tous les deux ce bracelet. Allez les interroger."
+				],
 				"image": null
 			},
 			{
 				"id": 6,
-				"text": [
-					"Avez-vous un moyen de disculper l’un ou l’autre ?"
-				],
+				"text": ["Avez-vous un moyen de disculper l’un ou l’autre ?"],
 				"image": null
 			},
 			{
@@ -470,7 +480,9 @@
 			},
 			{
 				"id": 9,
-				"text": ["Adèle a parlé de Google Lens en disant que c’était pratique pour analyser des images... comme le tatouage de Simon ?"],
+				"text": [
+					"Adèle a parlé de Google Lens en disant que c’était pratique pour analyser des images... comme le tatouage de Simon ?"
+				],
 				"image": null
 			},
 			{
@@ -480,12 +492,16 @@
 			},
 			{
 				"id": 11,
-				"text": ["Avez-vous interrogé Geneviève Funard, la mère de Cédric Romero, son nom est mentionné dans le rapport de police préliminaire ?"],
+				"text": [
+					"Avez-vous interrogé Geneviève Funard, la mère de Cédric Romero, son nom est mentionné dans le rapport de police préliminaire ?"
+				],
 				"image": null
 			},
 			{
 				"id": 12,
-				"text": ["Deux frères morts des suites d’un cambriolage où Cédric a été impliqué... Les frères Lefort qui meurent à la même période... ça ne peut pas être une coïncidence. Avez-vous remarqué que Simon a le même âge que Matthieu aurait eu ?"],
+				"text": [
+					"Deux frères morts des suites d’un cambriolage où Cédric a été impliqué... Les frères Lefort qui meurent à la même période... ça ne peut pas être une coïncidence. Avez-vous remarqué que Simon a le même âge que Matthieu aurait eu ?"
+				],
 				"image": null
 			},
 			{
@@ -495,7 +511,9 @@
 			},
 			{
 				"id": 14,
-				"text": ["Son mobile est la vengeance, après que Cédric les a laissés mourir dans le coffre-fort de la banque de Lyon."],
+				"text": [
+					"Son mobile est la vengeance, après que Cédric les a laissés mourir dans le coffre-fort de la banque de Lyon."
+				],
 				"image": null
 			}
 		],

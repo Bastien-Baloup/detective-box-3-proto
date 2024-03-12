@@ -277,8 +277,8 @@ const Empreintes = ({ toggleReset }) => {
 		answerForm = (
 			<>
 				{data?.detail2 && <div>{renderText(data?.detail2)}</div>}
-				<div className="modal-objectif__empreinte--photo">
-					<img src={urlApi.cdn() + 'proto3/assets/empreintes/inconnu-sacha.jpg'} alt="empreinte intruse" />
+				<div className='modal-objectif__empreinte--photo'>
+					<img src={`${urlApi.cdn()}proto3/assets/empreintes/inconnu-sacha.jpg`} alt='empreinte intruse' />
 				</div>
 				<form className='modal-objectif__form' onSubmit={handleSubmit}>
 					<div className='modal-objectif__empreintes_zone'>{renderChoixEmpreintes(data?.empreintes2)}</div>
