@@ -118,7 +118,7 @@ const LieuAppartementJour = ({ onClose, onChange }) => {
 				audio.currentTime = 0
 			})
 
-			if (coffreIntputRef.current?.value.trim() === "8419") {
+			if (coffreIntputRef.current?.value.trim() === "24162") {
 				document.getElementById("coffre-click").play()
 			} else {
 				document.getElementById("coffre-wrong").play()
