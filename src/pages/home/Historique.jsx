@@ -15,7 +15,7 @@ import useApi from '../../utils/hooks/useApi.js'
 import useLieu from '../../utils/hooks/useLieu.jsx'
 import useEvent from '../../utils/hooks/useEvent.js'
 
-function Historique() {
+function Historique () {
 	const filtersType = ['Document', 'Vidéo', 'Audio', 'Lieu', 'Archive']
 	const token = localStorage.getItem('token')
 	const { currentBox } = useContext(BoxContext)
@@ -239,9 +239,18 @@ function Historique() {
 			<div className='modal-objectif__background'>
 				<div className='modal-objectif__box'>
 					{<div>{renderText(text)}</div>}
-					<button type='button' className='modal-objectif__button button--red' onClick={handleRetourCoffre}>
-						Retourner dans la planque
-					</button>
+					<div className='modal-objectif__buttons'>
+						<button type='button' className='modal-objectif__button button--red' onClick={handleRetourCoffre}>
+							Retourner dans la planque
+						</button>
+						<button
+							type='button'
+							className='modal-objectif__button button--white'
+							onClick={() => setRetourCoffreModal(false)}
+						>
+							Continuer l&apos;enquête
+						</button>
+					</div>
 				</div>
 			</div>
 		)

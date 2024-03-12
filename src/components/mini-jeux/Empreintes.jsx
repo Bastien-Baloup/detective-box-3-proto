@@ -7,7 +7,7 @@ import PropTypes from 'prop-types'
 
 const Empreintes = ({ toggleReset }) => {
 	const { toggleDataEvent, actionToggleDataEvent, toggleDataHistory, actionToggleDataHistory } = useContext(DataContext)
-	const { getEventByBox, updateEvent, updateHistory } = useApi()
+	const { getEventByBox, updateEvent, updateHistory, getHistoryByBox } = useApi()
 
 	const { currentBox } = useContext(BoxContext)
 	const token = localStorage.getItem('token')
@@ -125,6 +125,7 @@ const Empreintes = ({ toggleReset }) => {
 	const [selectedChoices, setSelectedChoices] = useState([])
 	const [events, setEvents] = useState(null)
 	const [history, setHistory] = useState(null)
+	const [document, setDocument] = useState(null)
 
 	useEffect(() => {
 		const getEvents = async () => {
@@ -142,11 +143,12 @@ const Empreintes = ({ toggleReset }) => {
 	useEffect(() => {
 		const getEvents = async () => {
 			const history_ = await getHistoryByBox(token, currentBox)
-			sethistory(history_.data)
+			setHistory(history_.data)
 		}
 		getEvents()
 	}, [toggleDataHistory])
 
+	const box1document1 = useMemo(() => history?.find((document) => document.id === 'box1document1'), [history])
 	const box1document2 = useMemo(() => history?.find((document) => document.id === 'box1document2'), [history])
 
 	const renderText = (data) => {
@@ -275,6 +277,9 @@ const Empreintes = ({ toggleReset }) => {
 		answerForm = (
 			<>
 				{data?.detail2 && <div>{renderText(data?.detail2)}</div>}
+				<div className="modal-objectif__empreinte--photo">
+					<img src={urlApi.cdn() + 'proto3/assets/empreintes/inconnu-sacha.jpg'} alt="empreinte intruse" />
+				</div>
 				<form className='modal-objectif__form' onSubmit={handleSubmit}>
 					<div className='modal-objectif__empreintes_zone'>{renderChoixEmpreintes(data?.empreintes2)}</div>
 					<button type='submit' className='modal-objectif__button button--red'>
@@ -326,7 +331,14 @@ const Empreintes = ({ toggleReset }) => {
 		actionToggleDataHistory()
 	}
 
-	const openModalDocument = async () => {
+	const openModalDocumentEmpreintes = async () => {
+		setDocument(box1document1)
+		await handleModalAnswer()
+		setModalDocument(true)
+	}
+
+	const openModalDocumentDossier = async () => {
+		setDocument(box1document2)
 		await handleModalAnswer()
 		setModalDocument(true)
 	}
@@ -342,6 +354,9 @@ const Empreintes = ({ toggleReset }) => {
 						<button type='button' className='modal-objectif__button button--red' onClick={handleModalAnswer}>
 							Continuer l&apos;enquête
 						</button>
+						<button type='button' className='modal-objectif__button button--red' onClick={openModalDocumentDossier}>
+							Lire son dossier
+						</button>
 					</div>
 				</div>
 			)
@@ -354,8 +369,8 @@ const Empreintes = ({ toggleReset }) => {
 					<button type='button' className='modal-objectif__button button--red' onClick={handleModalAnswer}>
 						Continuer l&apos;enquête
 					</button>
-					<button type='button' className='modal-objectif__button button--red' onClick={openModalDocument}>
-						Lire son dossier
+					<button type='button' className='modal-objectif__button button--red' onClick={openModalDocumentEmpreintes}>
+						Voir le document
 					</button>
 				</div>
 			</div>
@@ -365,8 +380,8 @@ const Empreintes = ({ toggleReset }) => {
 	const renderModalDocument = () => {
 		return (
 			<Document
-				title={box1document2.title}
-				srcElement={box1document2.src}
+				title={document?.title}
+				srcElement={urlApi.cdn() + document?.src}
 				handleModalDocument={() => setModalDocument(false)}
 			/>
 		)

@@ -76,12 +76,12 @@
 	},
 	{
 		"id": 302,
-		"status": "open",
+		"status": "closed",
 		"comment": "Objectif 3 - Interrogatoires des casseurs"
 	},
 	{
 		"id": 303,
-		"status": "open",
+		"status": "closed",
 		"comment": "Objectif 3 - Denoncer Tim, done = oui, open = non"
 	},
 	{

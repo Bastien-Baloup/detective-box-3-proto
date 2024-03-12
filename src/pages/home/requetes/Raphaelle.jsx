@@ -31,7 +31,6 @@ const Raphaelle = ({ closeAgentPage }) => {
 	const { updateCharactersById, updateHistory, getCharactersById, getEventByBox, updateEvent, getObjectivesByBox } =
 		useApi()
 
-	// const { dispatch } = useEvent();
 
 	//EXPLICATION : Raphaelle est le personnage '4'
 
@@ -70,12 +69,7 @@ const Raphaelle = ({ closeAgentPage }) => {
 	const [modal, setModal] = useState(false)
 	const [answer, setAnswer] = useState('')
 	const [dataRaphaelle, setDataRaphaelle] = useState(null)
-	const [conciergeModal, setConciergeModal] = useState(false)
-	const [conciergeModalBis, setConciergeModalBis] = useState(false)
-	const [conciergeModalTer, setConciergeModalTer] = useState(false)
-	const [conciergeModalQuad, setConciergeModalQuad] = useState(false)
 	const [retourCoffreModal, setRetourCoffreModal] = useState(false)
-	const [value, setValue] = useState('')
 	const [event231, setEvent231] = useState('')
 	const [event232, setEvent232] = useState('')
 	const [objectif2, setObjectif2] = useState('')
@@ -104,164 +98,7 @@ const Raphaelle = ({ closeAgentPage }) => {
 		return inputSlugified
 	}
 
-	const handleSubmitConcierge = async (e) => {
-		e.preventDefault()
 
-		if (slugifyAdresse(value) === 'sachaleza') {
-			await updateEvent(token, 1, 231, 'done')
-			actionToggleDataEvent()
-			setErrorMessage('')
-			setValue('')
-			setConciergeModal(false)
-			setConciergeModalBis(true)
-		} else {
-			setErrorMessage('Je ne pense pas que ce soit cela.')
-			setValue('')
-		}
-	}
-
-	const renderConciergeModal = () => {
-		if (event231 === 'done') {
-			setConciergeModal(false)
-			setConciergeModalBis(true)
-			return
-		}
-		const text = [
-			'Raphaëlle : “Bon, ça a l’air d’être une résidence un peu huppée, il y a une porte sécurisée... tiens il y a quelqu’un qui rentre, viens Lauren on en profite !”',
-			'Gardien : “Hop, hop, hop, qu’est-ce vous faites ?”',
-			'Raphaëlle : “Bonjour, on a besoin d’accéder à l’immeuble, c’est urgent.”',
-			'Gardien : “Personne n’entre sans passer d’abord par moi. C’est une résidence sécurisée Madame et les habitants paient pour ne pas être dérangés. Vous venez voir qui ?”',
-			'Raphaëlle : “Euh un groupe d’amis, ils sont 4”',
-			'Gardien : “Mmmh, oui je vois. Si ce sont vos amis, vous devez pouvoir connaître le nom du monsieur qui loue l’appartement. Enfin, de la madame je veux dire. Enfin, vous m’avez compris.”',
-			'Raphaëlle : “Agents, un petit coup de main ? J’ai une mémoire de poisson rouge”'
-		]
-		return (
-			<div className='modal-objectif__background'>
-				<div className='modal-objectif__box'>
-					{<div>{renderText(text)}</div>}
-					<div className='modal-objectif__errorMessage'>{errorMessage}</div>
-					<form className='modal-objectif__form' onSubmit={handleSubmitConcierge}>
-						<Input
-							type='texte'
-							label={''}
-							name='reponse'
-							placeholder='Ce champ est vide'
-							value={value}
-							setValue={setValue}
-						/>
-						<button type='submit' className='modal-objectif__button button--red'>
-							Valider
-						</button>
-					</form>
-				</div>
-			</div>
-		)
-	}
-
-	const handleSubmitConciergeBis = async (e) => {
-		e.preventDefault()
-		const validAnswers = ['22fevrier1990', '22fevrier90', '22021990', '220290']
-		if (validAnswers?.includes(slugifyAdresse(value))) {
-			await updateEvent(token, 1, 232, 'done')
-			actionToggleDataEvent()
-			setValue('')
-			setErrorMessage('')
-			setConciergeModalBis(false)
-			setConciergeModalTer(true)
-		} else {
-			setErrorMessage('Je ne pense pas que ce soit cela.')
-			setValue('')
-		}
-	}
-
-	const renderConciergeModalBis = () => {
-		const text = [
-			'Gardien : “Ouais... quel est l’objet de votre visite ? Que je les prévienne...”',
-			'Raphaëlle : “Non, non ne les prévenez pas, c’est pour une surprise. Ça fait des années qu’on ne s’est pas vu, iel ne sait pas qu’on est dans le coin...”',
-			'Gardien : “Ah ouais ? Si vous les connaissez si bien, c’est quoi sa date de naissance ?”',
-			'Raphaëlle : “... Agents ?”'
-		]
-		return (
-			<div className='modal-objectif__background'>
-				<div className='modal-objectif__box'>
-					{<div>{renderText(text)}</div>}
-					<div className='modal-objectif__errorMessage'>{errorMessage}</div>
-					<form className='modal-objectif__form' onSubmit={handleSubmitConciergeBis}>
-						<Input
-							type='texte'
-							label={''}
-							name='reponse'
-							placeholder='Ce champ est vide'
-							value={value}
-							setValue={setValue}
-						/>
-						<button type='submit' className='modal-objectif__button button--red'>
-							Valider
-						</button>
-					</form>
-				</div>
-			</div>
-		)
-	}
-
-	const handleConciergeTer = async () => {
-		setConciergeModalTer(false)
-		setConciergeModalQuad(true)
-	}
-
-	const renderConciergeModalTer = () => {
-		const text = [
-			'Gardien : “... ok, allez-y, mais ne faites pas de bruit, sinon vous entendrez parler de moi. Appartement 13.”',
-			'Raphaëlle : “Yes, parfait. Appartement 13, c’est parti !”'
-		]
-		return (
-			<div className='modal-objectif__background'>
-				<div className='modal-objectif__box'>
-					{<div>{renderText(text)}</div>}
-					<button type='button' className='modal-objectif__button button--red' onClick={handleConciergeTer}>
-						Entrer dans la planque
-					</button>
-				</div>
-			</div>
-		)
-	}
-	const handleConciergeQuad = async () => {
-		setConciergeModalQuad(false)
-		openLieu(answer.id, answer.ask)
-	}
-
-	const renderConciergeModalQuad = () => {
-		const text = [
-			'Raphaëlle : “Ok, on y est... T’entends ça ?',
-			'Lauren : Ouais, on dirait bien qu’il y a du monde là-dedans... Et ça s’agite. C’est l’heure de faire valoir ton ancienne carrière de flic !',
-			'Raphaëlle : Alors on y va ! TOUS À TERRE, ONE NE BOUGE PLUS !!!',
-			'*cris de surprise des casseurs* *Hannah tente de se défendre*',
-			'Raphaëlle : *braque son arme sur elle* N’y pense même pas !',
-			'Henri : D’accord, d’accord, on se rend ! Ne tirez pas ! ...  ',
-			'Ellie : Et merde... Cédric n’est jamais là quand on en a besoin !',
-			'Lauren : Cédric... Romero ?',
-			'Sacha : Pas la peine de nous questionner sur lui, on sait pas où il est !',
-			'Henri : Il a dû s’enfuir avec sa part du butin...',
-			'*Lauren et Raphaëlle échangent un regard gêné*',
-			'Hannah : Quoi ? Il s’est fait attraper, c’est ça ?!',
-			'*Lauren et Raphaëlle semblent surprises de leur réaction*',
-			'Lauren : Je suis désolée de vous l’apprendre mais... Il est mort. *Chocs des membres de La Horde*',
-			"Henri : Non, c'est pas possible ?! *regards suspicieux des autres membres de La Horde vers Henri*",
-			'Raphaëlle : C’est la vérité. On a retrouvé son corps dans le coffre-fort.',
-			'Ellie : Mais... Qu’est-ce qu’il s’est passé ? Qui aurait bien pu lui faire ça ?',
-			'Raphaëlle : C’est ce qu’on va découvrir. Nous vous interrogerons à tour de rôle, une fois qu’on aura fouillé tout ça.”'
-		]
-		return (
-			<div className='modal-objectif__background'>
-				<div className='modal-objectif__box'>
-					{<div>{renderText(text)}</div>}
-					<button type='button' className='modal-objectif__button button--red' onClick={handleConciergeQuad}>
-						Fouiller la planque
-					</button>
-				</div>
-			</div>
-		)
-	}
 
 	const handleLieuClose = async () => {
 		if (answer.id === 'box1lieu1') {
@@ -400,7 +237,10 @@ const Raphaelle = ({ closeAgentPage }) => {
 						actionToggleDataEvent()
 					}
 					setAnswer(answerInThisBox(slugifiedAdresse))
-					setConciergeModal(true)
+					dispatch({
+						type: 'setEvent',
+						id: 'concierge'
+					})
 					setValueAdresse('')
 					setValueLongitude('')
 					setValueLatitude('')
@@ -532,10 +372,6 @@ const Raphaelle = ({ closeAgentPage }) => {
 	return (
 		<>
 			{modal && renderModal()}
-			{conciergeModal && renderConciergeModal()}
-			{conciergeModalBis && renderConciergeModalBis()}
-			{conciergeModalTer && renderConciergeModalTer()}
-			{conciergeModalQuad && renderConciergeModalQuad()}
 			{retourCoffreModal && renderRetourCoffreModal()}
 			{renderLieu(handleLieuClose, handleLieuChange)}
 			<audio autoPlay>

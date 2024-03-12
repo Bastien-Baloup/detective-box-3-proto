@@ -583,6 +583,10 @@ const Objectif = ({ data }) => {
 		}
 		if (sousObjectif?.id === 21) {
 			setSousObjectif(null)
+			dispatch({
+				type: 'setEvent',
+				id: 'concierge'
+			})
 			return
 		}
 		if (sousObjectif?.id === 31) {
