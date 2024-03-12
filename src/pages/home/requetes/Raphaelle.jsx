@@ -233,15 +233,11 @@ const Raphaelle = ({ closeAgentPage }) => {
 						await updateEvent(token, 1, 231, 'open') // début obj2-subObj2-concierge
 						actionToggleDataEvent()
 					}
-					setAnswer(answerInThisBox(slugifiedAdresse))
+					closeAgentPage()
 					dispatch({
 						type: 'setEvent',
 						id: 'concierge'
 					})
-					setValueAdresse('')
-					setValueLongitude('')
-					setValueLatitude('')
-					setErrorMessage('')
 					return
 				}
 

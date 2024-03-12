@@ -14,14 +14,15 @@ import Input from './Input.jsx'
 const EventHandler = () => {
 	const { state, dispatch } = useEvent()
 	const { renderLieu, setLieu, setLieuOpen } = useLieu()
-	const { getHistoryByBox, updateHistory, getEventByBox, updateEvent, getObjectivesByBox, updateHelp } = useApi()
+	const { getHistoryByBox, updateHistory, getEventByBox, updateEvent, getObjectivesByBox, updateHelp, getHelpByBox } = useApi()
 	const {
 		toggleDataHistory,
 		actionToggleDataHistory,
 		toggleDataEvent,
 		actionToggleDataEvent,
 		toggleDataObjectif,
-		actionToggleDataHelp
+		actionToggleDataHelp,
+		toggleDataHelp
 	} = useContext(DataContext)
 	const { pauseNappe } = useContext(AmbianceContext)
 	const { closeCompte } = useContext(CompteContext)
@@ -46,6 +47,7 @@ const EventHandler = () => {
 	const [errorMessage, setErrorMessage] = useState('')
 	const [value, setValue] = useState('')
 	const [dataObjectif, setDataObjectif] = useState()
+	const [dataHelp, setDataHelp] = useState()
 
 	const token = localStorage.getItem('token')
 
@@ -86,6 +88,16 @@ const EventHandler = () => {
 	}, [toggleDataObjectif])
 
 	const objectif2 = useMemo(() => dataObjectif?.find((objective) => objective.id === 2)?.status, [dataObjectif])
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const help_ = await getHelpByBox(token, currentBox)
+			setDataHelp(help_.data)
+		}
+		fetchData()
+	}, [toggleDataHelp])
+
+	const box1help24 = useMemo(() => dataHelp?.find((help) => help.id === 'box1help24')?.status, [dataHelp])
 
 	const reset = useCallback(() => dispatch({ type: 'resetEvent' }), [dispatch])
 
@@ -364,11 +376,6 @@ const EventHandler = () => {
 							Ellie Levyn
 						</button>
 					)}
-					{/* {allDone && (
-						<button type='button' className='modal-objectif__button button--red' onClick={closeInterrogatoireCasseurs}>
-							Continuer l&apos;enquête
-						</button>
-					)} */}
 				</div>
 			</div>
 		)
@@ -390,14 +397,21 @@ const EventHandler = () => {
 		}
 	}
 
-	const renderConciergeModal = async () => {
+	const openHelp24 = async () => {
+		await updateHelp(token, 1, 'box1help24', 'open')
+		actionToggleDataHelp()
+	}
+
+	const renderConciergeModal = () => {
 		if (event231 === 'done') {
 			setConciergeModal(false)
 			setConciergeModalBis(true)
 			return
 		}
-		await updateHelp(token, 1, 'box1help24', 'open')
-		actionToggleDataHelp()
+		if (box1help24 === 'closed') {
+			openHelp24()
+		}
+
 		const text = [
 			'Raphaëlle : “Bon, ça a l’air d’être une résidence un peu huppée, il y a une porte sécurisée... tiens il y a quelqu’un qui rentre, viens Lauren on en profite !”',
 			'Gardien : “Hop, hop, hop, qu’est-ce vous faites ?”',
@@ -410,7 +424,7 @@ const EventHandler = () => {
 		return (
 			<div className='modal-objectif__background'>
 				<div className='modal-objectif__box'>
-					{<div>{renderText(text)}</div>}
+					<div>{renderText(text)}</div>
 					<div className='modal-objectif__errorMessage'>{errorMessage}</div>
 					<form className='modal-objectif__form' onSubmit={handleSubmitConcierge}>
 						<Input
