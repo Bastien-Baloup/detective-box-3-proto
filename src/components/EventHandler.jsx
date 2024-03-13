@@ -49,6 +49,9 @@ const EventHandler = () => {
 	const [value, setValue] = useState('')
 	const [dataObjectif, setDataObjectif] = useState()
 	const [dataHelp, setDataHelp] = useState()
+	const [toggleOpen, setToggleOpen] = useState(false)
+
+	const toggle = () => setToggleOpen(!toggleOpen)
 
 	const token = localStorage.getItem('token')
 
@@ -66,6 +69,7 @@ const EventHandler = () => {
 	const box1audio6 = useMemo(() => dataHistory?.find((document) => document.id === 'box1audio6'), [dataHistory])
 	const box1audio7 = useMemo(() => dataHistory?.find((document) => document.id === 'box1audio7'), [dataHistory])
 	const box1audio8 = useMemo(() => dataHistory?.find((document) => document.id === 'box1audio8'), [dataHistory])
+	const portraitRobotData = useMemo(() => dataHistory?.find((document) => document.id === 'portraitRobot'), [dataHistory])
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -113,8 +117,14 @@ const EventHandler = () => {
 			setInterrogatoiresCasseurs(true)
 		}
 
-		if (state.id === 'portraitRobo') {
+		if (state.id === 'portraitRobot') {
+
+			if (portraitRobotData?.status === false) {
+				updateHistory(token, 1, portraitRobotData.id)
+				actionToggleDataHistory()
+			}
 			setPortraitRobot(true)
+			toggle()
 		}
 
 		if (state.id === 'enqueteQuartier') {
@@ -174,26 +184,26 @@ const EventHandler = () => {
 		await updateHelp(token, 1, 'box1help22', 'open')
 		actionToggleDataHelp()
 		setInterrogatoirePharmacien(false)
-		setPortraitRobot(true)
+		dispatch({
+			type: 'setEvent',
+			id: 'portraitRobot'
+		})
 	}
 
 	const renderModalPortraitRobot = () => {
-		const onValid = (tries_ = 0) => {
+		const onValid = async (tries_ = 0) => {
+			await updateHistory(token, 1, portraitRobotData, false)
+			actionToggleDataHistory()
 			setTries(tries_)
 			setPortraitRobot(false)
 			setPortraitRobotValid(true)
 		}
+		const onClose = (tries_ = 0) => {
+			setTries(tries_)
+			setPortraitRobot(false)
+		}
 		return (
-			<div className='modal-objectif__background'>
-				<div className='modal-objectif__box'>
-					<h2 className='modal-objectif__title'>Portrait Robot</h2>
-					<div>
-						On a une description assez précise. C&apos;est l&apos;heure de reprendre les bonnes vieilles méthodes : le
-						portrait-robot.
-					</div>
-					<PortraitRobot onValid={onValid} />
-				</div>
-			</div>
+			<PortraitRobot onValid={onValid} onClose={onClose} tries={tries} toggleOpen={toggleOpen} />
 		)
 	}
 

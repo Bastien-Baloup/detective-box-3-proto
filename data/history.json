@@ -343,5 +343,14 @@
 		"poster": "assets/archive/Archives_miniatures_homme_low.jpg",
 		"src": "assets/archive/1_Archives_Alphonse_StYves.jpg",
 		"status": false
-	}
+	},
+	{
+		"id": "portraitRobot",
+		"box": "Box 1",
+		"title": "Portrait Robot",
+		"category": "Mini-jeu",
+		"detail": "",
+		"poster": "",
+		"status": false
+ 	}
 ]

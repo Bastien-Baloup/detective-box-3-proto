@@ -1,8 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
+import Cross from '../../assets/icons/Icon_Cross-white.svg'
 
-const PortraitRobot = ({ onValid }) => {
+const PortraitRobot = ({ onValid, onClose, tries_ = 0, toggleOpen = false }) => {
 	const initialSelectedValues = {
 		'Couleur de la peau': 'Pâle',
 		'Forme du visage': 'Rond',
@@ -29,7 +30,24 @@ const PortraitRobot = ({ onValid }) => {
 
 	const [selectedValues, setSelectedValues] = useState(initialSelectedValues)
 	const [errorMessage, setErrorMessage] = useState('')
-	const [tries, setTries] = useState(0)
+	const [tries, setTries] = useState(tries_)
+
+	const close = () => {
+		localStorage.setItem('PortraitRobot', JSON.stringify(selectedValues))
+		onClose(tries)
+	}
+
+	const valid = () => {
+		localStorage.setItem('PortraitRobot', '')
+		onValid(tries)
+	}
+
+	useEffect(() => {
+		const storedValue = localStorage.getItem('PortraitRobot')
+		if (storedValue) {
+			setSelectedValues(JSON.parse(storedValue))
+		}
+	}, [toggleOpen])
 
 	// Labels and values for each select
 	const data = [
@@ -85,31 +103,42 @@ const PortraitRobot = ({ onValid }) => {
 			setErrorMessage('Je suis désolé mais ça ne lui ressemble pas vraiment…')
 		} else {
 			setErrorMessage('')
-			onValid(tries)
+			valid(tries)
 		}
 	}
 
 	return (
-		<>
-			<div className='modal-objectif__errorMessage'>{errorMessage}</div>
-			<form className='modal-objectif__form modal-objectif__portrait-robot' onSubmit={handleSubmit}>
-				{data.map((champs, index) => (
-					<div className='modal-objectif__select-container' key={index}>
-						<label>{champs.label}</label>
-						<select onChange={(e) => handleSelectChange(champs.label, e.target.value)}>
-							{champs.values.map((option, optionIndex) => (
-								<option key={optionIndex} value={option}>
-									{option}
-								</option>
-							))}
-						</select>
-					</div>
-				))}
-				<button type='submit' className='modal-objectif__button button--red'>
-					Valider
+		<div className='modal-objectif__background'>
+			<div className='modal-objectif__box'>
+				<button type='button' className='modal-objectif__icon--container'>
+					<img className='modal-objectif__icon' src={Cross} onClick={close} alt='' />
 				</button>
-			</form>
-		</>
+				<h2 className='modal-objectif__title'>Portrait Robot</h2>
+				<div>
+					On a une description assez précise. C&apos;est l&apos;heure de reprendre les bonnes vieilles méthodes : le
+					portrait-robot.
+				</div>
+
+				<div className='modal-objectif__errorMessage'>{errorMessage}</div>
+				<form className='modal-objectif__form modal-objectif__portrait-robot' onSubmit={handleSubmit}>
+					{data.map((champs, index) => (
+						<div className='modal-objectif__select-container' key={index}>
+							<label>{champs.label}</label>
+							<select onChange={(e) => handleSelectChange(champs.label, e.target.value)} value={selectedValues[champs.label]}>
+								{champs.values.map((option, optionIndex) => (
+									<option key={optionIndex} value={option}>
+										{option}
+									</option>
+								))}
+							</select>
+						</div>
+					))}
+					<button type='submit' className='modal-objectif__button button--red'>
+						Valider
+					</button>
+				</form>
+			</div>
+		</div>
 	)
 }
 

@@ -15,8 +15,8 @@ import useApi from '../../utils/hooks/useApi.js'
 import useLieu from '../../utils/hooks/useLieu.jsx'
 import useEvent from '../../utils/hooks/useEvent.js'
 
-function Historique() {
-	const filtersType = ['Document', 'Vidéo', 'Audio', 'Lieu', 'Archive']
+function Historique () {
+	const filtersType = ['Document', 'Vidéo', 'Audio', 'Lieu', 'Archive', 'Mini-jeu']
 	const token = localStorage.getItem('token')
 	const { currentBox } = useContext(BoxContext)
 	const { pauseNappe } = useContext(AmbianceContext)
@@ -123,6 +123,13 @@ function Historique() {
 		if (clue.category === 'Audio' || clue.category === 'vidéo') {
 			pauseNappe()
 		}
+		if (clue.category === 'Mini-jeu') {
+			dispatch({
+				type: 'setEvent',
+				id: clue.id
+			})
+			return
+		}
 		setModal(true)
 		setSelectedClue(clue)
 	}
@@ -181,6 +188,13 @@ function Historique() {
 					scrTranscript={clue?.srcTranscript && urlApi.cdn() + clue.srcTranscript}
 				/>
 			)
+		}
+		if (clue.category === 'Mini-jeu') {
+			dispatch({
+				type: 'setEvent',
+				id: clue.id
+			})
+			return
 		}
 	}
 

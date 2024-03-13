@@ -25,7 +25,7 @@ const Header = () => {
 	const token = localStorage.getItem('token')
 	const { toggleDataEvent, toggleDataHistory, actionToggleDataHistory } = useContext(DataContext)
 	const { getEventByBox, updateHistory, getHistoryByBox } = useApi()
-	const { dispatch } = useEvent()
+	const { state, dispatch } = useEvent()
 
 	const [tutorialModalIsActive, setTutorialModalIsActive] = useState(false)
 	const [tutorialIsActive, setTutorialIsActive] = useState(false)
@@ -69,7 +69,7 @@ const Header = () => {
 		getEvents()
 	}, [toggleDataHistory])
 
-	const box1video1 = useMemo(() => history?.find((document) => document.id === 'box1video1'), [history])
+	let box1video1 = useMemo(() => history?.find((document) => document.id === 'box1video1'), [history])
 
 	useEffect(() => {
 		if (box1video1?.status === false && tutorialModalIsActive === false) {
@@ -137,13 +137,6 @@ const Header = () => {
 	}
 
 	const handleEventEnCours = () => {
-		if (event241 === 'open') {
-			dispatch({
-				type: 'setEvent',
-				id: 'portraitRobo'
-			})
-			return
-		}
 		if (event242 === 'open') {
 			dispatch({
 				type: 'setEvent',

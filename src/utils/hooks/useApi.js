@@ -381,7 +381,7 @@ const useApi = () => {
 				})
 		},
 
-		updateHistory: (token, boxid, objectiveid) => {
+		updateHistory: (token, boxid, objectiveid, status_ = true) => {
 			return fetch(`${url}/history/${boxid}/?id=${objectiveid}`, {
 				method: 'PUT',
 				headers: {
@@ -389,7 +389,7 @@ const useApi = () => {
 					Authorization: `Bearer ${token}`
 				},
 				body: JSON.stringify({
-					status: true
+					status: status_
 				})
 			})
 				.then((response) => response.json())
