@@ -42,8 +42,6 @@ const Video = ({ title, srcVideo, handleModalVideo, scrTranscript }) => {
 						</button>
 					)}
 				</div>
-
-
 			</div>
 		</div>
 	)

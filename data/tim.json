@@ -241,13 +241,14 @@
 	},
 	{
 		"ask": [
-			"dossierphilippe", 
-			"philippe", 
-			"informationsphilippe", 
-			"philippepiazolli", 
-			"dossierphilippepiazolli", 
-			"informationsphilippepiazolli", 
-			"piazolliphilippe"],
+			"dossierphilippe",
+			"philippe",
+			"informationsphilippe",
+			"philippepiazolli",
+			"dossierphilippepiazolli",
+			"informationsphilippepiazolli",
+			"piazolliphilippe"
+		],
 		"text": ["J'ai rien trouvé de spécial, c'est un mec qui semble honnête et sans histoire."],
 		"srcComment": null,
 		"status": false

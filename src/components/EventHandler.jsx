@@ -14,7 +14,8 @@ import Input from './Input.jsx'
 const EventHandler = () => {
 	const { state, dispatch } = useEvent()
 	const { renderLieu, setLieu, setLieuOpen } = useLieu()
-	const { getHistoryByBox, updateHistory, getEventByBox, updateEvent, getObjectivesByBox, updateHelp, getHelpByBox } = useApi()
+	const { getHistoryByBox, updateHistory, getEventByBox, updateEvent, getObjectivesByBox, updateHelp, getHelpByBox } =
+		useApi()
 	const {
 		toggleDataHistory,
 		actionToggleDataHistory,

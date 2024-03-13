@@ -99,8 +99,6 @@ const Lauren = ({ closeAgentPage }) => {
 		return inputSlugified
 	}
 
-
-
 	// EXPLICATION : Les réponses peuvent être trouvées dans la box actuelle ou les boxs précédentes
 	// EXPLICATION : Les réponses du personnage dépendent de la location de la réponse (générique, box précedente ou box actuelle) et du status de la réponse (déjà demandé ou pas)
 	// EXPLICATION : Celine et Lauren sont les seules à avoir des boxs génériques
@@ -318,13 +316,7 @@ const Lauren = ({ closeAgentPage }) => {
 	}
 
 	const renderDocumentAutopsie = () => {
-		return (
-			<Document
-				title={box1document7.title}
-				srcElement={box1document7.src}
-				handleModalDocument={aprèsAutopsie}
-			/>
-		)
+		return <Document title={box1document7.title} srcElement={box1document7.src} handleModalDocument={aprèsAutopsie} />
 	}
 
 	const aprèsAutopsie = () => {

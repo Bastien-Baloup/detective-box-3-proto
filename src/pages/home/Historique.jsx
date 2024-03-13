@@ -15,7 +15,7 @@ import useApi from '../../utils/hooks/useApi.js'
 import useLieu from '../../utils/hooks/useLieu.jsx'
 import useEvent from '../../utils/hooks/useEvent.js'
 
-function Historique () {
+function Historique() {
 	const filtersType = ['Document', 'Vidéo', 'Audio', 'Lieu', 'Archive']
 	const token = localStorage.getItem('token')
 	const { currentBox } = useContext(BoxContext)
@@ -173,7 +173,14 @@ function Historique () {
 			)
 		}
 		if (clue.category === 'Video') {
-			return <Video title={clue.title} srcVideo={urlApi.cdn() + clue.src} handleModalVideo={() => setModal(false)} scrTranscript={clue?.srcTranscript && (urlApi.cdn() + clue.srcTranscript)} />
+			return (
+				<Video
+					title={clue.title}
+					srcVideo={urlApi.cdn() + clue.src}
+					handleModalVideo={() => setModal(false)}
+					scrTranscript={clue?.srcTranscript && urlApi.cdn() + clue.srcTranscript}
+				/>
+			)
 		}
 	}
 

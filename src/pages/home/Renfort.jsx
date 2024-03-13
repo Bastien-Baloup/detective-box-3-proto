@@ -11,7 +11,7 @@ import { BoxContext, DataContext } from '../../utils/context/fetchContext.jsx'
 import { useContext, useEffect } from 'react'
 import useApi from '../../utils/hooks/useApi.js'
 
-function Renfort () {
+function Renfort() {
 	const { currentBox } = useContext(BoxContext)
 	const token = localStorage.getItem('token')
 	const { toggleDataHelp } = useContext(DataContext)
@@ -51,21 +51,21 @@ function Renfort () {
 	const parties = [
 		{
 			id: 1,
-			nom: "RECONSTITUER LE CASSE"
+			nom: 'RECONSTITUER LE CASSE'
 		},
 		{
 			id: 2,
-			nom: "RETROUVER LES VOLEURS"
+			nom: 'RETROUVER LES VOLEURS'
 		},
 		{
 			id: 3,
-			nom: "COINCER LE MEURTRIER"
+			nom: 'COINCER LE MEURTRIER'
 		}
 	]
 	const displayMenu = () => {
 		const renderParties = () => {
 			return parties?.map((partie) => (
-				<div className="main__help--partie">
+				<div className='main__help--partie'>
 					<h2>{`Partie ${partie.id}: ${partie.nom}`}</h2>
 					{displayRenfortPartie(partie.id)}
 				</div>
@@ -74,11 +74,8 @@ function Renfort () {
 		return (
 			<>
 				<p className='help__title'> Choisissez le sujet sur lequel vous avez besoin de renfort :</p>
-				<div className='main__help--menu'>
-					{renderParties()}
-				</div>
+				<div className='main__help--menu'>{renderParties()}</div>
 			</>
-
 		)
 	}
 
@@ -139,9 +136,7 @@ function Renfort () {
 				)
 			}
 		})
-		return (
-			<div className='help__menu'>{menuChoices}</div>
-		)
+		return <div className='help__menu'>{menuChoices}</div>
 	}
 
 	return (

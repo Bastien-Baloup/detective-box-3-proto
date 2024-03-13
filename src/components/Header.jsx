@@ -24,11 +24,7 @@ const Header = () => {
 	const { closeCompte } = useContext(CompteContext)
 	const token = localStorage.getItem('token')
 	const { toggleDataEvent, toggleDataHistory, actionToggleDataHistory } = useContext(DataContext)
-	const {
-		getEventByBox,
-		updateHistory,
-		getHistoryByBox,
-	} = useApi()
+	const { getEventByBox, updateHistory, getHistoryByBox } = useApi()
 	const { dispatch } = useEvent()
 
 	const [tutorialModalIsActive, setTutorialModalIsActive] = useState(false)
@@ -103,7 +99,7 @@ const Header = () => {
 	}
 
 	const handleModalVideoBrief = async () => {
-		await updateHistory(token, 1, "box1video1")
+		await updateHistory(token, 1, 'box1video1')
 		actionToggleDataHistory()
 		setModaleVideo(false)
 		setNappeModalIsActive(true)
@@ -116,7 +112,7 @@ const Header = () => {
 				title='Briefing'
 				srcVideo={urlApi.cdn() + box1video1?.src}
 				handleModalVideo={handleModalVideoBrief}
-				scrTranscript={box1video1?.srcTranscript && (urlApi.cdn() + box1video1?.srcTranscript)}
+				scrTranscript={box1video1?.srcTranscript && urlApi.cdn() + box1video1?.srcTranscript}
 			/>
 		)
 	}

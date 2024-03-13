@@ -235,7 +235,6 @@ const Adele = ({ closeAgentPage }) => {
 
 	const handleModaleDocument = async () => {
 		await closeModalMedia(answer.id, answer.ask)
-
 	}
 
 	const renderModalMedia = () => {
