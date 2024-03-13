@@ -192,7 +192,8 @@ const EventHandler = () => {
 
 	const renderModalPortraitRobot = () => {
 		const onValid = async (tries_ = 0) => {
-			await updateHistory(token, 1, portraitRobotData, false)
+			await updateHistory(token, 1, portraitRobotData.id, false)
+			await updateHistory(token, 1, 'box1document4')
 			actionToggleDataHistory()
 			setTries(tries_)
 			setPortraitRobot(false)

@@ -40,6 +40,16 @@
 		"status": false
 	},
 	{
+		"id": "box1document4",
+		"box": "Box 1",
+		"title": "Portrait Robot",
+		"category": "Document",
+		"detail": null,
+		"poster": "proto3/assets/photos-personnages/hannah.jpg",
+		"src": "proto3/assets/photos-personnages/hannah.jpg",
+		"status": false
+	},
+	{
 		"id": "box1document5",
 		"box": "Box 1",
 		"title": "Images caméra",
