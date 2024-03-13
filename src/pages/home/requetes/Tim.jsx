@@ -168,21 +168,7 @@ const Tim = ({ closeAgentPage }) => {
 						''
 					)}
 					<div>{renderText()}</div>
-					{answer.id ? (
-						answer.id !== 'box1audio3' || objectif2 !== 'closed' ? (
-							<button type='button' className='modal-objectif__button button--red' onClick={openMedia}>
-								Voir l&apos;élément
-							</button>
-						) : (
-							<button type='button' className='modal-objectif__button button--red' onClick={validateModal}>
-								Fermer
-							</button>
-						)
-					) : (
-						<button type='button' className='modal-objectif__button button--red' onClick={validateModal}>
-							Nouvelle requête
-						</button>
-					)}
+					{renderButton()}
 				</div>
 			</div>
 		)
@@ -226,9 +212,11 @@ const Tim = ({ closeAgentPage }) => {
 	}
 
 	const validateModal = async () => {
+		await closeModalMedia(answer.id, answer.ask)
+		actionToggleDataTim()
 		setModal(false)
 		if (answer?.id === 'tatouageSimon') {
-			updateEvent(token, currentBox, 301, 'done')
+			await updateEvent(token, currentBox, 301, 'done')
 			actionToggleDataEvent()
 		}
 	}

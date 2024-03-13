@@ -68,8 +68,8 @@ const Objectif = ({ data }) => {
 
 	useEffect(() => {
 		const getEvents = async () => {
-			const history = await getHistoryByBox(token, currentBox)
-			sethistory(history.data)
+			const history_ = await getHistoryByBox(token, currentBox)
+			sethistory(history_?.data)
 		}
 		getEvents()
 	}, [toggleDataHistory])
@@ -100,7 +100,7 @@ const Objectif = ({ data }) => {
 		const getTimData = async () => {
 			const result = await getCharactersById(token, 5)
 			const thisBox = result.find((element) => element.box_id === currentBox).data
-			const demande = thisBox.find((element) => element.ask.includes('telephonevictime'))
+			const demande = thisBox.find((element) => element.id === 'box1audio3')
 			if (demande) {
 				setAnalyseTelephone(demande.status)
 			}
@@ -241,7 +241,7 @@ const Objectif = ({ data }) => {
 				actionToggleDataHistory()
 				setPopupImagesCamera(false)
 			}
-			text.push(' ')
+			text.push('.')
 			text.push("J'y pense, j'ai pu analyser le téléphone de la victime.")
 			text.push('Voilà ce que j’ai récupéré sur son répondeur, j’espère que ça vous aidera')
 		}

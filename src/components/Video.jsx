@@ -4,12 +4,17 @@ import PropTypes from 'prop-types'
 import { AmbianceContext } from '../utils/context/fetchContext.jsx'
 import { useContext } from 'react'
 
-const Video = ({ title, srcVideo, handleModalVideo }) => {
+const Video = ({ title, srcVideo, handleModalVideo, scrTranscript }) => {
+	console.log(scrTranscript)
 	const { resumeNappe } = useContext(AmbianceContext)
 
 	const handleEndVideoModal = () => {
 		resumeNappe()
 		handleModalVideo()
+	}
+
+	const openInNewTab = () => {
+		window.open(scrTranscript, '_blank')
 	}
 
 	// EXPLICATION : Attention, le bouton peut s'afficher une fois la vidéo finie (forcer les joueurs à la regarder jusqu'au bout) ou dès le départ (utile dans l'historique par exemple)
@@ -27,9 +32,18 @@ const Video = ({ title, srcVideo, handleModalVideo }) => {
 						<source src={srcVideo} type='video/mp4' />
 					</video>
 				</div>
-				<button type='button' className='modal-video__button button--red' onClick={handleEndVideoModal}>
-					Continuer l&apos;enquête
-				</button>
+				<div className='modal-objectif__buttons'>
+					<button type='button' className='modal-video__button button--red' onClick={handleEndVideoModal}>
+						Continuer l&apos;enquête
+					</button>
+					{scrTranscript && (
+						<button type='button' className='modal-audio__button--display button--white' onClick={openInNewTab}>
+							Transcription
+						</button>
+					)}
+				</div>
+
+
 			</div>
 		</div>
 	)

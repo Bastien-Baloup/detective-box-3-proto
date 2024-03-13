@@ -22,7 +22,7 @@
 	{
 		"id": "box1document12",
 		"box": "Box 1",
-		"title": "Fiche d'identité Henri",
+		"title": "Dossier Henri",
 		"category": "Document",
 		"detail": null,
 		"poster": "proto3/thumbnails/documents/3d119-fiche-identité-henri.jpg",
@@ -62,7 +62,7 @@
 	{
 		"id": "box1document7",
 		"box": "Box 1",
-		"title": "Rapport d'autopsie de Cédric Romero",
+		"title": "Rapport d'autopsie",
 		"category": "Document",
 		"detail": null,
 		"poster": "proto3/thumbnails/documents/3d343-autopsie-par-adèle-leinu-v3.jpg",
@@ -307,11 +307,12 @@
 	{
 		"id": "box1video1",
 		"box": "Box 1",
-		"title": "Briefing box 1",
+		"title": "Briefing enquête",
 		"category": "Video",
 		"detail": "Une vieille affaire ressurgit ",
 		"poster": "thumbnails/video/db-s02-101-def-miniature.jpg",
-		"src": "videos/db-s02-101-def.mp4",
+		"src": "",
+		"srcTranscript": "proto3/assets/transcripts/3v101-video-brief-sanchez-v2.pdf",
 		"status": false
 	},
 	{

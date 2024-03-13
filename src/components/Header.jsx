@@ -13,24 +13,25 @@ import Nappe from '../components/Nappe.jsx'
 import Video from '../components/Video.jsx'
 import { Link } from 'react-router-dom'
 import { urlApi } from '../utils/const/urlApi'
-import { AmbianceContext, BoxContext, DataContext } from '../utils/context/fetchContext.jsx'
-import { useEffect, useState, useRef, useContext } from 'react'
+import { AmbianceContext, BoxContext, DataContext, CompteContext } from '../utils/context/fetchContext.jsx'
+import { useEffect, useState, useRef, useContext, useMemo } from 'react'
 import useApi from '../utils/hooks/useApi.js'
 import useEvent from '../utils/hooks/useEvent.js'
 
 const Header = () => {
 	const { setNappeIsMute, nappeIsMute } = useContext(AmbianceContext)
 	const { currentBox } = useContext(BoxContext)
+	const { closeCompte } = useContext(CompteContext)
 	const token = localStorage.getItem('token')
 	const { toggleDataEvent, toggleDataHistory, actionToggleDataHistory } = useContext(DataContext)
 	const {
-		getEventByBox
-		// updateHistory,
-		// getHistoryByBox,
+		getEventByBox,
+		updateHistory,
+		getHistoryByBox,
 	} = useApi()
 	const { dispatch } = useEvent()
 
-	const [tutorialModalIsActive, setTutorialModalIsActive] = useState(true)
+	const [tutorialModalIsActive, setTutorialModalIsActive] = useState(false)
 	const [tutorialIsActive, setTutorialIsActive] = useState(false)
 	const [nappeModalIsActive, setNappeModalIsActive] = useState(false)
 	const [modaleVideo, setModaleVideo] = useState(false)
@@ -63,16 +64,31 @@ const Header = () => {
 		fetchData()
 	}, [toggleDataEvent])
 
-	// EXPLICATION : Cette fonction récupère l'état des vidéos de brief dans l'historique (il ne se joue qu'une fois par box)
+	const [history, sethistory] = useState(null)
 	useEffect(() => {
-		const fetchData = async () => {
-			//TODO Récupération data de l'historique
-			// const clues = await getHistoryByBox(token, currentBox);
-			// const box1video1Data = clues.data.find((event) => event.id == "box1video1");
-			// setBox1Video1(box1video1Data.status);
+		const getEvents = async () => {
+			const history = await getHistoryByBox(token, currentBox)
+			sethistory(history.data)
 		}
-		fetchData()
+		getEvents()
 	}, [toggleDataHistory])
+
+	const box1video1 = useMemo(() => history?.find((document) => document.id === 'box1video1'), [history])
+
+	useEffect(() => {
+		if (box1video1?.status === false && tutorialModalIsActive === false) {
+			openTutorialModal()
+			return
+		}
+		handleEventEnCours()
+	}, [box1video1])
+
+	const [dataQuizz, setDataQuizz] = useState('')
+
+	const openTutorialModal = () => {
+		closeCompte()
+		setTutorialModalIsActive(true)
+	}
 
 	// EXPLICATION : Le joueur choisi d'activer la musique d'ambiance > son état se met à jour dans le context > ferme la modale.
 	const activateNappe = () => {
@@ -87,23 +103,20 @@ const Header = () => {
 	}
 
 	const handleModalVideoBrief = async () => {
-		//TODO Gestion validation Briefing
-		// await updateHistory(token, 1, "box1video1");
-		// dispatch({
-		//   type: 'setEvent',
-		//   id: 'box1video1'
-		// })
+		await updateHistory(token, 1, "box1video1")
 		actionToggleDataHistory()
 		setModaleVideo(false)
 		setNappeModalIsActive(true)
+		handleEventEnCours()
 	}
 
 	const displayBrief = () => {
 		return (
 			<Video
 				title='Briefing'
-				srcVideo={`${urlApi.cdn()}videos/db-s02-101-def.mp4`}
+				srcVideo={urlApi.cdn() + box1video1?.src}
 				handleModalVideo={handleModalVideoBrief}
+				scrTranscript={box1video1?.srcTranscript && (urlApi.cdn() + box1video1?.srcTranscript)}
 			/>
 		)
 	}
@@ -160,13 +173,13 @@ const Header = () => {
 	// EXPLICATION : On ferme la modale de choix d'affichage du tutorial
 	const handleCloseModalTutorial = () => {
 		setTutorialModalIsActive(false)
-		handleEventEnCours()
+		setModaleVideo(true)
 	}
 
 	// EXPLICATION : On ferme la video du tutorial
 	const handleCloseTutorial = () => {
 		setTutorialIsActive(false)
-		handleEventEnCours()
+		setModaleVideo(true)
 	}
 
 	// EXPLICATION : Audio pour les nappes d'ambiance en fonction de la box (une box = une musique d'ambiance)

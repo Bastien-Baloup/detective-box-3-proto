@@ -326,13 +326,6 @@
 				"id": 3,
 				"text": ["22 février 1990."],
 				"image": null
-			},
-			{
-				"id": 4,
-				"text": [
-					"Ils se sont arrêtés à la pharmacie de Fontvieille, allez demander à Lauren d’interroger le pharmacien qui y travaille."
-				],
-				"image": "proto3/assets/renforts/box1help21-6.png"
 			}
 		],
 		"title": "Planque des casseurs",

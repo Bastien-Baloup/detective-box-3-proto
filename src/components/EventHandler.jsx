@@ -278,7 +278,7 @@ const EventHandler = () => {
 		closeCompte()
 		return (
 			<Audio
-				title={`Interrogatoire de ${name}`}
+				title={answer?.title}
 				srcImg1={urlApi.cdn() + answer.img1}
 				srcImg2={urlApi.cdn() + answer.img2}
 				srcTranscription={urlApi.cdn() + answer.srcTranscript}
