@@ -103,7 +103,7 @@ const Tim = ({ closeAgentPage }) => {
 		)
 		const previouslyAnsweredInThisBox = answerInThisBox?.status
 
-		if (answerInThisBox?.id === 'tatouageSimon' && event301?.status === 'done') {
+		if (answerInThisBox?.id === 'tatouageSimon' && event301?.status === 'open') {
 			setValue('')
 			setErrorMessage("Nan, j'ai rien sur ce que vous me demandez.")
 			return
@@ -114,13 +114,6 @@ const Tim = ({ closeAgentPage }) => {
 			setValue('')
 			return
 		}
-		// if (previouslyAnsweredInThisBox) {
-		// 	setValue('')
-		// 	setErrorMessage(
-		// 		"Vous m'avez dejà demandé d'analyser cet élément. Il est désormais disponible dans votre Historique.”"
-		// 	)
-		// 	return
-		// }
 		if (answerInThisBox) {
 			setAnswer(answerInThisBox)
 			setModal(true)

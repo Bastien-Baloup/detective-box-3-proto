@@ -71,8 +71,8 @@
 	},
 	{
 		"id": 301,
-		"status": "open",
-		"comment": "Objectif 3 - Requete tatouage de Simon pour Tim et Adele"
+		"status": "closed",
+		"comment": "Objectif 3 - Requete tatouage de Simon pour Tim et Adele, done = Tim, open = Adele"
 	},
 	{
 		"id": 302,

@@ -223,7 +223,7 @@ const Adele = ({ closeAgentPage }) => {
 	const validateModal = () => {
 		setModal(false)
 		if (answer?.id === 'tatouageSimon') {
-			updateEvent(token, currentBox, 301, 'done')
+			updateEvent(token, currentBox, 301, 'open')
 			actionToggleDataEvent()
 		}
 	}
