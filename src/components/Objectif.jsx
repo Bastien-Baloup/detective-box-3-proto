@@ -261,6 +261,10 @@ const Objectif = ({ data }) => {
 		await updateHistory(token, 1, 'box1audio12')
 		actionToggleDataHistory()
 		setInterrogatoireSimon(false)
+		if (sousObj31?.status !== 'done') {
+			setManqueSousObj31(true)
+			return
+		}
 		setDenoncerTim(true)
 	}
 
@@ -609,16 +613,21 @@ const Objectif = ({ data }) => {
 			actionToggleDataEvent()
 			if (sousObj32?.status !== 'done') {
 				setManqueSousObj32(true)
+			} else {
+				await updateObjectives(token, 1, 3, 'done')
+				actionToggleDataObjectif()
+				setDenoncerTim(true)
 			}
 			setSousObjectif(null)
 		}
 		if (sousObjectif?.id === 32) {
 			await updateEvent(token, 1, 32, 'done')
 			actionToggleDataEvent()
-			setInterrogatoireSimon(true)
-			if (sousObj31?.status !== 'done') {
-				setManqueSousObj31(true)
+			if (sousObj31?.status === 'done') {
+				await updateObjectives(token, 1, 3, 'done')
+				actionToggleDataObjectif()
 			}
+			setInterrogatoireSimon(true)
 			setSousObjectif(null)
 		}
 	}

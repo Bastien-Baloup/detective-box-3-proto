@@ -41,14 +41,34 @@ const Raphaelle = ({ closeAgentPage }) => {
 		fetchData()
 	}, [toggleDataRaphaelle])
 
+	const [dataObjectif, setDataObjectif] = useState(null)
+
 	useEffect(() => {
 		const fetchData = async () => {
-			const objectifs = await getObjectivesByBox(token, currentBox)
-			const objectif2Data = objectifs.data.find((event) => event.id === 2)
+			const result = await getObjectivesByBox(token, currentBox)
+			const objectif2Data = result.data.find((event) => event.id === 2)
 			setObjectif2(objectif2Data.status)
+			setDataObjectif(result.data)
 		}
 		fetchData()
 	}, [toggleDataObjectif])
+
+	useEffect(() => {
+		const fetchData = async () => {
+			setDataObjectif(result.data)
+		}
+		fetchData()
+	}, [toggleDataObjectif, currentBox, token])
+	let maxDoneObjectif = 0
+	if (dataObjectif) {
+		for (const objectif of dataObjectif) {
+			if (objectif?.status === 'done' && objectif.id > maxDoneObjectif) {
+				maxDoneObjectif = objectif.id
+			}
+		}
+	}
+
+	const currentObjectif = Math.min(maxDoneObjectif + 1, 3)
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -164,9 +184,10 @@ const Raphaelle = ({ closeAgentPage }) => {
 		e.preventDefault()
 
 		const thisBox = dataRaphaelle.find((element) => element.box_id === currentBox).data
-		const answerInThisBox = (value) => {
-			return thisBox.find((element) => element.ask.includes(value))
-		}
+		const answerInThisBox = thisBox.find(
+			(element) =>
+				element.ask.includes(slugify(value)) && (!element?.objectifs || element.objectifs.includes(currentObjectif))
+		)
 		const previouslyAnsweredInThisBox = (value) => {
 			return answerInThisBox(value)?.status
 		}

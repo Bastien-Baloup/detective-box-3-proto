@@ -47,6 +47,17 @@ const Lauren = ({ closeAgentPage }) => {
 
 	const obj3 = useMemo(() => dataObjectif?.find((document) => document.id === 3)?.status, [dataObjectif])
 
+	let maxDoneObjectif = 0
+	if (dataObjectif) {
+		for (const objectif of dataObjectif) {
+			if (objectif?.status === 'done' && objectif.id > maxDoneObjectif) {
+				maxDoneObjectif = objectif.id
+			}
+		}
+	}
+
+	const currentObjectif = Math.min(maxDoneObjectif + 1, 3)
+
 	const [dataHistory, setDataHistory] = useState()
 
 	useEffect(() => {
@@ -56,6 +67,8 @@ const Lauren = ({ closeAgentPage }) => {
 		}
 		fetchData()
 	}, [toggleDataHistory])
+
+	const box1audio1 = useMemo(() => dataHistory?.find((document) => document?.id === 'box1audio1'), [dataHistory])
 
 	const box1audio9 = useMemo(() => dataHistory?.find((document) => document.id === 'box1audio9')?.status, [dataHistory])
 	const box1audio10 = useMemo(
@@ -86,6 +99,8 @@ const Lauren = ({ closeAgentPage }) => {
 		return inputSlugified
 	}
 
+
+
 	// EXPLICATION : Les réponses peuvent être trouvées dans la box actuelle ou les boxs précédentes
 	// EXPLICATION : Les réponses du personnage dépendent de la location de la réponse (générique, box précedente ou box actuelle) et du status de la réponse (déjà demandé ou pas)
 	// EXPLICATION : Celine et Lauren sont les seules à avoir des boxs génériques
@@ -94,7 +109,10 @@ const Lauren = ({ closeAgentPage }) => {
 		const thisBox = dataLauren.find((element) => element.box_id === currentBox).data
 		//const generic = dataLauren.find(element => element.box_id == 4).data
 		console.log(slugify(value))
-		const answerInThisBox = thisBox.find((element) => element?.ask?.includes(slugify(value)))
+		const answerInThisBox = thisBox.find(
+			(element) =>
+				element.ask.includes(slugify(value)) && (!element?.objectifs || element.objectifs.includes(currentObjectif))
+		)
 		const previouslyAnsweredInThisBox = answerInThisBox?.status
 		//const answerInFailedInterview = generic.find(element => element.ask.includes(slugify(value)))
 		if (value === '') {
@@ -151,7 +169,7 @@ const Lauren = ({ closeAgentPage }) => {
 		return (
 			<div className='modal-objectif__background'>
 				<div className='modal-objectif__box'>
-					<div>{renderText()}</div>
+					<div>{renderText(answer?.text)}</div>
 					<button type='button' className='modal-objectif__button button--red' onClick={handleClick}>
 						Interroger le pharmacien
 					</button>
@@ -173,7 +191,7 @@ const Lauren = ({ closeAgentPage }) => {
 					) : (
 						''
 					)}
-					<div>{renderText()}</div>
+					<div>{renderText(answer?.text)}</div>
 					{answer.id ? (
 						<button type='button' className='modal-objectif__button button--red' onClick={openMedia}>
 							Voir l&apos;élément
@@ -188,8 +206,8 @@ const Lauren = ({ closeAgentPage }) => {
 		)
 	}
 
-	const renderText = () => {
-		const text = answer.text.map((el, i) => {
+	const renderText = (text_) => {
+		const text = text_?.map((el, i) => {
 			return (
 				<p className='modal-objectif__subtitle' key={i}>
 					{el}
@@ -250,6 +268,11 @@ const Lauren = ({ closeAgentPage }) => {
 	const randomNumberLauren = Math.floor(Math.random() * catchphraseLauren.length)
 
 	const closeAutopsie = async () => {
+		await updateAutopsie()
+		aprèsAutopsie()
+	}
+
+	const updateAutopsie = async () => {
 		await updateHistory(token, 1, 'box1document7')
 		actionToggleDataHistory()
 		setAutopsie(false)
@@ -276,19 +299,21 @@ const Lauren = ({ closeAgentPage }) => {
 							)
 						})}
 					</div>
-					<button type='button' className='modal-objectif__button button--red' onClick={closeAutopsie}>
-						Continuer l&apos;enquête
-					</button>
-					<button type='button' className='modal-objectif__button button--red' onClick={openDocumentAutopsie}>
-						Lire l&apos;autopsie
-					</button>
+					<div className='modal-objectif__buttons'>
+						<button type='button' className='modal-objectif__button button--red' onClick={closeAutopsie}>
+							Continuer l&apos;enquête
+						</button>
+						<button type='button' className='modal-objectif__button button--red' onClick={openDocumentAutopsie}>
+							Lire l&apos;autopsie
+						</button>
+					</div>
 				</div>
 			</div>
 		)
 	}
 
 	const openDocumentAutopsie = async () => {
-		await closeAutopsie()
+		await updateAutopsie()
 		setDocumentAutopsie(true)
 	}
 
@@ -297,8 +322,38 @@ const Lauren = ({ closeAgentPage }) => {
 			<Document
 				title={box1document7.title}
 				srcElement={box1document7.src}
-				handleModalDocument={() => setDocumentAutopsie(false)}
+				handleModalDocument={aprèsAutopsie}
 			/>
+		)
+	}
+
+	const aprèsAutopsie = () => {
+		if (box1audio1?.status !== 'done') {
+			setManqueAudio1(true)
+		}
+		setAutopsie(false)
+		setDocumentAutopsie(false)
+	}
+
+	const [manqueAudio1, setManqueAudio1] = useState(false)
+	const renderManqueAudio1 = () => {
+		console.log('test')
+		const text = [
+			'Les alibis des membres de la Horde ont l’air solides, il faut peut-être élargir les recherches.',
+			'Avez-vous interrogé les proches de Cédric ?'
+		]
+		const handleClick = () => {
+			setManqueAudio1(false)
+		}
+		return (
+			<div className='modal-objectif__background'>
+				<div className='modal-objectif__box'>
+					<div>{renderText(text)}</div>
+					<button type='button' className='modal-objectif__button button--red' onClick={handleClick}>
+						Continuer l&apos;enquête
+					</button>
+				</div>
+			</div>
 		)
 	}
 
@@ -379,6 +434,7 @@ const Lauren = ({ closeAgentPage }) => {
 			{pharmacie && renderPharmacie()}
 			{autopsie && renderAutopsie()}
 			{documentAutopsie && renderDocumentAutopsie()}
+			{manqueAudio1 && renderManqueAudio1()}
 			{mensonge && renderMensonge()}
 			{philippe && renderPhilippe()}
 			{simon && renderSimon()}

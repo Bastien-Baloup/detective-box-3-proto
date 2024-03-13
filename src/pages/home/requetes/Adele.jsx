@@ -46,16 +46,16 @@ const Adele = ({ closeAgentPage }) => {
 		fetchData()
 	}, [toggleDataAdele])
 
-	const [dataHistory, setDataHistory] = useState(null)
+	const [history, sethistory] = useState(null)
 	useEffect(() => {
-		const fetchData = async () => {
-			const result = await getHistoryByBox(token, 1)
-			setDataHistory(result?.data)
+		const getEvents = async () => {
+			const history_ = await getHistoryByBox(token, currentBox)
+			sethistory(history_?.data)
 		}
-		fetchData()
+		getEvents()
 	}, [toggleDataHistory])
 
-	const box1audio1 = useMemo(() => dataHistory?.find((document) => document?.id === 'box1audio1'), [dataHistory])
+	const box1document2 = useMemo(() => history?.find((document) => document.id === 'box1document2')?.status, [history])
 
 	const [dataObjectif, setDataObjectif] = useState(null)
 	useEffect(() => {
@@ -65,6 +65,7 @@ const Adele = ({ closeAgentPage }) => {
 		}
 		fetchData()
 	}, [toggleDataObjectif, currentBox, token])
+
 	let maxDoneObjectif = 0
 	if (dataObjectif) {
 		for (const objectif of dataObjectif) {
@@ -117,16 +118,10 @@ const Adele = ({ closeAgentPage }) => {
 		e.preventDefault()
 
 		const thisBox = dataAdele.find((element) => element.box_id === currentBox).data
-		const answerInThisBox = thisBox.find((element) => {
-			const inAsk = element.ask.includes(slugify(value))
-			let inObjectifs
-			if (element?.objectifs) {
-				inObjectifs = element.objectifs.includes(currentObjectif)
-			} else {
-				inObjectifs = true
-			}
-			return inAsk && inObjectifs
-		})
+		const answerInThisBox = thisBox.find(
+			(element) =>
+				element.ask.includes(slugify(value)) && (!element?.objectifs || element.objectifs.includes(currentObjectif))
+		)
 		const previouslyAnsweredInThisBox = answerInThisBox?.status
 
 		if (answerInThisBox?.id === 'tatouageSimon' && event301?.status === 'done') {
@@ -140,7 +135,7 @@ const Adele = ({ closeAgentPage }) => {
 			setValue('')
 			return
 		}
-		if (previouslyAnsweredInThisBox) {
+		if (previouslyAnsweredInThisBox || (answerInThisBox?.id === 'empreintes' && box1document2)) {
 			setValue('')
 			setErrorMessage(
 				"Vous m'avez dejà demandé d'analyser cet élément. Il est désormais disponible dans votre Historique.”"
@@ -240,30 +235,7 @@ const Adele = ({ closeAgentPage }) => {
 
 	const handleModaleDocument = async () => {
 		await closeModalMedia(answer.id, answer.ask)
-		if (answer?.id === 'box1document6' && box1audio1?.status !== 'done') {
-			setManqueAudio1(true)
-		}
-	}
 
-	const [manqueAudio1, setManqueAudio1] = useState(false)
-	const renderManqueAudio1 = () => {
-		const text = [
-			'Les alibis des membres de la Horde ont l’air solides, il faut peut-être élargir les recherches.',
-			'Avez-vous interrogé les proches de Cédric ?'
-		]
-		const handleClick = () => {
-			setManqueAudio1(false)
-		}
-		return (
-			<div className='modal-objectif__background'>
-				<div className='modal-objectif__box'>
-					<div>{renderText(text)}</div>
-					<button type='button' className='modal-objectif__button button--red' onClick={handleClick}>
-						Continuer l&apos;enquête
-					</button>
-				</div>
-			</div>
-		)
 	}
 
 	const renderModalMedia = () => {
@@ -304,7 +276,6 @@ const Adele = ({ closeAgentPage }) => {
 		<>
 			{modal && renderModal()}
 			{modalMedia && renderModalMedia()}
-			{manqueAudio1 && renderManqueAudio1()}
 			{empreintes && <Empreintes toggleReset={toggleReset} />}
 			<audio autoPlay>
 				<source src={urlApi.cdn() + catchphrase[randomNumber]} type='audio/mpeg' />
