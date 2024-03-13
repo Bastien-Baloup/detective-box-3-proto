@@ -7,6 +7,7 @@
 	},
 	{
 		"ask": ["pharmacie", "pharmaciefontvieille", "pharmaciedefontvieille"],
+		"objectifs": [2],
 		"text": [
 			"Je ne pense pas que les voleurs soient là... Mais ils ont l'air de s'être arrêtés dans cette pharmacie. Allons interroger le gérant."
 		],

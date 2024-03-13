@@ -56,7 +56,7 @@
 		"category": "Document",
 		"detail": null,
 		"poster": "proto3/thumbnails/documents/3D337-compte-rendu-hospitalisation-henri.jpg",
-		"src": "proto3/assets/documents/3D337-compte-rendu-hospitalisation-henri.pdf",
+		"src": "proto3/assets/documents/3d337-compte-rendu-hospitalisation-henri-v2.pdf",
 		"status": false
 	},
 	{
@@ -145,7 +145,7 @@
 		"poster": "proto3/thumbnails/documents/messagerie_telephone.jpg",
 		"img1": "proto3/assets/photos-personnages/messagerie_telephone.jpg",
 		"srcAudio": "proto3/sounds/messagerie_telephone.mp3",
-		"srcTranscript": "proto3/assets/transcripts/messagerie_telephone.pdf",
+		"srcTranscript": "proto3/assets/transcripts/3a226-tracks-des-casseurs-v2.pdf",
 		"status": false
 	},
 	{

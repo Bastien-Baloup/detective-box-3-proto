@@ -53,12 +53,6 @@ const Raphaelle = ({ closeAgentPage }) => {
 		fetchData()
 	}, [toggleDataObjectif])
 
-	useEffect(() => {
-		const fetchData = async () => {
-			setDataObjectif(result.data)
-		}
-		fetchData()
-	}, [toggleDataObjectif, currentBox, token])
 	let maxDoneObjectif = 0
 	if (dataObjectif) {
 		for (const objectif of dataObjectif) {
@@ -105,6 +99,8 @@ const Raphaelle = ({ closeAgentPage }) => {
 			.replace(/[^a-z0-9]/g, '')
 		return inputSlugified
 	}
+
+	const slugify = slugifyAdresse
 
 	// EXPLICATION : Fonction pour slugifier l'input GPS des joueurs (seulement )
 	const slugifyGPS = (input) => {
@@ -186,11 +182,10 @@ const Raphaelle = ({ closeAgentPage }) => {
 		const thisBox = dataRaphaelle.find((element) => element.box_id === currentBox).data
 		const answerInThisBox = thisBox.find(
 			(element) =>
-				element.ask.includes(slugify(value)) && (!element?.objectifs || element.objectifs.includes(currentObjectif))
+				(element.ask.includes(slugify(valueAdresse)) || element.ask.includes(slugifyGPS(valueLatitude.concat(valueLongitude)))) && (!element?.objectifs || element.objectifs.includes(currentObjectif))
 		)
-		const previouslyAnsweredInThisBox = (value) => {
-			return answerInThisBox(value)?.status
-		}
+		const previouslyAnsweredInThisBox = answerInThisBox?.status
+
 
 		// EXPLICATION : si les deux champs sont remplis, message d'erreur
 		if (valueAdresse !== '' && (valueLatitude !== '' || valueLongitude !== '')) {
@@ -222,7 +217,7 @@ const Raphaelle = ({ closeAgentPage }) => {
 				setValueLatitude('')
 				return
 			}
-			if (previouslyAnsweredInThisBox(slugifiedAdresse)) {
+			if (previouslyAnsweredInThisBox) {
 				setValueAdresse('')
 				setValueLongitude('')
 				setValueLatitude('')
@@ -230,8 +225,8 @@ const Raphaelle = ({ closeAgentPage }) => {
 				return
 			}
 			// EXPLICATION : certains lieux ne sont visitables que si certaines conditions ont été remplies
-			if (answerInThisBox(slugifiedAdresse)) {
-				if (answerInThisBox(slugifiedAdresse)?.id === 'box1lieu1') {
+			if (answerInThisBox) {
+				if (answerInThisBox?.id === 'box1lieu1') {
 					if (objectif2 === 'closed') {
 						setValueAdresse('')
 						setValueLongitude('')
@@ -240,7 +235,7 @@ const Raphaelle = ({ closeAgentPage }) => {
 						return
 					}
 					if (event232 === 'done') {
-						setAnswer(answerInThisBox(slugifiedAdresse))
+						setAnswer(answerInThisBox)
 						setModal(true)
 						setValueAdresse('')
 						setValueLongitude('')
@@ -262,7 +257,7 @@ const Raphaelle = ({ closeAgentPage }) => {
 					return
 				}
 
-				setAnswer(answerInThisBox(slugifiedAdresse))
+				setAnswer(answerInThisBox)
 				setModal(true)
 				setValueAdresse('')
 				setValueLongitude('')
@@ -275,15 +270,15 @@ const Raphaelle = ({ closeAgentPage }) => {
 		if ((valueLatitude !== '' || valueLongitude !== '') && valueAdresse === '') {
 			const GPS = valueLatitude.concat(valueLongitude)
 			const slugifiedGPS = slugifyGPS(GPS)
-			if (previouslyAnsweredInThisBox(slugifiedGPS)) {
+			if (previouslyAnsweredInThisBox) {
 				setValueAdresse('')
 				setValueLongitude('')
 				setValueLatitude('')
 				setErrorMessage(`Vous m'avez dejà demandé d'explorer ce lieu.`)
 				return
 			}
-			if (answerInThisBox(slugifiedGPS)) {
-				setAnswer(answerInThisBox(slugifiedGPS))
+			if (answerInThisBox) {
+				setAnswer(answerInThisBox)
 				setModal(true)
 				setValueAdresse('')
 				setValueLongitude('')
